@@ -1,4 +1,4 @@
-package com.tcgdigi;
+package com.trading_card_game_journey;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
@@ -14,7 +14,7 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "tcgDigi";
+    return "trading_card_game_journey";
   }
 @Override
   protected void onCreate(Bundle savedInstanceState) {

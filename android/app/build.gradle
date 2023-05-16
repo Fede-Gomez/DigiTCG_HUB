@@ -93,9 +93,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.tcgdigi"
+    namespace "com.trading_card_game_journey"
     defaultConfig {
-        applicationId "com.tcgdigi"
+        applicationId "com.trading_card_game_journey"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

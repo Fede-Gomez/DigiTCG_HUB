@@ -1,4 +1,4 @@
-package com.tcgdigi;
+package com.trading_card_game_journey;
 
 import android.app.Application;
 import com.facebook.react.PackageList;
