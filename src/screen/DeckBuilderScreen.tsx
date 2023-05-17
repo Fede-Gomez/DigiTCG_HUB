@@ -1,7 +1,11 @@
 import React from 'react'
-import { Text } from 'react-native'
-export const DeckBuilderScreen = () => {
+import { FlatList, Text, View } from 'react-native'
+export const DeckBuilderScreen = async () => {
+
+
   return (
-    <Text>DeckBuilder</Text>
+      <View>
+        <Text>Hola</Text>
+      </View>
   )
 }

@@ -11,6 +11,8 @@
     "apk": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && cd android && ./gradlew assembleDebug && project/android/app/build/outputs/apk/debug/app-debug.apk"
   },
   "dependencies": {
+    "@react-native-firebase/app": "^17.5.0",
+    "@react-native-firebase/firestore": "^17.5.0",
     "@react-navigation/material-top-tabs": "^6.6.2",
     "@react-navigation/native": "^6.1.6",
     "@react-navigation/native-stack": "^6.9.12",

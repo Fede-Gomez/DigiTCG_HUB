@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "296791364410",
+    "project_id": "trading-card-game-journey",
+    "storage_bucket": "trading-card-game-journey.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:296791364410:android:d6772d39aee193af287603",
+        "android_client_info": {
+          "package_name": "com.trading_card_game_journey"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "296791364410-iev302orjl5d9m02plus89nkmmbi3bic.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAixuaSamNhUbKSoLQO-6n6qhnCMcl7xHs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "296791364410-iev302orjl5d9m02plus89nkmmbi3bic.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
