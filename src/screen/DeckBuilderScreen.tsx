@@ -1,11 +1,14 @@
 import React from 'react'
-import { FlatList, Text, View } from 'react-native'
-export const DeckBuilderScreen = async () => {
+import { Text, View } from 'react-native'
+import { useAppDispatch, useAppSelector } from '../hooks/useReducerHook'
 
+export const DeckBuilderScreen = () => {
+
+  const {cards} = useAppSelector(state => state.cards)
 
   return (
-      <View>
-        <Text>Hola</Text>
-      </View>
+    <View>
+      <Text>{JSON.stringify(cards)}</Text>
+    </View>
   )
 }
