@@ -7,16 +7,14 @@ let cartas = []
 
 export const useCards = () => {
     const dispatch = useAppDispatch()
-    const [data, setData] = useState([])
 
   const loadAllCards= async ()=>{
         const db = getFirestore();
         const querySnapshot = await getDocs(collection(db, "cardsDigimon"));
         querySnapshot.forEach((doc) => {
-            cartas.push([{id:doc.id,data:doc.data()}])
+            cartas.push({id:doc.id,data:doc.data()})
         });
-        setData(cartas)
-        dispatch(setCards(data))
+        dispatch(setCards(cartas))
   }
 
     useEffect(() => {

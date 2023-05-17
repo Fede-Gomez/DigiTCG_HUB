@@ -6,7 +6,6 @@ export const store = configureStore({
   reducer: {
     cards:cardsReducer.reducer,
   },
-  middleware: [thunk],
 })
 
 export type RootState = ReturnType<typeof store.getState>
