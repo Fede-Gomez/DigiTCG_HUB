@@ -1,5 +1,6 @@
 export const TypeNavigation = {
     account:{
+        loginDrawer:'LoginDrawer',
         login:'Login',
         signIn:'Sign up'
     },

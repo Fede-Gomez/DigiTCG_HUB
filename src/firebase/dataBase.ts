@@ -6,6 +6,12 @@ const dataBaseDigimon = async () => {
     return querySnapshot
 }
 
+const dataBaseUsers = async () => {
+    const querySnapshot = getDocs(collection(db, "users"));
+    return querySnapshot
+}
+
 export {
-    dataBaseDigimon
+    dataBaseDigimon,
+    dataBaseUsers,
 }

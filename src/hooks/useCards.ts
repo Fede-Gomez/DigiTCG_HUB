@@ -2,16 +2,16 @@ import {useEffect, useState} from 'react'
 import { useAppDispatch } from './useReducerHook'
 import { setCards } from '../reducers/cardsReducer'
 import { collection, getDocs, getFirestore } from 'firebase/firestore'
+import { dataBaseDigimon } from '../firebase/dataBase'
 
 
 export const useCards = () => {
     let cartas = []
     const dispatch = useAppDispatch()
-
-  const loadAllCards= async ()=>{
-        const db = getFirestore();
-        const querySnapshot = await getDocs(collection(db, "cardsDigimon"));
-        querySnapshot.forEach((doc) => {
+    
+    const loadAllCards= async ()=>{
+      const db = await dataBaseDigimon()
+        db.forEach((doc) => {
             cartas.push({id:doc.id,data:doc.data()})
         });
         dispatch(setCards(cartas))
