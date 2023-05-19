@@ -1,5 +1,5 @@
 {
-  "name": "trading_card_game_journey",
+  "name": "trading-card-game-journey",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -8,11 +8,14 @@
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest",
+    "clean": "cd android && ./gradlew clean && cd ..",
+    "cleanMetro": "yarn start --reset-cache",
     "apk": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && cd android && ./gradlew assembleDebug && project/android/app/build/outputs/apk/debug/app-debug.apk"
   },
   "dependencies": {
     "@react-native-firebase/app": "^17.5.0",
     "@react-native-firebase/firestore": "^17.5.0",
+    "@react-navigation/drawer": "^6.6.2",
     "@react-navigation/material-top-tabs": "^6.6.2",
     "@react-navigation/native": "^6.1.6",
     "@react-navigation/native-stack": "^6.9.12",
@@ -21,8 +24,10 @@
     "firebase": "^9.22.0",
     "react": "18.2.0",
     "react-native": "0.71.8",
+    "react-native-gesture-handler": "^2.10.1",
     "react-native-modal": "^13.0.1",
     "react-native-pager-view": "^6.2.0",
+    "react-native-reanimated": "^3.1.0",
     "react-native-safe-area-context": "^4.5.3",
     "react-native-screens": "^3.20.0",
     "react-native-tab-view": "^3.5.1",

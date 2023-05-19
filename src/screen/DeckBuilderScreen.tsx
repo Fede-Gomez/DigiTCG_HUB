@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Text, View, Image, FlatList, Dimensions, Button, Modal, Alert, Pressable } from 'react-native'
+import { Text, View, Image, FlatList, Dimensions, Button, Alert, Pressable } from 'react-native'
 import { useAppDispatch, useAppSelector } from '../hooks/useReducerHook'
 
 export const DeckBuilderScreen = () => {
@@ -24,16 +24,12 @@ const renderItem = (item)=>{
 }
 
 const [modalVisible, setModalVisible] = useState(false);
-const showModal = ()=>{
-  
-}
 
 return (
   <>
     <View style={{flexDirection:'row', justifyContent:'space-between'}}>
       <Button
         title='Deck Selected'
-        onPress={showModal}
       />
       <Button
         title='Card Selected'

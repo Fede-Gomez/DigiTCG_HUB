@@ -3,9 +3,9 @@ import { useAppDispatch } from './useReducerHook'
 import { setCards } from '../reducers/cardsReducer'
 import { collection, getDocs, getFirestore } from 'firebase/firestore'
 
-let cartas = []
 
 export const useCards = () => {
+    let cartas = []
     const dispatch = useAppDispatch()
 
   const loadAllCards= async ()=>{
@@ -21,4 +21,7 @@ export const useCards = () => {
         loadAllCards();
     }, [])
 
+    return{
+        
+    }
 }

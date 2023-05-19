@@ -1,15 +1,17 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { getFirestore } from "firebase/firestore";
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAixuaSamNhUbKSoLQO-6n6qhnCMcl7xHs",
+  apiKey: "AIzaSyA_iHjadECnpGmqfZp02CLD4Iy-IPv6tzw",
+  authDomain: "trading-card-game-journey.firebaseapp.com",
   projectId: "trading-card-game-journey",
-  appId: "1:296791364410:android:d6772d39aee193af287603"
+  storageBucket: "trading-card-game-journey.appspot.com",
+  messagingSenderId: "296791364410",
+  appId: "1:296791364410:web:815796a17a8c0722287603",
+  measurementId: "G-X6XH1KG6Q8"
 };
 
 // Initialize Firebase
-const startFirebase = ()=> initializeApp(firebaseConfig);
-export default startFirebase
+export const app = initializeApp(firebaseConfig);
+
+export const db = getFirestore(app)

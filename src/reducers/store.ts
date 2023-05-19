@@ -1,10 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { cardsReducer } from '../reducers/cardsReducer'
-import thunk from 'redux-thunk';
+import { cardsReducer } from './cardsReducer'
+import {userReducer} from './userReducer';
 
 export const store = configureStore({
   reducer: {
     cards:cardsReducer.reducer,
+    user: userReducer.reducer
   },
 })
 
