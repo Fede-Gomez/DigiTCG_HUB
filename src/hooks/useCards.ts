@@ -6,10 +6,10 @@ import { dataBaseDigimon } from '../firebase/dataBase'
 
 
 export const useCards = () => {
-    let cartas = []
-    const dispatch = useAppDispatch()
-    
-    const loadAllCards= async ()=>{
+  const dispatch = useAppDispatch()
+  let cartas = []
+  
+  const loadAllCards= async ()=>{
       const db = await dataBaseDigimon()
         db.forEach((doc) => {
             cartas.push({id:doc.id,data:doc.data()})
@@ -17,11 +17,10 @@ export const useCards = () => {
         dispatch(setCards(cartas))
   }
 
-    useEffect(() => {
-        loadAllCards();
-    }, [])
-
-    return{
-        
-    }
+  const addCards = ()=>{
+    
+  }
+  return{
+      loadAllCards
+  }
 }
