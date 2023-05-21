@@ -1,7 +1,7 @@
 import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from 'firebase/auth'
 import {app, db} from '../firebase/connect'
 import { doc, setDoc } from 'firebase/firestore';
-import { useAppDispatch, useAppSelector } from './useReducerHook';
+import { useAppDispatch } from './useReducerHook';
 import { useNavigation } from '@react-navigation/native';
 import {TypeNavigation} from '../constants/typesNavigation'
 import { setUser } from '../reducers/userReducer';

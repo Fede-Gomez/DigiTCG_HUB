@@ -1,7 +1,12 @@
 export interface CardsState {
   listCards: { 
     id: string; 
-    data: Card 
+    data: Card;
+  }[];
+  listCardsPicked: { 
+    id: string; 
+    data: Card;
+    count: number
   }[];
 }
 

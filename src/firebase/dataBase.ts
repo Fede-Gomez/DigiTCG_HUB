@@ -1,4 +1,4 @@
-import { collection, getDocs, getFirestore } from 'firebase/firestore';
+import { collection, getDocs } from 'firebase/firestore';
 import { db } from './connect';
 
 const dataBaseDigimon = async () => {

@@ -1,8 +1,5 @@
 import React from 'react'
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { LoginScreen } from '../screen/LoginScreen';
-import { TopTapNavigation } from './TopTabNavigation';
-import SignUpScreen from '../screen/SignUpScreen';
 import { StackAccountNavigation, StackGameNavigation } from './StackNavigation';
 import { TypeNavigation } from '../constants/typesNavigation';
 
