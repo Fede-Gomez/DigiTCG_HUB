@@ -1,14 +1,17 @@
-import React, { useState } from 'react'
-import { Text, View, Image, FlatList, Dimensions, Button, Alert, Pressable } from 'react-native'
-import { useAppDispatch, useAppSelector } from '../hooks/useReducerHook'
+import React from 'react'
+import { View, FlatList, Button } from 'react-native'
+import { useAppSelector } from '../hooks/useReducerHook'
 import { CardDigimon } from '../components/cards'
+import { TypeNavigation } from '../constants/typesNavigation'
+import { useNavigation } from '@react-navigation/native'
 
 export const DeckBuilderScreen = () => {
 
   const cards = useAppSelector(state => state.cards.listCards)
+  const navigation = useNavigation()
 
 const renderItem = (item)=>{
-  return <CardDigimon card={item.item.data}/>
+  return <CardDigimon card={item.item}/>
 }
 
 return (
@@ -18,7 +21,8 @@ return (
         title='Deck Selected'
       />
       <Button
-        title='Card Selected'
+        title='Cards Selected'
+        onPress={()=>navigation.navigate(TypeNavigation.game.cardSelected)}
       />
       <Button
         title='Filter'

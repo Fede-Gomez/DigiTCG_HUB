@@ -3,25 +3,31 @@ import { View, Image, Text, Button } from 'react-native';
 import { Digimon } from '../../styles/cards/digimon';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Modal from "react-native-modal";
+import { useCards } from '../../hooks/useCards';
+import { useAppSelector } from '../../hooks/useReducerHook';
 
 const CardDigimon = ({card}) => {
     const [isModalVisible, setModalVisible] = useState(false);
+    const {addCards, removeCards} = useCards()
+
     const {
         name, color, id, imgUrl, playCost, 
         attribute, cardNumber, cardType, digivolveColor, 
         digivolveCost, digivolveFrom, level, power, 
         rarity, stageLevel, type, source, effect
-    } = card;
+    } = card.data;
     const style = Digimon;
-  
+
     const toggleModal = () => {
         setModalVisible(!isModalVisible);
       };
+
     const add = ()=>{
-        console.log('agregando carta');
+        addCards(card)
     }
+
     const remove = ()=>{
-        console.log('quitando carta');
+        removeCards(card)        
     }
 
     return (

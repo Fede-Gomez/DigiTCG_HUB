@@ -1,12 +1,8 @@
 import React from 'react'; 
-import { HomeScreen } from '../screen/HomeScreen';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { LoginScreen } from '../screen/LoginScreen';
-import CreateAccountScreen from '../screen/SignUpScreen';
-import { useAccount } from '../hooks/useAccount';
-import SignUpScreen from '../screen/SignUpScreen';
 import { TypeNavigation } from '../constants/typesNavigation';
 import { TopTapNavigation } from './TopTabNavigation';
+import { CardSelectedScreen, LoginScreen, SignUpScreen } from '../screen';
 
 const Stack = createNativeStackNavigator()
 
@@ -16,6 +12,7 @@ export const StackGameNavigation = ()=>{
         screenOptions={{headerShown:false}}
       >
         <Stack.Screen name={TypeNavigation.game.homeGameTopBar} component={TopTapNavigation} />
+        <Stack.Screen name={TypeNavigation.game.cardSelected} component={CardSelectedScreen} />
       </Stack.Navigator>
     )
 }

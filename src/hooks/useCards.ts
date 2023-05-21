@@ -1,8 +1,6 @@
-import {useEffect, useState} from 'react'
 import { useAppDispatch } from './useReducerHook'
-import { setCards } from '../reducers/cardsReducer'
-import { collection, getDocs, getFirestore } from 'firebase/firestore'
-import { dataBaseDigimon } from '../firebase/dataBase'
+import { cardPickedAdd, cardPickedRemove, setCards } from '../reducers/cardsReducer'
+import { dataBaseDigimon } from '../firebase'
 
 
 export const useCards = () => {
@@ -17,10 +15,16 @@ export const useCards = () => {
         dispatch(setCards(cartas))
   }
 
-  const addCards = ()=>{
-    
+  const addCards = (card)=>{
+    dispatch(cardPickedAdd(card))
+  }
+
+  const removeCards = (card)=>{
+    dispatch(cardPickedRemove(card))
   }
   return{
-      loadAllCards
+      loadAllCards,
+      addCards,
+      removeCards
   }
 }
