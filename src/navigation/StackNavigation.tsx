@@ -1,12 +1,17 @@
-import React from 'react'; 
+import React, {useEffect} from 'react'; 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { TypeNavigation } from '../constants/typesNavigation';
 import { TopTapNavigation } from './TopTabNavigation';
 import { CardSelectedScreen, DeckSelectedScreen, LoginScreen, SignUpScreen } from '../screen';
+import { useAccount } from '../hooks';
 
 const Stack = createNativeStackNavigator()
 
 export const StackGameNavigation = ()=>{
+    useEffect(() => {
+    })
+    
+
     return (
       <Stack.Navigator initialRouteName={TypeNavigation.game.homeGameTopBar}
         screenOptions={{headerShown:false}}

@@ -15,9 +15,12 @@ export const userReducer = createSlice({
     saveDeckUser: (state, action) =>{
       state.user.decks = action.payload 
     },
+    deleteDeckUser: (state, action)=>{
+      state.user = action.payload
+   }
   },
 })
 
-export const { setUser, saveDeckUser } = userReducer.actions
+export const { setUser, saveDeckUser,deleteDeckUser } = userReducer.actions
 
 export default userReducer.reducer

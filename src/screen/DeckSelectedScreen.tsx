@@ -7,15 +7,13 @@ import { useDeck } from '../hooks';
 import { useNavigation } from '@react-navigation/native';
 import { TypeNavigation } from '../constants/typesNavigation';
 
-export const DeckSelectedScreen = () => {
+export const DeckSelectedScreen = () => {  
     const decks = useAppSelector(state => state.user.user.decks)
     const navigation = useNavigation()
     const [isModalVisible, setModalVisible] = useState(false);
-    const {updateDeck} = useDeck()
+    const {updateDeck, deleteDeck} = useDeck()
     const [deckChoice, setDeckChoice] = useState(null)
     const namesDecks = useMemo(() => Object.keys(decks), [decks]);
-
-    // const namesDecks = (Object.keys(decks));
 
     const toggleModal = () => {
       setModalVisible(!isModalVisible);
@@ -28,7 +26,12 @@ export const DeckSelectedScreen = () => {
     
     const updateDeckAndGoCardSelect = ()=>{
       updateDeck(decks[deckChoice])
-      navigation.navigate(TypeNavigation.game.cardSelected); 
+      navigation.navigate(TypeNavigation.game.cardSelected);
+    }
+
+    const removeDeck = async (deckChoice)=>{
+      deleteDeck(deckChoice)
+      navigation.navigate(TypeNavigation.game.deckBuilder);
     }
 
     const renderHeader = () => {
@@ -49,12 +52,14 @@ export const DeckSelectedScreen = () => {
             <Button
               onPress={toggleModal}
               title='Delete deck'
-              onPress={()=>{}}
+              onPress={()=>{removeDeck(deckChoice)}}
             />
+          }
+          {deckChoice &&
+            <Text>{deckChoice}</Text> 
           }
         <Modal
             isVisible={isModalVisible}
-            // style={style.modalContainer}
         >
           {namesDecks.map( nameDeck =>(
             <View key={nameDeck}>
@@ -87,12 +92,14 @@ export const DeckSelectedScreen = () => {
 
     }
   return (
-  <FlatList
-    data={deckChoice ? decks[deckChoice] : []}
-    ListHeaderComponent={renderHeader}
-    renderItem={renderDeck}
-    numColumns={3}
-  />
+    <>
+      <FlatList
+        data={deckChoice ? decks[deckChoice] : []}
+        ListHeaderComponent={renderHeader}
+        renderItem={renderDeck}
+        numColumns={3}
+      />
+    </>
     )
   
 }

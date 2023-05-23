@@ -18,7 +18,6 @@ const SignUpScreen = () => {
       setEmail('');
       setPassword('');
       setName('');
-      console.log(email);
     }
 
   return (

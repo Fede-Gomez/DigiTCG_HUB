@@ -17,7 +17,7 @@ const CardSelectedScreen = () => {
 
     const createDeckOfSavePicked = (nameText:string)=>{
       saveDeck(nameText,cards)
-      navigation.navigate(TypeNavigation.game.homeGameDrawer);
+      navigation.navigate(TypeNavigation.game.homeGameTopBar);
     }
 
     const showPrompt = ()=>{
@@ -25,7 +25,7 @@ const CardSelectedScreen = () => {
         'Save deck',
         'Enter name deck',
         [
-         {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+         {text: 'Cancel', onPress: () => {}, style: 'cancel'},
          {text: 'OK', onPress: nameText => createDeckOfSavePicked(nameText)},
         ],
         {

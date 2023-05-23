@@ -34,22 +34,30 @@ const saveUserDataBase = async (idUser, email, pass, name)=>{
     await setDoc(doc(db, users, idUser),userData)
 }
 
-const userDeckDatabase = async (idUser, nombre, cards) =>{
-    let user = await getUserFromDataBase(idUser)
-    let nuevoUser ={
+const userDeckUpdateDatabase = async (idUser, nombre, cards) =>{
+    let user = await getUserFromDataBase(idUser);
+    let updateDeckUser ={
         ...user?.data(),
         decks: {
           ...user?.data().decks,
           [nombre]:cards
         }
     }
-    await setDoc(doc(db, users, idUser), nuevoUser);
+    await setDoc(doc(db, users, idUser), updateDeckUser);
+}
+
+const userDeckRemoveDatabase = async (user)=>{
+    console.log('dentro del deckRemoveDatabase');
+    console.log(user);
+    
+    await setDoc(doc(db, users, user.idUser), user);
 }
 
 export {
     dataBaseDigimon,
     dataBaseUsers,
-    userDeckDatabase,
+    userDeckUpdateDatabase,
     getUserFromDataBase,
     saveUserDataBase,
+    userDeckRemoveDatabase
 }
