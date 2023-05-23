@@ -5,19 +5,19 @@ import { useAppDispatch } from './useReducerHook';
 import { useNavigation } from '@react-navigation/native';
 import {TypeNavigation} from '../constants/typesNavigation'
 import { setUser } from '../reducers/userReducer';
-import { dataBaseUsers } from '../firebase/dataBase';
+import { getUserFromDataBase, saveUserDataBase } from '../firebase/dataBase';
 
 
 export const useAccount = () => {
     const auth = getAuth(app);
     const navigation = useNavigation()
     const dispatch = useAppDispatch()
-    const user = auth.currentUser;
 
     const createAccount = (name, email, password)=>{
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential)=>{
                 saveDataBaseUser(userCredential.user.uid, email, password, name)
+                navigation.navigate(TypeNavigation.game.homeGameDrawer);
             }).catch(error =>{
                 console.log(error);
             })
@@ -32,24 +32,13 @@ export const useAccount = () => {
             })
     }
 
-    const saveDataBaseUser = async (idUser, email, pass, name, decks=[''])=>{
-        await setDoc(doc(db, "users", idUser), {
-            idUser,
-            name,
-            email,
-            pass,
-            decks
-      }).then(()=>{
+    const saveDataBaseUser = async (idUser, email, pass, name)=>{
+        await saveUserDataBase(idUser, email, pass, name);
         loginUser(idUser);
-      })
     }
 
     const loginUser = async (idUser)=>{
-        const db = await dataBaseUsers();
-        let user = db.docs.find(found => {
-            // devuelve el usuario con el mismo isUser
-            return found.data().idUser == idUser
-        })        
+        let user = await getUserFromDataBase(idUser)
         if (user !== null) {
             dispatch(setUser(user?.data()))
             navigation.navigate(TypeNavigation.game.homeGameDrawer);

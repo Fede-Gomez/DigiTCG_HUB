@@ -7,9 +7,9 @@ const Drawer = createDrawerNavigator();
 
 const DrawerNavigation = () => {
   return (
-    <Drawer.Navigator>
+    <Drawer.Navigator screenListeners={{}} >
+        <Drawer.Screen name={TypeNavigation.game.homeGameDrawer} component={StackGameNavigation} options={{unmountOnBlur:true}}  />
         <Drawer.Screen name={TypeNavigation.account.loginDrawer} component={StackAccountNavigation} />
-        <Drawer.Screen name={TypeNavigation.game.homeGameDrawer} component={StackGameNavigation} />
     </Drawer.Navigator>
   )
 }

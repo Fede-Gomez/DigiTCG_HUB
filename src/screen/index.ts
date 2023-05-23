@@ -4,6 +4,7 @@ import { HomeScreen } from "./HomeScreen";
 import { LoginScreen } from "./LoginScreen";
 import SignUpScreen from "./SignUpScreen";
 import { TcgPlayerScreen } from "./TcgPlayerScreen";
+import { DeckSelectedScreen } from './DeckSelectedScreen';
 
 export {
     CardSelectedScreen,
@@ -12,4 +13,5 @@ export {
     LoginScreen,
     SignUpScreen,
     TcgPlayerScreen,
+    DeckSelectedScreen,
 }

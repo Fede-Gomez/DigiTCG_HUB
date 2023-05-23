@@ -12,9 +12,12 @@ export const userReducer = createSlice({
     setUser: (state, action) =>{
       state.user = action.payload
     },
+    saveDeckUser: (state, action) =>{
+      state.user.decks = action.payload 
+    },
   },
 })
 
-export const { setUser } = userReducer.actions
+export const { setUser, saveDeckUser } = userReducer.actions
 
 export default userReducer.reducer

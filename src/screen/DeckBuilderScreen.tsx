@@ -19,6 +19,7 @@ return (
     <View style={{flexDirection:'row', justifyContent:'space-between'}}>
       <Button
         title='Deck Selected'
+        onPress={()=>navigation.navigate(TypeNavigation.game.deckSelected)}
       />
       <Button
         title='Cards Selected'

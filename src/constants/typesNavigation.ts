@@ -8,6 +8,7 @@ export const TypeNavigation = {
         homeGameDrawer:'HomeGameDrawer',
         homeGameTopBar:'HomeGameTopBar',
         cardSelected: 'CardSelected',
+        deckSelected: 'MyDecks',
         deckBuilder:'Deck Builder',
         tcgPlayer:'Tcg Player',
     }
