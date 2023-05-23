@@ -24,8 +24,6 @@ const incrementCountCard = (state, action)=>{
 }
 
 const decrementCountCard = (state, action)=>{
-  console.log(state.listCardsPicked);
-  
   if (state.listCardsPicked.find((card) => card.id === action.payload.id)) {
     state.listCardsPicked = state.listCardsPicked.map((card) => {
       if (card.id === action.payload.id) {
@@ -49,15 +47,18 @@ export const cardsReducer = createSlice({
     setCards: (state, action) =>{
       state.listCards = action.payload;
     },
+    setCardsPicked:(state, action)=>{
+      state.listCardsPicked = action.payload
+    },
     cardPickedAdd: (state, action)=>{
       incrementCountCard(state, action)
     },
     cardPickedRemove: (state, action)=>{
       decrementCountCard(state, action)
-    }
+    },
   },
 })
 
-export const { setCards, cardPickedAdd, cardPickedRemove } = cardsReducer.actions
+export const { setCards, setCardsPicked, cardPickedAdd, cardPickedRemove } = cardsReducer.actions
 
 export default cardsReducer.reducer

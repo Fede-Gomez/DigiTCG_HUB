@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { useCards } from '../hooks/useCards';
 import { TypeNavigation } from '../constants/typesNavigation';
 import { DeckBuilderScreen, TcgPlayerScreen } from '../screen';
+import { useCards } from '../hooks';
 
 const Tab = createMaterialTopTabNavigator();
 

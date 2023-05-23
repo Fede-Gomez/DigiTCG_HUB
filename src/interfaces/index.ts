@@ -32,7 +32,7 @@ export interface Card {
 
 export interface UserState {
   user:{
-    id: string;
+    idUser: string;
     name: string;
     email: string;
     password: string;
