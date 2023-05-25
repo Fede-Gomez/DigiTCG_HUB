@@ -3,7 +3,10 @@ import { CardsState } from '../interfaces';
 
 const initialState: CardsState = {
   listCards:[],
+  listFilterDigimon:[],
+  listFilteredDigimon:[],
   listCardsPicked:[],
+  listCardsFiltered:[],
 };
 
 const incrementCountCard = (state, action)=>{
@@ -40,6 +43,65 @@ const decrementCountCard = (state, action)=>{
   }
 }
 
+const removeFiltersNotUsing = (state, payload)=>{  
+  let newFilters = {}
+  Object.entries(payload).forEach(([key, value]) => {
+    if(value != 0){
+      newFilters = {
+        ...newFilters,
+        [key]:value
+      }
+    }  
+
+  });
+  console.log('asi salio el payload');
+  console.log(payload);
+
+  state.listFilteredDigimon = newFilters
+}
+
+const searchAndAddCardsOfFilter = (state, payload)=>{
+  // console.log(payload);
+  // console.log();
+  // console.log();
+  // console.log();
+  // console.log();
+  // console.log('eso lo estoy viendo?');
+  // console.log();
+  // console.log();
+  // console.log();
+  // console.log();
+  // console.log();
+  // console.log();
+  
+  const filteredCards = state.listCards.filter((card) => {
+    const { data } = card;
+  
+    for (const key in payload) {
+      const filterValues = payload[key];
+  
+      if (filterValues && filterValues.length > 0) {
+        if (!filterValues.includes(data[key])) {
+          return false;
+        }
+      }
+    }
+    return true;
+  })
+  state.listCardsFiltered = filteredCards
+  // console.log('y por aca andamos en useReducer');
+
+  
+  // console.log(filteredCards);
+  // console.log(state.listCardsFiltered);
+  // console.log();
+  // console.log();
+  // console.log();
+  // console.log();
+  
+  
+}
+
 export const cardsReducer = createSlice({
   name: 'cards',
   initialState,
@@ -56,9 +118,17 @@ export const cardsReducer = createSlice({
     cardPickedRemove: (state, action)=>{
       decrementCountCard(state, action)
     },
+    setListFilterDigimon:(state, action)=>{
+      state.listFilterDigimon = action.payload
+    },
+    setListCardsFilter:(state, action)=>{
+      removeFiltersNotUsing(state,action.payload)
+    },
+    setCardListFilter:(state, {payload})=>{
+      searchAndAddCardsOfFilter(state, payload)
   },
-})
+}})
 
-export const { setCards, setCardsPicked, cardPickedAdd, cardPickedRemove } = cardsReducer.actions
+export const { setCards, setCardsPicked, cardPickedAdd, cardPickedRemove, setListFilterDigimon, setListCardsFilter, setCardListFilter } = cardsReducer.actions
 
 export default cardsReducer.reducer

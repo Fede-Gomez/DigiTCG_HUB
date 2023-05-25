@@ -1,8 +1,9 @@
-import { collection, doc, getDocs, setDoc, updateDoc } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, setDoc, updateDoc } from 'firebase/firestore';
 import { db } from './connect';
 
 const users = 'users'
 const cardsDigimon = "cardsDigimon"
+const filterCards = "filterCards"
 
 const dataBaseDigimon = async () => {
     const querySnapshot = getDocs(collection(db, cardsDigimon));
@@ -12,6 +13,10 @@ const dataBaseDigimon = async () => {
 const dataBaseUsers = async () => {
     const querySnapshot = getDocs(collection(db, users));
     return querySnapshot
+}
+const dataBaseFilterCards = async (nameGame) => {
+    const docRef = doc(db, filterCards, nameGame);
+    return getDoc(docRef);
 }
 
 const getUserFromDataBase = async (idUser)=>{
@@ -47,10 +52,13 @@ const userDeckUpdateDatabase = async (idUser, nombre, cards) =>{
 }
 
 const userDeckRemoveDatabase = async (user)=>{
-    console.log('dentro del deckRemoveDatabase');
-    console.log(user);
-    
     await setDoc(doc(db, users, user.idUser), user);
+}
+
+const getFiltersCards = async (nameGame)=>{
+    const docRef = doc(db, filterCards, nameGame);
+    const database = getDoc(docRef);
+    return database
 }
 
 export {
@@ -59,5 +67,6 @@ export {
     userDeckUpdateDatabase,
     getUserFromDataBase,
     saveUserDataBase,
-    userDeckRemoveDatabase
+    userDeckRemoveDatabase,
+    getFiltersCards
 }

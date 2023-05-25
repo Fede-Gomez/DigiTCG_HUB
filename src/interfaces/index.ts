@@ -8,26 +8,51 @@ export interface CardsState {
     data: Card;
     count: number
   }[];
+  listCardsFiltered:{
+    id: string; 
+    data: Card;
+  }[];
+  listFilterDigimon:{
+    attribute: string[];
+    color: string[];
+    keyword: string[];
+    level: string[];
+    playCost: string[];
+    rarity: string[];
+    traits: string[];
+    type: string[];
+  }[]
+  listFilteredDigimon:{
+    attribute: string[];
+    color: string[];
+    keyword: string[];
+    level: string[];
+    playCost: string[];
+    rarity: string[];
+    traits: string[];
+    type: string[];
+  }[]
 }
 
 export interface Card {
-  name: string,
-  imgUrl: string,
-  color: string,
-  attribute: string,
-  cardNumber: string,
-  cardType: string,
-  digivolveColor:string,
-  digivolveCost: number,
-  digivolveFrom: number,
-  level: number,
-  playCost: number,
-  power: number,
-  rarity: string,
-  stageLevel: string,
-  type: string,
-  effect: string,
-  source: string,
+  attribute: string;
+  cardNumber: string;
+  color: string;
+  digivolveColor:string;
+  digivolveCost: number;
+  digivolveFrom: number;
+  effect: string;
+  imgUrl: string;
+  keyword:string[];
+  level: number;
+  name: string;
+  playCost: number;
+  power: number;
+  rarity: string;
+  source: string;
+  stageLevel: string;
+  traits: string[];
+  type: string;
 }
 
 export interface UserState {
