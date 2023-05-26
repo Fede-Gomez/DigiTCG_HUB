@@ -1,9 +1,12 @@
-import { useAppDispatch } from './useReducerHook'
-import { cardPickedAdd, cardPickedRemove, setCards } from '../reducers/cardsReducer'
+import { useAppDispatch, useAppSelector } from './useReducerHook'
+import { cardPickedAdd, cardPickedRemove, setCards, setListFilterDigimon, setListCardsFilter, setCardListFilter } from '../reducers/cardsReducer'
 import { dataBaseDigimon } from '../firebase'
+import { getFiltersCards } from '../firebase/dataBase'
+import React, {useState,useEffect} from 'react';
 
 
 export const useCards = () => {
+
   const dispatch = useAppDispatch()
   let cartas = []
   
@@ -13,6 +16,30 @@ export const useCards = () => {
             cartas.push({id:doc.id,data:doc.data()})
         });
         dispatch(setCards(cartas))
+  }
+
+  const getFilterCards = async (nameGame)=>{
+    const filters = await getFiltersCards(nameGame)
+    dispatch(setListFilterDigimon(filters.data()))
+  }
+
+  const removeFiltersNoChoiced = (cardFilters)=>{
+    // remove filters empty because its not choiced
+    let newFilters = {}
+    Object.entries(cardFilters).forEach(([key, value]) => {
+      if(value != 0){
+        newFilters = {
+          ...newFilters,
+          [key]:value
+        }
+      }  
+    });
+    return newFilters;
+  }
+  
+  const cardListFiltered = (filtChoiced)=>{
+    const listFiltered = removeFiltersNoChoiced(filtChoiced)
+    dispatch(setCardListFilter(listFiltered))
   }
 
   const addCards = (card)=>{
@@ -25,6 +52,8 @@ export const useCards = () => {
   return{
       loadAllCards,
       addCards,
-      removeCards
+      removeCards,
+      getFilterCards,
+      cardListFiltered,
   }
 }

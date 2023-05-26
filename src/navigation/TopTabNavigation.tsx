@@ -8,12 +8,6 @@ const Tab = createMaterialTopTabNavigator();
 
 
 export const TopTapNavigation = () => {
-  const {loadAllCards} = useCards()
-
-  useEffect(() => {
-        loadAllCards();
-    }, [])
-    
 
   return (
       <Tab.Navigator 
