@@ -12,17 +12,7 @@ export interface CardsState {
     id: string; 
     data: Card;
   }[];
-  listFilterDigimon:{
-    attribute: string[];
-    color: string[];
-    keyword: string[];
-    level: string[];
-    playCost: string[];
-    rarity: string[];
-    traits: string[];
-    type: string[];
-  }[]
-  listFilteredDigimon:{
+  listFilter:{
     attribute: string[];
     color: string[];
     keyword: string[];

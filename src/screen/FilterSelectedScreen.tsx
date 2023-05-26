@@ -10,18 +10,9 @@ import { TypeNavigation } from '../constants/typesNavigation';
 
 export const FilterSelectedScreen = () => {
   const navigation = useNavigation();
-  const filterList = useAppSelector(state => state.cards.listFilterDigimon)
-  const prueba = useAppSelector(state => state.cards.listFilteredDigimon)
-  const [listFiltered, setListFiltered] = useState({})
-  // const [listFiltered, setListFiltered] = useState(useAppSelector(state => state.cards.listFilteredDigimon))
-
-  useEffect(() => {
-    setListFiltered(prueba)
-  }, [prueba])
-  
-
+  const filterList = useAppSelector(state => state.cards.listFilter)
   const [filters] = useState(filterList)
-  const {saveFilterCards, cardListFiltered} = useCards()
+  const {cardListFiltered} = useCards()
   const [attribute, setAttribute] = React.useState([]);
   const [color, setColor] = React.useState([]);
   const [keyword, setKeyword] = React.useState([]);
@@ -43,13 +34,17 @@ export const FilterSelectedScreen = () => {
   const typeItems = filters.type?.map((value, index) => ({ key: (index + 1).toString(), value }));
 
 const groupSelection = ()=>{
-  saveFilterCards({attribute, color, keyword, level, playCost, rarity, traits, type})
-  console.log();
-  console.log('asi esta litFiltered en filterSelected');
-  console.log(listFiltered);
-  console.log();
-  
-  cardListFiltered(listFiltered)
+  const filtChoiced = {
+    attribute, 
+    color, 
+    keyword, 
+    level, 
+    playCost, 
+    rarity, 
+    traits, 
+    type,
+  }
+  cardListFiltered(filtChoiced)
   navigation.navigate(TypeNavigation.game.homeGameTopBar);
 }
 

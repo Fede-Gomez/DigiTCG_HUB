@@ -3,8 +3,7 @@ import { CardsState } from '../interfaces';
 
 const initialState: CardsState = {
   listCards:[],
-  listFilterDigimon:[],
-  listFilteredDigimon:[],
+  listFilter:[],
   listCardsPicked:[],
   listCardsFiltered:[],
 };
@@ -43,43 +42,11 @@ const decrementCountCard = (state, action)=>{
   }
 }
 
-const removeFiltersNotUsing = (state, payload)=>{  
-  let newFilters = {}
-  Object.entries(payload).forEach(([key, value]) => {
-    if(value != 0){
-      newFilters = {
-        ...newFilters,
-        [key]:value
-      }
-    }  
-
-  });
-  console.log('asi salio el payload');
-  console.log(payload);
-
-  state.listFilteredDigimon = newFilters
-}
-
-const searchAndAddCardsOfFilter = (state, payload)=>{
-  // console.log(payload);
-  // console.log();
-  // console.log();
-  // console.log();
-  // console.log();
-  // console.log('eso lo estoy viendo?');
-  // console.log();
-  // console.log();
-  // console.log();
-  // console.log();
-  // console.log();
-  // console.log();
-  
+const filterCardList = (state, payload)=>{
   const filteredCards = state.listCards.filter((card) => {
     const { data } = card;
-  
     for (const key in payload) {
       const filterValues = payload[key];
-  
       if (filterValues && filterValues.length > 0) {
         if (!filterValues.includes(data[key])) {
           return false;
@@ -89,28 +56,17 @@ const searchAndAddCardsOfFilter = (state, payload)=>{
     return true;
   })
   state.listCardsFiltered = filteredCards
-  // console.log('y por aca andamos en useReducer');
-
-  
-  // console.log(filteredCards);
-  // console.log(state.listCardsFiltered);
-  // console.log();
-  // console.log();
-  // console.log();
-  // console.log();
-  
-  
 }
 
 export const cardsReducer = createSlice({
   name: 'cards',
   initialState,
   reducers: {
-    setCards: (state, action) =>{
-      state.listCards = action.payload;
+    setCards: (state, {payload}) =>{
+      state.listCards = payload;
     },
-    setCardsPicked:(state, action)=>{
-      state.listCardsPicked = action.payload
+    setCardsPicked:(state, {payload})=>{
+      state.listCardsPicked = payload
     },
     cardPickedAdd: (state, action)=>{
       incrementCountCard(state, action)
@@ -118,14 +74,11 @@ export const cardsReducer = createSlice({
     cardPickedRemove: (state, action)=>{
       decrementCountCard(state, action)
     },
-    setListFilterDigimon:(state, action)=>{
-      state.listFilterDigimon = action.payload
-    },
-    setListCardsFilter:(state, action)=>{
-      removeFiltersNotUsing(state,action.payload)
+    setListFilterDigimon:(state, {payload})=>{
+      state.listFilter = payload
     },
     setCardListFilter:(state, {payload})=>{
-      searchAndAddCardsOfFilter(state, payload)
+      filterCardList(state, payload)
   },
 }})
 

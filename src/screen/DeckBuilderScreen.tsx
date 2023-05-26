@@ -6,18 +6,12 @@ import { TypeNavigation } from '../constants/typesNavigation'
 import { useNavigation } from '@react-navigation/native'
 
 export const DeckBuilderScreen = () => {
-  const [listCardsFiltered, setListCardsFiltered] = useState(useAppSelector(state => state.cards.listCardsFiltered))
-
   const cards = useAppSelector(state => state.cards.listCards)
+  const listCardsFiltered = useAppSelector(state => state.cards.listCardsFiltered)
   const [listCards, setListCards] = useState({})
   const navigation = useNavigation()
 
   useEffect(() => {
-    // console.log();
-    // console.log('asi esta en deckBuilder el listCardFiltered');
-    // console.log(listCardsFiltered);
-    // console.log();
-    
     listCardsFiltered.length === 0 ? setListCards(cards) : setListCards(listCardsFiltered)
   }, [listCardsFiltered])
   
