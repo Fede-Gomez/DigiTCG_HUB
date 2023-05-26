@@ -3,7 +3,6 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { TypeNavigation } from '../constants/typesNavigation';
 import { TopTapNavigation } from './TopTabNavigation';
 import { CardSelectedScreen, DeckSelectedScreen, FilterSelectedScreen, LoginScreen, SignUpScreen } from '../screen';
-import { useAppSelector } from '../hooks/useReducerHook';
 
 const Stack = createNativeStackNavigator()
 
