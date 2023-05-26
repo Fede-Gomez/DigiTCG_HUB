@@ -36,6 +36,7 @@ return (
       />
       <Button
         title='Search'
+        onPress={()=>navigation.navigate(TypeNavigation.game.searchCard)}
       />
     </View>
     <FlatList
