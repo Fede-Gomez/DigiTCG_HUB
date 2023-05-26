@@ -15,21 +15,19 @@ const SearchCardScreen = () => {
         <CardDigimon card={item}/>  
       </View>
     );
-    const renderHeader = () => {
-        return <View style={{flex:1, flexDirection:'row', justifyContent: 'space-around'}}>
+
+    return (
+      <>
+      <View >
             <TextInput
                 placeholder="Search card by name"
                 onChangeText={setNameCard}
                 value={nameCard}
             />
         </View>
-    }
-    return (
-      <>
         <FlatList
           data={filteredCards}
           renderItem={renderItem}
-          ListHeaderComponent={renderHeader}
           keyExtractor={(item) => item.id.toString()}
           numColumns={3}
         />
