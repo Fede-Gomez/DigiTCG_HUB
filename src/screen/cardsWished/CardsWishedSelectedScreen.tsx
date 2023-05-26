@@ -1,45 +1,42 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Button, FlatList, Text, View } from 'react-native';
 import { useAppSelector } from '../../hooks/useReducerHook'
 import { CardDigimon } from '../../components/cards'
-import { useDeck } from '../../hooks';
-import prompt from 'react-native-prompt-android';
-import { TypeNavigation } from '../../constants/typesNavigation';
-import { useNavigation } from '@react-navigation/native';
+import Share from 'react-native-share';
 
 const CardsWishedSelectedScreen = () => {
-    const navigation = useNavigation()
-    const cards = useAppSelector(state => state.cards.listCardsPicked)
-    const {saveDeck} = useDeck()
+    const cards = useAppSelector(state => state.cards.listCardsWished)
+    let message = 'Busco:\n'
+    cards.forEach( e =>{
+      message += e.count + ' ' + e.data.name + ' ' + e.data.cardNumber + '\n'
+    })
+    
     const renderItem = (item)=>{
-        return <CardDigimon card={item.item}/>
+        return <View style={{flexDirection:'column'}}>
+          <CardDigimon card={item.item}/>
+          <Text style={{alignSelf:'center'}}>{item.item.count}</Text>
+        </View>
     }
 
-    const createDeckOfSavePicked = (nameText:string)=>{
-      saveDeck(nameText,cards)
-      navigation.navigate(TypeNavigation.game.homeGameTopBar);
-    }
-
-    const showPrompt = ()=>{
-      prompt(
-        'Save deck',
-        'Enter name deck',
-        [
-         {text: 'Cancel', onPress: () => {}, style: 'cancel'},
-         {text: 'OK', onPress: nameText => createDeckOfSavePicked(nameText)},
-        ],
-        {
-            cancelable: false,
-            placeholder: 'name deck'
-        }
-    );
-    }
+    const shareMessage = async () => {
+      const shareOptions = {
+        title: 'Compartir el busqueda',
+        message
+      };
+    
+      try {
+        await Share.open(shareOptions);
+        console.log('Imagen compartida exitosamente');
+      } catch (error) {
+        console.log('Error al compartir la imagen:', error);
+      }
+    };
 
     const renderHeader = () => {
         return <View style={{flex:1, flexDirection:'row', justifyContent: 'space-around'}}>
           <Button 
-            title={'Save deck'} 
-            onPress={showPrompt}
+            title={'Share cards'} 
+            onPress={shareMessage}
           />
         </View>
     }

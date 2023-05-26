@@ -34,7 +34,7 @@ export interface CardsState {
   }[];
 }
 
-export interface Card {
+interface Card {
   attribute: string;
   cardNumber: string;
   color: string;
@@ -65,7 +65,7 @@ export interface UserState {
   }[]
 }
 
-export interface Deck {
+interface Deck {
   name: string;
   listCards: Card[]
 }

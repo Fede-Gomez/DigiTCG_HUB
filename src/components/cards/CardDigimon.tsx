@@ -7,8 +7,6 @@ import { useCards } from '../../hooks';
 
 const CardDigimon = ({card}) => {
     const [isModalVisible, setModalVisible] = useState(false);
-    const {addCards, removeCards} = useCards()
-
     const {
         name, color, id, imgUrl, playCost, 
         attribute, cardNumber, cardType, digivolveColor, 
@@ -20,14 +18,6 @@ const CardDigimon = ({card}) => {
     const toggleModal = () => {
         setModalVisible(!isModalVisible);
       };
-
-    const add = ()=>{
-        addCards(card)
-    }
-
-    const remove = ()=>{
-        removeCards(card)        
-    }
 
     return (
     <TouchableOpacity
@@ -71,16 +61,6 @@ const CardDigimon = ({card}) => {
                     <Text style={style.textCard} >Source: {source}</Text>
                 </View>
             <View>
-                <View style={style.buttonsModalAddRemove}>
-                    <Button
-                        title='add'
-                        onPress={add}
-                    />
-                    <Button
-                        title='remove'
-                        onPress={remove}
-                    />
-                </View>
                 <Button title="Back" onPress={toggleModal} />
             </View>
         </Modal>
