@@ -42,7 +42,6 @@ const CardSelectedScreen = () => {
             onPress={showPrompt}
           />
         </View>
-        
     }
 
   return (
@@ -50,6 +49,7 @@ const CardSelectedScreen = () => {
     ?   <Text>Agrega cartas</Text>
     :   <FlatList
             ListHeaderComponent={renderHeader}
+            keyExtractor={(item) => item.id.toString()}
             data={cards}
             renderItem={renderItem}
             numColumns={3}

@@ -6,6 +6,7 @@ import SignUpScreen from "./SignUpScreen";
 import { TcgPlayerScreen } from "./TcgPlayerScreen";
 import { DeckSelectedScreen } from './DeckSelectedScreen';
 import { FilterSelectedScreen } from './FilterSelectedScreen';
+import SearchCardScreen from './SearchCardScreen';
 
 export {
     CardSelectedScreen,
@@ -16,4 +17,5 @@ export {
     TcgPlayerScreen,
     DeckSelectedScreen,
     FilterSelectedScreen,
+    SearchCardScreen,
 }

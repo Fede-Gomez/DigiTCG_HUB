@@ -1,8 +1,8 @@
-import React, {useEffect} from 'react'; 
+import React from 'react'; 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { TypeNavigation } from '../constants/typesNavigation';
 import { TopTapNavigation } from './TopTabNavigation';
-import { CardSelectedScreen, DeckSelectedScreen, FilterSelectedScreen, LoginScreen, SignUpScreen } from '../screen';
+import { CardSelectedScreen, DeckSelectedScreen, FilterSelectedScreen, LoginScreen, SearchCardScreen, SignUpScreen } from '../screen';
 
 const Stack = createNativeStackNavigator()
 
@@ -16,6 +16,7 @@ export const StackGameNavigation = ()=>{
         <Stack.Screen name={TypeNavigation.game.cardSelected} component={CardSelectedScreen} />
         <Stack.Screen name={TypeNavigation.game.deckSelected} component={DeckSelectedScreen} />
         <Stack.Screen name={TypeNavigation.game.filterSelect} component={FilterSelectedScreen} />
+        <Stack.Screen name={TypeNavigation.game.searchCard} component={SearchCardScreen} />
       </Stack.Navigator>
     )
 }
