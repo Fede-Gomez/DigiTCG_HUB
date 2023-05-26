@@ -13,7 +13,6 @@ export const DeckSelectedScreen = () => {
     const [isModalVisible, setModalVisible] = useState(false);
     const {updateDeck, deleteDeck} = useDeck()
     const [deckChoice, setDeckChoice] = useState(null)
-    const namesDecks = useMemo(() => Object.keys(decks), [decks]);
 
     const toggleModal = () => {
       setModalVisible(!isModalVisible);
@@ -31,7 +30,8 @@ export const DeckSelectedScreen = () => {
 
     const removeDeck = async (deckChoice)=>{
       deleteDeck(deckChoice)
-      navigation.navigate(TypeNavigation.game.deckBuilder);
+      setDeckChoice(null)
+      navigation.navigate(TypeNavigation.game.cardsView);
     }
 
     const renderHeader = () => {
@@ -61,11 +61,11 @@ export const DeckSelectedScreen = () => {
         <Modal
             isVisible={isModalVisible}
         >
-          {namesDecks.map( nameDeck =>(
-            <View key={nameDeck}>
+          {Object.keys(decks)?.map( clave =>(
+            <View key={clave}>
                 <Button
-                  title={nameDeck}
-                  onPress={()=>selectDeck(nameDeck) }
+                  title={clave}
+                  onPress={()=>selectDeck(clave) }
                 />
             </View>
           ))}

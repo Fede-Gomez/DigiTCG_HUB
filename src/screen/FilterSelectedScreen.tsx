@@ -45,7 +45,7 @@ const groupSelection = ()=>{
     type,
   }
   cardListFiltered(filtChoiced)
-  navigation.navigate(TypeNavigation.game.homeGameTopBar);
+  navigation.navigate(TypeNavigation.game.cardsView);
 }
 
     return <ScrollView>

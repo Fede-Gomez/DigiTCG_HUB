@@ -13,10 +13,6 @@ export const StackGameNavigation = ()=>{
         screenOptions={{headerShown:false}}
       >
         <Stack.Screen name={TypeNavigation.game.homeGameTopBar} component={TopTapNavigation} />
-        <Stack.Screen name={TypeNavigation.game.cardSelected} component={CardSelectedScreen} />
-        <Stack.Screen name={TypeNavigation.game.deckSelected} component={DeckSelectedScreen} />
-        <Stack.Screen name={TypeNavigation.game.filterSelect} component={FilterSelectedScreen} />
-        <Stack.Screen name={TypeNavigation.game.searchCard} component={SearchCardScreen} />
       </Stack.Navigator>
     )
 }

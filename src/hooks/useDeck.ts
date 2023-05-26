@@ -24,7 +24,7 @@ export const useDeck = () => {
         dispatch(setCardsPicked(cards))
     }
 
-    const deleteDeck = (deleteDeck)=>{setU
+    const deleteDeck = (deleteDeck)=>{
         delete user.decks[deleteDeck]
         dispatch(deleteDeckUser(user))
         userDeckRemoveDatabase(user)

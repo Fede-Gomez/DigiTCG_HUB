@@ -3,6 +3,7 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import { TypeNavigation } from '../constants/typesNavigation';
 import { DeckBuilderScreen, TcgPlayerScreen } from '../screen';
 import { useCards } from '../hooks';
+import { BottomDeckBuilderTabNavigation } from './BottomTabNavigation';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -15,7 +16,7 @@ export const TopTapNavigation = () => {
           swipeEnabled:false
         }}
       >
-        <Tab.Screen name={TypeNavigation.game.deckBuilder} component={DeckBuilderScreen} />
+        <Tab.Screen name={TypeNavigation.game.deckBuilder} component={BottomDeckBuilderTabNavigation} />
         <Tab.Screen name={TypeNavigation.game.tcgPlayer} component={TcgPlayerScreen} />
       </Tab.Navigator>
   )
