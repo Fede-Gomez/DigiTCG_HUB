@@ -1,11 +1,11 @@
 import React, {useState,useEffect} from 'react'
 import { View, FlatList, Button } from 'react-native'
-import { useAppSelector } from '../hooks/useReducerHook'
-import { CardDigimon } from '../components/cards'
-import { TypeNavigation } from '../constants/typesNavigation'
+import { useAppSelector } from '../../hooks/useReducerHook'
+import { CardDigimon } from '../../components/cards'
+// import { TypeNavigation } from '../constants/typesNavigation'
 import { useNavigation } from '@react-navigation/native'
 
-export const DeckBuilderScreen = () => {
+export const DeckBuilderCardsViewScreen = () => {
   const cards = useAppSelector(state => state.cards.listCards)
   const listCardsFiltered = useAppSelector(state => state.cards.listCardsFiltered)
   const [listCards, setListCards] = useState({})

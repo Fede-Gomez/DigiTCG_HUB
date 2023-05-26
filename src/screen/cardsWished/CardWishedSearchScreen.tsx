@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { useAppSelector } from '../hooks/useReducerHook'
+import { useAppSelector } from '../../hooks/useReducerHook'
 import { View, FlatList, TextInput } from 'react-native';
-import { CardDigimon } from '../components/cards';
+import { CardDigimon } from '../../components/cards';
 
-const SearchCardScreen = () => {
+const CardWishedSearchScreen = () => {
     const [nameCard, setNameCard] = useState('');
     const cards = useAppSelector(state => state.cards.listCards)
     const filteredCards = cards.filter((card) =>
@@ -35,4 +35,4 @@ const SearchCardScreen = () => {
     );
 }
 
-export default SearchCardScreen
+export default CardWishedSearchScreen

@@ -6,6 +6,8 @@ const initialState: CardsState = {
   listFilter:[],
   listCardsPicked:[],
   listCardsFiltered:[],
+  listCardsWished:[],
+  listCardsSelling:[],
 };
 
 const incrementCountCard = (state, action)=>{
@@ -42,21 +44,29 @@ const decrementCountCard = (state, action)=>{
   }
 }
 
-const filterCardList = (state, payload)=>{
-  const filteredCards = state.listCards.filter((card) => {
-    const { data } = card;
-    for (const key in payload) {
-      const filterValues = payload[key];
-      if (filterValues && filterValues.length > 0) {
-        if (!filterValues.includes(data[key])) {
-          return false;
+  const filterCardList = (state, payload) => {
+    const filteredCards = state.listCards.filter((card) => {
+      const { data } = card;
+      for (const key in payload) {
+        const filterValues = payload[key];
+        if (filterValues && filterValues.length > 0) {
+          if (!filterValues.includes(data[key])) {
+            return false;
+          }
         }
       }
-    }
-    return true;
-  })
-  state.listCardsFiltered = filteredCards
-}
+      return true;
+    })
+    state.listCardsFiltered = filteredCards
+  }
+
+  const addCardToListWish = (state,payload) => {
+
+  }
+
+  const addCardToListSelling = (state,payload) => {
+
+  }
 
 export const cardsReducer = createSlice({
   name: 'cards',
@@ -79,9 +89,23 @@ export const cardsReducer = createSlice({
     },
     setCardListFilter:(state, {payload})=>{
       filterCardList(state, payload)
-  },
+    },
+    addCardToWished:(state, {payload})=>{
+      addCardToListWish(state,payload);
+    },
+    addCardToSelling:(state, {payload})=>{
+      addCardToListSelling(state,payload);
+    },
 }})
 
-export const { setCards, setCardsPicked, cardPickedAdd, cardPickedRemove, setListFilterDigimon, setListCardsFilter, setCardListFilter } = cardsReducer.actions
+export const { 
+  setCards, 
+  setCardsPicked, 
+  cardPickedAdd, 
+  cardPickedRemove, 
+  setListFilterDigimon, 
+  setCardListFilter, 
+  addCardToWished,  
+} = cardsReducer.actions
 
 export default cardsReducer.reducer

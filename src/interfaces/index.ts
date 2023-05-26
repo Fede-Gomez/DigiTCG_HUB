@@ -8,6 +8,16 @@ export interface CardsState {
     data: Card;
     count: number
   }[];
+  listCardsSelling: { 
+    id: string; 
+    data: Card;
+    count: number
+  }[];
+  listCardsWished: { 
+    id: string; 
+    data: Card;
+    count: number
+  }[];
   listCardsFiltered:{
     id: string; 
     data: Card;
@@ -21,7 +31,7 @@ export interface CardsState {
     rarity: string[];
     traits: string[];
     type: string[];
-  }[]
+  }[];
 }
 
 export interface Card {

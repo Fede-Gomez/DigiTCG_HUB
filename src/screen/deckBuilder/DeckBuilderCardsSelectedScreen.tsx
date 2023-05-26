@@ -1,13 +1,13 @@
 import React from 'react'
 import { Button, FlatList, Text, View } from 'react-native';
-import { useAppSelector } from '../hooks/useReducerHook'
-import { CardDigimon } from '../components/cards'
-import { useDeck } from '../hooks';
+import { useAppSelector } from '../../hooks/useReducerHook'
+import { CardDigimon } from '../../components/cards'
+import { useDeck } from '../../hooks';
 import prompt from 'react-native-prompt-android';
-import { TypeNavigation } from '../constants/typesNavigation';
+import { TypeNavigation } from '../../constants/typesNavigation';
 import { useNavigation } from '@react-navigation/native';
 
-const CardSelectedScreen = () => {
+const DeckBuilderCardsSelectedScreen = () => {
     const navigation = useNavigation()
     const cards = useAppSelector(state => state.cards.listCardsPicked)
     const {saveDeck} = useDeck()
@@ -57,4 +57,4 @@ const CardSelectedScreen = () => {
   )
 }
 
-export default CardSelectedScreen
+export default DeckBuilderCardsSelectedScreen
