@@ -1,14 +1,14 @@
 import React, {useState, useEffect} from 'react'
 import { View, Button, Text, ScrollView } from 'react-native';
-import { useCards } from '../hooks';
+import { useCards } from '../../hooks';
 import { MultipleSelectList } from 'react-native-dropdown-select-list'
-import { useAppSelector } from '../hooks/useReducerHook';
+import { useAppSelector } from '../../hooks/useReducerHook';
 import { useNavigation } from '@react-navigation/native';
-import { TypeNavigation } from '../constants/typesNavigation';
+import { TypeNavigation } from '../../constants/typesNavigation';
 
 
 
-export const FilterSelectedScreen = () => {
+export const DeckBuilderFilterScreen = () => {
   const navigation = useNavigation();
   const filterList = useAppSelector(state => state.cards.listFilter)
   const [filters] = useState(filterList)

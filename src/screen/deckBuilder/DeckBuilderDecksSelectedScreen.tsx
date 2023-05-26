@@ -1,13 +1,13 @@
 import React, { useEffect, useMemo, useState } from 'react'
-import { useAppSelector } from '../hooks/useReducerHook'
-import { CardDigimon } from '../components/cards'
+import { useAppSelector } from '../../hooks/useReducerHook'
+import { CardDigimon } from '../../components/cards'
 import { Text, FlatList, Button, View } from 'react-native';
 import Modal from 'react-native-modal';
-import { useDeck } from '../hooks';
+import { useDeck } from '../../hooks';
 import { useNavigation } from '@react-navigation/native';
-import { TypeNavigation } from '../constants/typesNavigation';
+import { TypeNavigation } from '../../constants/typesNavigation';
 
-export const DeckSelectedScreen = () => {  
+export const DeckBuilderDecksSelectedScreen = () => {  
     const decks = useAppSelector(state => state.user.user.decks)
     const navigation = useNavigation()
     const [isModalVisible, setModalVisible] = useState(false);

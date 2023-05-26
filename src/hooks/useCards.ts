@@ -1,8 +1,15 @@
-import { useAppDispatch, useAppSelector } from './useReducerHook'
-import { cardPickedAdd, cardPickedRemove, setCards, setListFilterDigimon, setListCardsFilter, setCardListFilter } from '../reducers/cardsReducer'
+import { useAppDispatch } from './useReducerHook'
+import { 
+  cardPickedAdd, 
+  cardPickedRemove, 
+  setCards, 
+  setListFilterDigimon, 
+  setCardListFilter, 
+  addCardToWished,
+  removeCardToWished 
+} from '../reducers/cardsReducer'
 import { dataBaseDigimon } from '../firebase'
 import { getFiltersCards } from '../firebase/dataBase'
-import React, {useState,useEffect} from 'react';
 
 
 export const useCards = () => {
@@ -49,11 +56,32 @@ export const useCards = () => {
   const removeCards = (card)=>{
     dispatch(cardPickedRemove(card))
   }
+
+  const addCardWished = (card)=>{
+    dispatch(addCardToWished(card))
+  }
+
+  const removeCardWished = (card)=>{
+    dispatch(removeCardToWished(card))
+  }
+
+  const addCardSelling = (card)=>{
+    dispatch(addCardToSelling(card))
+  }
+
+  const removeCardSelling = (card)=>{
+    dispatch(addCardToSelling(card))
+  }
+
   return{
       loadAllCards,
       addCards,
       removeCards,
       getFilterCards,
       cardListFiltered,
+      addCardWished,
+      removeCardWished,
+      addCardSelling,
+      
   }
 }

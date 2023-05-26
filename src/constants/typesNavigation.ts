@@ -10,6 +10,7 @@ export const TypeNavigation = {
         cardsView: 'Cards view',
         cardSelected: 'Card selected',
         searchCard: 'Search card',
+        cardsWished: 'Cards wished',
         filterSelect:'Filter select',
         deckSelected: 'My decks',
         deckBuilder:'Deck Builder',
