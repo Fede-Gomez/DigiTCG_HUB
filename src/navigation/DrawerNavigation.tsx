@@ -3,7 +3,6 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { StackAccountNavigation, StackGameNavigation } from './StackNavigation';
 import { TypeNavigation } from '../constants/typesNavigation';
 import { useCards } from '../hooks';
-import { useAppSelector } from '../hooks/useReducerHook';
 
 const Drawer = createDrawerNavigator();
 

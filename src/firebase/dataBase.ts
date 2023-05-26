@@ -14,10 +14,6 @@ const dataBaseUsers = async () => {
     const querySnapshot = getDocs(collection(db, users));
     return querySnapshot
 }
-const dataBaseFilterCards = async (nameGame) => {
-    const docRef = doc(db, filterCards, nameGame);
-    return getDoc(docRef);
-}
 
 const getUserFromDataBase = async (idUser)=>{
     const database = await dataBaseUsers();
@@ -39,15 +35,7 @@ const saveUserDataBase = async (idUser, email, pass, name)=>{
     await setDoc(doc(db, users, idUser),userData)
 }
 
-const userDeckUpdateDatabase = async (idUser, nombre, cards) =>{
-    let user = await getUserFromDataBase(idUser);
-    let updateDeckUser ={
-        ...user?.data(),
-        decks: {
-          ...user?.data().decks,
-          [nombre]:cards
-        }
-    }
+const userDeckUpdateDatabase = async (idUser, updateDeckUser) =>{
     await setDoc(doc(db, users, idUser), updateDeckUser);
 }
 
