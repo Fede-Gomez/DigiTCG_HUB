@@ -21,24 +21,6 @@ export const DeckBuilderScreen = () => {
 
 return (
   <>
-    <View style={{flexDirection:'row', justifyContent:'space-between'}}>
-      <Button
-        title={TypeNavigation.game.deckSelected}
-        onPress={()=>navigation.navigate(TypeNavigation.game.deckSelected)}
-      />
-      <Button
-        title={TypeNavigation.game.cardSelected}
-        onPress={()=>navigation.navigate(TypeNavigation.game.cardSelected)}
-      />
-      <Button
-        title='Filter'
-        onPress={()=>navigation.navigate(TypeNavigation.game.filterSelect)}
-      />
-      <Button
-        title='Search'
-        onPress={()=>navigation.navigate(TypeNavigation.game.searchCard)}
-      />
-    </View>
     <FlatList
       data={listCards}
       renderItem={renderItem}
