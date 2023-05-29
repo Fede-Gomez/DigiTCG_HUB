@@ -1,5 +1,5 @@
-import React, {useState } from 'react'
-import { Button, ScrollView } from 'react-native';
+import React, {useState, useEffect} from 'react'
+import { View, Button, Text, ScrollView } from 'react-native';
 import { useCards } from '../../hooks';
 import { MultipleSelectList } from 'react-native-dropdown-select-list'
 import { useAppSelector } from '../../hooks/useReducerHook';
@@ -8,7 +8,7 @@ import { TypeNavigation } from '../../constants/typesNavigation';
 
 
 
-export const DeckBuilderFilterScreen = () => {
+export const CardsSellingFilterScreen = () => {
   const navigation = useNavigation();
   const filterList = useAppSelector(state => state.cards.listFilter)
   const [filters] = useState(filterList)

@@ -15,5 +15,6 @@ export const TypeNavigation = {
         deckSelected: 'My decks',
         deckBuilder:'Deck Builder',
         tcgPlayer:'Tcg Player',
+        cardsSelling: 'Cards Selling',
     }
 }

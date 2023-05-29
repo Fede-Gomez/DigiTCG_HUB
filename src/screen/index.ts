@@ -3,25 +3,42 @@ import SignUpScreen from "./SignUpScreen";
 import { TcgPlayerScreen } from "./tcgPlayer/TcgPlayerScreen";
 
 import {
-    CardSelectedScreen,
-    FilterSelectedScreen,
-    DeckBuilderScreen,
-    DeckSelectedScreen,
-    SearchCardScreen,
+    DeckBuilderCardsSelectedScreen,
+    DeckBuilderDecksSelectedScreen,
+    DeckBuilderFilterScreen,
+    DeckBuilderSearchCardScreen,
+    DeckBuilderViewCardsScreen,
 } from './deckBuilder'
 
 import {
-    CardsViewWishedScreen
+    CardWishedSearchScreen,
+    CardsWishedFilterScreen,
+    CardsWishedSelectedScreen,
+    CardsWishedViewCardsScreen,
 } from './cardsWished'
 
+import {
+    CardSellingSearchScreen,
+    CardsSellingFilterScreen,
+    CardsSellingSelectedScreen,
+    CardsSellingViewCardsScreen,
+} from './cardsSelling'
+
 export {
-    CardSelectedScreen,
-    DeckBuilderScreen,
     LoginScreen,
     SignUpScreen,
     TcgPlayerScreen,
-    DeckSelectedScreen,
-    FilterSelectedScreen,
-    SearchCardScreen,
-    CardsViewWishedScreen,
+    DeckBuilderCardsSelectedScreen,
+    DeckBuilderDecksSelectedScreen,
+    DeckBuilderFilterScreen,
+    DeckBuilderSearchCardScreen,
+    DeckBuilderViewCardsScreen,
+    CardWishedSearchScreen,
+    CardsWishedFilterScreen,
+    CardsWishedSelectedScreen,
+    CardsWishedViewCardsScreen,
+    CardSellingSearchScreen,
+    CardsSellingFilterScreen,
+    CardsSellingSelectedScreen,
+    CardsSellingViewCardsScreen,
 }

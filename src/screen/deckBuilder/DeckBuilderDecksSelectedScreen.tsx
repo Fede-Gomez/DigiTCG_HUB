@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useState } from 'react'
 import { useAppSelector } from '../../hooks/useReducerHook'
 import { CardDigimon } from '../../components/cards'
 import { Text, FlatList, Button, View } from 'react-native';
