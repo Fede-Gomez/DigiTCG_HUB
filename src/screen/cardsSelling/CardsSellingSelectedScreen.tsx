@@ -4,9 +4,9 @@ import { useAppSelector } from '../../hooks/useReducerHook'
 import { CardDigimon } from '../../components/cards'
 import Share from 'react-native-share';
 
-const CardsWishedSelectedScreen = () => {
+const CardsSellingSelectedScreen = () => {
     const cards = useAppSelector(state => state.cards.listCardsWished)
-    let message = 'Busco:\n'
+    let message = 'Vendo:\n'
     cards.forEach( e =>{
       message += e.count + ' ' + e.data.name + ' ' + e.data.cardNumber + '\n'
     })
@@ -20,7 +20,7 @@ const CardsWishedSelectedScreen = () => {
 
     const shareMessage = async () => {
       const shareOptions = {
-        title: 'Compartir la busqueda',
+        title: 'Compartir la venta',
         message
       };
     
@@ -54,4 +54,4 @@ const CardsWishedSelectedScreen = () => {
   )
 }
 
-export default CardsWishedSelectedScreen
+export default CardsSellingSelectedScreen
