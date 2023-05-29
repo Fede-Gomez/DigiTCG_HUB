@@ -1,6 +1,5 @@
 import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from 'firebase/auth'
-import {app, db} from '../firebase/connect'
-import { doc, setDoc } from 'firebase/firestore';
+import { app } from '../firebase/connect'
 import { useAppDispatch } from './useReducerHook';
 import { useNavigation } from '@react-navigation/native';
 import {TypeNavigation} from '../constants/typesNavigation'
@@ -46,10 +45,16 @@ export const useAccount = () => {
             navigation.navigate(TypeNavigation.account.login);
         }
     }
+
+    const logOut = async () =>{
+        dispatch(setUser([]))
+    }
+
     return{
         createAccount,
         signIn,
         loginUser, 
-        saveDataBaseUser
+        saveDataBaseUser,
+        logOut,
     }
 }

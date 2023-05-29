@@ -1,5 +1,5 @@
-import { LoginScreen } from "./LoginScreen";
-import SignUpScreen from "./SignUpScreen";
+import { LoginScreen, SignUpScreen, LogOutScreen } from "./user";
+
 import { TcgPlayerScreen } from "./tcgPlayer/TcgPlayerScreen";
 
 import {
@@ -25,6 +25,7 @@ import {
 } from './cardsSelling'
 
 export {
+    LogOutScreen,
     LoginScreen,
     SignUpScreen,
     TcgPlayerScreen,

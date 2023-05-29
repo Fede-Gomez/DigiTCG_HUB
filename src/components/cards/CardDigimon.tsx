@@ -3,7 +3,6 @@ import { View, Image, Text, Button } from 'react-native';
 import { Digimon } from '../../styles/cards/digimon';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Modal from "react-native-modal";
-import { useCards } from '../../hooks';
 
 const CardDigimon = ({card}) => {
     const [isModalVisible, setModalVisible] = useState(false);
