@@ -1,9 +1,9 @@
 import React from 'react'
 import { useState } from 'react';
 import { View, Text, TextInput, Button } from 'react-native';
-import { useAccount } from '../hooks/useAccount';
+import { useAccount } from '../../hooks/useAccount';
 import { useNavigation } from '@react-navigation/native';
-import { TypeNavigation } from '../constants/typesNavigation';
+import { TypeNavigation } from '../../constants/typesNavigation';
 
 const SignUpScreen = () => {
 

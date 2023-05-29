@@ -1,13 +1,15 @@
 import React, {useEffect} from 'react'
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { StackAccountNavigation, StackGameNavigation } from './StackNavigation';
+import { StackAccountNavigation, StackGameNavigation, StackLogSignNavigation } from './StackNavigation';
 import { TypeNavigation } from '../constants/typesNavigation';
 import { useCards } from '../hooks';
+import { useAppSelector } from '../hooks/useReducerHook';
 
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigation = () => {
-
+  const user = useAppSelector(state => state.user.user)
+  
   const {loadAllCards, getFilterCards} = useCards()
   useEffect(() => {
         getFilterCards('digimon');
@@ -17,8 +19,20 @@ const DrawerNavigation = () => {
 
   return (
     <Drawer.Navigator screenListeners={{}} >
-        <Drawer.Screen name={TypeNavigation.account.loginDrawer} component={StackAccountNavigation} />
-        <Drawer.Screen name={TypeNavigation.game.homeGameDrawer} component={StackGameNavigation} options={{unmountOnBlur:true}}  />
+      {
+        user.length !== 0 ?
+          <>
+            <Drawer.Screen name={TypeNavigation.game.homeGameDrawer} component={StackGameNavigation} options={{unmountOnBlur:true}}  />
+            <Drawer.Screen name={TypeNavigation.account.logOutDrawer} component={StackAccountNavigation} options={{unmountOnBlur:true}}  />
+          </>
+          :
+          <>
+            <Drawer.Screen name={TypeNavigation.account.loginDrawer} component={StackLogSignNavigation} />
+          </>
+      }
+
+
+
     </Drawer.Navigator>
   )
 }

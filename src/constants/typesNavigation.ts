@@ -1,11 +1,13 @@
 export const TypeNavigation = {
     account:{
-        loginDrawer:'LoginDrawer',
+        loginDrawer:'Login/Sign up',
         login:'Login',
-        signIn:'Sign up'
+        signIn:'Sign up',
+        logOut: 'Log out',
+        logOutDrawer: 'Log out',
     },
     game:{
-        homeGameDrawer:'HomeGameDrawer',
+        homeGameDrawer:'Digimon',
         homeGameTopBar:'HomeGameTopBar',
         cardsView: 'Cards view',
         cardSelected: 'Card selected',

@@ -2,7 +2,7 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { TypeNavigation } from '../constants/typesNavigation';
 import { TopTapNavigation } from './TopTabNavigation';
-import { CardSelectedScreen, DeckSelectedScreen, FilterSelectedScreen, LoginScreen, SearchCardScreen, SignUpScreen } from '../screen';
+import { LoginScreen, SignUpScreen, LogOutScreen } from '../screen';
 
 const Stack = createNativeStackNavigator()
 
@@ -17,13 +17,23 @@ export const StackGameNavigation = ()=>{
     )
 }
 
-export const StackAccountNavigation = ()=>{
+export const StackLogSignNavigation = ()=>{
     return(
       <Stack.Navigator initialRouteName={TypeNavigation.account.login} 
           screenOptions={{headerShown:false}}
         >
           <Stack.Screen name={TypeNavigation.account.login} component={LoginScreen} />
           <Stack.Screen name={TypeNavigation.account.signIn} component={SignUpScreen} />
+        </Stack.Navigator>
+    )
+}
+
+export const StackAccountNavigation = ()=>{
+    return(
+      <Stack.Navigator initialRouteName={TypeNavigation.account.logOut} 
+          screenOptions={{headerShown:false}}
+        >
+          <Stack.Screen name={TypeNavigation.account.logOut} component={LogOutScreen} />
         </Stack.Navigator>
     )
 }
