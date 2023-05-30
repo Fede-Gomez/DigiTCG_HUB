@@ -5,8 +5,8 @@ import { useNavigation } from '@react-navigation/native'
 import { TypeNavigation } from '../../constants/typesNavigation'
 
 export const LoginScreen = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('Q@q.com')
+  const [password, setPassword] = useState('123456')
   const navigation = useNavigation();
   const {signIn} = useAccount();
 

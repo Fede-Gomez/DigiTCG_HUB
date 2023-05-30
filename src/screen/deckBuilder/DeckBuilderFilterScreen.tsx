@@ -48,13 +48,17 @@ const groupSelection = ()=>{
   navigation.navigate(TypeNavigation.game.cardsView);
 }
 
-    return <ScrollView>
+    return <ScrollView
+      // style={{backgroundColor:'blue'}}
+    >
       <MultipleSelectList 
         setSelected={(val) => setAttribute(val)} 
         data={attributeItems} 
         save="value"
         label="attribute"
         placeholder='Attribute'
+        inputStyles={{color:'black'}}
+        dropdownTextStyles={{color:'black'}}
       />
       <MultipleSelectList 
         setSelected={(val) => setColor(val)} 
@@ -62,6 +66,8 @@ const groupSelection = ()=>{
         save="value"
         label="color"
         placeholder='Color'
+        inputStyles={{color:'black'}}
+        dropdownTextStyles={{color:'black'}}
       />
       <MultipleSelectList 
         setSelected={(val) => setKeyword(val)} 
@@ -69,6 +75,8 @@ const groupSelection = ()=>{
         save="value"
         label="keyword"
         placeholder='Keyword'
+        inputStyles={{color:'black'}}
+        dropdownTextStyles={{color:'black'}}
       />
       <MultipleSelectList 
         setSelected={(val) => setLevel(val)} 
@@ -76,6 +84,8 @@ const groupSelection = ()=>{
         save="value"
         label="level"
         placeholder='Level'
+        inputStyles={{color:'black'}}
+        dropdownTextStyles={{color:'black'}}
       />
       <MultipleSelectList 
         setSelected={(val) => setPlayCost(val)} 
@@ -83,6 +93,8 @@ const groupSelection = ()=>{
         save="value"
         label="playCost"
         placeholder='Play cost'
+        inputStyles={{color:'black'}}
+        dropdownTextStyles={{color:'black'}}
       />
       <MultipleSelectList 
         setSelected={(val) => setRarity(val)} 
@@ -90,6 +102,8 @@ const groupSelection = ()=>{
         save="value"
         label="rarity"
         placeholder='Rarity'
+        inputStyles={{color:'black'}}
+        dropdownTextStyles={{color:'black'}}
       />
       <MultipleSelectList 
         setSelected={(val) => setTraits(val)} 
@@ -97,6 +111,8 @@ const groupSelection = ()=>{
         save="value"
         label="type"
         placeholder='Traits'
+        inputStyles={{color:'black'}}
+        dropdownTextStyles={{color:'black'}}
       />
       <MultipleSelectList 
         setSelected={(val) => setType(val)} 
@@ -104,6 +120,8 @@ const groupSelection = ()=>{
         save="value"
         label="type"
         placeholder='Type'
+        inputStyles={{color:'black'}}
+        dropdownTextStyles={{color:'black'}}
       />
       <Button
         title='Confirm'

@@ -5,8 +5,8 @@ export const Digimon = StyleSheet.create({
         marginVertical:7,
     },
     imageCard:{
-        height: 190, 
-        width: Dimensions.get('window').width / 3
+        height: 175, 
+        width: Dimensions.get('window').width / 3.4
     },
     imageCardModal:{
         height: 300, 

@@ -6,6 +6,7 @@ import Modal from 'react-native-modal';
 import { useDeck } from '../../hooks';
 import { useNavigation } from '@react-navigation/native';
 import { TypeNavigation } from '../../constants/typesNavigation';
+import { listCardsMyDeck } from '../../styles';
 
 export const DeckBuilderDecksSelectedScreen = () => {  
     const decks = useAppSelector(state => state.user.user.decks)
@@ -13,7 +14,7 @@ export const DeckBuilderDecksSelectedScreen = () => {
     const [isModalVisible, setModalVisible] = useState(false);
     const {updateDeck, deleteDeck} = useDeck()
     const [deckChoice, setDeckChoice] = useState(null)
-
+    const style = listCardsMyDeck;
     const toggleModal = () => {
       setModalVisible(!isModalVisible);
     };
@@ -36,27 +37,29 @@ export const DeckBuilderDecksSelectedScreen = () => {
 
     const renderHeader = () => {
       return(
-        <View >
-          <Button
-            onPress={toggleModal}
-            title='View deck'
-          />
-          {deckChoice &&
+        <View>
+          <View style={style.buttonsViewUpdateDelete}>
             <Button
               onPress={toggleModal}
-              title='Update deck'
-              onPress={()=>{updateDeckAndGoCardSelect()}}
+              title='View deck'
             />
-          }
+            {deckChoice &&
+              <Button
+                onPress={toggleModal}
+                title='Update deck'
+                onPress={()=>{updateDeckAndGoCardSelect()}}
+              />
+            }
+            {deckChoice &&
+              <Button
+                onPress={toggleModal}
+                title='Delete deck'
+                onPress={()=>{removeDeck(deckChoice)}}
+              />
+            }
+          </View>
           {deckChoice &&
-            <Button
-              onPress={toggleModal}
-              title='Delete deck'
-              onPress={()=>{removeDeck(deckChoice)}}
-            />
-          }
-          {deckChoice &&
-            <Text>{deckChoice}</Text> 
+            <Text style={style.nameDeck}>{deckChoice}</Text> 
           }
         <Modal
             isVisible={isModalVisible}
@@ -81,12 +84,11 @@ export const DeckBuilderDecksSelectedScreen = () => {
   }
     const renderDeck = (item)=>{
       const card = item.item
-      
+
       return(
-        <View style={{flexDirection:'column'}}>
+        <View style={style.container}>
           <CardDigimon card={card}/>
-          <View style={{flexDirection:'row', justifyContent:'space-evenly'}}>
-          </View>
+          <Text style={style.count}>{card.count}</Text>
         </View>
       )
 

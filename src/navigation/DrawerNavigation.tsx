@@ -18,16 +18,34 @@ const DrawerNavigation = () => {
     
 
   return (
-    <Drawer.Navigator screenListeners={{}} >
+    <Drawer.Navigator>
       {
         user.length !== 0 ?
           <>
-            <Drawer.Screen name={TypeNavigation.game.homeGameDrawer} component={StackGameNavigation} options={{unmountOnBlur:true}}  />
-            <Drawer.Screen name={TypeNavigation.account.logOutDrawer} component={StackAccountNavigation} options={{unmountOnBlur:true}}  />
+            <Drawer.Screen name={TypeNavigation.game.homeGameDrawer} component={StackGameNavigation} 
+              options={{
+                unmountOnBlur:true, 
+                drawerType:'back',
+                headerTitleAlign:'center'
+              }} 
+            />
+            <Drawer.Screen name={TypeNavigation.account.logOutDrawer} component={StackAccountNavigation} 
+              options={{
+                unmountOnBlur:true,
+                drawerType:'back',
+                headerTitleAlign:'center',
+              }}
+            />
           </>
           :
           <>
-            <Drawer.Screen name={TypeNavigation.account.loginDrawer} component={StackLogSignNavigation} />
+            <Drawer.Screen name={TypeNavigation.account.loginDrawer} component={StackLogSignNavigation}
+              options={{
+                drawerType:'back',
+                headerTitleAlign:'center',
+                unmountOnBlur:true,
+              }}
+            />
           </>
       }
 

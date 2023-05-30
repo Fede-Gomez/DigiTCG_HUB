@@ -3,12 +3,14 @@ import { FlatList, Button, View } from 'react-native';
 import { useAppSelector } from '../../hooks/useReducerHook';
 import { CardDigimon } from '../../components/cards';
 import { useCards } from '../../hooks';
+import { listCardsView } from '../../styles';
 
 export const CardsWishedViewCardsScreen = () => {
   const cards = useAppSelector(state => state.cards.listCards)
   const listCardsFiltered = useAppSelector(state => state.cards.listCardsFiltered)
   const [listCards, setListCards] = useState({})
   const {addCardWished, removeCardWished} = useCards()
+  const style = listCardsView;
 
   useEffect(() => {
     listCardsFiltered.length === 0 ? setListCards(cards) : setListCards(listCardsFiltered)
@@ -23,9 +25,9 @@ export const CardsWishedViewCardsScreen = () => {
   }
 
   const renderItem = ({item})=>{        
-    return <View style={{flexDirection:'column'}}>
-      <CardDigimon card={item}/>
-      <View style={{flexDirection:'row'}}>
+    return <View style={style.container}>
+    <CardDigimon card={item}/>
+    <View style={style.buttonsAddRemove}>
         <Button
           title='Add'
           onPress={()=>addWish(item)}
