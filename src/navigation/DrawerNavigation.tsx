@@ -8,14 +8,9 @@ import { useAppSelector } from '../hooks/useReducerHook';
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigation = () => {
+
   const user = useAppSelector(state => state.user.user)
-  
-  const {loadAllCards, getFilterCards} = useCards()
-  useEffect(() => {
-        getFilterCards('digimon');
-        loadAllCards();
-  }, [])
-    
+
 
   return (
     <Drawer.Navigator>

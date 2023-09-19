@@ -1,6 +1,6 @@
 import { useAccount } from '../../hooks';
 
 export const LogOutScreen = () => {
-  const {logOut} = useAccount()
+  const { logOut } = useAccount()
   logOut()
 }

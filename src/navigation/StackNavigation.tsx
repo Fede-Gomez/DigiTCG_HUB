@@ -3,37 +3,36 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { TypeNavigation } from '../constants/typesNavigation';
 import { TopTapNavigation } from './TopTabNavigation';
 import { LoginScreen, SignUpScreen, LogOutScreen } from '../screen';
+import { Button } from 'react-native';
 
 const Stack = createNativeStackNavigator()
-
-export const StackGameNavigation = ()=>{
-  
-    return (
-      <Stack.Navigator initialRouteName={TypeNavigation.game.homeGameTopBar}
-        screenOptions={{headerShown:false}}
-      >
-        <Stack.Screen name={TypeNavigation.game.homeGameTopBar} component={TopTapNavigation} />
-      </Stack.Navigator>
-    )
-}
 
 export const StackLogSignNavigation = ()=>{
     return(
       <Stack.Navigator initialRouteName={TypeNavigation.account.login} 
-          screenOptions={{headerShown:false}}
+          screenOptions={{
+            headerBackVisible:false,
+            headerTitle:'Titulo de la app',
+            headerTitleAlign:'center',
+            headerRight: () => (
+              <Button
+                onPress={() => console.log('This is a button!')}
+                title="Help"
+                color="red"
+              />
+            ),
+            headerLeft: () => (
+              <Button
+                onPress={() => LogOutScreen}
+                title="logOff"
+                color="black"
+              />
+            ),
+          }}
         >
           <Stack.Screen name={TypeNavigation.account.login} component={LoginScreen} />
           <Stack.Screen name={TypeNavigation.account.signIn} component={SignUpScreen} />
-        </Stack.Navigator>
-    )
-}
-
-export const StackAccountNavigation = ()=>{
-    return(
-      <Stack.Navigator initialRouteName={TypeNavigation.account.logOut} 
-          screenOptions={{headerShown:false}}
-        >
-          <Stack.Screen name={TypeNavigation.account.logOut} component={LogOutScreen} />
+          <Stack.Screen name={TypeNavigation.game.homeGameTopBar} component={TopTapNavigation} />
         </Stack.Navigator>
     )
 }

@@ -7,7 +7,6 @@ export const TypeNavigation = {
         logOutDrawer: 'Log out',
     },
     game:{
-        homeGameDrawer:'Digimon',
         homeGameTopBar:'HomeGameTopBar',
         cardsView: 'Cards view',
         cardSelected: 'Card selected',

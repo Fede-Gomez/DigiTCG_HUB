@@ -8,7 +8,6 @@ const Tab = createMaterialTopTabNavigator();
 
 
 export const TopTapNavigation = () => {
-
   return (
       <Tab.Navigator 
         screenOptions={{

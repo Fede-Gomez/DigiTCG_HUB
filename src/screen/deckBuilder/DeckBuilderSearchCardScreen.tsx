@@ -21,8 +21,10 @@ const DeckBuilderSearchCardScreen = () => {
     return (
       <ImageBackground
         source={require('../../assets/backgrounds/searchCard.jpg')}
+        resizeMode='cover'
+        style={{flex:1}}
       >
-      <View >
+      <View>
             <TextInput
                 placeholder="Search card by name"
                 onChangeText={setNameCard}

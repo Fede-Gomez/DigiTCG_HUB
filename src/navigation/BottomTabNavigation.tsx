@@ -1,6 +1,5 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
 import { 
   DeckBuilderCardsSelectedScreen,
   DeckBuilderDecksSelectedScreen,
@@ -16,9 +15,7 @@ import {
   CardsSellingSelectedScreen,
   CardsSellingViewCardsScreen,
 } from '../screen/index'
-
 import { TypeNavigation } from '../constants/typesNavigation';
-import '../assets/icons/deckOff.png'
 import { Image } from 'react-native';
 import { 
   deckOff, 

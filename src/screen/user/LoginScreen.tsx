@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {Text, View, TextInput, Button} from 'react-native'
 import { useAccount } from '../../hooks/useAccount'
 import { useNavigation } from '@react-navigation/native'
 import { TypeNavigation } from '../../constants/typesNavigation'
 import { login } from '../../styles'
+import { useCards } from '../../hooks'
 
 
 export const LoginScreen = () => {
@@ -12,6 +13,12 @@ export const LoginScreen = () => {
   const navigation = useNavigation();
   const style = login;
   const {signIn} = useAccount();
+
+const {loadAllCards, getFilterCards} = useCards()
+  useEffect(() => {
+        getFilterCards('digimon');
+        loadAllCards();
+  }, [])
 
   return (
     <View style={style.container}>

@@ -40,6 +40,7 @@ const CardWishedSearchScreen = () => {
     return (
       <ImageBackground
         source={require('../../assets/backgrounds/searchCard.jpg')}
+        style={{flex:1}}
       >
         <View>
               <TextInput
