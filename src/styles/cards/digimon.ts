@@ -30,6 +30,16 @@ export const Digimon = StyleSheet.create({
         borderWidth:1,
         paddingStart:3.5
     },
+    containerTextEffect:{
+        borderColor:'#ffffff',
+        borderWidth:1,
+    },
+    textCardEffect:{
+        color: '#ffffff',
+        fontSize: 15,
+        paddingVertical:1.5,
+        paddingStart:3.5
+    },
     modalContainerCard:{
         backgroundColor: backgroundModal
     },

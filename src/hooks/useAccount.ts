@@ -1,8 +1,8 @@
-import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from 'firebase/auth'
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
 import { app } from '../firebase/connect'
 import { useAppDispatch } from './useReducerHook';
 import { useNavigation } from '@react-navigation/native';
-import {TypeNavigation} from '../constants/typesNavigation'
+import { TypeNavigation } from '../constants/typesNavigation'
 import { setUser } from '../reducers/userReducer';
 import { getUserFromDataBase, saveUserDataBase } from '../firebase/dataBase';
 
@@ -40,7 +40,7 @@ export const useAccount = () => {
         let user = await getUserFromDataBase(idUser)
         if (user !== null) {
             dispatch(setUser(user?.data()))
-            navigation.navigate(TypeNavigation.game.homeGameDrawer);
+            navigation.navigate(TypeNavigation.game.homeGameTopBar);
         }else{
             navigation.navigate(TypeNavigation.account.login);
         }

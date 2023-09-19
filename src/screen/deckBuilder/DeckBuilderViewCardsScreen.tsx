@@ -44,6 +44,7 @@ export const DeckBuilderViewCardsScreen = () => {
 return (
   <ImageBackground
     source={require('../../assets/backgrounds/cardView.jpg')}
+    style={{flex:1}}
   >
     <FlatList
       data={listCards}

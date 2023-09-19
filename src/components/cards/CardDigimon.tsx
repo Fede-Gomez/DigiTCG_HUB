@@ -1,6 +1,6 @@
 import React,{ useState } from 'react'
 import { View, Image, Text, Button } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableOpacity } from 'react-native';
 import Modal from "react-native-modal";
 import { Digimon } from '../../styles';
 
@@ -9,7 +9,7 @@ const CardDigimon = ({card}) => {
     const {
         name, color, id, imgUrl, playCost, attribute, cardNumber, cardType, digivolveColor, 
         digivolveColor2, digivolveCost, digivolveCost2, digivolveFrom, digivolveFrom2, traits,
-        level, power, securityEffect, rarity, stageLevel, source, effect, inheritedEffect
+        level, power, securityEffect, rarity, stageLevel, source, effect, effect2, effect3, inheritedEffect
     } = card.data;
     const style = Digimon;
 
@@ -64,7 +64,11 @@ const CardDigimon = ({card}) => {
                 </View>
             </View>
                 <View style={style.containerEffectSource}>
-                    {effect && <Text style={style.textCard} >Effect: {effect}</Text>}
+                    <View style={style.containerTextEffect}>
+                        {effect && <Text style={style.textCardEffect} >Effect: {effect}</Text>}
+                        {effect2 && <Text style={style.textCardEffect} >{effect2}</Text>}
+                        {effect3 && <Text style={style.textCardEffect} >{effect3}</Text>}
+                    </View>
                     {inheritedEffect && <Text style={style.textCard} >Inherited Effect: {inheritedEffect}</Text>}
                     {securityEffect && <Text style={style.textCard} >Security Effect: {securityEffect}</Text>}
                     <Text style={style.textCard} >Source: {source}</Text>

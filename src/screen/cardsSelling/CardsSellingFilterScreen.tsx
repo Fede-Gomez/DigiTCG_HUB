@@ -50,6 +50,7 @@ const groupSelection = ()=>{
 
     return <ImageBackground
       source={require('../../assets/backgrounds/filterSelect.jpg')}
+      style={{flex:1}}
     > 
     <ScrollView>
       <MultipleSelectList 

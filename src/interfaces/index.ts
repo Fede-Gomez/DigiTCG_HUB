@@ -46,6 +46,7 @@ interface Card {
   digivolveFrom: number;
   digivolveFrom2: number;
   effect: string;
+  effect2: string;
   imgUrl: string;
   keyword:string[];
   level: number;
