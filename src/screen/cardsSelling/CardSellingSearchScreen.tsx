@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import { useAppSelector } from '../../hooks/useReducerHook'
-import { View, FlatList, TextInput, Button } from 'react-native';
+import { View, FlatList, TextInput, Button, ImageBackground } from 'react-native';
 import { CardDigimon } from '../../components/cards';
 import { useCards } from '../../hooks';
+import { listCardsSearch } from '../../styles';
 
 const CardSellingSearchScreen = () => {
     const [nameCard, setNameCard] = useState('');
     const cards = useAppSelector(state => state.cards.listCards)
+    const style = listCardsSearch
     const filteredCards = cards.filter((card) =>
       card.data.name.toLowerCase().includes(nameCard.toLowerCase())
     );
@@ -20,28 +22,31 @@ const CardSellingSearchScreen = () => {
     }
 
     const renderItem = ({ item }) => (
-      <View style={{flexDirection:'column'}}>
-      <CardDigimon card={item}/>
-      <View style={{flexDirection:'row'}}>
-        <Button
-          title='Add'
-          onPress={()=>addWish(item)}
-        />
-        <Button
-          title='Remove'
-          onPress={()=>removeWish(item)}
-        />
+      <View style={style.container}>
+        <CardDigimon card={item}/>
+        <View style={{flexDirection:'row'}}>
+          <Button
+            title='Add'
+            onPress={()=>addWish(item)}
+          />
+          <Button
+            title='Remove'
+            onPress={()=>removeWish(item)}
+          />
+        </View>
       </View>
-    </View>
     );
 
     return (
-      <>
+      <ImageBackground
+        source={require('../../assets/backgrounds/searchCard.jpg')}
+      >
       <View >
             <TextInput
                 placeholder="Search card by name"
                 onChangeText={setNameCard}
                 value={nameCard}
+                style={style.search}
             />
         </View>
         <FlatList
@@ -50,7 +55,7 @@ const CardSellingSearchScreen = () => {
           keyExtractor={(item) => item.id.toString()}
           numColumns={3}
         />
-      </>
+      </ImageBackground>
     );
 }
 

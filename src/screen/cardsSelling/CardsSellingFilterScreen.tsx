@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, ScrollView } from 'react-native';
+import { Button, ScrollView, ImageBackground } from 'react-native';
 import { useCards } from '../../hooks';
 import { MultipleSelectList } from 'react-native-dropdown-select-list'
 import { useAppSelector } from '../../hooks/useReducerHook';
@@ -48,7 +48,10 @@ const groupSelection = ()=>{
   navigation.navigate(TypeNavigation.game.cardsView);
 }
 
-    return <ScrollView>
+    return <ImageBackground
+      source={require('../../assets/backgrounds/filterSelect.jpg')}
+    > 
+    <ScrollView>
       <MultipleSelectList 
         setSelected={(val) => setAttribute(val)} 
         data={attributeItems} 
@@ -110,5 +113,5 @@ const groupSelection = ()=>{
         onPress={()=>{groupSelection()}}
       />    
     </ScrollView>
-  
+  </ImageBackground>
 }

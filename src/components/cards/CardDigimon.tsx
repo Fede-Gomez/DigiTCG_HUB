@@ -1,16 +1,15 @@
 import React,{ useState } from 'react'
 import { View, Image, Text, Button } from 'react-native';
-import { Digimon } from '../../styles/cards/digimon';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Modal from "react-native-modal";
+import { Digimon } from '../../styles';
 
 const CardDigimon = ({card}) => {
     const [isModalVisible, setModalVisible] = useState(false);
     const {
-        name, color, id, imgUrl, playCost, 
-        attribute, cardNumber, cardType, digivolveColor, 
-        digivolveCost, digivolveFrom, level, power, 
-        rarity, stageLevel, type, source, effect
+        name, color, id, imgUrl, playCost, attribute, cardNumber, cardType, digivolveColor, 
+        digivolveColor2, digivolveCost, digivolveCost2, digivolveFrom, digivolveFrom2, traits,
+        level, power, securityEffect, rarity, stageLevel, source, effect, inheritedEffect
     } = card.data;
     const style = Digimon;
 
@@ -31,34 +30,47 @@ const CardDigimon = ({card}) => {
         />
         <Modal
             isVisible={isModalVisible}
-            style={style.modalContainer}
         >
+            <View
+                style={style.modalContainerCard}
+                >
             <View style={style.containerImgStats}>
                 <Image
                     style={style.imageCardModal}
                     source={{uri:imgUrl}} 
-                />
+                    />
                 <View style={style.containerStats}>
                     <Text style={style.textCard} >Name: {name}</Text>
                     <Text style={style.textCard} >Color: {color}</Text>
-                    <Text style={style.textCard} >playCost: {playCost}</Text>
-                    <Text style={style.textCard} >attribute: {attribute}</Text>
-                    <Text style={style.textCard} >cardNumber: {cardNumber}</Text>
-                    <Text style={style.textCard} >cardType: {cardType}</Text>
-                    <Text style={style.textCard} >digivolveColor: {digivolveColor}</Text>
-                    <Text style={style.textCard} >digivolveCost: {digivolveCost}</Text>
-                    <Text style={style.textCard} >digivolveFrom: {digivolveFrom}</Text>
-                    <Text style={style.textCard} >level: {level}</Text>
-                    <Text style={style.textCard} >power: {power}</Text>
-                    <Text style={style.textCard} >rarity: {rarity}</Text>
-                    <Text style={style.textCard} >stageLevel: {stageLevel}</Text>
-                    <Text style={style.textCard} >type: {type}</Text>
+                    <Text style={style.textCard} >CardNumber: {cardNumber}</Text>
+                    <Text style={style.textCard} >CardType: {cardType}</Text>
+                    <Text style={style.textCard} >Rarity: {rarity}</Text>
+                    {attribute && <Text style={style.textCard} >Attribute: {attribute}</Text> }
+                    {level && <Text style={style.textCard} >Level: {level}</Text> }
+                    {stageLevel && <Text style={style.textCard} >StageLevel: {stageLevel}</Text>}
+                    {playCost !== null && playCost !== undefined && (
+                        <Text style={style.textCard}>Playcost: {playCost}</Text>
+                    )}
+                    {digivolveColor && <Text style={style.textCard} >DigivolveColor: {digivolveColor}</Text>}
+                    {digivolveColor2 && <Text style={style.textCard} >DigivolveColor: {digivolveColor2}</Text>}
+                    {digivolveFrom && <Text style={style.textCard} >DigivolveFrom: {digivolveFrom}</Text>}
+                    {digivolveFrom2 && <Text style={style.textCard} >DigivolveFrom: {digivolveFrom2}</Text>}
+                    {digivolveCost !== null && digivolveCost !== undefined && (
+                        <Text style={style.textCard}>DigivolveCost: {digivolveCost}</Text>
+                    )}
+                    {digivolveCost2 && <Text style={style.textCard} >DigivolveCost: {digivolveCost2}</Text>}
+                    {power &&  <Text style={style.textCard} >Power: {power}</Text>}
+                    {traits && <Text style={style.textCard} >Type: {traits.toString()}</Text>} 
                 </View>
             </View>
                 <View style={style.containerEffectSource}>
-                    <Text style={style.textCard} >Effect: {effect}</Text>
+                    {effect && <Text style={style.textCard} >Effect: {effect}</Text>}
+                    {inheritedEffect && <Text style={style.textCard} >Inherited Effect: {inheritedEffect}</Text>}
+                    {securityEffect && <Text style={style.textCard} >Security Effect: {securityEffect}</Text>}
                     <Text style={style.textCard} >Source: {source}</Text>
                 </View>
+
+            </View>
             <View>
                 <Button title="Back" onPress={toggleModal} />
             </View>
@@ -67,4 +79,4 @@ const CardDigimon = ({card}) => {
   )
 }
 
-export default CardDigimon
+export default React.memo(CardDigimon)

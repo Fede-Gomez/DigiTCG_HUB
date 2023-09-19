@@ -1,5 +1,5 @@
 import React, {useState } from 'react'
-import { Button, ScrollView } from 'react-native';
+import { Button, ScrollView, ImageBackground } from 'react-native';
 import { useCards } from '../../hooks';
 import { MultipleSelectList } from 'react-native-dropdown-select-list'
 import { useAppSelector } from '../../hooks/useReducerHook';
@@ -48,67 +48,94 @@ const groupSelection = ()=>{
   navigation.navigate(TypeNavigation.game.cardsView);
 }
 
-    return <ScrollView>
-      <MultipleSelectList 
-        setSelected={(val) => setAttribute(val)} 
-        data={attributeItems} 
-        save="value"
-        label="attribute"
-        placeholder='Attribute'
-      />
-      <MultipleSelectList 
-        setSelected={(val) => setColor(val)} 
-        data={colorItems} 
-        save="value"
-        label="color"
-        placeholder='Color'
-      />
-      <MultipleSelectList 
-        setSelected={(val) => setKeyword(val)} 
-        data={keywordItems} 
-        save="value"
-        label="keyword"
-        placeholder='Keyword'
-      />
-      <MultipleSelectList 
-        setSelected={(val) => setLevel(val)} 
-        data={levelItems} 
-        save="value"
-        label="level"
-        placeholder='Level'
-      />
-      <MultipleSelectList 
-        setSelected={(val) => setPlayCost(val)} 
-        data={playCostItems} 
-        save="value"
-        label="playCost"
-        placeholder='Play cost'
-      />
-      <MultipleSelectList 
-        setSelected={(val) => setRarity(val)} 
-        data={rarityItems} 
-        save="value"
-        label="rarity"
-        placeholder='Rarity'
-      />
-      <MultipleSelectList 
-        setSelected={(val) => setTraits(val)} 
-        data={traitsItems} 
-        save="value"
-        label="type"
-        placeholder='Traits'
-      />
-      <MultipleSelectList 
-        setSelected={(val) => setType(val)} 
-        data={typeItems} 
-        save="value"
-        label="type"
-        placeholder='Type'
-      />
-      <Button
-        title='Confirm'
-        onPress={()=>{groupSelection()}}
-      />    
-    </ScrollView>
-  
+    return <ImageBackground
+      source={require('../../assets/backgrounds/filterSelect.jpg')}
+    >
+      <ScrollView>
+        <MultipleSelectList 
+          setSelected={(val) => setAttribute(val)} 
+          data={attributeItems} 
+          save="value"
+          label="attribute"
+          placeholder='Attribute'
+          inputStyles={{color:'black'}}
+          dropdownTextStyles={{color:'black'}}
+          search={false}
+        />
+        <MultipleSelectList 
+          setSelected={(val) => setColor(val)} 
+          data={colorItems} 
+          save="value"
+          label="color"
+          placeholder='Color'
+          inputStyles={{color:'black'}}
+          dropdownTextStyles={{color:'black'}}
+          search={false}
+        />
+        <MultipleSelectList 
+          setSelected={(val) => setKeyword(val)} 
+          data={keywordItems} 
+          save="value"
+          label="keyword"
+          placeholder='Keyword'
+          inputStyles={{color:'black'}}
+          dropdownTextStyles={{color:'black'}}
+          search={false}
+        />
+        <MultipleSelectList 
+          setSelected={(val) => setLevel(val)} 
+          data={levelItems} 
+          save="value"
+          label="level"
+          placeholder='Level'
+          inputStyles={{color:'black'}}
+          dropdownTextStyles={{color:'black'}}
+          search={false}
+        />
+        <MultipleSelectList 
+          setSelected={(val) => setPlayCost(val)} 
+          data={playCostItems} 
+          save="value"
+          label="playCost"
+          placeholder='Play cost'
+          inputStyles={{color:'black'}}
+          dropdownTextStyles={{color:'black'}}
+          search={false}
+        />
+        <MultipleSelectList 
+          setSelected={(val) => setRarity(val)} 
+          data={rarityItems} 
+          save="value"
+          label="rarity"
+          placeholder='Rarity'
+          inputStyles={{color:'black'}}
+          dropdownTextStyles={{color:'black'}}
+          search={false}
+        />
+        <MultipleSelectList 
+          setSelected={(val) => setTraits(val)} 
+          data={traitsItems} 
+          save="value"
+          label="type"
+          placeholder='Traits'
+          inputStyles={{color:'black'}}
+          dropdownTextStyles={{color:'black'}}
+          search={false}
+        />
+        <MultipleSelectList 
+          setSelected={(val) => setType(val)} 
+          data={typeItems} 
+          save="value"
+          label="type"
+          placeholder='Type'
+          inputStyles={{color:'black'}}
+          dropdownTextStyles={{color:'black'}}
+          search={false}
+        />
+        <Button
+          title='Confirm'
+          onPress={()=>{groupSelection()}}
+        />    
+      </ScrollView>
+    </ImageBackground> 
 }

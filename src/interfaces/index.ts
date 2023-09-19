@@ -37,10 +37,14 @@ export interface CardsState {
 interface Card {
   attribute: string;
   cardNumber: string;
+  cardType: string;
   color: string;
   digivolveColor:string;
+  digivolveColor2:string;
   digivolveCost: number;
+  digivolveCost2: number;
   digivolveFrom: number;
+  digivolveFrom2: number;
   effect: string;
   imgUrl: string;
   keyword:string[];
@@ -52,6 +56,8 @@ interface Card {
   source: string;
   stageLevel: string;
   traits: string[];
+  inheritedEffect: string;
+  securityEffect: string;
   type: string;
 }
 
