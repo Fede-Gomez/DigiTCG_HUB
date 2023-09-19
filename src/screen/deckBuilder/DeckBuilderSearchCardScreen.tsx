@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useAppSelector } from '../../hooks/useReducerHook'
-import { View, FlatList, TextInput } from 'react-native';
+import { View, FlatList, TextInput, ImageBackground } from 'react-native';
 import { CardDigimon } from '../../components/cards';
 import { listCardsSearch } from '../../styles';
 
@@ -19,7 +19,9 @@ const DeckBuilderSearchCardScreen = () => {
     );
 
     return (
-      <>
+      <ImageBackground
+        source={require('../../assets/backgrounds/searchCard.jpg')}
+      >
       <View >
             <TextInput
                 placeholder="Search card by name"
@@ -34,7 +36,7 @@ const DeckBuilderSearchCardScreen = () => {
           keyExtractor={(item) => item.id.toString()}
           numColumns={3}
         />
-      </>
+      </ImageBackground>
     );
 }
 

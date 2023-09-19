@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { View, FlatList, Button } from 'react-native'
+import { View, FlatList, Button, ImageBackground } from 'react-native';
 import { useAppSelector } from '../../hooks/useReducerHook'
 import { CardDigimon } from '../../components/cards'
 import { useCards } from '../../hooks'
@@ -12,18 +12,17 @@ export const DeckBuilderViewCardsScreen = () => {
   const {addCards, removeCards} = useCards()
   const style = listCardsView;
 
-  
   useEffect(() => {
     listCardsFiltered.length === 0 ? setListCards(cards) : setListCards(listCardsFiltered)
   }, [listCardsFiltered])
   
   const add = (card)=>{
     addCards(card)
-}
+  }
 
-const remove = (card)=>{
-    removeCards(card)        
-}
+  const remove = (card)=>{
+      removeCards(card)        
+  }
 
 
   const renderItem = ({item})=>{
@@ -43,12 +42,16 @@ const remove = (card)=>{
   }
 
 return (
-  <>
+  <ImageBackground
+    source={require('../../assets/backgrounds/cardView.jpg')}
+  >
     <FlatList
       data={listCards}
       renderItem={renderItem}
       numColumns={3}
+      removeClippedSubviews={true}
+      maxToRenderPerBatch={10}
     />
-  </>
+  </ImageBackground>
   )
 }

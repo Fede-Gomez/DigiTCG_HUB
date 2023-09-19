@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useAppSelector } from '../../hooks/useReducerHook'
 import { CardDigimon } from '../../components/cards'
-import { Text, FlatList, Button, View } from 'react-native';
+import { Text, FlatList, Button, View, ImageBackground } from 'react-native';
 import Modal from 'react-native-modal';
 import { useDeck } from '../../hooks';
 import { useNavigation } from '@react-navigation/native';
@@ -94,14 +94,18 @@ export const DeckBuilderDecksSelectedScreen = () => {
 
     }
   return (
-    <>
+    <ImageBackground
+      source={require('../../assets/backgrounds/myDecks.jpg')}
+      resizeMode='cover'
+      style={{flex:1}}
+    >
       <FlatList
         data={deckChoice ? decks[deckChoice] : []}
         ListHeaderComponent={renderHeader}
         renderItem={renderDeck}
         numColumns={3}
       />
-    </>
+    </ImageBackground>
     )
   
 }

@@ -20,4 +20,13 @@ export const listCardsSelected = StyleSheet.create({
         justifyContent: 'space-around',
         marginTop:16,
     },
+    addCardsContainer:{
+        flex:1,
+        justifyContent: 'center',
+    },
+    addCards:{
+        textAlign: 'center',
+        fontSize:30,
+        fontFamily:'digimon'
+    },
 })

@@ -1,33 +1,37 @@
 import { StyleSheet, Dimensions } from 'react-native';
-
+const backgroundModal = "#1D201F";
 export const Digimon = StyleSheet.create({
     cardContainer:{
         marginVertical:7,
     },
     imageCard:{
         height: 175, 
-        width: Dimensions.get('window').width / 3.4
+        width: Dimensions.get('window').width / 3.4,
     },
     imageCardModal:{
+        alignSelf:'center',
         height: 300, 
-        width: '55%'
+        width: '55%',
     },
     containerImgStats:{
-        flexDirection:'row'
+        flexDirection:'row',
     },
     containerStats:{
-        backgroundColor:'red',
-        paddingLeft:10
+        width:'45.3%',
     },
     containerEffectSource:{
-        paddingLeft:10,
+        marginBottom:15,
     },
     textCard:{
         color: '#ffffff',
-        fontSize: 16,
+        fontSize: 15,
+        paddingVertical:1.5,
+        borderColor:'#ffffff',
+        borderWidth:1,
+        paddingStart:3.5
     },
-    modalContainer:{
-        backgroundColor:'blue',
+    modalContainerCard:{
+        backgroundColor: backgroundModal
     },
     buttonsModalAddRemove:{
         flexDirection:'row',

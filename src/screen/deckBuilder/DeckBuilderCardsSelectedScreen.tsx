@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, FlatList, Text, View } from 'react-native';
+import { Button, FlatList, Text, View, ImageBackground } from 'react-native';
 import { useAppSelector } from '../../hooks/useReducerHook'
 import { CardDigimon } from '../../components/cards'
 import { useCards, useDeck } from '../../hooks';
@@ -70,15 +70,25 @@ const DeckBuilderCardsSelectedScreen = () => {
     }
 
   return (
-    cards.length == 0 
-    ?   <Text>Agrega cartas</Text>
-    :   <FlatList
-            ListHeaderComponent={renderHeader}
-            keyExtractor={(item) => item.id.toString()}
-            data={cards}
-            renderItem={renderItem}
-            numColumns={3}
-        />
+    <ImageBackground
+      source={require('../../assets/backgrounds/cardSelected.jpg')}
+      resizeMode='cover'
+      style={{
+        flex:1,        
+      }}
+    >
+      {cards.length == 0 
+      ? <View style={style.addCardsContainer}>
+          <Text style={style.addCards} >Agrega cartas</Text>
+        </View>  
+      :   <FlatList
+              ListHeaderComponent={renderHeader}
+              keyExtractor={(item) => item.id.toString()}
+              data={cards}
+              renderItem={renderItem}
+              numColumns={3}
+          />}
+    </ImageBackground>
   )
 }
 

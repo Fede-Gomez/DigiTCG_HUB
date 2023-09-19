@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { FlatList, Button, View } from 'react-native';
+import { FlatList, Button, View, ImageBackground } from 'react-native';
 import { useAppSelector } from '../../hooks/useReducerHook';
 import { CardDigimon } from '../../components/cards';
 import { useCards } from '../../hooks';
@@ -40,12 +40,16 @@ export const CardsSellingViewCardsScreen = () => {
     </View>
   }
   return (
-    <>
+    <ImageBackground
+      source={require('../../assets/backgrounds/cardView.jpg')}
+    >
       <FlatList
         data={listCards}
         renderItem={renderItem}
         numColumns={3}
+        removeClippedSubviews={true}
+        maxToRenderPerBatch={10}
       />
-    </>
+    </ImageBackground>
     )
 }

@@ -18,7 +18,6 @@ export const listCardsSearch = StyleSheet.create({
     },
     search:{
         alignSelf:'center',
-        color: 'black'
     },
     
 })
