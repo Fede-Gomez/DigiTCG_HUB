@@ -18,5 +18,6 @@ export const listCardsMyDeck = StyleSheet.create({
     },
     count:{
         alignSelf:'center',
+        color: 'white'
     }
 })

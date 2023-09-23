@@ -4,7 +4,7 @@ import { useAccount } from '../../hooks/useAccount'
 import { useNavigation } from '@react-navigation/native'
 import { TypeNavigation } from '../../constants/typesNavigation'
 import { login } from '../../styles'
-import { useCards } from '../../hooks'
+import { useCards, useFolders } from '../../hooks'
 
 
 export const LoginScreen = () => {
@@ -13,11 +13,14 @@ export const LoginScreen = () => {
   const navigation = useNavigation();
   const style = login;
   const {signIn} = useAccount();
+  const {loadFolders} = useFolders()
+  const {getListFiltersOfCards, loadAllCards} = useCards()
 
-const {loadAllCards, getFilterCards} = useCards()
+
   useEffect(() => {
-        getFilterCards('digimon');
-        loadAllCards();
+    loadFolders()
+    getListFiltersOfCards()
+    loadAllCards()
   }, [])
 
   return (
@@ -36,6 +39,7 @@ const {loadAllCards, getFilterCards} = useCards()
         />
         <View style={style.logCreteAccountContainer}>
           <Button
+            // onPress={()=>            navigation.navigate(TypeNavigation.game.homeGameTopBar)}
             onPress={()=>signIn(email, password)}
             title='Login'
           />

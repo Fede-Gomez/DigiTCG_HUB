@@ -2,16 +2,17 @@ import React,{ useState } from 'react'
 import { View, Image, Text, Button } from 'react-native';
 import { TouchableOpacity } from 'react-native';
 import Modal from "react-native-modal";
-import { Digimon } from '../../styles';
+import { card as cardDigimon } from '../../styles';
 
 const CardDigimon = ({card}) => {
     const [isModalVisible, setModalVisible] = useState(false);
+    
     const {
         name, color, id, imgUrl, playCost, attribute, cardNumber, cardType, digivolveColor, 
         digivolveColor2, digivolveCost, digivolveCost2, digivolveFrom, digivolveFrom2, traits,
         level, power, securityEffect, rarity, stageLevel, source, effect, effect2, effect3, inheritedEffect
-    } = card.data;
-    const style = Digimon;
+    } = card;
+    const style = cardDigimon;
 
     const toggleModal = () => {
         setModalVisible(!isModalVisible);

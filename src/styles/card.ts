@@ -1,6 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native';
 const backgroundModal = "#1D201F";
-export const Digimon = StyleSheet.create({
+export const card = StyleSheet.create({
     cardContainer:{
         marginVertical:7,
     },

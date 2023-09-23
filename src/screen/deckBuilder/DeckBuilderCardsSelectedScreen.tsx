@@ -1,31 +1,30 @@
 import React from 'react'
 import { Button, FlatList, Text, View, ImageBackground } from 'react-native';
 import { useAppSelector } from '../../hooks/useReducerHook'
-import { CardDigimon } from '../../components/cards'
+import { CardDigimon } from '../../components'
 import { useCards, useDeck } from '../../hooks';
 import prompt from 'react-native-prompt-android';
 import { TypeNavigation } from '../../constants/typesNavigation';
 import { useNavigation } from '@react-navigation/native';
 import { listCardsSelected } from '../../styles';
 
-const DeckBuilderCardsSelectedScreen = () => {
+  const CardsSelected = () => {
     const navigation = useNavigation()
-    const cards = useAppSelector(state => state.cards.listCardsPicked)
+    const cards = useAppSelector(state => state.cards.picked)
     const style = listCardsSelected
     const {saveDeck} = useDeck()
     const {addCards, removeCards} = useCards()
 
-  
     const add = (card)=>{
       addCards(card)
     }
     const remove = (card)=>{
       removeCards(card)        
     }
-    const renderItem = (item)=>{
-        const {count} = item.item
+    const renderItem = ({item})=>{
+        const {count} = item
         return <View style={style.container} >
-          <CardDigimon card={item.item}/>
+          <CardDigimon card={item}/>
             <Text style={style.count}>{count}</Text>
           <View style={style.buttonsAddRemove}>
           <Button
@@ -40,7 +39,7 @@ const DeckBuilderCardsSelectedScreen = () => {
         </View>
     }
 
-    const createDeckOfSavePicked = (nameText:string)=>{
+    const createDeckOfSavePicked = (nameText:string)=>{      
       saveDeck(nameText,cards)
       navigation.navigate(TypeNavigation.game.homeGameTopBar);
     }
@@ -77,7 +76,7 @@ const DeckBuilderCardsSelectedScreen = () => {
         flex:1,        
       }}
     >
-      {cards.length == 0 
+      {cards == 0 
       ? <View style={style.addCardsContainer}>
           <Text style={style.addCards} >Agrega cartas</Text>
         </View>  
@@ -92,4 +91,4 @@ const DeckBuilderCardsSelectedScreen = () => {
   )
 }
 
-export default DeckBuilderCardsSelectedScreen
+export default CardsSelected

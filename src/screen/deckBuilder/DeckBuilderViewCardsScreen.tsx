@@ -1,34 +1,46 @@
-import React, { useState, useEffect } from 'react'
-import { View, FlatList, Button, ImageBackground } from 'react-native';
+import React from 'react'
+import { View, FlatList, Button, ImageBackground, Text } from 'react-native';
 import { useAppSelector } from '../../hooks/useReducerHook'
-import { CardDigimon } from '../../components/cards'
+import { CardDigimon, Folder } from '../../components'
 import { useCards } from '../../hooks'
-import { listCardsView } from '../../styles/'
+import { listCardsView, folder } from '../../styles'
 
-export const DeckBuilderViewCardsScreen = () => {
-  const cards = useAppSelector(state => state.cards.listCards)
-  const listCardsFiltered = useAppSelector(state => state.cards.listCardsFiltered)
-  const [listCards, setListCards] = useState({})
-  const {addCards, removeCards} = useCards()
-  const style = listCardsView;
+  const DeckBuilderViewCardsScreen = () => {
+  const card = useAppSelector(state => state.cards.view)
+  const {addCards, removeCards, clearListCardsView} = useCards()
+  const styleCard = listCardsView; 
+  const styleFolder = folder;
 
-  useEffect(() => {
-    listCardsFiltered.length === 0 ? setListCards(cards) : setListCards(listCardsFiltered)
-  }, [listCardsFiltered])
-  
-  const add = (card)=>{
-    addCards(card)
+  const add = (cards)=>{
+    addCards(cards)
   }
 
   const remove = (card)=>{
       removeCards(card)        
   }
 
+  const renderHeader = () => {
+    return <View style={{flex:1, flexDirection:'row', justifyContent: 'space-around'}}>
+      <Button 
+        title={'Back'}
+        onPress={()=>clearListCardsView()}
+      />
+    </View>
+  }
+  
+  const renderListEmpty = () => {
+    return <View style={{flex:1, flexDirection:'row', justifyContent: 'space-around'}}>
+      <Button 
+        title={'No hay nada aca'}
+        onPress={()=>clearListCardsView()}
+      />
+    </View>
+  }
 
   const renderItem = ({item})=>{
-    return <View style={style.container}>
+    return <View style={styleCard.container}>
     <CardDigimon card={item}/>
-    <View style={style.buttonsAddRemove}>
+    <View style={styleCard.buttonsAddRemove}>
       <Button
         title='Add'
         onPress={()=>add(item)}
@@ -46,13 +58,20 @@ return (
     source={require('../../assets/backgrounds/cardView.jpg')}
     style={{flex:1}}
   >
-    <FlatList
-      data={listCards}
-      renderItem={renderItem}
-      numColumns={3}
-      removeClippedSubviews={true}
-      maxToRenderPerBatch={10}
-    />
+    {card.count == 0
+      ? <View style={styleFolder.container}>
+          <Folder/>
+        </View>
+      : <FlatList
+          ListEmptyComponent={renderListEmpty}
+          ListHeaderComponent={renderHeader}
+          data={card}
+          renderItem={renderItem}
+          numColumns={3}
+        />
+    }
   </ImageBackground>
   )
 }
+
+export default DeckBuilderViewCardsScreen

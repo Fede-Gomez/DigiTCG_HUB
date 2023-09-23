@@ -1,27 +1,40 @@
 import React, { useState, useEffect } from 'react'
 import { FlatList, Button, View, ImageBackground } from 'react-native';
 import { useAppSelector } from '../../hooks/useReducerHook';
-import { CardDigimon } from '../../components/cards';
+import { CardDigimon, Folder } from '../../components';
 import { useCards } from '../../hooks';
 import { listCardsView } from '../../styles';
 
 export const CardsSellingViewCardsScreen = () => {
-  const cards = useAppSelector(state => state.cards.listCards)
-  const listCardsFiltered = useAppSelector(state => state.cards.listCardsFiltered)
-  const [listCards, setListCards] = useState({})
-  const {addCardWished, removeCardWished} = useCards()
+  const cards = useAppSelector(state => state.cards.view)
+  const { addCardSelling, removeCardSelling } = useCards()
+  const { clearListCardsView } = useCards()
   const style = listCardsView;
-
-  useEffect(() => {
-    listCardsFiltered.length === 0 ? setListCards(cards) : setListCards(listCardsFiltered)
-  }, [listCardsFiltered])
   
-  const addWish = (card)=>{    
-    addCardWished(card)
+  const addSell = (card)=>{    
+    addCardSelling(card)
   }
  
-  const removeWish = (card)=>{
-    removeCardWished(card)
+  const removeSell = (card)=>{
+    removeCardSelling(card)
+  }
+
+  const renderHeader = () => {
+    return <View style={{flex:1, flexDirection:'row', justifyContent: 'space-around'}}>
+      <Button 
+        title={'Back'}
+        onPress={()=>clearListCardsView()}
+      />
+    </View>
+  }
+
+  const renderListEmpty = () => {
+    return <View style={{flex:1, flexDirection:'row', justifyContent: 'space-around'}}>
+      <Button 
+        title={'No hay nada aca'}
+        onPress={()=>clearListCardsView()}
+      />
+    </View>
   }
 
   const renderItem = ({item})=>{        
@@ -30,11 +43,11 @@ export const CardsSellingViewCardsScreen = () => {
     <View style={style.buttonsAddRemove}>
         <Button
           title='Add'
-          onPress={()=>addWish(item)}
+          onPress={()=>addSell(item)}
         />
         <Button
           title='Remove'
-          onPress={()=>removeWish(item)}
+          onPress={()=>removeSell(item)}
         />
       </View>
     </View>
@@ -44,13 +57,16 @@ export const CardsSellingViewCardsScreen = () => {
       source={require('../../assets/backgrounds/cardView.jpg')}
       style={{flex:1}}
     >
-      <FlatList
-        data={listCards}
-        renderItem={renderItem}
-        numColumns={3}
-        removeClippedSubviews={true}
-        maxToRenderPerBatch={10}
-      />
+      {cards.count == 0
+          ? <Folder/>
+          : <FlatList
+              ListEmptyComponent={renderListEmpty}
+              ListHeaderComponent={renderHeader}
+              data={cards}
+              renderItem={renderItem}
+              numColumns={3}
+            />
+      }
     </ImageBackground>
     )
 }

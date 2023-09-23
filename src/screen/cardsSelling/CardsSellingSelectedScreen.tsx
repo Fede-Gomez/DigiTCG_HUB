@@ -1,29 +1,29 @@
 import React from 'react'
 import { Button, FlatList, Text, View, ImageBackground } from 'react-native';
 import { useAppSelector } from '../../hooks/useReducerHook'
-import { CardDigimon } from '../../components/cards'
+import { CardDigimon } from '../../components'
 import Share from 'react-native-share';
 import { listCardsSelected } from '../../styles';
 import { useCards } from '../../hooks';
 
 const CardsSellingSelectedScreen = () => {
-    const cards = useAppSelector(state => state.cards.listCardsWished)
-    const {addCards, removeCards} = useCards()
+    const cards = useAppSelector(state => state.cards.selling)
     const style = listCardsSelected
+    const {addCardSelling, removeCardSelling} = useCards()
     let message = 'Vendo:\n'
     cards.forEach( e =>{
-      message += e.count + ' ' + e.data.name + ' ' + e.data.cardNumber + '\n'
+      message += e.count + ' ' + e.name + ' ' + e.cardNumber + '\n'
     })
     const add = (card)=>{
-      addCards(card)
+      addCardSelling(card)
     }
     const remove = (card)=>{
-      removeCards(card)        
+      removeCardSelling(card)        
     }
-    const renderItem = (item)=>{
-      const {count} = item.item
+    const renderItem = ({item})=>{
+      const {count} = item
       return <View style={style.container} >
-        <CardDigimon card={item.item}/>
+        <CardDigimon card={item}/>
           <Text style={style.count}>{count}</Text>
         <View style={style.buttonsAddRemove}>
         <Button
@@ -75,7 +75,6 @@ const CardsSellingSelectedScreen = () => {
         </View>  
       :   <FlatList
               ListHeaderComponent={renderHeader}
-              keyExtractor={(item) => item.id.toString()}
               data={cards}
               renderItem={renderItem}
               numColumns={3}
