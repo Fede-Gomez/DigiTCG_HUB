@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import { useAppSelector } from '../../hooks/useReducerHook'
-import { CardDigimon } from '../../components/cards'
-import { Text, FlatList, Button, View, ImageBackground } from 'react-native';
+import { CardDigimon } from '../../components'
+import { Text, FlatList, Button, View, ImageBackground, Alert } from 'react-native';
 import Modal from 'react-native-modal';
 import { useDeck } from '../../hooks';
 import { useNavigation } from '@react-navigation/native';
 import { TypeNavigation } from '../../constants/typesNavigation';
 import { listCardsMyDeck } from '../../styles';
 
-export const DeckBuilderDecksSelectedScreen = () => {  
+  const DeckBuilderDecksSelectedScreen = () => {  
     const decks = useAppSelector(state => state.user.user.decks)
     const navigation = useNavigation()
     const [isModalVisible, setModalVisible] = useState(false);
@@ -30,9 +30,21 @@ export const DeckBuilderDecksSelectedScreen = () => {
     }
 
     const removeDeck = async (deckChoice)=>{
-      deleteDeck(deckChoice)
-      setDeckChoice(null)
-      navigation.navigate(TypeNavigation.game.cardsView);
+
+      Alert.alert('Are you sure?','', [
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {text: 'Yes', onPress: () => {
+          deleteDeck(deckChoice)
+          setDeckChoice(null)
+          navigation.navigate(TypeNavigation.game.cardsView);
+        }},
+      ]);
+
+      
     }
 
     const renderHeader = () => {
@@ -109,3 +121,5 @@ export const DeckBuilderDecksSelectedScreen = () => {
     )
   
 }
+
+export default DeckBuilderDecksSelectedScreen

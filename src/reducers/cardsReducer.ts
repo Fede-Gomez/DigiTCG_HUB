@@ -1,70 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { CardsState } from '../interfaces';
+import { initialStateCards } from '../interfaces';
 
-const initialState: CardsState = {
-  listCards:[],
-  listFilter:[],
-  listCardsPicked:[],
-  listCardsFiltered:[],
-  listCardsWished:[],
-  listCardsSelling:[],
-};
+const initialState = initialStateCards;
 
 const incrementCountCard = (state, payload)=>{
- console.log(payload);
- 
-  if (state.listCardsPicked.find((card) => card.id === payload.id)) {
-    state.listCardsPicked = state.listCardsPicked.map((card) => {
-      if (card.id === payload.id) {
-        if (card.count === 4) {
-          return card;
-        } else {
-          return { ...card, count: card.count + 1 };
-        }
-      }
-      return card;
-    });
-  } else {
-    state.listCardsPicked.push({...payload, count: 1 });
-  }
-}
-
-const decrementCountCard = (state, payload )=>{
-  if (state.listCardsPicked.find((card) => card.id === payload.id)) {
-    state.listCardsPicked = state.listCardsPicked.map((card) => {
-      if (card.id === payload.id) {
-        if (card.count >= 1) {
-          return { ...card, count: card.count - 1 };
-        }
-      }
-      return card
-    });
-    state.listCardsPicked = state.listCardsPicked.filter(card => card.count != 0)
-  }
-  if (state.listCardsPicked.length === 1 && state.listCardsPicked[0] === undefined) {
-    state.listCardsPicked = [];
-  }
-}
-
-  const filterCardList = (state, payload) => {
-    const filteredCards = state.listCards.filter((card) => {
-      const { data } = card;
-      for (const key in payload) {
-        const filterValues = payload[key];
-        if (filterValues && filterValues.length > 0) {
-          if (!filterValues.includes(data[key])) {
-            return false;
-          }
-        }
-      }
-      return true;
-    })
-    state.listCardsFiltered = filteredCards
-  }
-
-  const addCardToListWish = (state,payload) => {
-    if (state.listCardsWished.find((card) => card.id === payload.id)) {
-      state.listCardsWished = state.listCardsWished.map((card) => {
+  if (state.picked.find((card) => card.id === payload.id)) {    
+    state.picked = state.picked.map((card) => {
         if (card.id === payload.id) {
           if (card.count === 4) {
             return card;
@@ -75,40 +16,111 @@ const decrementCountCard = (state, payload )=>{
         return card;
       });
     } else {
-      state.listCardsWished.push({...payload, count: 1 });
+      state.picked.push({...payload, count: 1 });
     }
-  }
+}
 
-  const removeCardToListWish = (state,payload) => {
-    if (state.listCardsWished.find((card) => card.id === payload.id)) {
-      state.listCardsWished = state.listCardsWished.map((card) => {
-        if (card.id === payload.id) {
-          if (card.count >= 1) {
-            return { ...card, count: card.count - 1 };
-          }
+const decrementCountCard = (state, payload )=>{
+  if (state.picked.find((card) => card.id === payload.id)) {
+    state.picked = state.picked.map((card) => {
+      if (card.id === payload.id) {
+        if (card.count >= 1) {
+          return { ...card, count: card.count - 1 };
         }
-        return card
-      });
-      state.listCardsWished = state.listCardsWished.filter(card => card.count != 0)
-    }
-    if (state.listCardsWished.length === 1 && state.listCardsWished[0] === undefined) {
-      state.listCardsWished = [];
-    }
+      }
+      return card
+    });
+    state.picked = state.picked.filter(card => card.count != 0)
   }
-
-  const addCardToListSelling = (state,payload) => {
-
+  if (state.picked.length === 1 && state.picked[0] === undefined) {
+    state.picked = [];
   }
+}
+const addCardToListWish = (state,payload) => {
+  if (state.wished.find((card) => card.id === payload.id)) {
+    state.wished = state.wished.map((card) => {
+      if (card.id === payload.id) {
+        if (card.count === 4) {
+          return card;
+        } else {
+          return { ...card, count: card.count + 1 };
+        }
+      }
+      return card;
+    });
+  } else {
+    state.wished.push({...payload, count: 1 });
+  }
+}
+
+const removeCardToListWish = (state,payload) => {
+  if (state.wished.find((card) => card.id === payload.id)) {
+    state.wished = state.wished.map((card) => {
+      if (card.id === payload.id) {
+        if (card.count >= 1) {
+          return { ...card, count: card.count - 1 };
+        }
+      }
+      return card
+    });
+    state.wished = state.wished.filter(card => card.count != 0)
+  }
+  if (state.wished.length === 1 && state.wished[0] === undefined) {
+    state.wished = [];
+  }
+}
+
+const addCardToListSelling = (state,payload) => {
+  if (state.selling.find((card) => card.id === payload.id)) {
+    state.selling = state.selling.map((card) => {
+      if (card.id === payload.id) {
+        if (card.count === 4) {
+          return card;
+        } else {
+          return { ...card, count: card.count + 1 };
+        }
+      }
+      return card;
+    });
+  } else {
+    state.selling.push({...payload, count: 1 });
+  }
+}
+const removeCardToListSelling = (state,payload) => {
+  if (state.selling.find((card) => card.id === payload.id)) {
+    state.selling = state.selling.map((card) => {
+      if (card.id === payload.id) {
+        if (card.count >= 1) {
+          return { ...card, count: card.count - 1 };
+        }
+      }
+      return card
+    });
+    state.selling = state.selling.filter(card => card.count != 0)
+  }
+  if (state.selling.length === 1 && state.selling[0] === undefined) {
+    state.selling = [];
+  }
+}
 
 export const cardsReducer = createSlice({
   name: 'cards',
   initialState,
   reducers: {
     setCards: (state, {payload}) =>{
-      state.listCards = payload;
+      state.view = payload;
     },
-    setCardsPicked:(state, {payload})=>{
-      state.listCardsPicked = payload;
+    setAllCards: (state, {payload}) =>{
+      state.searched = payload;
+    },
+    clearCardsView:(state)=>{
+      state.view = initialState.view
+    },
+    setListFilter:(state, {payload})=>{
+      state.listFilter = payload;
+    },
+    setCardListFiltered:(state, {payload})=>{
+      state.view = payload      
     },
     cardPickedAdd: (state, {payload})=>{
       incrementCountCard(state, payload);
@@ -116,33 +128,32 @@ export const cardsReducer = createSlice({
     cardPickedRemove: (state, {payload})=>{
       decrementCountCard(state, payload);
     },
-    setListFilterDigimon:(state, {payload})=>{
-      state.listFilter = payload;
+    addCardToWish:(state, {payload})=>{
+      addCardToListWish(state, payload);
     },
-    setCardListFilter:(state, {payload})=>{
-      filterCardList(state, payload);
-    },
-    addCardToWished:(state, {payload})=>{
-      addCardToListWish(state,payload);
-    },
-    removeCardToWished:(state,{payload})=>{
+    removeCardToWish:(state,{payload})=>{
       removeCardToListWish(state,payload);
     },
-    addCardToSelling:(state, {payload})=>{
+    addCardToSell:(state, {payload})=>{
       addCardToListSelling(state,payload);
+    },
+    removeCardToSell:(state, {payload})=>{
+      removeCardToListSelling(state,payload);
     },
 }})
 
 export const { 
   setCards, 
-  setCardsPicked, 
+  setAllCards,
+  clearCardsView,
+  setListFilter, 
+  setCardListFiltered,  
   cardPickedAdd, 
   cardPickedRemove, 
-  setListFilterDigimon, 
-  setCardListFilter, 
-  addCardToWished,  
-  removeCardToWished,
-
+  addCardToWish,  
+  removeCardToWish,
+  addCardToSell,
+  removeCardToSell,
 } = cardsReducer.actions
 
 export default cardsReducer.reducer

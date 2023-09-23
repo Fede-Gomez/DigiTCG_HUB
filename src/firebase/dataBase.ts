@@ -43,12 +43,6 @@ const userDeckRemoveDatabase = async (user)=>{
     await setDoc(doc(db, users, user.idUser), user);
 }
 
-const getFiltersCards = async (nameGame)=>{
-    const docRef = doc(db, filterCards, nameGame);
-    const database = getDoc(docRef);
-    return database
-}
-
 export {
     dataBaseDigimon,
     dataBaseUsers,
@@ -56,5 +50,4 @@ export {
     getUserFromDataBase,
     saveUserDataBase,
     userDeckRemoveDatabase,
-    getFiltersCards
 }

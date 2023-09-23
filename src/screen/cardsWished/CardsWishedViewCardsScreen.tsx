@@ -1,27 +1,40 @@
 import React, { useState, useEffect } from 'react'
 import { FlatList, Button, View, ImageBackground } from 'react-native';
 import { useAppSelector } from '../../hooks/useReducerHook';
-import { CardDigimon } from '../../components/cards';
+import { CardDigimon, Folder } from '../../components';
 import { useCards } from '../../hooks';
 import { listCardsView } from '../../styles';
 
-export const CardsWishedViewCardsScreen = () => {
-  const cards = useAppSelector(state => state.cards.listCards)
-  const listCardsFiltered = useAppSelector(state => state.cards.listCardsFiltered)
-  const [listCards, setListCards] = useState({})
-  const {addCardWished, removeCardWished} = useCards()
+const CardsWishedViewCardsScreen = () => {
+  const card = useAppSelector(state => state.cards.view)
+  const { clearListCardsView } = useCards()
+  const { addCardWished, removeCardWished } = useCards()
   const style = listCardsView;
-
-  useEffect(() => {
-    listCardsFiltered.length === 0 ? setListCards(cards) : setListCards(listCardsFiltered)
-  }, [listCardsFiltered])
   
-  const addWish = (card)=>{    
+  const addWish = (card)=>{        
     addCardWished(card)
   }
  
   const removeWish = (card)=>{
     removeCardWished(card)
+  }
+
+  const renderHeader = () => {
+    return <View style={{flex:1, flexDirection:'row', justifyContent: 'space-around'}}>
+      <Button 
+        title={'Back'}
+        onPress={()=>clearListCardsView()}
+      />
+    </View>
+  }
+
+  const renderListEmpty = () => {
+    return <View style={{flex:1, flexDirection:'row', justifyContent: 'space-around'}}>
+      <Button 
+        title={'No hay nada aca'}
+        onPress={()=>clearListCardsView()}
+      />
+    </View>
   }
 
   const renderItem = ({item})=>{        
@@ -44,11 +57,18 @@ export const CardsWishedViewCardsScreen = () => {
         source={require('../../assets/backgrounds/cardView.jpg')}
         style={{flex:1}}
       >
-        <FlatList
-          data={listCards}
-          renderItem={renderItem}
-          numColumns={3}
-        />
+        {card.count == 0
+          ? <Folder/>
+          : <FlatList
+              ListEmptyComponent={renderListEmpty}
+              ListHeaderComponent={renderHeader}
+              data={card}
+              renderItem={renderItem}
+              numColumns={3}
+            />
+        }
       </ImageBackground>
     )
 }
+
+export default CardsWishedViewCardsScreen

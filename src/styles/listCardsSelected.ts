@@ -9,6 +9,7 @@ export const listCardsSelected = StyleSheet.create({
     count:{
         alignSelf:'center',
         marginBottom:8,
+        color:'white',
     },
     buttonsAddRemove:{
         flexDirection:'row',

@@ -1,40 +1,80 @@
 import { useAppDispatch } from './useReducerHook'
 import { 
+  setCards, 
+  setAllCards,
+  setListFilter, 
+  setCardListFiltered, 
+  clearCardsView,
   cardPickedAdd, 
   cardPickedRemove, 
-  setCards, 
-  setListFilterDigimon, 
-  setCardListFilter, 
-  addCardToWished,
-  removeCardToWished 
+  addCardToWish,
+  removeCardToWish, 
+  addCardToSell,
+  removeCardToSell,
 } from '../reducers/cardsReducer'
-import { dataBaseDigimon } from '../firebase'
-import { getFiltersCards } from '../firebase/dataBase'
+import { getFilters, getCardsBt, getFilteredCards, getAllCards } from '../services/database'
 
 
 export const useCards = () => {
 
   const dispatch = useAppDispatch()
-  let cartas = []
-  
+
   const loadAllCards= async ()=>{
-      const db = await dataBaseDigimon()
-        db.forEach((doc) => {
-            cartas.push({id:doc.id,data:doc.data()})
-        });
-        dispatch(setCards(cartas))
+    const cards = await getAllCards();
+    dispatch(setAllCards(cards))
+  }
+  
+  const loadAllCardsBt = async (name)=>{
+    const cards = await getCardsBt(name);
+    dispatch(setCards(cards))
   }
 
-  const getFilterCards = async (nameGame)=>{
-    const filters = await getFiltersCards(nameGame)
-    dispatch(setListFilterDigimon(filters.data()))
+  const getListFiltersOfCards = async ()=>{
+    const filters = await getFilters()
+    dispatch(setListFilter(filters))
   }
+
+  const clearListCardsView = ()=>{
+    dispatch(clearCardsView())
+  }
+  
+  const cardListFiltered = async (filtChoiced)=>{
+    const listFiltered = removeFiltersNoChoiced(filtChoiced)
+    const getFilteredCard = await getFilteredCards(listFiltered)
+    console.log(getFilteredCard);
+    
+    dispatch(setCardListFiltered(getFilteredCard))
+  }
+  
+  const addCards = (card)=>{
+    dispatch(cardPickedAdd(card))
+  }
+
+  const addCardWished = (card)=>{
+    dispatch(addCardToWish(card))
+  }
+  const removeCardWished = (card)=>{
+    dispatch(removeCardToWish(card))
+  }
+
+  const removeCards = (card)=>{
+    dispatch(cardPickedRemove(card))
+  }
+
+  const addCardSelling = (card)=>{
+    dispatch(addCardToSell(card))
+  }
+
+  const removeCardSelling = (card)=>{
+    dispatch(removeCardToSell(card))
+  }
+
 
   const removeFiltersNoChoiced = (cardFilters)=>{
     // remove filters empty because its not choiced
     let newFilters = {}
     Object.entries(cardFilters).forEach(([key, value]) => {
-      if(value != 0){
+      if(value != null){
         newFilters = {
           ...newFilters,
           [key]:value
@@ -43,45 +83,18 @@ export const useCards = () => {
     });
     return newFilters;
   }
-  
-  const cardListFiltered = (filtChoiced)=>{
-    const listFiltered = removeFiltersNoChoiced(filtChoiced)
-    dispatch(setCardListFilter(listFiltered))
-  }
-
-  const addCards = (card)=>{
-    dispatch(cardPickedAdd(card))
-  }
-
-  const removeCards = (card)=>{
-    dispatch(cardPickedRemove(card))
-  }
-
-  const addCardWished = (card)=>{
-    dispatch(addCardToWished(card))
-  }
-
-  const removeCardWished = (card)=>{
-    dispatch(removeCardToWished(card))
-  }
-
-  const addCardSelling = (card)=>{
-    dispatch(addCardToSelling(card))
-  }
-
-  const removeCardSelling = (card)=>{
-    dispatch(addCardToSelling(card))
-  }
 
   return{
+      clearListCardsView,
       loadAllCards,
+      getListFiltersOfCards,
+      loadAllCardsBt,
       addCards,
       removeCards,
-      getFilterCards,
-      cardListFiltered,
       addCardWished,
       removeCardWished,
+      cardListFiltered,
       addCardSelling,
-      
+      removeCardSelling
   }
 }
