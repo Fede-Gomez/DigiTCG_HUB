@@ -12,7 +12,7 @@ import {
   addCardToSell,
   removeCardToSell,
 } from '../reducers/cardsReducer'
-import { getFilters, getCardsBt, getFilteredCards, getAllCards } from '../services/database'
+import { getFilters, getCardsBt, getFilteredCards, getAllCards, getCardsEx, getCardsRb, getCardsSt } from '../services/database'
 
 
 export const useCards = () => {
@@ -24,8 +24,23 @@ export const useCards = () => {
     dispatch(setAllCards(cards))
   }
   
-  const loadAllCardsBt = async (name)=>{
+  const loadAllCardsBt = async (name: string)=>{
     const cards = await getCardsBt(name);
+    dispatch(setCards(cards))
+  }
+
+  const loadAllCardsEx = async (name: string)=>{
+    const cards = await getCardsEx(name);
+    dispatch(setCards(cards))
+  }
+
+  const loadAllCardsRb = async (name: string)=>{
+    const cards = await getCardsRb(name);
+    dispatch(setCards(cards))
+  }
+
+  const loadAllCardsSt = async (name: string)=>{
+    const cards = await getCardsSt(name);
     dispatch(setCards(cards))
   }
 
@@ -89,6 +104,9 @@ export const useCards = () => {
       loadAllCards,
       getListFiltersOfCards,
       loadAllCardsBt,
+      loadAllCardsEx,
+      loadAllCardsSt,
+      loadAllCardsRb,
       addCards,
       removeCards,
       addCardWished,

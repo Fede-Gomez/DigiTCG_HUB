@@ -6,13 +6,33 @@ import { folder } from '../../styles';
 
 const Folder = () => {
   const folders = useAppSelector(state => state.folder.folder)
-  const { loadAllCardsBt } = useCards();
+  const { loadAllCardsBt, loadAllCardsSt, loadAllCardsEx, loadAllCardsRb } = useCards();
   const styleFolder = folder;
+
+  const renderCards = (name:string)=>{
+    
+    switch (true) {
+      case name.includes('st'):
+          loadAllCardsSt(name)
+          break;
+      case name.includes('bt'):
+          loadAllCardsBt(name)
+          break;
+      case name.includes('ex'):
+          loadAllCardsEx(name)
+          break;
+      case name.includes('rb'):
+          loadAllCardsRb(name)
+          break;
+      default:
+          break;
+    }
+  }
 
   const renderItem = ({item})=>{    
     return (
       <TouchableOpacity 
-        onPress={()=> loadAllCardsBt(item.name)}
+        onPress={()=> renderCards(item.name)}
       >
         <View style={styleFolder.containerImg}>
           <Image
