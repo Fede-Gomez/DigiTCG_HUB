@@ -10,7 +10,7 @@ const CardWishedSearchScreen = () => {
     const style = listCardsSearch
     const cards = useAppSelector(state => state.cards.searched)
     const filteredCards = cards.filter((card) =>
-      card.name.toLowerCase().includes(nameCard.toLowerCase())
+      card.name?.toLowerCase().includes(nameCard.toLowerCase())
     );
     const {addCardWished, removeCardWished} = useCards()
     const addWish = (card)=>{    

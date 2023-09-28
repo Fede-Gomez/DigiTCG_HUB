@@ -10,10 +10,9 @@ const CardSellingSearchScreen = () => {
     const style = listCardsSearch
     const cards = useAppSelector(state => state.cards.searched)
     const filteredCards = cards.filter((card) =>
-      card.name.toLowerCase().includes(nameCard.toLowerCase())
+      card.name?.toLowerCase().includes(nameCard.toLowerCase())
     );
     const {addCardSelling, removeCardSelling} = useCards()
-    
     const addSell = (card)=>{    
       addCardSelling(card)
     }

@@ -15,6 +15,8 @@ import { listCardsMyDeck } from '../../styles';
     const {updateDeck, deleteDeck} = useDeck()
     const [deckChoice, setDeckChoice] = useState(null)
     const style = listCardsMyDeck;
+    let message = '["Exported from app DigiTCG Hub",'
+
     const toggleModal = () => {
       setModalVisible(!isModalVisible);
     };
@@ -94,9 +96,9 @@ import { listCardsMyDeck } from '../../styles';
 
       
   }
-    const renderDeck = (item)=>{
-      const card = item.item
-
+    const renderDeck = ({item})=>{
+      const card = item
+      message += `"${card.cardNumber}",`
       return(
         <View style={style.container}>
           <CardDigimon card={card}/>

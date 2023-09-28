@@ -2,13 +2,6 @@ import { collection, doc, getDoc, getDocs, setDoc } from 'firebase/firestore';
 import { db } from './connect';
 
 const users = 'users'
-const cardsDigimon = "cardsDigimon"
-const filterCards = "filterCards"
-
-const dataBaseDigimon = async () => {
-    const querySnapshot = getDocs(collection(db, cardsDigimon));
-    return querySnapshot
-}
 
 const dataBaseUsers = async () => {
     const querySnapshot = getDocs(collection(db, users));
@@ -44,7 +37,6 @@ const userDeckRemoveDatabase = async (user)=>{
 }
 
 export {
-    dataBaseDigimon,
     dataBaseUsers,
     userDeckUpdateDatabase,
     getUserFromDataBase,

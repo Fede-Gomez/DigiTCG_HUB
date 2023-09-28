@@ -9,7 +9,7 @@ const DeckBuilderSearchCardScreen = () => {
     const cards = useAppSelector(state => state.cards.searched)
     const style = listCardsSearch
     const filteredCards = cards.filter((card) =>
-      card.name.toLowerCase().includes(nameCard.toLowerCase())
+      card.name?.toLowerCase().includes(nameCard.toLowerCase())
     );
 
     const renderItem = ({ item }) => (

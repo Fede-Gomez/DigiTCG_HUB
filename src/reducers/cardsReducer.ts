@@ -140,6 +140,9 @@ export const cardsReducer = createSlice({
     removeCardToSell:(state, {payload})=>{
       removeCardToListSelling(state,payload);
     },
+    setCardsPicked:(state, {payload})=>{
+      state.picked = payload;
+    }
 }})
 
 export const { 
@@ -154,6 +157,7 @@ export const {
   removeCardToWish,
   addCardToSell,
   removeCardToSell,
+  setCardsPicked,
 } = cardsReducer.actions
 
 export default cardsReducer.reducer
