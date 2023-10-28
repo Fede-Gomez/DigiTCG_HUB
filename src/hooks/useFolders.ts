@@ -1,4 +1,3 @@
-import React from 'react'
 import { useAppDispatch } from './useReducerHook'
 import { getFolders } from '../services/database'
 import { setFolders } from '../reducers/folderReducer'

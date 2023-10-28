@@ -14,10 +14,12 @@ export const login = StyleSheet.create({
         color:'black'
     },
     inputText:{
-        backgroundColor:'red',
+        backgroundColor:'white',
         borderRadius:30,
         width:'80%',
-        alignSelf:'center'
+        alignSelf:'center',
+        opacity:0.5,
+        color:'black'
     },
     logCreteAccountContainer:{
         marginTop:20,

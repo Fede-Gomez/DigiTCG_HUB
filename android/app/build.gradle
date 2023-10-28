@@ -92,9 +92,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.trading_card_game_journey"
+    namespace "com.digitcg_hub"
     defaultConfig {
-        applicationId "com.trading_card_game_journey"
+        applicationId "com.digitcg_hub"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -148,6 +148,9 @@ android {
 }
 
 dependencies {
+        // Import the Firebase BoM
+    implementation platform('com.google.firebase:firebase-bom:32.3.1')
+    implementation project(':react-native-splash-screen')
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.0.0")
@@ -156,7 +159,6 @@ dependencies {
     debugImplementation("com.facebook.flipper:flipper-network-plugin:${FLIPPER_VERSION}") {
         exclude group:'com.squareup.okhttp3', module:'okhttp'
     }
-
     debugImplementation("com.facebook.flipper:flipper-fresco-plugin:${FLIPPER_VERSION}")
     if (hermesEnabled.toBoolean()) {
         implementation("com.facebook.react:hermes-android")

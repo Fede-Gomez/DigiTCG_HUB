@@ -10,6 +10,15 @@ const getAllCards = async () => {
   }
 }
 
+const getCardsPromo = async () => {
+  try {
+    const resp = await axios.get(`${urlBase}/promo`);
+    return resp.data
+  } catch (error) {
+    throw error;
+  }
+}
+
 const getCardsBt = async (bt: string) => {
   try {
     const resp = await axios.post(`${urlBase}/booster`, { bt });
@@ -45,7 +54,7 @@ const getCardsRb = async (rb: string) => {
   }
 }
 
-const getFilteredCards = async (filter: string) => {
+const getFilteredCards = async (filter: object) => {
   try {
     const resp = await axios.post(`${urlBase}/listFiltered`, { filter });
     return resp.data
@@ -56,6 +65,7 @@ const getFilteredCards = async (filter: string) => {
 
 export {
   getAllCards,
+  getCardsPromo,
   getCardsBt,
   getCardsSt,
   getCardsEx,

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
-import { View, Text, TextInput, Button } from 'react-native';
+import { View, Text, TextInput, Button, ImageBackground } from 'react-native';
 import { useAccount } from '../../hooks/useAccount';
 import { useNavigation } from '@react-navigation/native';
 import { TypeNavigation } from '../../constants/typesNavigation';
@@ -23,43 +23,54 @@ const SignUpScreen = () => {
     }
 
   return (
-    <View style={style.container}>
-        <Text style={style.text}>Name</Text>
-        <TextInput
-          onChangeText={(text)=>setName(text)} 
-          style={style.inputText}
-          keyboardType='email-address'
-          value={name}
-        />
-        <Text style={style.text} >Email</Text>
-        <TextInput 
-          onChangeText={(text)=>setEmail(text)} 
-          style={style.inputText}
-          keyboardType='email-address'
-          value={email}
-        />
-        <Text style={style.text} >Password</Text>
-        <TextInput 
-          onChangeText={(text)=>setPassword(text)} 
-          secureTextEntry={true}
-          value={password}
-          style={style.inputText}
-        />
-        <View style={style.logCreteAccountResetContainer}>
-          <Button
-            onPress={()=>createAccount(name, email, password)}
-            title='Create account'
+    <ImageBackground
+      source={require('../../assets/backgrounds/loginScreen.jpg')}
+      resizeMode='cover'
+      style={{
+        flex:1,        
+      }}
+    >
+      <View style={style.container}>
+          <Text style={style.text}>Name</Text>
+          <TextInput
+            onChangeText={(text)=>setName(text)} 
+            style={style.inputText}
+            keyboardType='email-address'
+            value={name}
           />
-          <Button
-            onPress={()=>reset()}
-            title='Reset'
+          <Text style={style.text} >Email</Text>
+          <TextInput 
+            onChangeText={(text)=>setEmail(text)} 
+            style={style.inputText}
+            keyboardType='email-address'
+            value={email}
           />
-          <Button
-            onPress={()=>navigation.navigate(TypeNavigation.account.login)}
-            title='Login'
+          <Text style={style.text} >Password</Text>
+          <TextInput 
+            onChangeText={(text)=>setPassword(text)} 
+            secureTextEntry={true}
+            value={password}
+            style={style.inputText}
           />
-        </View>
-    </View>
+          <View style={style.logCreteAccountResetContainer}>
+            <Button
+              color={'black'}
+              onPress={()=>createAccount(name, email, password)}
+              title='Create account'
+            />
+            <Button
+              color={'black'}
+              onPress={()=>reset()}
+              title='Reset'
+            />
+            <Button
+              color={'black'}
+              onPress={()=>navigation.navigate(TypeNavigation.account.login)}
+              title='Login'
+            />
+          </View>
+      </View>
+    </ImageBackground>
   )
 }
 

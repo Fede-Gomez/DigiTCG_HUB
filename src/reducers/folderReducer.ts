@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { folderState } from '../interfaces';
 
 const initialState: folderState = {
-  folder:[]
+  folders:[]
 };
 
 export const folderReducer = createSlice({
@@ -10,7 +10,7 @@ export const folderReducer = createSlice({
   initialState,
   reducers: {
     setFolders: (state, action) =>{
-      state.folder = action.payload
+      state.folders = action.payload
     },
   },
 })

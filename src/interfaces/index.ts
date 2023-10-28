@@ -24,7 +24,6 @@ const voidCard = {
   traits: [],
   inheritedEffect: '',
   securityEffect: '',
-  type: '',
 }
 const voidFilter = {
   label: '',
@@ -42,32 +41,39 @@ interface listCards{
   count?: number;
 }
 interface Card {
-  attribute: string;
-  cardNumber: string;
+  name: string;
   cardType: string;
   color: string;
   digivolveColor:string;
   digivolveColor2:string;
-  digivolveCost: number;
-  digivolveCost2: number;
   digivolveFrom: number;
   digivolveFrom2: number;
+  playCost: number;
+  digivolveCost: number;
+  digivolveCost2: number;
+  level: number;
+  power: number;
+  traits: string[];
+  attribute: string;
+  stageLevel: string;
+  rarity: string;
+  cardNumber: string;
+  treated: string;
+  specialEvolve: string;
+  dnaDigivolve: string;
   effect: string;
   effect2: string;
   effect3: string;
-  imgUrl: string;
-  keyword:string[];
-  level: number;
-  name: string;
-  playCost: number;
-  power: number;
-  rarity: string;
-  source: string;
-  stageLevel: string;
-  traits: string[];
+  effect4: string;
+  effect5: string;
+  digiXcross: string,
   inheritedEffect: string;
+  inheritedEffect2: string;
+  inheritedEffect3: string;
+  source: string;
+  imgUrl: string;
   securityEffect: string;
-  type: string;
+  keyword:string[];
 }
 interface Deck {
   name: string;
@@ -116,13 +122,21 @@ export interface ListCards {
   listFilter: Filters;        //list of filter for search in api
 };
 export interface folderState {
-  folder:{
+  folders:{
     name: string;
     img: string;
   }[];
 }
+
+export interface appState {
+  modalFilterVisible: boolean;
+  modalCardVisible: boolean;
+  flipedCard: boolean;
+  modalCardView: object;
+}
+
 export interface UserState {
-  user:{
+  profile:{
     idUser: string;
     name: string;
     email: string;

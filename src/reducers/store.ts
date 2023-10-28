@@ -1,13 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { cardsReducer } from './cardsReducer'
-import {userReducer} from './userReducer';
-import {folderReducer} from './folderReducer';
+import { userReducer } from './userReducer';
+import { folderReducer } from './folderReducer';
+import { appReducer } from './appReducer';
 
 export const store = configureStore({
   reducer: {
-    cards:cardsReducer.reducer,
+    cards: cardsReducer.reducer,
     user: userReducer.reducer,
-    folder: folderReducer.reducer
+    folder: folderReducer.reducer,
+    app: appReducer.reducer,
   },
 })
 

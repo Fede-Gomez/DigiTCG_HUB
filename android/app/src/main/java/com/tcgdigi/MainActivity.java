@@ -1,4 +1,4 @@
-package com.trading_card_game_journey;
+package com.digitcg_hub;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
@@ -14,7 +14,7 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "trading_card_game_journey";
+    return "digitcg_hub";
   }
 @Override
   protected void onCreate(Bundle savedInstanceState) {

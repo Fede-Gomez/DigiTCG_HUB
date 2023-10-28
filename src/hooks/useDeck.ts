@@ -5,7 +5,7 @@ import { deleteDeckUser, setUser } from '../reducers/userReducer';
 import { userDeckRemoveDatabase } from '../firebase/dataBase'
 
 export const useDeck = () => {
-    const user = useAppSelector(state => state.user.user)
+    const user = useAppSelector(state => state.user.profile)
     const dispatch = useAppDispatch()
 
     const saveDeck = async (nombre: string,cards)=>{

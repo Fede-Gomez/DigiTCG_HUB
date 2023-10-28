@@ -1,64 +1,16 @@
-import React, { useState } from 'react'
-import { useAppSelector } from '../../hooks/useReducerHook'
-import { View, FlatList, TextInput, Button, ImageBackground } from 'react-native';
-import { CardDigimon } from '../../components';
-import { useCards } from '../../hooks';
-import { listCardsSearch } from '../../styles';
+import React from 'react'
+import { ImageBackground } from 'react-native';
+import { CardListCardsSearched } from '../../components';
+import { TypeNavigation } from '../../constants/typesNavigation';
 
 const CardWishedSearchScreen = () => {
-    const [nameCard, setNameCard] = useState('');
-    const style = listCardsSearch
-    const cards = useAppSelector(state => state.cards.searched)
-    const filteredCards = cards.filter((card) =>
-      card.name?.toLowerCase().includes(nameCard.toLowerCase())
-    );
-    const {addCardWished, removeCardWished} = useCards()
-    const addWish = (card)=>{    
-      addCardWished(card)
-    }
-   
-    const removeWish = (card)=>{
-      removeCardWished(card)
-    }
 
-    const renderItem = ({ item }) => (
-      <View style={style.container}>
-        <CardDigimon card={item}/>
-          <View style={{flexDirection:'row'}}>
-            <Button
-              title='Add'
-              onPress={()=>addWish(item)}
-            />
-            <Button
-              title='Remove'
-              onPress={()=>removeWish(item)}
-            />
-        </View>
-      </View>
-    );
-
-    return (
+  return (
       <ImageBackground
         source={require('../../assets/backgrounds/searchCard.jpg')}
         style={{flex:1}}
       >
-        <View>
-          <TextInput
-              placeholder="Search card by name"
-              onChangeText={setNameCard}
-              value={nameCard}
-              style={style.search}
-              placeholderTextColor={'white'}
-          />
-        </View>
-          <FlatList
-            data={filteredCards}
-            renderItem={renderItem}
-            keyExtractor={(item) => item.id.toString()}
-            numColumns={3}
-            maxToRenderPerBatch={10}
-            showsVerticalScrollIndicator={false}
-          />
+        <CardListCardsSearched topTab={TypeNavigation.game.cardsWished}/>
       </ImageBackground>
     );
 }

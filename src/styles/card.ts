@@ -1,51 +1,123 @@
 import { StyleSheet, Dimensions } from 'react-native';
 const backgroundModal = "#1D201F";
-export const card = StyleSheet.create({
-    cardContainer:{
-        marginVertical:7,
+let textBase = {
+    color: '#ffffff',
+    fontSize: 15,
+    borderColor:'#ffffff',
+    textAlign:'center',
+    flex:1
+}
+let singleText = {
+    ...textBase,
+    borderWidth:1,
+}
+let multiText = {
+    ...textBase,
+    borderWidth:1,
+
+}
+let effectsText = {
+    ...textBase,
+}
+let firstText ={
+    ...textBase,
+    width:'100%',
+    borderWidth:1,
+}
+let lastText ={
+    ...textBase,
+    width:'100%',
+    borderWidth:1,
+}
+
+export const cardStyle = StyleSheet.create({
+
+    //          Buttons
+    buttonsModalAddRemove:{
+        flexDirection:'row',
+        justifyContent:'space-around',
+        marginVertical:10,
     },
+
+    //          modal
+    modalContainerCard:{
+        position:'absolute',
+        flex:1,
+        flexWrap:'wrap',
+        flexDirection:'row',
+        justifyContent:'space-between'
+    },
+    cardContainer:{
+        // marginVertical:7,
+    },
+
+
+
+    //          image
     imageCard:{
         height: 175, 
         width: Dimensions.get('window').width / 3.4,
+        marginBottom:5,
     },
-    imageCardModal:{
-        alignSelf:'center',
-        height: 300, 
-        width: '55%',
+    imageCardModalZoomOff:{
+        resizeMode:'contain',
+        height:'100%',
+        width:'100%',
     },
+    imageCardModalZoomOn:{
+        resizeMode:'contain',
+        height:'50%',
+        width:'100%',
+    },
+    imgFlipped:{
+        resizeMode:'contain',
+        height:'100%',
+        width:'100%',
+        opacity:0.2
+    },
+    imgNotFlipped:{
+        resizeMode:'contain',
+        height:'100%',
+        width:'100%',
+    },
+    //          containers
     containerImgStats:{
-        flexDirection:'row',
+        width:'100%'
     },
     containerStats:{
-        width:'45.3%',
+        flexDirection:'row',
+        flexWrap:'wrap',
+    },
+    containerMultiStats:{
+        flexDirection:'row',
+        flex:1,
     },
     containerEffectSource:{
         marginBottom:15,
-    },
-    textCard:{
-        color: '#ffffff',
-        fontSize: 15,
-        paddingVertical:1.5,
-        borderColor:'#ffffff',
-        borderWidth:1,
-        paddingStart:3.5
+        width:'100%'
     },
     containerTextEffect:{
         borderColor:'#ffffff',
         borderWidth:1,
     },
+
+
+    //          Text
+    textCard:{
+        ...singleText
+    },
+    multiTextCard:{
+        ...multiText
+    },
     textCardEffect:{
-        color: '#ffffff',
-        fontSize: 15,
-        paddingVertical:1.5,
-        paddingStart:3.5
+        ...effectsText
     },
-    modalContainerCard:{
-        backgroundColor: backgroundModal
+    firstText:{
+        ...firstText
     },
-    buttonsModalAddRemove:{
-        flexDirection:'row',
-        justifyContent:'space-around',
-        marginVertical:10,
-    }
+    lastText:{
+        ...lastText
+    },
+
+    
 })

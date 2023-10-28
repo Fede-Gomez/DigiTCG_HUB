@@ -10,6 +10,7 @@ export const listCardsSelected = StyleSheet.create({
         alignSelf:'center',
         marginBottom:8,
         color:'white',
+        fontSize:25
     },
     buttonsAddRemove:{
         flexDirection:'row',
@@ -26,6 +27,11 @@ export const listCardsSelected = StyleSheet.create({
         justifyContent: 'center',
     },
     addCards:{
+        backgroundColor:'red',
+        borderRadius:8,
+        paddingVertical:20,
+        marginHorizontal:90,
+        color:'white',
         textAlign: 'center',
         fontSize:30,
         fontFamily:'digimon'

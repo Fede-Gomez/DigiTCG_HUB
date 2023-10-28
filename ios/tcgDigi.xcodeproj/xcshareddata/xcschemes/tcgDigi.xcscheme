@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "trading_card_game_journey.app"
-               BlueprintName = "trading_card_game_journey"
-               ReferencedContainer = "container:trading_card_game_journey.xcodeproj">
+               BuildableName = "digitcg_hub.app"
+               BlueprintName = "digitcg_hub"
+               ReferencedContainer = "container:digitcg_hub.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "trading_card_game_journeyTests.xctest"
-               BlueprintName = "trading_card_game_journeyTests"
-               ReferencedContainer = "container:trading_card_game_journey.xcodeproj">
+               BuildableName = "digitcg_hubTests.xctest"
+               BlueprintName = "digitcg_hubTests"
+               ReferencedContainer = "container:digitcg_hub.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "trading_card_game_journey.app"
-            BlueprintName = "trading_card_game_journey"
-            ReferencedContainer = "container:trading_card_game_journey.xcodeproj">
+            BuildableName = "digitcg_hub.app"
+            BlueprintName = "digitcg_hub"
+            ReferencedContainer = "container:digitcg_hub.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "trading_card_game_journey.app"
-            BlueprintName = "trading_card_game_journey"
-            ReferencedContainer = "container:trading_card_game_journey.xcodeproj">
+            BuildableName = "digitcg_hub.app"
+            BlueprintName = "digitcg_hub"
+            ReferencedContainer = "container:digitcg_hub.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

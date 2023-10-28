@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1072600977089",
+    "project_id": "digitcghub",
+    "storage_bucket": "digitcghub.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1072600977089:android:edef7e61df73f4e5a0ce40",
+        "android_client_info": {
+          "package_name": "com.digitcghub"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjPifIcZVS424AaLzMuPuT70_fzfElVsg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

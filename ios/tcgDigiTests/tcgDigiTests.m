@@ -7,11 +7,11 @@
 #define TIMEOUT_SECONDS 600
 #define TEXT_TO_LOOK_FOR @"Welcome to React"
 
-@interface trading_card_game_journeyTests : XCTestCase
+@interface digitcg_hubTests : XCTestCase
 
 @end
 
-@implementation trading_card_game_journeyTests
+@implementation digitcg_hubTests
 
 - (BOOL)findSubviewInView:(UIView *)view matching:(BOOL (^)(UIView *view))test
 {

@@ -5,20 +5,19 @@ import { useNavigation } from '@react-navigation/native';
 import { TypeNavigation } from '../constants/typesNavigation'
 import { setUser } from '../reducers/userReducer';
 import { getUserFromDataBase, saveUserDataBase } from '../firebase/dataBase';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const useAccount = () => {
     const auth = getAuth(app);
     const navigation = useNavigation()
     const dispatch = useAppDispatch()
 
-    const createAccount = (name, email, password)=>{
+    const createAccount = async (name, email, password)=>{
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential)=>{
                 saveDataBaseUser(userCredential.user.uid, email, password, name)
-                navigation.navigate(TypeNavigation.game.homeGameDrawer);
             }).catch(error =>{
-                console.log(error);
+                console.log("error ", error)
             })
     }
 
@@ -27,7 +26,7 @@ export const useAccount = () => {
             .then((userCredential)=>{
                 loginUser(userCredential.user.uid)
             }).catch(error =>{
-                console.log(error);
+                console.log('error ',error);
             })
     }
 
@@ -39,15 +38,37 @@ export const useAccount = () => {
     const loginUser = async (idUser)=>{
         let user = await getUserFromDataBase(idUser)
         if (user !== null) {
+
+            console.log(user);
+            
             dispatch(setUser(user?.data()))
             navigation.navigate(TypeNavigation.game.homeGameTopBar);
+            await saveUserStorageDevice(idUser)
         }else{
             navigation.navigate(TypeNavigation.account.login);
         }
     }
 
-    const logOut = async () =>{
-        dispatch(setUser([]))
+
+    const getUserStorageDevice = async () => {
+
+        try {
+        const value = await AsyncStorage.getItem('idUser');
+        
+        if (value !== null) {
+            loginUser(value);
+        }
+        } catch (error) {
+        console.error('Error al recuperar el valor:', error);
+        }
+    };
+
+    const saveUserStorageDevice = async (idUser:string)=>{
+        try {
+            await AsyncStorage.setItem('idUser',idUser);
+          } catch (error) {
+            console.error('Error al guardar el valor:', error);
+          }
     }
 
     return{
@@ -55,6 +76,6 @@ export const useAccount = () => {
         signIn,
         loginUser, 
         saveDataBaseUser,
-        logOut,
+        getUserStorageDevice
     }
 }

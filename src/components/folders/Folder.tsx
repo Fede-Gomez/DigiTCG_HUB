@@ -1,17 +1,19 @@
 import React, {useEffect} from 'react'
-import { TouchableOpacity, FlatList, View, Image, Dimensions } from 'react-native';
+import { TouchableOpacity, FlatList, View, Image } from 'react-native';
 import { useAppSelector } from '../../hooks/useReducerHook';
 import { useCards } from '../../hooks';
 import { folder } from '../../styles';
 
 const Folder = () => {
-  const folders = useAppSelector(state => state.folder.folder)
-  const { loadAllCardsBt, loadAllCardsSt, loadAllCardsEx, loadAllCardsRb } = useCards();
+  const folders = useAppSelector(state => state.folder.folders)
+  const { loadAllCardsPromo, loadAllCardsBt, loadAllCardsSt, loadAllCardsEx, loadAllCardsRb } = useCards();
   const styleFolder = folder;
 
   const renderCards = (name:string)=>{
-    
     switch (true) {
+      case name.includes('promo'):
+          loadAllCardsPromo()
+          break;
       case name.includes('st'):
           loadAllCardsSt(name)
           break;
@@ -38,7 +40,8 @@ const Folder = () => {
           <Image
             source={{uri:item.img}}
             style={{
-              height: 210,
+              height: 300,
+              width:170
             }}
           />
         </View>
@@ -50,7 +53,9 @@ const Folder = () => {
     <FlatList
       data={folders}
       renderItem={renderItem}
-      numColumns={3}
+      contentContainerStyle={{alignSelf:'center'}}
+      numColumns={2}
+      refreshing={true}
       removeClippedSubviews={true}
       maxToRenderPerBatch={10}
     />

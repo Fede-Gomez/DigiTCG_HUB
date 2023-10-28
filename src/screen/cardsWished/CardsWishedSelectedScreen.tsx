@@ -1,66 +1,12 @@
 import React from 'react'
-import { Button, FlatList, Text, View, ImageBackground } from 'react-native';
+import { ImageBackground } from 'react-native';
 import { useAppSelector } from '../../hooks/useReducerHook'
-import { CardDigimon } from '../../components'
-import Share from 'react-native-share';
-import { listCardsSelected } from '../../styles';
-import { useCards } from '../../hooks';
+import { CardListCardsSelected } from '../../components'
+import { TypeNavigation } from '../../constants/typesNavigation';
 
 const CardsWishedSelectedScreen = () => {
     const cards = useAppSelector(state => state.cards.wished)
-    const style = listCardsSelected
-    const { addCardWished, removeCardWished } = useCards()
-    let message = 'Busco:\n'
-    cards.forEach( e =>{
-      message += e.count + ' ' + e.name + ' ' + e.cardNumber + '\n'
-    })
-    const add = (card)=>{
-      addCardWished(card)
-    }
-    const remove = (card)=>{
-      removeCardWished(card)        
-    }
-    const renderItem = ({item})=>{
-      const {count} = item
-      return <View style={style.container} >
-        <CardDigimon card={item}/>
-          <Text style={style.count}>{count}</Text>
-        <View style={style.buttonsAddRemove}>
-        <Button
-          title='Add'
-          onPress={()=>add(item)}
-        />
-        <Button
-          title='Remove'
-          onPress={()=>remove(item)}
-        />
-        </View>
-      </View>
-    }
-
-    const shareMessage = async () => {
-      const shareOptions = {
-        title: 'Compartir la busqueda',
-        message
-      };
     
-      try {
-        await Share.open(shareOptions);
-        console.log('Imagen compartida exitosamente');
-      } catch (error) {
-        console.log('Error al compartir la imagen:', error);
-      }
-    };
-
-    const renderHeader = () => {
-        return <View style={{flex:1, flexDirection:'row', justifyContent: 'space-around'}}>
-          <Button 
-            title={'Share cards'} 
-            onPress={shareMessage}
-          />
-        </View>
-    }
-
   return (
     <ImageBackground
       source={require('../../assets/backgrounds/cardSelected.jpg')}
@@ -69,16 +15,7 @@ const CardsWishedSelectedScreen = () => {
         flex:1,        
       }}
     >
-      {cards.length == 0 
-      ? <View style={style.addCardsContainer}>
-          <Text style={style.addCards} >Agrega cartas</Text>
-        </View>  
-      :   <FlatList
-              ListHeaderComponent={renderHeader}
-              data={cards}
-              renderItem={renderItem}
-              numColumns={3}
-          />}
+        <CardListCardsSelected topTab={TypeNavigation.game.cardsWished} cards={cards}/>
      </ImageBackground>
   )
 }

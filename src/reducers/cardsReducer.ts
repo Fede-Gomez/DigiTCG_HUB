@@ -120,7 +120,7 @@ export const cardsReducer = createSlice({
       state.listFilter = payload;
     },
     setCardListFiltered:(state, {payload})=>{
-      state.view = payload      
+      state.searched = payload      
     },
     cardPickedAdd: (state, {payload})=>{
       incrementCountCard(state, payload);

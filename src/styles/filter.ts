@@ -4,7 +4,8 @@ export const filter = StyleSheet.create({
 
     containerBtnClearOk:{
         flexDirection:'row',
-        justifyContent:'space-evenly'
+        justifyContent:'space-evenly',
+        marginBottom:20,
     },
     
 })

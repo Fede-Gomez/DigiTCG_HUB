@@ -12,7 +12,7 @@ import {
   addCardToSell,
   removeCardToSell,
 } from '../reducers/cardsReducer'
-import { getFilters, getCardsBt, getFilteredCards, getAllCards, getCardsEx, getCardsRb, getCardsSt } from '../services/database'
+import { getFilters, getCardsBt, getFilteredCards, getAllCards, getCardsEx, getCardsRb, getCardsSt, getCardsPromo } from '../services/database'
 
 
 export const useCards = () => {
@@ -24,6 +24,11 @@ export const useCards = () => {
     dispatch(setAllCards(cards))
   }
   
+  const loadAllCardsPromo = async ()=>{
+    const cards = await getCardsPromo();
+    dispatch(setCards(cards))
+  }
+
   const loadAllCardsBt = async (name: string)=>{
     const cards = await getCardsBt(name);
     dispatch(setCards(cards))
@@ -53,10 +58,9 @@ export const useCards = () => {
     dispatch(clearCardsView())
   }
   
-  const cardListFiltered = async (filtChoiced)=>{
+  const cardListFiltered = async (filtChoiced: object)=>{
     const listFiltered = removeFiltersNoChoiced(filtChoiced)
     const getFilteredCard = await getFilteredCards(listFiltered)
-    console.log(getFilteredCard);
     
     dispatch(setCardListFiltered(getFilteredCard))
   }
@@ -103,6 +107,7 @@ export const useCards = () => {
       clearListCardsView,
       loadAllCards,
       getListFiltersOfCards,
+      loadAllCardsPromo,
       loadAllCardsBt,
       loadAllCardsEx,
       loadAllCardsSt,

@@ -1,4 +1,4 @@
-import { collection, doc, getDoc, getDocs, setDoc } from 'firebase/firestore';
+import { collection, doc, getDocs, setDoc } from 'firebase/firestore';
 import { db } from './connect';
 
 const users = 'users'
@@ -25,7 +25,7 @@ const saveUserDataBase = async (idUser, email, pass, name)=>{
         pass,
         decks: {}
       };
-    await setDoc(doc(db, users, idUser),userData)
+    await setDoc(doc(db, 'users', idUser),userData)
 }
 
 const userDeckUpdateDatabase = async (idUser, updateDeckUser) =>{
