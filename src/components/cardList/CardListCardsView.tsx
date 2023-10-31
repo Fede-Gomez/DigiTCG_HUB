@@ -1,27 +1,35 @@
 import React, { useEffect, useState } from 'react'
-import { View, FlatList, Button, TextInput, Image, TouchableOpacity } from 'react-native';
+import { View, FlatList, Button, TextInput, Image, TouchableOpacity, Text } from 'react-native';
 import { useAppSelector } from '../../hooks/useReducerHook'
-import { BtnAddRemoveCards, CardDigimon, ModalFilter } from '..'
+import { BtnAddRemoveCards, BtnsHeadersCard, CardDigimon, ModalFilter } from '..'
 import { useApp, useCards } from '../../hooks'
 import { listCardsSearch, listCardsView } from '../../styles'
 import { filterOn, searchOn } from '../../assets/icons';
 import ModalCard from '../modals/ModalCard';
+import { TypeNavigation } from '../../constants/typesNavigation';
 
 
-const CardListCardsView = ({topTab}) => {
+const CardListCardsView = () => {
   const card = useAppSelector(state => state.cards.view)
+  const builderWishedSelling = useAppSelector(state => state.app.builderWishedSelling)
+  
   const { clearListCardsView } = useCards()
 
-  const styleCard = listCardsView;
+  const style = listCardsView;
 
   const renderHeader = () => {
-    return <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-around', marginTop:8 }}>
-      <Button
-        color={'black'}
-        title={'Back'}
-        onPress={() => clearListCardsView()}
-      />
-    </View>
+    return (
+      <View>
+          <BtnsHeadersCard />
+          <Text style={
+            builderWishedSelling == TypeNavigation.game.deckBuilder && style.titleDeckBuilder
+            ||
+            builderWishedSelling == TypeNavigation.game.cardsSelling && style.titleCardSell
+            ||
+            builderWishedSelling == TypeNavigation.game.cardsWished && style.titleCardBuy
+          }>Estás en {builderWishedSelling}</Text>
+        </View>
+    )
   }
 
   const renderListEmpty = () => {
@@ -34,14 +42,15 @@ const CardListCardsView = ({topTab}) => {
   }
 
   const renderItem = ({ item }) => {
-    return <TouchableOpacity >
-    <View style={styleCard.container}>
+    return (
+    <View style={style.container}>
       <CardDigimon card={item} />
-      <View style={styleCard.buttonsAddRemove}>
-        <BtnAddRemoveCards item={item} topTab={topTab}/>
+      <View style={style.buttonsAddRemove}>
+        <BtnAddRemoveCards item={item} />
       </View>
     </View>
-    </TouchableOpacity>
+
+    )
   }
 
   
@@ -51,10 +60,9 @@ const CardListCardsView = ({topTab}) => {
         ListHeaderComponent={renderHeader}
         data={ card }
         renderItem={renderItem}
-        initialNumToRender={2}
-        maxToRenderPerBatch={4}
-        numColumns={3}
-        removeClippedSubviews={true}
+        numColumns={2}
+        stickyHeaderIndices={[0]}
+        showsVerticalScrollIndicator={false}
       />
     </>
 }

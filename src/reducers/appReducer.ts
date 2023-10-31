@@ -5,7 +5,8 @@ const initialState: appState = {
   modalFilterVisible: false,
   modalCardVisible: false,
   flipedCard: true,
-  modalCardView:{}
+  modalCardView:{},
+  builderWishedSelling: 'deckBuilder'
 };
 
 export const appReducer = createSlice({
@@ -24,9 +25,12 @@ export const appReducer = createSlice({
     setFlipedCard: (state, action) =>{
       state.flipedCard = action.payload
     },
+    setBuilderWishedSelling: (state, action)=>{
+      state.builderWishedSelling = action.payload
+    }
   },
 })
 
-export const { setModalFilterVisible, setModalCardVisible, setModalCardView, setFlipedCard } = appReducer.actions
+export const { setModalFilterVisible, setModalCardVisible, setModalCardView, setFlipedCard, setBuilderWishedSelling } = appReducer.actions
 
 export default appReducer.reducer

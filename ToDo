@@ -1,10 +1,5 @@
-                                    Cosas para hacer
-crear una pantalla de ayuda
-revisar el btn de deslogeo
+pedir efectos de sonido para los botones (particularmente add y remove)
 
-revisar card select y deck select
+preguntar de guardar el mazo al salir de deckbuilder
+btn en el medio del header, armarlo como desplegable
 
-
-https://stackoverflow.com/questions/34908009/react-native-convert-image-url-to-base64-string
-https://www.npmjs.com/package/react-native-copilot
-https://www.npmjs.com/package/react-native-fast-image

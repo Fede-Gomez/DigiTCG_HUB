@@ -1,39 +1,57 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
+import { colorBackgroundCardBuy, colorBackgroundCardSell, colorBackgroundDeckBuilder} from '../constants/colors'
 
+
+
+let titleSectionBase = {
+    alignSelf: 'center', 
+    color: 'black', 
+    fontSize: 22, 
+    marginVertical: 10, 
+    padding:10, 
+    borderRadius:30, 
+}
+
+
+let titleDeckBuilder = {
+    ...titleSectionBase,
+    backgroundColor: colorBackgroundDeckBuilder
+}
+let titleCardSell = {
+    ...titleSectionBase,
+    backgroundColor: colorBackgroundCardSell,
+}
+let titleCardBuy = {
+    ...titleSectionBase,
+    backgroundColor: colorBackgroundCardBuy,    
+}
 
 export const listCardsSelected = StyleSheet.create({
     container:{
         flexDirection:'column',
         margin:8
     },
-    count:{
-        alignSelf:'center',
-        marginBottom:8,
-        color:'white',
-        fontSize:25
+    titleDeckBuilder:{
+        ...titleDeckBuilder
+    },
+    titleCardSell:{
+        ...titleCardSell
+    },
+    titleCardBuy:{
+        ...titleCardBuy
     },
     buttonsAddRemove:{
         flexDirection:'row',
-        justifyContent:'space-around'
+        justifyContent:'center',
+        marginTop:5
     },
-    headerList:{
-        flex:1, 
-        flexDirection:'row', 
-        justifyContent: 'space-around',
-        marginTop:16,
-    },
-    addCardsContainer:{
-        flex:1,
-        justifyContent: 'center',
-    },
-    addCards:{
+    listEmpty:{
         backgroundColor:'red',
         borderRadius:8,
-        paddingVertical:20,
-        marginHorizontal:90,
+        padding:20,
         color:'white',
         textAlign: 'center',
         fontSize:30,
-        fontFamily:'digimon'
-    },
+        marginTop:Dimensions.get('screen').height/4
+     }
 })

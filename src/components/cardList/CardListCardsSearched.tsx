@@ -1,16 +1,17 @@
 import React, {useState} from 'react'
-import { FlatList, View, Button, TextInput, TouchableOpacity, Image } from 'react-native';
+import { FlatList, View, Button, TextInput, TouchableOpacity, Image, Text } from 'react-native';
 import { useAppSelector } from '../../hooks/useReducerHook';
 import { useApp, useCards } from '../../hooks';
 import { listCardsSearch, listCardsView } from '../../styles';
 import CardDigimon from '../cards/CardDigimon';
-import { filterOn } from '../../assets/icons'
-import { BtnAddRemoveCards, ModalFilter } from '..';
+
+import { BtnAddRemoveCards, BtnsHeadersSearchCard, ModalFilter } from '..';
+import { TypeNavigation } from '../../constants/typesNavigation';
 
 
-const CardListCardsSearched = ({topTab}) => {
+const CardListCardsSearched = () => {
     const [nameCard, setNameCard] = useState('');
-    const { setModalFilter } = useApp()
+    const builderWishedSelling = useAppSelector(state => state.app.builderWishedSelling)
 
     const cards = useAppSelector(state => state.cards.searched)
 
@@ -21,36 +22,31 @@ const CardListCardsSearched = ({topTab}) => {
       card.name?.toLowerCase().includes(nameCard.toLowerCase())
     );
 
-      const toggleModal = () => {
-        setModalFilter(true)
-      };
+      
 
     const renderItem = ({ item }) => (
         <View style={style.container}>
           <CardDigimon card={item}/>
           <View style={styleCard.buttonsAddRemove}>
-          <BtnAddRemoveCards item={item} topTab={topTab}/>
+          <BtnAddRemoveCards item={item}/>
         </View>
         </View>
       );
     const renderHeader = () => {
-        return <View style={{flex:1, flexDirection:'row', justifyContent: 'space-around', alignItems:'center'}} >
-        <TextInput
-            placeholder="Search card by name"
-            onChangeText={setNameCard}
-            value={nameCard}
-            style={style.search}
-            placeholderTextColor={'white'}
-        />
-        <TouchableOpacity
-          onPress={()=>toggleModal()}
-        >
-          <Image
-            source={filterOn}
-            style={{height:40, width:40}}
-          />
-        </TouchableOpacity>
-        </View>
+        return(
+          <View>
+            <BtnsHeadersSearchCard nameCard={nameCard} setNameCard={setNameCard}/>
+            <Text style={
+              builderWishedSelling == TypeNavigation.game.deckBuilder && style.titleDeckBuilder
+              ||
+              builderWishedSelling == TypeNavigation.game.cardsSelling && style.titleCardSell
+              ||
+              builderWishedSelling == TypeNavigation.game.cardsWished && style.titleCardBuy
+              }>
+                Estás en {builderWishedSelling}
+            </Text>
+          </View>
+        ) 
       }
 
   return <>
@@ -59,7 +55,8 @@ const CardListCardsSearched = ({topTab}) => {
         renderItem={renderItem}
         ListHeaderComponent={renderHeader}
         keyExtractor={(item) => item.id.toString()}
-        numColumns={3}
+        numColumns={2}
+        stickyHeaderIndices={[0]}
         initialNumToRender={1}
         maxToRenderPerBatch={1}
         showsVerticalScrollIndicator={false}

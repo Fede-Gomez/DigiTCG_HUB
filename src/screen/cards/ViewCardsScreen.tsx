@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { ImageBackground } from 'react-native';
 import { useAppSelector } from '../../hooks/useReducerHook'
 import { CardListCardsView, Folder, ModalCard } from '../../components'
-import { TypeNavigation } from '../../constants/typesNavigation';
 
-const DeckBuilderViewCardsScreen = () => {
+const ViewCardsScreen = () => {
   const card = useAppSelector(state => state.cards.view)
   const cardInfo = useAppSelector(state => state.app.modalCardView)
   
@@ -16,7 +15,7 @@ const DeckBuilderViewCardsScreen = () => {
       {card.count == 0
         ? <Folder />
         : <>
-          <CardListCardsView topTab={TypeNavigation.game.deckBuilder} />
+          <CardListCardsView/>
         </>
       }
       {/* abre todos los modals de todas touchable de las cartas que hayan */}
@@ -25,4 +24,4 @@ const DeckBuilderViewCardsScreen = () => {
   )
 }
 
-export default DeckBuilderViewCardsScreen
+export default ViewCardsScreen

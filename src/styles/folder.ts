@@ -1,9 +1,6 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 export const folder = StyleSheet.create({
-
-    container:{
-    },
     containerImg:{
         padding:10,
     }

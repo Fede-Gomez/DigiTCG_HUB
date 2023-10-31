@@ -5,6 +5,7 @@ import { useAppSelector } from '../../hooks/useReducerHook';
 import Modal from "react-native-modal";
 import { cardStyle } from '../../styles';
 import { Animated } from 'react-native';
+import * as Animatable from 'react-native-animatable';
 
 const ModalCard = ({card}) => {
     const isModalVisible = useAppSelector(state => state.app.modalCardVisible)
@@ -92,7 +93,7 @@ const ModalCard = ({card}) => {
         onSwipeComplete={()=>{setModalCard(false), setFlipCard(false)}}
         swipeDirection={['up','down']}
     >
-        
+        <Animatable.Text animation="fadeOutUp" iterationCount={'infinite'} direction="alternate" duration={2500} style={{color:'white', fontSize:20, fontWeight:'bold', top:50}}>Desliza arriba o abajo para salir</Animatable.Text>
       <Animated.View
         style={{flex: 1,
             justifyContent: 'center',

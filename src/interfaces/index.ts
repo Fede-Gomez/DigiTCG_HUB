@@ -133,6 +133,8 @@ export interface appState {
   modalCardVisible: boolean;
   flipedCard: boolean;
   modalCardView: object;
+  builderWishedSelling: string;
+  alertApp: (title: string, message:string) => {};
 }
 
 export interface UserState {
@@ -142,61 +144,8 @@ export interface UserState {
     email: string;
     password: string;
     decks: Deck[];
+    cardsPicked: listCards[];
+    cardsBuy: listCards[];
+    cardsSell: listCards[];
   }[]
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// export interface CardsState {
-//   listCards: { 
-//     id: string; 
-//     data: Card;
-//   }[];
-//   listCardsPicked: { 
-//     id: string; 
-//     data: Card;
-//     count: number
-//   }[];
-//   listCardsSelling: { 
-//     id: string; 
-//     data: Card;
-//     count: number
-//   }[];
-//   listCardsWished: { 
-//     id: string; 
-//     data: Card;
-//     count: number
-//   }[];
-//   listCardsFiltered:{
-//     id: string; 
-//     data: Card;
-//   }[];
-//   listFilter:{
-//     attribute: string[];
-//     color: string[];
-//     keyword: string[];
-//     level: string[];
-//     playCost: string[];
-//     rarity: string[];
-//     traits: string[];
-//     type: string[];
-//   }[];
-// }
-
-

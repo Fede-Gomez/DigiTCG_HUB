@@ -1,5 +1,12 @@
 import { Dimensions, StyleSheet } from 'react-native';
 
+let textBase = {
+    borderRadius:30,
+    marginVertical:8,
+    fontSize:20,
+    alignSelf:'center',
+}
+
 
 export const listCardsMyDeck = StyleSheet.create({
 
@@ -8,10 +15,10 @@ export const listCardsMyDeck = StyleSheet.create({
         margin:8
     },
     nameDeck:{
-        alignSelf:'center',
-        marginVertical:8,
-        color:'black',
-        fontSize:25,
+        ...textBase,
+        backgroundColor:'grey',
+        color:'white',
+        padding:10,
     },
     buttonsViewUpdateDelete:{
         flexDirection:'row',
@@ -19,10 +26,10 @@ export const listCardsMyDeck = StyleSheet.create({
         marginVertical:8
     },
     count:{
-        alignSelf:'center',
-        marginBottom:8,
-        color:'black',
-        fontSize:25,
+        ...textBase,
+        color:'white',
+        backgroundColor:'purple',
+        paddingHorizontal: 10
     },
     selectDecksContainer:{
         marginTop:Dimensions.get('screen').height/4

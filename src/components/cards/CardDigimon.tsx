@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Image, TouchableOpacity } from 'react-native';
 import { cardStyle } from '../../styles';
 import { useApp } from '../../hooks';
+import FastImage from 'react-native-fast-image';
 
 const CardDigimon = ({ card }) => {
     const { id, imgUrl } = card
@@ -12,7 +13,7 @@ const CardDigimon = ({ card }) => {
         setModalCard(true);
         setModalCardInfo(card)
     };
-
+    
     return (
         <TouchableOpacity
             style={style.cardContainer}
@@ -20,12 +21,16 @@ const CardDigimon = ({ card }) => {
             activeOpacity={0.7}
             onPress={toggleModal}
         >
-            <Image
-                style={style.imageCard}
-                source={{ uri: imgUrl }}
+            <FastImage
+                style={{ width: 200, height: 200 }}
+                source={{
+                    uri: imgUrl,
+                    priority: FastImage.priority.high,
+                }}
+                resizeMode={FastImage.resizeMode.contain}
             />
         </TouchableOpacity>
     )
 }
 
-export default React.memo(CardDigimon)
+export default CardDigimon

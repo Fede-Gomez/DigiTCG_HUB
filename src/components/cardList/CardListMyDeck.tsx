@@ -9,13 +9,13 @@ import { TypeNavigation } from '../../constants/typesNavigation';
 import { listCardsMyDeck } from '../../styles';
 import Share from 'react-native-share';
 
+const style = listCardsMyDeck;
 const CardListMyDeck = () => {
     const decks = useAppSelector(state => state.user.profile.decks)
     const navigation = useNavigation()
     const [isModalVisible, setModalVisible] = useState(false);
     const {updateDeck, deleteDeck} = useDeck()
     const [deckChoice, setDeckChoice] = useState(null)
-    const style = listCardsMyDeck;
     let message = '["Exported from app DigiTCG Hub"'
     
     decks[deckChoice]?.forEach(element => {
@@ -54,21 +54,15 @@ const CardListMyDeck = () => {
     }
 
     const shareMessage = async () => {
-      console.log('antes   ', message);
-      
       if(!message.includes(']'))
         message += "]"
-      console.log('despues   ',message);
-      
       const shareOptions = {
         title: 'Compartir el deck',
         message,
       };
       try {
         await Share.open(shareOptions);
-        console.log('Imagen compartida exitosamente');
       } catch (error) {
-        console.log('Error al compartir la imagen:', error);
       }
     };
 

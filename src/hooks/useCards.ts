@@ -4,13 +4,16 @@ import {
   setAllCards,
   setListFilter, 
   setCardListFiltered, 
-  clearCardsView,
   cardPickedAdd, 
   cardPickedRemove, 
   addCardToWish,
   removeCardToWish, 
   addCardToSell,
   removeCardToSell,
+  clearCardsView,
+  clearCardsPicked,
+  clearCardsWished,
+  clearCardsSelling,
 } from '../reducers/cardsReducer'
 import { getFilters, getCardsBt, getFilteredCards, getAllCards, getCardsEx, getCardsRb, getCardsSt, getCardsPromo } from '../services/database'
 
@@ -56,6 +59,18 @@ export const useCards = () => {
 
   const clearListCardsView = ()=>{
     dispatch(clearCardsView())
+  }
+
+  const clearListCardsPicked = ()=>{
+    dispatch(clearCardsPicked())
+  }
+  
+  const clearListCardsWished = ()=>{
+    dispatch(clearCardsWished())
+  }
+  
+  const clearListCardsSelling = ()=>{
+    dispatch(clearCardsSelling())
   }
   
   const cardListFiltered = async (filtChoiced: object)=>{
@@ -104,20 +119,23 @@ export const useCards = () => {
   }
 
   return{
-      clearListCardsView,
-      loadAllCards,
-      getListFiltersOfCards,
-      loadAllCardsPromo,
-      loadAllCardsBt,
-      loadAllCardsEx,
-      loadAllCardsSt,
-      loadAllCardsRb,
-      addCards,
-      removeCards,
-      addCardWished,
-      removeCardWished,
-      cardListFiltered,
-      addCardSelling,
-      removeCardSelling
+    loadAllCards,
+    getListFiltersOfCards,
+    loadAllCardsPromo,
+    loadAllCardsBt,
+    loadAllCardsEx,
+    loadAllCardsSt,
+    loadAllCardsRb,
+    addCards,
+    removeCards,
+    addCardWished,
+    removeCardWished,
+    cardListFiltered,
+    addCardSelling,
+    removeCardSelling,
+    clearListCardsPicked,
+    clearListCardsView,
+    clearListCardsWished,
+    clearListCardsSelling,
   }
 }

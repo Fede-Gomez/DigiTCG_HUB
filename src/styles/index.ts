@@ -8,6 +8,8 @@ import { signUp } from './signUp';
 import { folder } from './folder';
 import { filter } from './filter';
 import { modalFilter } from './modals/styleModalFilter';
+import { btnsHeader } from './btnsHeader';
+import { btnsAddRemove } from './btnsAddRemove'
 
 export{
     folder,
@@ -19,5 +21,7 @@ export{
     login,
     signUp,
     filter,
-    modalFilter
+    modalFilter,
+    btnsHeader,
+    btnsAddRemove,
 }

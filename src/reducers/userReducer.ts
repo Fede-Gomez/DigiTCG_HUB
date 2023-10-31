@@ -17,7 +17,7 @@ export const userReducer = createSlice({
     },
     deleteDeckUser: (state, action)=>{
       state.profile = action.payload
-   }
+    }
   },
 })
 

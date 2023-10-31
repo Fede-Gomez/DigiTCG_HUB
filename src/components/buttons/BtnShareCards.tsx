@@ -4,7 +4,7 @@ import { Button } from 'react-native';
 import RNFetchBlob from 'rn-fetch-blob';
 
 
-const shareImages = async (message, imageUrls, title) => {
+const shareImages = async (message, imageUrls) => {
   try {
     const base64Images = await Promise.all(
       imageUrls.map(async (imageUrl) => {
@@ -20,13 +20,12 @@ const shareImages = async (message, imageUrls, title) => {
     };
 
     await Share.open(shareOptions);
-    console.log('Imagen compartida exitosamente');
   } catch (error) {
     console.error('Error al compartir la imagen:', error);
   }
 };
 
-export const BtnShareCards = ({ message='', cards, titlePrompt }) => {
+export const BtnShareCards = ({ message='', cards, titlePrompt, guardarLista }) => {
   const imageUrls = cards.map((e) => e.imgUrl);
   cards.forEach( e =>{
     message += e.count + ' ' + e.name + ' del ' + e.source + '\n\n'
@@ -34,7 +33,7 @@ export const BtnShareCards = ({ message='', cards, titlePrompt }) => {
   const shareMessage = () => {
     shareImages(message, imageUrls, titlePrompt);
   };
-
+  guardarLista
   return (
     <Button title={titlePrompt} color={'green'} onPress={shareMessage} />
   );

@@ -17,7 +17,6 @@ export const useAccount = () => {
             .then((userCredential)=>{
                 saveDataBaseUser(userCredential.user.uid, email, password, name)
             }).catch(error =>{
-                console.log("error ", error)
             })
     }
 
@@ -26,7 +25,6 @@ export const useAccount = () => {
             .then((userCredential)=>{
                 loginUser(userCredential.user.uid)
             }).catch(error =>{
-                console.log('error ',error);
             })
     }
 
@@ -38,9 +36,6 @@ export const useAccount = () => {
     const loginUser = async (idUser)=>{
         let user = await getUserFromDataBase(idUser)
         if (user !== null) {
-
-            console.log(user);
-            
             dispatch(setUser(user?.data()))
             navigation.navigate(TypeNavigation.game.homeGameTopBar);
             await saveUserStorageDevice(idUser)

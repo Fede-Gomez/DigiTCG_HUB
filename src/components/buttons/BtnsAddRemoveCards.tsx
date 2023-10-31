@@ -1,51 +1,77 @@
 import React from 'react'
-import { View, FlatList, Button, TextInput, Image, TouchableOpacity } from 'react-native';
+import { Button, Text, TouchableOpacity } from 'react-native';
 import { useCards } from '../../hooks';
 import { TypeNavigation } from '../../constants/typesNavigation';
+import { useAppSelector } from '../../hooks/useReducerHook';
+import { btnsAddRemove } from '../../styles';
 
-const BtnAddRemoveCards = ({ item, topTab })=>{
+const style = btnsAddRemove
+
+const BtnAddRemoveCards = ({ item }) => {
   const { addCards, addCardSelling, addCardWished, removeCardSelling, removeCards, removeCardWished } = useCards()
+  const builderWishedSelling = useAppSelector(state => state.app.builderWishedSelling)
 
   const deckBuilder = <>
-    <Button
-      color={'green'}
-      title='Add'
+    <TouchableOpacity
+      style={style.buttonAdd}
       onPress={() => addCards(item)}
-    />
-    <Button
-      color={'red'}
-      title='Remove'
+    >
+      <Text style={style.textButtonAdd}>Add</Text>
+    </TouchableOpacity>
+    {item.count &&
+      <Text style={style.countDeckBuilder}>
+        {item.count}
+      </Text>
+    }
+    <TouchableOpacity
+      style={style.buttonRemove}
       onPress={() => removeCards(item)}
-    />
+    >
+      <Text style={style.textButtonRemove}>Remove</Text>
+    </TouchableOpacity>
   </>
 
   const cardsWished = <>
-    <Button
-      color={'green'}
-      title='Add'
+    <TouchableOpacity
+      style={style.buttonAdd}
       onPress={() => addCardWished(item)}
-    />
-    <Button
-      color={'red'}
-      title='Remove'
+    >
+      <Text style={style.textButtonAdd}>Add</Text>
+    </TouchableOpacity>
+    {item.count &&
+      <Text style={style.countCardBuy}>
+        {item.count}
+      </Text>
+    }
+    <TouchableOpacity
+      style={style.buttonRemove}
       onPress={() => removeCardWished(item)}
-    />
+    >
+      <Text style={style.textButtonRemove}>Remove</Text>
+    </TouchableOpacity>
   </>
 
   const cardsSelling = <>
-    <Button
-      color={'green'}
-      title='Add'
+    <TouchableOpacity
+      style={style.buttonAdd}
       onPress={() => addCardSelling(item)}
-    />
-    <Button
-      color={'red'}
-      title='Remove'
+    >
+      <Text style={style.textButtonAdd}>Add</Text>
+    </TouchableOpacity>
+    {item.count &&
+      <Text style={style.countCardSell}>
+        {item.count}
+      </Text>
+    }
+    <TouchableOpacity
+      style={style.buttonRemove}
       onPress={() => removeCardSelling(item)}
-    />
+    >
+      <Text style={style.textButtonRemove}>Remove</Text>
+    </TouchableOpacity>
   </>
-  
-  switch (topTab) {
+
+  switch (builderWishedSelling) {
     case TypeNavigation.game.deckBuilder: return deckBuilder
     case TypeNavigation.game.cardsWished: return cardsWished
     case TypeNavigation.game.cardsSelling: return cardsSelling

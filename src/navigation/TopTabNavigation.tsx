@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { TypeNavigation } from '../constants/typesNavigation';
-import { BottomCardsWishedTabNavigation, BottomDeckBuilderTabNavigation, BottomCardsSellingTabNavigation } from './BottomTabNavigation';
+import { BottomCardTabNavigation } from './BottomTabNavigation';
 import { TcgPlayerScreen } from '../screen';
 import { BackHandler } from 'react-native';
 
@@ -23,13 +23,10 @@ export const TopTapNavigation = () => {
   }, []);
   return (
       <Tab.Navigator 
-        screenOptions={{
-          swipeEnabled:false
-        }}
+        screenOptions={{swipeEnabled:false}}
+        initialRouteName={TypeNavigation.game.deckBuilder}
       >
-        <Tab.Screen name={TypeNavigation.game.deckBuilder} component={BottomDeckBuilderTabNavigation} />
-        <Tab.Screen name={TypeNavigation.game.cardsWished} component={BottomCardsWishedTabNavigation} />
-        <Tab.Screen name={TypeNavigation.game.cardsSelling} component={BottomCardsSellingTabNavigation} />
+        <Tab.Screen name={TypeNavigation.game.deckBuilder} component={BottomCardTabNavigation} options={{title:'Cards'}} />
         <Tab.Screen name={TypeNavigation.game.tcgPlayer} component={TcgPlayerScreen} />
       </Tab.Navigator>
   )

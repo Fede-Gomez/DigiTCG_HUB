@@ -19,6 +19,30 @@ export const useDeck = () => {
         await userDeckUpdateDatabase(user.idUser,updateDeckUser)
         dispatch(setUser(updateDeckUser))
     }
+    const saveCardsPicked = async (cards)=>{
+        let updateDeckUser ={
+            ...user,
+            cardsPicked: cards
+        }
+        await userDeckUpdateDatabase(user.idUser,updateDeckUser)
+        dispatch(setUser(updateDeckUser))
+    }
+    const saveCardsBuy = async (cards)=>{
+        let updateDeckUser ={
+            ...user,
+            cardsBuy: cards
+        }
+        await userDeckUpdateDatabase(user.idUser,updateDeckUser)
+        dispatch(setUser(updateDeckUser))
+    }
+    const saveCardsSell = async (cards)=>{
+        let updateDeckUser ={
+            ...user,
+            cardsSell: cards
+        }
+        await userDeckUpdateDatabase(user.idUser,updateDeckUser)
+        dispatch(setUser(updateDeckUser))
+    }
 
     const updateDeck =(cards)=>{
         dispatch(setCardsPicked(cards))
@@ -33,5 +57,8 @@ export const useDeck = () => {
         saveDeck,
         updateDeck,
         deleteDeck,
+        saveCardsPicked,
+        saveCardsBuy,
+        saveCardsSell,
     }
 }

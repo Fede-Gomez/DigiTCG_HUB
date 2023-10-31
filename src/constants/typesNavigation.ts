@@ -5,13 +5,13 @@ export const TypeNavigation = {
     },
     game:{
         homeGameTopBar:'HomeGameTopBar',
-        cardsView: 'Cards view',
+        cardsView: 'Cardsss',
         cardSelected: 'Card selected',
         searchCard: 'Search card',
         deckSelected: 'My decks',
         tcgPlayer:'Tcg Player',
-        deckBuilder:'Deck Builder',
-        cardsWished: 'Cards wished',
-        cardsSelling: 'Cards Selling',
+        deckBuilder:'deckBuilder',
+        cardsWished: 'cardsWished',
+        cardsSelling: 'cardsSelling',
     }
 }

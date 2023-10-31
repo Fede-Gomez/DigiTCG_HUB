@@ -7,7 +7,7 @@ import CardListCardsSelected from './cardList/CardListCardsSelected';
 import CardListCardsSearched from './cardList/CardListCardsSearched';
 import CardListMyDeck from './cardList/CardListMyDeck';
 import { BtnShareCards } from './buttons/BtnShareCards';
-import { BtnsHeader } from './buttons/BtnHeader';
+import { BtnsHeadersCard, BtnsHeadersCardSelecteds, BtnsHeadersSearchCard } from './buttons/BtnsHeaders';
 import BtnAddRemoveCards from './buttons/BtnsAddRemoveCards';
 
 export {
@@ -21,5 +21,7 @@ export {
     CardListCardsSearched,
     CardListMyDeck,
     BtnShareCards,
-    BtnsHeader,
+    BtnsHeadersCard,
+    BtnsHeadersCardSelecteds,
+    BtnsHeadersSearchCard,
 }

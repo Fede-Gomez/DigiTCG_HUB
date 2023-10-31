@@ -3,7 +3,7 @@ import { useAppSelector } from '../../hooks/useReducerHook'
 import { CardListMyDeck } from '../../components'
 import { ImageBackground } from 'react-native';
 
-  const DeckBuilderDecksSelectedScreen = () => {  
+  const DecksSelectedScreen = () => {  
     return (
       <ImageBackground
         source={require('../../assets/backgrounds/myDecks.jpg')}
@@ -15,4 +15,4 @@ import { ImageBackground } from 'react-native';
       )  
 }
 
-export default DeckBuilderDecksSelectedScreen
+export default DecksSelectedScreen

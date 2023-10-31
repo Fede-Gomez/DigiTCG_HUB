@@ -4,7 +4,7 @@ import { CardListCardsSearched, ModalCard } from '../../components';
 import { TypeNavigation } from '../../constants/typesNavigation';
 import { useAppSelector } from '../../hooks/useReducerHook';
 
-const DeckBuilderSearchCardScreen = () => {
+const SearchCardScreen = () => {
   const cardInfo = useAppSelector(state => state.app.modalCardView)
     return (
       <ImageBackground
@@ -12,9 +12,9 @@ const DeckBuilderSearchCardScreen = () => {
         resizeMode='cover'
         style={{flex:1}}
       >
-        <CardListCardsSearched topTab={TypeNavigation.game.deckBuilder}/>
+        <CardListCardsSearched/>
       </ImageBackground>
     );
 }
 
-export default DeckBuilderSearchCardScreen
+export default SearchCardScreen
