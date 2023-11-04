@@ -3,15 +3,15 @@ import { useNavigation } from '@react-navigation/native';
 import { useDeck } from '../../hooks';
 import { TypeNavigation } from '../../constants/typesNavigation';
 import prompt from 'react-native-prompt-android';
-import { Button } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
 
 export const ButtonSaveDeck = ({cards}) => {
     const navigation = useNavigation()
     const { saveDeck }= useDeck()
     
-    const createDeckOfSavePicked = (nameText:string)=>{      
+    const createDeckOfSavePicked = (nameText:string)=>{    
       saveDeck(nameText,cards)
-      navigation.navigate(TypeNavigation.game.homeGameTopBar);
+      navigation.navigate(TypeNavigation.game.home);
     }
   
     const showPrompt = ()=>{
@@ -30,11 +30,13 @@ export const ButtonSaveDeck = ({cards}) => {
     }
   
     return (
-      <>
-        <Button 
-          title={'Save deck'} 
-          onPress={showPrompt}
-        />
-      </>
+      <TouchableOpacity
+        onPress={()=>showPrompt()}
+        style={{backgroundColor:'blue', padding:10}}
+      >
+        <Text
+          style={{fontSize:20, fontWeight:'bold', color:'white'}}
+        >Guardar deck</Text>
+      </TouchableOpacity>
     ) 
 }

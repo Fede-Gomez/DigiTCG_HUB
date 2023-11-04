@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import { useAppSelector } from '../../hooks/useReducerHook'
+import React from 'react'
 import { CardListMyDeck } from '../../components'
 import { ImageBackground } from 'react-native';
 

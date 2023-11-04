@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Image, TouchableOpacity } from 'react-native';
+import React from 'react'
+import { TouchableOpacity } from 'react-native';
 import { cardStyle } from '../../styles';
 import { useApp } from '../../hooks';
 import FastImage from 'react-native-fast-image';

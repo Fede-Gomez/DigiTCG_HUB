@@ -1,14 +1,9 @@
 import CardDigimon from "./cards/CardDigimon";
 import Folder from './folders/Folder';
-import CardListCardsView from "./cardList/CardListCardsView";
-import ModalFilter from './modals/ModalFilter';
-import ModalCard from './modals/ModalCard';
-import CardListCardsSelected from './cardList/CardListCardsSelected';
-import CardListCardsSearched from './cardList/CardListCardsSearched';
-import CardListMyDeck from './cardList/CardListMyDeck';
-import { BtnShareCards } from './buttons/BtnShareCards';
-import { BtnsHeadersCard, BtnsHeadersCardSelecteds, BtnsHeadersSearchCard } from './buttons/BtnsHeaders';
-import BtnAddRemoveCards from './buttons/BtnsAddRemoveCards';
+import { CardListCardsSelected, CardListCardsView, CardListMyDeck } from './cardList'
+import { ModalApoyoComentarios, ModalCard, ModalFilter} from './modals'
+import { BtnAddRemoveCards, BtnShareCards, BtnsHeadersCard, BtnsHeadersCardSelecteds} from './buttons'
+import { ErrorMessage, SuccesMessage} from './alerts'
 
 export {
     CardDigimon,
@@ -17,11 +12,12 @@ export {
     CardListCardsSelected,
     ModalFilter,
     ModalCard,
+    ModalApoyoComentarios,
     BtnAddRemoveCards,
-    CardListCardsSearched,
     CardListMyDeck,
     BtnShareCards,
     BtnsHeadersCard,
     BtnsHeadersCardSelecteds,
-    BtnsHeadersSearchCard,
+    ErrorMessage,
+    SuccesMessage
 }

@@ -1,232 +1,330 @@
-import React from 'react'
-import { TypeNavigation } from '../../constants/typesNavigation'
+import React, { useState } from 'react'
+import { TypeNavigation } from '../../constants/typesNavigation';
 import { ButtonSaveDeck } from './BtnSaveDeck'
 import { BtnShareCards } from './BtnShareCards'
-import { Button, Text, View, TouchableOpacity, TextInput } from 'react-native';
+import { Text, View, TouchableOpacity } from 'react-native';
 import { useApp, useCards, useDeck } from '../../hooks'
 import { useAppSelector } from '../../hooks/useReducerHook'
 import { btnsHeader } from '../../styles';
-import { Image } from 'react-native-animatable';
 import { filterOn } from '../../assets/icons';
+import * as Animatable from 'react-native-animatable';
+import { colorBackgroundCardBuy, colorBackgroundCardSell, colorBackgroundDeckBuilder, colorTextDesplegable } from '../../constants/colors';
+import FastImage from 'react-native-fast-image';
 
 const style = btnsHeader
 
-export const BtnsHeadersCard = ()=>{
+const buttonBack = (clearListCardsView) => {
+  return (
+    <TouchableOpacity
+      style={style.buttonBackClear}
+      onPress={() => clearListCardsView()}
+    >
+      <Text style={style.textButtonBackClear}>Back</Text>
+    </TouchableOpacity>
+  )
+}
+
+const buttonClearList = (clearListCards) => {
+  return (
+    <TouchableOpacity
+      style={style.buttonBackClear}
+      onPress={() => clearListCards()}
+    >
+      <Text style={style.textButtonBackClear}>Limpiar</Text>
+    </TouchableOpacity>
+  )
+}
+
+export const BtnsHeadersCard = () => {
   const builderWishedSelling = useAppSelector(state => state.app.builderWishedSelling)
-  const {setBuildWishSell} = useApp()
   const { clearListCardsView } = useCards()
-  
-    switch (builderWishedSelling) {
-      case TypeNavigation.game.deckBuilder: return(
-        <View style={style.container}>
-          <TouchableOpacity
-            style={style.buttonBack}
-            onPress={() => clearListCardsView()}
-          >
-            <Text style={style.textButtonBack}>Back</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={style.buttonCardBuy}
-            onPress={() => setBuildWishSell(TypeNavigation.game.cardsWished)}
-          >
-            <Text style={style.textButton} >A cards buy</Text>
-          </TouchableOpacity>
-        </View>
-      )
-      case TypeNavigation.game.cardsWished: return(
-        <View style={style.container}>
-          <TouchableOpacity
-            style={style.buttonBack}
-            onPress={() => clearListCardsView()}
-          >
-            <Text style={style.textButtonBack}>Back</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={style.buttonCardSell}
-            onPress={() => setBuildWishSell(TypeNavigation.game.cardsSelling)}
-          >
-            <Text style={style.textButton} >A cards sell</Text>
-          </TouchableOpacity>
-        </View>
-      )
-      case TypeNavigation.game.cardsSelling: return(
-        <View style={style.container}>
-          <TouchableOpacity
-            style={style.buttonBack}
-            onPress={() => clearListCardsView()}
-          >
-            <Text style={style.textButtonBack}>Back</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={style.buttonDeckBuilder}
-            onPress={() => setBuildWishSell(TypeNavigation.game.deckBuilder)}
-          >
-            <Text style={style.textButton} >A deck builder</Text>
-          </TouchableOpacity>
-        </View>
-      )
-    }
-  }
-
-export const BtnsHeadersCardSelecteds = ()=>{
-
-  const builderWishedSelling = useAppSelector(state => state.app.builderWishedSelling)
-  const listPicked = useAppSelector(state => state.cards.picked)
-  const listWished = useAppSelector(state => state.cards.wished)
-  const listSelling = useAppSelector(state => state.cards.selling)
-  
-  const {saveCardsPicked, saveCardsBuy, saveCardsSell} = useDeck()
-  const {setBuildWishSell} = useApp()
-  const { clearListCardsPicked, clearListCardsSelling, clearListCardsWished } = useCards()
-  
-    switch (builderWishedSelling) {
-      case TypeNavigation.game.deckBuilder: return(
-        <View style={style.container}>
-          <TouchableOpacity
-            style={style.buttonBack}
-            onPress={() => clearListCardsPicked()}
-          >
-            <Text style={style.textButtonBack}>Clear</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={style.buttonCardBuy}
-            onPress={() => {setBuildWishSell(TypeNavigation.game.cardsWished), saveCardsPicked(listPicked)}}
-          >
-            <Text style={style.textButton} >A cards buy</Text>
-          </TouchableOpacity>
-          <ButtonSaveDeck cards={listPicked}/>
-        </View>
-      )
-      case TypeNavigation.game.cardsWished: return(
-        <View style={style.container}>
-          <TouchableOpacity
-            style={style.buttonBack}
-            onPress={() => clearListCardsWished()}
-          >
-            <Text style={style.textButtonBack}>Clear</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={style.buttonCardSell}
-            onPress={() => {setBuildWishSell(TypeNavigation.game.cardsSelling), saveCardsBuy(listWished)}}
-          >
-            <Text style={style.textButton} >A cards sell</Text>
-          </TouchableOpacity>
-          <BtnShareCards message={`Busco:\n`} cards={listWished} titlePrompt={'Publicar compra'} guardarLista={saveCardsBuy(listWished)} />
-        </View>
-      )
-      case TypeNavigation.game.cardsSelling: return(
-        <View style={style.container}>
-          <TouchableOpacity
-            style={style.buttonBack}
-            onPress={() => clearListCardsSelling()}
-          >
-            <Text style={style.textButtonBack}>Clear</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={style.buttonDeckBuilder}
-            onPress={() => {setBuildWishSell(TypeNavigation.game.deckBuilder), saveCardsSell(listSelling)}}
-          >
-            <Text style={style.textButton} >A deck builder</Text>
-          </TouchableOpacity>
-          <BtnShareCards message={`Vendo:\n`} cards={listSelling} titlePrompt={'Publicar venta'} guardarLista={saveCardsSell(listSelling)} />
-        </View>
-      )
-    }
-  }
-
-export const BtnsHeadersSearchCard = ({nameCard, setNameCard})=>{
-  const builderWishedSelling = useAppSelector(state => state.app.builderWishedSelling)
   const { setModalFilter, setBuildWishSell } = useApp()
-  const {saveCardsPicked, saveCardsBuy, saveCardsSell} = useDeck()
-  const listPicked = useAppSelector(state => state.cards.picked)
-  const listWished = useAppSelector(state => state.cards.wished)
-  const listSelling = useAppSelector(state => state.cards.selling)
-
+  const [expanded, setExpanded] = useState(false);
   const toggleModal = () => {
     setModalFilter(true)
   };
-  
+  const handleButtonPress = () => {
+    setExpanded(!expanded);
+  };
+
+  const deckBuilder = () => {
+    return (
+      <View style={style.container}>
+        {buttonBack(clearListCardsView)}
+        <View>
+          <TouchableOpacity onPress={handleButtonPress}>
+            <Text style={{ ...style.textButtonDesplegable1, backgroundColor: colorBackgroundDeckBuilder, color: colorTextDesplegable }}>
+              {TypeNavigation.game.deckBuilder}
+            </Text>
+          </TouchableOpacity>
+          <Animatable.View
+            animation={expanded ? 'fadeIn' : 'fadeOut'}
+            duration={300}
+            style={{display: !expanded ? "none": 'flex'}}
+          >
+            <TouchableOpacity>
+              <Text
+                style={{ ...style.textButtonDesplegable2, backgroundColor: colorBackgroundCardSell, color: colorTextDesplegable }}
+                onPress={() => { setBuildWishSell(TypeNavigation.game.cardsSell) }}
+              >
+                {TypeNavigation.game.cardsSell}
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <Text
+                style={{ ...style.textButtonDesplegable3, backgroundColor: colorBackgroundCardBuy, color: colorTextDesplegable }}
+                onPress={() => setBuildWishSell(TypeNavigation.game.cardsBuy)}
+              >
+                {TypeNavigation.game.cardsBuy}
+              </Text>
+            </TouchableOpacity>
+          </Animatable.View>
+        </View>
+        <TouchableOpacity
+          onPress={()=>toggleModal()}
+          style={{backgroundColor:'#3D0605', padding:10}}
+        >
+          <FastImage
+            source={filterOn}
+            style={{height:30, width:30}}
+          />
+        </TouchableOpacity>
+      </View>
+    )
+  }
+  const cardBuy = () => {
+    return (
+      <View style={style.container}>
+        {buttonBack(clearListCardsView)}
+        <View>
+          <TouchableOpacity onPress={handleButtonPress}>
+            <Text
+              style={{ ...style.textButtonDesplegable1, backgroundColor: colorBackgroundCardBuy, color: colorTextDesplegable }}
+            >
+              {TypeNavigation.game.cardsBuy}
+            </Text>
+          </TouchableOpacity>
+          <Animatable.View
+            animation={expanded ? 'fadeIn' : 'fadeOut'}
+            duration={300}
+            style={{display: !expanded ? "none": 'flex'}}
+          >
+            <TouchableOpacity>
+              <Text
+                style={{ ...style.textButtonDesplegable2, backgroundColor: colorBackgroundDeckBuilder, color: colorTextDesplegable }}
+                onPress={() => { setBuildWishSell(TypeNavigation.game.deckBuilder) }}
+              >
+                {TypeNavigation.game.deckBuilder}
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <Text
+                style={{ ...style.textButtonDesplegable3, backgroundColor: colorBackgroundCardSell, color: colorTextDesplegable }}
+                onPress={() => setBuildWishSell(TypeNavigation.game.cardsSell)}
+              >
+                {TypeNavigation.game.cardsSell}
+              </Text>
+            </TouchableOpacity>
+          </Animatable.View>
+        </View>
+        <TouchableOpacity
+          onPress={()=>toggleModal()}
+          style={{backgroundColor:'#3D0605', padding:10}}
+        >
+          <FastImage
+            source={filterOn}
+            style={{height:30, width:30}}
+          />
+        </TouchableOpacity>
+      </View>
+    )
+  }
+  const cardSell = () => {
+    return (
+      <View style={style.container}>
+        {buttonBack(clearListCardsView)}
+        <View>
+          <TouchableOpacity onPress={handleButtonPress}>
+            <Text style={{ ...style.textButtonDesplegable1, backgroundColor: colorBackgroundCardSell, color: colorTextDesplegable }}>
+              {TypeNavigation.game.cardsSell}
+            </Text>
+          </TouchableOpacity>
+          <Animatable.View
+            animation={expanded ? 'fadeIn' : 'fadeOut'}
+            duration={300}
+            style={{display: !expanded ? "none": 'flex'}}
+          >
+            <TouchableOpacity>
+              <Text
+                style={{ ...style.textButtonDesplegable2, backgroundColor: colorBackgroundDeckBuilder, color: colorTextDesplegable }}
+                onPress={() => { setBuildWishSell(TypeNavigation.game.deckBuilder) }}
+              >
+                {TypeNavigation.game.deckBuilder}
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <Text
+                style={{ ...style.textButtonDesplegable3, backgroundColor: colorBackgroundCardBuy, color: colorTextDesplegable }}
+                onPress={() => setBuildWishSell(TypeNavigation.game.cardsBuy)}
+              >
+                {TypeNavigation.game.cardsBuy}
+              </Text>
+            </TouchableOpacity>
+          </Animatable.View>
+        </View>
+        <TouchableOpacity
+          onPress={()=>toggleModal()}
+          style={{backgroundColor:'#3D0605', padding:10}}
+        >
+          <FastImage
+            source={filterOn}
+            style={{height:30, width:30}}
+          />
+        </TouchableOpacity>
+      </View>
+    )
+  }  
   switch (builderWishedSelling) {
-    case TypeNavigation.game.deckBuilder: return(
+    case TypeNavigation.game.deckBuilder: return deckBuilder()
+    case TypeNavigation.game.cardsBuy: return cardBuy()
+    case TypeNavigation.game.cardsSell: return cardSell()
+  }
+}
+
+export const BtnsHeadersCardSelecteds = () => {
+
+  const builderWishedSelling = useAppSelector(state => state.app.builderWishedSelling)
+  const listPicked = useAppSelector(state => state.cards.picked)
+  const listWished = useAppSelector(state => state.cards.wished)
+  const listSelling = useAppSelector(state => state.cards.selling)
+  const [expanded, setExpanded] = useState(false);
+  const handleButtonPress = () => {
+    setExpanded(!expanded);
+  };
+  const { saveCardsPicked, saveCardsBuy, saveCardsSell } = useDeck()
+  const { setBuildWishSell } = useApp()
+  const { clearListCardsPicked, clearListCardsSelling, clearListCardsWished } = useCards()
+
+
+  const deckBuilder = () => {
+    return (
       <View style={style.container}>
-        <TextInput
-          placeholder="Search card by name"
-          onChangeText={setNameCard}
-          value={nameCard}
-          style={style.inputSearch}
-          placeholderTextColor={'white'}
-        />
-        <TouchableOpacity
-          style={style.buttonCardBuy}
-          onPress={() => {setBuildWishSell(TypeNavigation.game.cardsWished), saveCardsPicked(listPicked)}}
-        >
-          <Text style={style.textButtonSearch} >A cards buy</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={()=>toggleModal()}
-          style={{backgroundColor:'#3D0605', padding:10}}
-        >
-          <Image
-            source={filterOn}
-            style={{height:30, width:30}}
-          />
-        </TouchableOpacity>
+        {buttonClearList(clearListCardsPicked)}
+        <View>
+          <TouchableOpacity onPress={handleButtonPress}>
+            <Text style={{ ...style.textButtonDesplegable1, backgroundColor: colorBackgroundDeckBuilder, color: colorTextDesplegable }}>
+              {TypeNavigation.game.deckBuilder}
+            </Text>
+          </TouchableOpacity>
+          <Animatable.View
+            animation={expanded ? 'fadeIn' : 'fadeOut'}
+            duration={300}
+            style={{ display: expanded ? 'flex' : 'none' }}
+          >
+            <TouchableOpacity>
+              <Text
+                style={{ ...style.textButtonDesplegable2, backgroundColor: colorBackgroundCardSell, color: colorTextDesplegable }}
+                onPress={() => { setBuildWishSell(TypeNavigation.game.cardsSell), saveCardsPicked }}
+              >
+                {TypeNavigation.game.cardsSell}
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <Text
+                style={{ ...style.textButtonDesplegable3, backgroundColor: colorBackgroundCardBuy, color: colorTextDesplegable }}
+                onPress={() => { setBuildWishSell(TypeNavigation.game.cardsBuy), saveCardsPicked }}
+              >
+                {TypeNavigation.game.cardsBuy}
+              </Text>
+            </TouchableOpacity>
+          </Animatable.View>
+        </View>
+        <View>
+          <ButtonSaveDeck cards={listPicked} />
+        </View>
       </View>
     )
-    case TypeNavigation.game.cardsWished: return(
+  }
+
+  const cardBuy = () => {
+    return (
       <View style={style.container}>
-        <TextInput
-          placeholder="Search card by name"
-          onChangeText={setNameCard}
-          value={nameCard}
-          style={style.inputSearch}
-          placeholderTextColor={'white'}
-        />
-        <TouchableOpacity
-          style={style.buttonCardSell}
-          onPress={() => {setBuildWishSell(TypeNavigation.game.cardsSelling), saveCardsBuy(listWished)}}
-        >
-          <Text style={style.textButtonSearch} >A cards sell</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={()=>toggleModal()}
-          style={{backgroundColor:'#3D0605', padding:10}}
-        >
-          <Image
-            source={filterOn}
-            style={{height:30, width:30}}
-          />
-        </TouchableOpacity>
+        {buttonClearList(clearListCardsWished)}
+        <View>
+          <TouchableOpacity onPress={handleButtonPress}>
+            <Text style={{ ...style.textButtonDesplegable1, backgroundColor: colorBackgroundCardBuy, color: colorTextDesplegable }}>
+              {TypeNavigation.game.cardsBuy}
+            </Text>
+          </TouchableOpacity>
+          <Animatable.View
+            animation={expanded ? 'fadeIn' : 'fadeOut'}
+            duration={300}
+            style={{display: !expanded ? "none": 'flex'}}
+          >
+            <TouchableOpacity>
+              <Text
+                style={{ ...style.textButtonDesplegable2, backgroundColor: colorBackgroundCardSell, color: colorTextDesplegable }}
+                onPress={() => { setBuildWishSell(TypeNavigation.game.cardsSell), saveCardsBuy }}
+              >
+                {TypeNavigation.game.cardsSell}
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <Text
+                style={{ ...style.textButtonDesplegable3, backgroundColor: colorBackgroundDeckBuilder, color: colorTextDesplegable }}
+                onPress={() => { setBuildWishSell(TypeNavigation.game.deckBuilder), saveCardsBuy }}
+              >
+                {TypeNavigation.game.deckBuilder}
+              </Text>
+            </TouchableOpacity>
+          </Animatable.View>
+        </View>
+        <BtnShareCards message={`Busco:\n`} cards={listWished} titlePrompt={'Publicar compra'} guardarLista={saveCardsBuy(listWished)} />
       </View>
     )
-    case TypeNavigation.game.cardsSelling: return(
+  }
+
+  const cardSell = () => {
+    return (
       <View style={style.container}>
-        <TextInput
-            placeholder="Search card by name"
-            onChangeText={setNameCard}
-            value={nameCard}
-            style={style.inputSearch}
-            placeholderTextColor={'white'}
-        />
-        <TouchableOpacity
-          style={style.buttonDeckBuilder}
-          onPress={() => {setBuildWishSell(TypeNavigation.game.deckBuilder), saveCardsSell(listSelling)}}
-        >
-          <Text style={style.textButtonSearch} >A deck builder</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={()=>toggleModal()}
-          style={{backgroundColor:'#3D0605', padding:10}}
-        >
-          <Image
-            source={filterOn}
-            style={{height:30, width:30}}
-          />
-        </TouchableOpacity>
+        {buttonClearList(clearListCardsSelling)}
+        <View>
+          <TouchableOpacity onPress={handleButtonPress}>
+            <Text style={{ ...style.textButtonDesplegable1, backgroundColor: colorBackgroundCardSell, color: colorTextDesplegable }}>
+              {TypeNavigation.game.cardsSell}
+            </Text>
+          </TouchableOpacity>
+          <Animatable.View
+            animation={expanded ? 'fadeIn' : 'fadeOut'}
+            duration={300}
+            style={{display: !expanded ? "none": 'flex'}}
+          >
+            <TouchableOpacity>
+              <Text
+                style={{ ...style.textButtonDesplegable2, backgroundColor: colorBackgroundDeckBuilder, color: colorTextDesplegable }}
+                onPress={() => { setBuildWishSell(TypeNavigation.game.deckBuilder), saveCardsSell }}
+              >
+                {TypeNavigation.game.deckBuilder}
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <Text
+                style={{ ...style.textButtonDesplegable3, backgroundColor: colorBackgroundCardBuy, color: colorTextDesplegable }}
+                onPress={() => { setBuildWishSell(TypeNavigation.game.cardsBuy), saveCardsSell }}
+              >
+                {TypeNavigation.game.cardsBuy}
+              </Text>
+            </TouchableOpacity>
+          </Animatable.View>
+        </View>
+        <BtnShareCards message={`Vendo:\n`} cards={listSelling} titlePrompt={'Publicar venta'} guardarLista={saveCardsSell(listSelling)} />
       </View>
     )
+  }
+
+  switch (builderWishedSelling) {
+    case TypeNavigation.game.deckBuilder: return deckBuilder()
+    case TypeNavigation.game.cardsBuy: return cardBuy()
+    case TypeNavigation.game.cardsSell: return cardSell()
   }
 }

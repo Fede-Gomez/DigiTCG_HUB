@@ -6,17 +6,28 @@ import { TypeNavigation } from '../constants/typesNavigation'
 import { setUser } from '../reducers/userReducer';
 import { getUserFromDataBase, saveUserDataBase } from '../firebase/dataBase';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { ErrorMessage } from '../components';
 
 export const useAccount = () => {
     const auth = getAuth(app);
     const navigation = useNavigation()
     const dispatch = useAppDispatch()
-
+    const regexEmail = /.*@.*/;
+    const regexPass = /^.{6,}$/;
     const createAccount = async (name, email, password)=>{
+        
+        if(!regexEmail.test(email)){
+            ErrorMessage('Email invalido')
+            return
+        }
+        if(!regexPass.test(password)){
+            ErrorMessage('La contraseña debe tener al menos 6 caracteres')
+            return
+        }
+
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential)=>{
                 saveDataBaseUser(userCredential.user.uid, email, password, name)
-            }).catch(error =>{
             })
     }
 
@@ -25,6 +36,7 @@ export const useAccount = () => {
             .then((userCredential)=>{
                 loginUser(userCredential.user.uid)
             }).catch(error =>{
+                 ErrorMessage('Usuario o Contraseña incorrectos')
             })
     }
 
@@ -34,10 +46,10 @@ export const useAccount = () => {
     }
 
     const loginUser = async (idUser)=>{
-        let user = await getUserFromDataBase(idUser)
+        let user = await getUserFromDataBase(idUser).catch( ()=> ErrorMessage('Error al ingresar, intente nuevamente'))
         if (user !== null) {
             dispatch(setUser(user?.data()))
-            navigation.navigate(TypeNavigation.game.homeGameTopBar);
+            navigation.navigate(TypeNavigation.game.home);
             await saveUserStorageDevice(idUser)
         }else{
             navigation.navigate(TypeNavigation.account.login);
@@ -54,7 +66,6 @@ export const useAccount = () => {
             loginUser(value);
         }
         } catch (error) {
-        console.error('Error al recuperar el valor:', error);
         }
     };
 
@@ -62,7 +73,6 @@ export const useAccount = () => {
         try {
             await AsyncStorage.setItem('idUser',idUser);
           } catch (error) {
-            console.error('Error al guardar el valor:', error);
           }
     }
 

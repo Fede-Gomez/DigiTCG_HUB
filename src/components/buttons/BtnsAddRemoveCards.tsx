@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Text, TouchableOpacity } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
 import { useCards } from '../../hooks';
 import { TypeNavigation } from '../../constants/typesNavigation';
 import { useAppSelector } from '../../hooks/useReducerHook';
@@ -73,8 +73,8 @@ const BtnAddRemoveCards = ({ item }) => {
 
   switch (builderWishedSelling) {
     case TypeNavigation.game.deckBuilder: return deckBuilder
-    case TypeNavigation.game.cardsWished: return cardsWished
-    case TypeNavigation.game.cardsSelling: return cardsSelling
+    case TypeNavigation.game.cardsBuy: return cardsWished
+    case TypeNavigation.game.cardsSell: return cardsSelling
   }
 }
 

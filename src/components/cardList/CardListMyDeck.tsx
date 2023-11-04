@@ -1,4 +1,4 @@
-import React, { useState,useEffect, useRef, useCallback } from 'react'
+import React, { useState } from 'react'
 import { useAppSelector } from '../../hooks/useReducerHook'
 import { CardDigimon } from '../../components'
 import { Text, FlatList, Button, View, Alert } from 'react-native';
@@ -12,9 +12,10 @@ import Share from 'react-native-share';
 const style = listCardsMyDeck;
 const CardListMyDeck = () => {
     const decks = useAppSelector(state => state.user.profile.decks)
+    const listPicked = useAppSelector(state => state.cards.picked)
     const navigation = useNavigation()
-    const [isModalVisible, setModalVisible] = useState(false);
     const {updateDeck, deleteDeck} = useDeck()
+    const [isModalVisible, setModalVisible] = useState(false);
     const [deckChoice, setDeckChoice] = useState(null)
     let message = '["Exported from app DigiTCG Hub"'
     
@@ -34,12 +35,27 @@ const CardListMyDeck = () => {
     }
     
     const updateDeckAndGoCardSelect = ()=>{
-      updateDeck(decks[deckChoice])
-      navigation.navigate(TypeNavigation.game.cardSelected);
+      if(listPicked.length !== 0){
+        Alert.alert('Tenes cartas seleccionadas','Se sobreescribiran si sigues', [
+          {
+            text: 'Cancel',
+            onPress: () => console.log('Cancel Pressed'),
+            style: 'cancel',
+          },
+          {text: 'Yes', onPress: () => {
+            updateDeck(decks[deckChoice])
+            navigation.navigate(TypeNavigation.game.cardSelected);
+          }},
+        ]);
+      }else{
+        updateDeck(decks[deckChoice])
+        navigation.navigate(TypeNavigation.game.cardSelected);
+      }
+      
     }
 
-    const removeDeck = async (deckChoice)=>{
-      Alert.alert('Are you sure?','', [
+    const removeDeck = (deckChoice)=>{
+      Alert.alert('Estas seguro?','', [
         {
           text: 'Cancel',
           onPress: () => console.log('Cancel Pressed'),
@@ -48,7 +64,6 @@ const CardListMyDeck = () => {
         {text: 'Yes', onPress: () => {
           deleteDeck(deckChoice)
           setDeckChoice(null)
-          // navigation.navigate(TypeNavigation.game.cardsView);
         }},
       ]);
     }

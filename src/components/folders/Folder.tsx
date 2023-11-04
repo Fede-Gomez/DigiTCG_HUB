@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import { TouchableOpacity, FlatList, View, Image } from 'react-native';
 import { useAppSelector } from '../../hooks/useReducerHook';
 import { useCards } from '../../hooks';
@@ -62,4 +62,4 @@ const Folder = () => {
   )
 }
 
-export default Folder
+export default React.memo(Folder) 

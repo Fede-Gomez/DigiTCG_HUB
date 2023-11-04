@@ -18,14 +18,14 @@ export const StackLogSignNavigation = ()=>{
   
     return(
       <Stack.Navigator
-        initialRouteName={profile.length !== 0 ? TypeNavigation.game.homeGameTopBar : TypeNavigation.account.login } 
+        initialRouteName={profile.length !== 0 ? TypeNavigation.game.home : TypeNavigation.account.login } 
           screenOptions={{
             headerShown:false,
           }}
         >
         <Stack.Screen name={TypeNavigation.account.login} component={LoginScreen} />
         <Stack.Screen name={TypeNavigation.account.signIn} component={SignUpScreen} />
-        <Stack.Screen name={TypeNavigation.game.homeGameTopBar} component={TopTapNavigation}/>
+        <Stack.Screen name={TypeNavigation.game.home} component={TopTapNavigation}/>
       </Stack.Navigator>
     )
 }

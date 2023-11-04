@@ -4,12 +4,12 @@ import { useAccount } from '../../hooks/useAccount'
 import { useNavigation } from '@react-navigation/native'
 import { TypeNavigation } from '../../constants/typesNavigation'
 import { login } from '../../styles'
-import { useApp, useCards, useFolders } from '../../hooks'
+import { useCards, useFolders } from '../../hooks'
 
 
 export const LoginScreen = () => {
-  const [email, setEmail] = useState('Q@q.com')
-  const [password, setPassword] = useState('123456')
+  const [email, setEmail] = useState()
+  const [password, setPassword] = useState()
   const navigation = useNavigation();
   const style = login;
   const {signIn} = useAccount();
@@ -57,7 +57,9 @@ export const LoginScreen = () => {
           <View style={style.logCreteAccountContainer}>
             <Button
               color={'black'}
-              onPress={()=>(signIn(email, password), setLoading(true))}
+              onPress={()=>(
+                signIn(email, password), 
+                setLoading(true))}
               title='Login'
             />
             <Button
@@ -69,7 +71,7 @@ export const LoginScreen = () => {
         </View>
         )
       }
-        {loading && <ActivityIndicator size="large" color="#0000ff" style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} />}
+        {loading && <ActivityIndicator size="large" color="#0000ff" style={{ position:'absolute', top: '75%', left:'50%', right:'50%', justifyContent: 'center', alignItems: 'center' }} />}
     </ImageBackground>
   )
 }

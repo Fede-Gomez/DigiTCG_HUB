@@ -1,12 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { appState } from '../interfaces';
+import { TypeNavigation } from '../constants/typesNavigation';
 
 const initialState: appState = {
   modalFilterVisible: false,
   modalCardVisible: false,
   flipedCard: true,
   modalCardView:{},
-  builderWishedSelling: 'deckBuilder'
+  builderWishedSelling: TypeNavigation.game.deckBuilder
 };
 
 export const appReducer = createSlice({

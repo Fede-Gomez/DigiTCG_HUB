@@ -42,4 +42,10 @@ export const listCardsView = StyleSheet.create({
     titleCardBuy:{
         ...titleCardBuy
     },
+    searchCard:{
+        backgroundColor:'silver', 
+        color:'black', 
+        textAlign:'center',
+        marginBottom:10
+    },
 })

@@ -3,6 +3,7 @@ import { userDeckUpdateDatabase } from '../firebase/dataBase';
 import { setCardsPicked } from '../reducers/cardsReducer';
 import { deleteDeckUser, setUser } from '../reducers/userReducer';
 import { userDeckRemoveDatabase } from '../firebase/dataBase'
+import { ErrorMessage, SuccesMessage } from '../components';
 
 export const useDeck = () => {
     const user = useAppSelector(state => state.user.profile)
@@ -16,7 +17,11 @@ export const useDeck = () => {
               [nombre]:cards
             }
         }
+        console.log('hola');
+        
         await userDeckUpdateDatabase(user.idUser,updateDeckUser)
+            .then(()=>SuccesMessage('Se guardo el deck'))
+            .catch(()=>ErrorMessage('Error al guardar deck'))
         dispatch(setUser(updateDeckUser))
     }
     const saveCardsPicked = async (cards)=>{

@@ -1,10 +1,11 @@
 import React from 'react'
 import { useState } from 'react';
-import { View, Text, TextInput, Button, ImageBackground } from 'react-native';
+import { View, Text, TextInput, Button, ImageBackground, ActivityIndicator } from 'react-native';
 import { useAccount } from '../../hooks/useAccount';
 import { useNavigation } from '@react-navigation/native';
 import { TypeNavigation } from '../../constants/typesNavigation';
 import { signUp } from '../../styles';
+import { ErrorMessage } from '../../components';
 
 const SignUpScreen = () => {
 
@@ -15,7 +16,7 @@ const SignUpScreen = () => {
     const {createAccount} = useAccount();
     const navigation = useNavigation();
     const style = signUp
-
+    const [loading] = useState(false)
     const reset = ()=>{
       setEmail('');
       setPassword('');
@@ -31,7 +32,7 @@ const SignUpScreen = () => {
       }}
     >
       <View style={style.container}>
-          <Text style={style.text}>Name</Text>
+          <Text style={style.text}>Nombre</Text>
           <TextInput
             onChangeText={(text)=>setName(text)} 
             style={style.inputText}
@@ -45,17 +46,25 @@ const SignUpScreen = () => {
             keyboardType='email-address'
             value={email}
           />
-          <Text style={style.text} >Password</Text>
+          <Text style={style.text} >Contraseña</Text>
           <TextInput 
             onChangeText={(text)=>setPassword(text)} 
             secureTextEntry={true}
             value={password}
             style={style.inputText}
+            
           />
           <View style={style.logCreteAccountResetContainer}>
             <Button
               color={'black'}
-              onPress={()=>createAccount(name, email, password)}
+              onPress={()=>{
+                if((name || email || password) == ''){
+                  ErrorMessage('Complete Nombre Email y Contraseña')
+                }else{
+                  createAccount(name, email, password)
+                }
+              }
+              }
               title='Create account'
             />
             <Button
@@ -70,6 +79,7 @@ const SignUpScreen = () => {
             />
           </View>
       </View>
+      {loading && <ActivityIndicator size="large" color="#0000ff" style={{ position:'absolute', top: '75%', left:'50%', right:'50%', justifyContent: 'center', alignItems: 'center' }} />}
     </ImageBackground>
   )
 }

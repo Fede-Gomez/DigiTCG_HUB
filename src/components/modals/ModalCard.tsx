@@ -45,9 +45,10 @@ const ModalCard = ({card}) => {
         inheritedEffect, 
         inheritedEffect2, 
         inheritedEffect3,
-        specialDigivolve, 
+        specialEvolve, 
         dnaDigivolve, 
         digiXcross, 
+        treated,
     } = card;
 
     const style = cardStyle;
@@ -88,10 +89,11 @@ const ModalCard = ({card}) => {
         }, 1500);
     }
 
+    
     return <Modal
         isVisible={isModalVisible}
         onSwipeComplete={()=>{setModalCard(false), setFlipCard(false)}}
-        swipeDirection={['up','down']}
+        swipeDirection={!btnHabilitado ? ['up','down'] : []}
     >
         <Animatable.Text animation="fadeOutUp" iterationCount={'infinite'} direction="alternate" duration={2500} style={{color:'white', fontSize:20, fontWeight:'bold', top:50}}>Desliza arriba o abajo para salir</Animatable.Text>
       <Animated.View
@@ -119,15 +121,20 @@ const ModalCard = ({card}) => {
                     <Text style={style.textCard} >Card number: {cardNumber}</Text>                
                 </View>
                 <View style={style.containerStats}>
-                    <Text style={style.textCard} >Color: {color}</Text>
-                    {traits && <Text style={style.textCard} >Traits: {traits.toString()}</Text>}
-                </View>
-                <View style={style.containerStats}>
                     {playCost !== null && playCost !== undefined && (
                         <Text style={style.textCard}>Playcost: {playCost}</Text>
                     )}
                     <Text style={style.textCard} >Rarity: {rarity}</Text>
                 </View>
+                <View style={style.containerStats}>
+                    <Text style={style.textCard} >Color: {color}</Text>
+                </View>
+                    <>
+                    {traits && <Text style={style.textCard} >Traits</Text>}
+                    <View style={style.containerMultiStats}>
+                        {traits?.map(element => {return <Text style={style.textCard} >{element}</Text>})}
+                    </View>
+                    </>
                     {digivolveColor !== null && digivolveColor !== undefined && (
                         <>
                         <Text style={style.textCard} >Digivolve colors</Text>
@@ -157,7 +164,8 @@ const ModalCard = ({card}) => {
                     )}
             </View>
             <View style={ style.containerEffectSource } >
-                {specialDigivolve && <Text style={style.textCard} >Digivolve: {traits.toString()}</Text>}
+                {treated && <Text style={style.textCard} >{treated}</Text>}
+                {specialEvolve && <Text style={style.textCard} >Digivolve: {specialEvolve}</Text>}
                 {dnaDigivolve && <Text style={style.textCard} >{dnaDigivolve}</Text>}
                 {effect !== undefined &&
                     <View style={style.containerTextEffect}>

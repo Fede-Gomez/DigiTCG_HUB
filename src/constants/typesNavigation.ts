@@ -4,14 +4,14 @@ export const TypeNavigation = {
         signIn:'Sign up',
     },
     game:{
-        homeGameTopBar:'HomeGameTopBar',
-        cardsView: 'Cardsss',
-        cardSelected: 'Card selected',
-        searchCard: 'Search card',
-        deckSelected: 'My decks',
+        home:'Home',
+        cardsView: 'Cards',
+        cardSelected: 'Cartas seleccionadas',
+        searchCard: 'Buscar carta',
+        deckSelected: 'Mis decks',
         tcgPlayer:'Tcg Player',
-        deckBuilder:'deckBuilder',
-        cardsWished: 'cardsWished',
-        cardsSelling: 'cardsSelling',
+        deckBuilder:'Deck',
+        cardsBuy: 'Comprar',
+        cardsSell: 'Vender',
     }
 }

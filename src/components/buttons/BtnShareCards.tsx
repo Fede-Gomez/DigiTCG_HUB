@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Share from 'react-native-share';
-import { Button } from 'react-native';
+import { TouchableOpacity, Text } from 'react-native';
 import RNFetchBlob from 'rn-fetch-blob';
 
 
@@ -35,6 +35,13 @@ export const BtnShareCards = ({ message='', cards, titlePrompt, guardarLista }) 
   };
   guardarLista
   return (
-    <Button title={titlePrompt} color={'green'} onPress={shareMessage} />
+    <TouchableOpacity
+        onPress={()=>shareMessage()}
+        style={{backgroundColor:'green', padding:10}}
+      >
+        <Text
+          style={{fontSize:20, fontWeight:'bold', color:'white'}}
+        >{titlePrompt}</Text>
+      </TouchableOpacity>
   );
 };

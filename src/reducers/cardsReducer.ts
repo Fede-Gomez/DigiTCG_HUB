@@ -111,7 +111,7 @@ export const cardsReducer = createSlice({
       state.view = payload;
     },
     setAllCards: (state, {payload}) =>{
-      state.searched = payload;
+      state.fullListCards = payload;
     },
     clearCardsView:(state)=>{
       state.view = initialState.view
@@ -129,7 +129,7 @@ export const cardsReducer = createSlice({
       state.listFilter = payload;
     },
     setCardListFiltered:(state, {payload})=>{
-      state.searched = payload      
+      state.filtred = payload      
     },
     cardPickedAdd: (state, {payload})=>{
       incrementCountCard(state, payload);

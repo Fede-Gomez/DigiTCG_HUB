@@ -96,7 +96,8 @@ interface Filter{
 
 export const initialStateCards: ListCards ={
   view: voidListCards,
-  searched: voidListCards,
+  fullListCards: voidListCards,
+  filtred: [],
   picked:[],
   selling:[],
   wished:[],
@@ -115,11 +116,12 @@ export const initialStateCards: ListCards ={
 
 export interface ListCards {
   view: listCards;            //list cards of BottomTabNavigation 
-  searched: listCards;        //list of filtred cards of BottomTabNavigation 
+  filtred: listCards;        //list of filtred cards of BottomTabNavigation 
   picked: listCards[];          //list of cards selected
   selling: listCards[];         //list of cards for sell
   wished: listCards[];          //list of cards for add
   listFilter: Filters;        //list of filter for search in api
+  fullListCards: listCards;
 };
 export interface folderState {
   folders:{
@@ -134,7 +136,6 @@ export interface appState {
   flipedCard: boolean;
   modalCardView: object;
   builderWishedSelling: string;
-  alertApp: (title: string, message:string) => {};
 }
 
 export interface UserState {

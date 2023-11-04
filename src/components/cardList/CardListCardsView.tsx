@@ -1,35 +1,24 @@
-import React, { useEffect, useState } from 'react'
-import { View, FlatList, Button, TextInput, Image, TouchableOpacity, Text } from 'react-native';
+import React, { useState } from 'react'
+import { View, FlatList, Button, TextInput } from 'react-native';
 import { useAppSelector } from '../../hooks/useReducerHook'
 import { BtnAddRemoveCards, BtnsHeadersCard, CardDigimon, ModalFilter } from '..'
-import { useApp, useCards } from '../../hooks'
-import { listCardsSearch, listCardsView } from '../../styles'
-import { filterOn, searchOn } from '../../assets/icons';
-import ModalCard from '../modals/ModalCard';
-import { TypeNavigation } from '../../constants/typesNavigation';
+import { useCards } from '../../hooks'
+import { listCardsView } from '../../styles'
+
 
 
 const CardListCardsView = () => {
   const card = useAppSelector(state => state.cards.view)
-  const builderWishedSelling = useAppSelector(state => state.app.builderWishedSelling)
-  
+  const cardFiltered = useAppSelector(state => state.cards.filtred)
+  const listCards = useAppSelector(state => state.cards.fullListCards)
+  const [nameCard, setNameCard] = useState('');
+
   const { clearListCardsView } = useCards()
 
   const style = listCardsView;
 
   const renderHeader = () => {
-    return (
-      <View>
-          <BtnsHeadersCard />
-          <Text style={
-            builderWishedSelling == TypeNavigation.game.deckBuilder && style.titleDeckBuilder
-            ||
-            builderWishedSelling == TypeNavigation.game.cardsSelling && style.titleCardSell
-            ||
-            builderWishedSelling == TypeNavigation.game.cardsWished && style.titleCardBuy
-          }>Estás en {builderWishedSelling}</Text>
-        </View>
-    )
+    return <BtnsHeadersCard />
   }
 
   const renderListEmpty = () => {
@@ -43,28 +32,52 @@ const CardListCardsView = () => {
 
   const renderItem = ({ item }) => {
     return (
-    <View style={style.container}>
-      <CardDigimon card={item} />
-      <View style={style.buttonsAddRemove}>
-        <BtnAddRemoveCards item={item} />
+      <View style={style.container}>
+        <CardDigimon card={item} />
+        <View style={style.buttonsAddRemove}>
+          <BtnAddRemoveCards item={item} />
+        </View>
       </View>
-    </View>
 
     )
   }
 
-  
+  const renderData = () => {
+    // sino me escribe nada en el buscador y pone filtros
+    if (nameCard == '' && cardFiltered.length !== 0) {
+      return cardFiltered
+    }
+    // si me escribe algo en el buscador y me pone filtros
+    if (nameCard !== '' && cardFiltered.length !== 0) {
+      return cardFiltered.filter((card) => card.name?.toLowerCase().includes(nameCard.toLowerCase()))
+    }
+    // si escribe algo en el nombre
+    if (nameCard !== '' && cardFiltered.length == 0){      
+      return listCards?.filter((card) => card.name?.toLowerCase().includes(nameCard.toLowerCase()))
+    }
+    // sino me escribe nada en el buscador y no pone filtro
+    return card
+  }
+
   return <>
-      <FlatList
-        ListEmptyComponent={renderListEmpty}
-        ListHeaderComponent={renderHeader}
-        data={ card }
-        renderItem={renderItem}
-        numColumns={2}
-        stickyHeaderIndices={[0]}
-        showsVerticalScrollIndicator={false}
-      />
-    </>
+    <FlatList
+      ListEmptyComponent={renderListEmpty}
+      ListHeaderComponent={renderHeader()}
+      data={renderData()}
+      renderItem={renderItem}
+      numColumns={2}
+      stickyHeaderIndices={[0]}
+      showsVerticalScrollIndicator={false}
+    />
+    <TextInput
+      placeholder="Search card by name"
+      onChangeText={setNameCard}
+      value={nameCard}
+      style={style.searchCard}
+      placeholderTextColor={'black'}
+    />
+    <ModalFilter />
+  </>
 }
 
 export default CardListCardsView

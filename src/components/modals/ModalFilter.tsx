@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import { Button, ScrollView, ImageBackground, View } from 'react-native';
+import { Button, ScrollView, View } from 'react-native';
 import Modal from "react-native-modal";
 import { useCards, useApp } from '../../hooks';
 import { useAppSelector } from '../../hooks/useReducerHook';
 import { filter } from '../../styles';
 import DropDownPicker from 'react-native-dropdown-picker';
 
-const modalFilter = () => {
+const ModalFilter = () => {
     const filterList = useAppSelector(state => state.cards.listFilter)
     const isModalVisible = useAppSelector(state => state.app.modalFilterVisible)
     
@@ -227,4 +227,4 @@ const modalFilter = () => {
     </Modal>
 }
 
-export default modalFilter
+export default ModalFilter

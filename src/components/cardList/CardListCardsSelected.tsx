@@ -1,5 +1,5 @@
-import React, {useState} from 'react'
-import { FlatList, Text, View, ImageBackground, Button } from 'react-native';
+import React from 'react'
+import { FlatList, Text, View } from 'react-native';
 import { BtnsHeadersCardSelecteds, BtnAddRemoveCards, CardDigimon } from '../../components'
 import { listCardsSelected } from '../../styles';
 import { useAppSelector } from '../../hooks/useReducerHook';
@@ -28,43 +28,24 @@ import { TypeNavigation } from '../../constants/typesNavigation';
       </View>
     }
     const renderHeader = () => {
-      return (
-        <View>
-          <BtnsHeadersCardSelecteds />
-          <Text style={
-            builderWishedSelling == TypeNavigation.game.deckBuilder && style.titleDeckBuilder
-            ||
-            builderWishedSelling == TypeNavigation.game.cardsSelling && style.titleCardSell
-            ||
-            builderWishedSelling == TypeNavigation.game.cardsWished && style.titleCardBuy
-          }>Estás en {builderWishedSelling}</Text>
-        </View>
-      );
+      return (<BtnsHeadersCardSelecteds />);
     };
     return (
-    <ImageBackground
-      source={require('../../assets/backgrounds/cardSelected.jpg')}
-      resizeMode='cover'
-      style={{
-        flex:1,
-      }}
-    >
-      <FlatList
-        ListEmptyComponent={renderListEmpty}
-        data={
-          builderWishedSelling == TypeNavigation.game.cardsSelling 
-            ? listSelling : 
-          builderWishedSelling == TypeNavigation.game.cardsWished 
-            ? listWished : listPicked
-        }
-        renderItem={renderItem}
-        numColumns={2}
-        stickyHeaderIndices={[0]}
-        ListHeaderComponent={renderHeader}
-        showsVerticalScrollIndicator={false}
-        removeClippedSubviews={true}
-      />
-    </ImageBackground>
+    <FlatList
+      ListEmptyComponent={renderListEmpty}
+      data={
+        builderWishedSelling == TypeNavigation.game.cardsSell 
+          ? listSelling : 
+        builderWishedSelling == TypeNavigation.game.cardsBuy 
+          ? listWished : listPicked
+      }
+      renderItem={renderItem}
+      numColumns={2}
+      stickyHeaderIndices={[0]}
+      ListHeaderComponent={renderHeader}
+      showsVerticalScrollIndicator={false}
+      removeClippedSubviews={true}
+    />
   )
 }
 
