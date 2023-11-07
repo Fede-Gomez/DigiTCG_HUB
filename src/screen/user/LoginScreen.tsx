@@ -27,17 +27,16 @@ export const LoginScreen = () => {
   useEffect(() => {
     loadFolders()
     getListFiltersOfCards()
-    loadAllCards()
+    // loadAllCards()
   }, [])
 
   return (
-
     <ImageBackground
-    source={require('../../assets/backgrounds/loginScreen.jpg')}
-    resizeMode='cover'
-    style={{
-      flex:1,        
-    }}
+      source={require('../../assets/backgrounds/loginScreen.jpg')}
+      resizeMode='cover'
+      style={{
+        flex:1,        
+      }}
     >
       {
         renderStack && (
@@ -58,8 +57,12 @@ export const LoginScreen = () => {
             <Button
               color={'black'}
               onPress={()=>(
-                signIn(email, password), 
-                setLoading(true))}
+                  signIn(email, password),
+                  setTimeout(() => {
+                    setLoading(false)
+                  }, 3500),
+                  setLoading(true)
+                )}
               title='Login'
             />
             <Button

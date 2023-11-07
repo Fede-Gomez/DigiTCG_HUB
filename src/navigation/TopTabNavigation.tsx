@@ -5,12 +5,17 @@ import { BottomCardTabNavigation } from './BottomTabNavigation';
 import { TcgPlayerScreen } from '../screen';
 import { BackHandler, Button } from 'react-native';
 import { ModalApoyoComentarios } from '../components';
+import { useCards } from '../hooks';
+import { useAppSelector } from '../hooks/useReducerHook';
 
 const Tab = createMaterialTopTabNavigator();
 
 
 export const TopTapNavigation = () => {
   const [isModalVisible, setModalVisible] = useState(false);
+  const { setCardsBuySellAfterLogin } = useCards()
+  const profile = useAppSelector(state => state.user.profile)
+
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
@@ -24,9 +29,15 @@ export const TopTapNavigation = () => {
     };
 
     const backHandler = BackHandler.addEventListener('hardwareBackPress', backAction);
-
     return () => backHandler.remove();
   }, []);
+
+  useEffect(() => {
+    setCardsBuySellAfterLogin(profile)
+  }, [])
+  
+
+
   return (
     <>
       <Button
@@ -37,7 +48,7 @@ export const TopTapNavigation = () => {
         screenOptions={{swipeEnabled:false}}
         initialRouteName={TypeNavigation.game.deckBuilder}
       >
-        <Tab.Screen name={TypeNavigation.game.deckBuilder} component={BottomCardTabNavigation} />
+        <Tab.Screen name={TypeNavigation.game.deckBuilder} component={BottomCardTabNavigation} options={{title:'Cartas'}} />
         <Tab.Screen name={TypeNavigation.game.tcgPlayer} component={TcgPlayerScreen} />
       </Tab.Navigator>
       <ModalApoyoComentarios isModalVisible={isModalVisible} toggleModal={toggleModal}/>

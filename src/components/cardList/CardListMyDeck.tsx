@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useAppSelector } from '../../hooks/useReducerHook'
 import { CardDigimon } from '../../components'
-import { Text, FlatList, Button, View, Alert } from 'react-native';
+import { Text, FlatList, Button, View, Alert, TouchableOpacity } from 'react-native';
 import Modal from 'react-native-modal';
 import { useDeck } from '../../hooks';
 import { useNavigation } from '@react-navigation/native';
@@ -85,45 +85,39 @@ const CardListMyDeck = () => {
       return(
         <View>
           <View style={style.buttonsViewUpdateDelete}>
-            <Button
-              onPress={toggleModal}
-              title= {!deckChoice ? 'Ver deck' : 'Ver otros decks'} 
-            />
-            {deckChoice &&
-              <Button
-                onPress={toggleModal}
-                title='Actualizar'
-                color={'orange'}
-                onPress={()=>{updateDeckAndGoCardSelect()}}
-              />
+            {deckChoice && <>
+                <Button
+                  onPress={toggleModal}
+                  title= {'Ver otros decks'} 
+                />
+                <Button
+                  onPress={toggleModal}
+                  title='Actualizar'
+                  color={'orange'}
+                  onPress={()=>{updateDeckAndGoCardSelect()}}
+                />
+              </>
             }
             </View>
             <View style={style.buttonsViewUpdateDelete}>
-              {deckChoice &&
-                <Button 
-                  title={'Compartir TTS deck'}
-                  color={'green'}
-                  onPress={shareMessage}
-                />
+              {deckChoice && <>
+                  <Button 
+                    title={'Compartir TTS deck'}
+                    color={'green'}
+                    onPress={shareMessage}
+                  />
+                  <Button
+                    onPress={toggleModal}
+                    color={'red'}
+                    title='Borrar deck'
+                    onPress={()=>{removeDeck(deckChoice)}}
+                  />
+                </>
               }
-              {deckChoice &&
-                <Button
-                  onPress={toggleModal}
-                  color={'red'}
-                  title='Borrar deck'
-                  onPress={()=>{removeDeck(deckChoice)}}
-                />
-              }
-
             </View>
           {deckChoice &&
             <Text style={style.nameDeck}>{deckChoice}</Text> 
           }
-          {!deckChoice &&
-              <View style={style.selectDecksContainer}>
-                <Text style={style.selectDecks} >Selecciona un mazo</Text>
-              </View> 
-            }
         <Modal
             isVisible={isModalVisible}
         >
@@ -156,11 +150,20 @@ const CardListMyDeck = () => {
 
     }
 
-    
+    const renderNoDeckChoice = ()=>{
+    return( 
+      <TouchableOpacity
+        onPress={toggleModal}
+      >
+        <Text style={style.selectDecks} >Selecciona un mazo</Text>
+      </TouchableOpacity>
+    )
+    }
   return (
     <>
       <FlatList
         data={deckChoice ? decks[deckChoice] : []}
+        ListEmptyComponent={renderNoDeckChoice}
         ListHeaderComponent={renderHeader}
         renderItem={renderDeck}
         numColumns={3}

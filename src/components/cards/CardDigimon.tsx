@@ -1,5 +1,5 @@
 import React from 'react'
-import { TouchableOpacity } from 'react-native';
+import { ImageBackground, TouchableOpacity } from 'react-native';
 import { cardStyle } from '../../styles';
 import { useApp } from '../../hooks';
 import FastImage from 'react-native-fast-image';
@@ -15,21 +15,29 @@ const CardDigimon = ({ card }) => {
     };
     
     return (
-        <TouchableOpacity
-            style={style.cardContainer}
-            key={id}
-            activeOpacity={0.7}
-            onPress={toggleModal}
+        <ImageBackground
+            source={require('../../assets/backgrounds/compra.jpg')}
+            style={{ width: 190, height: 200 }}
+            resizeMode='center'
         >
-            <FastImage
-                style={{ width: 200, height: 200 }}
-                source={{
-                    uri: imgUrl,
-                    priority: FastImage.priority.high,
-                }}
-                resizeMode={FastImage.resizeMode.contain}
-            />
-        </TouchableOpacity>
+            <TouchableOpacity
+                style={style.cardContainer}
+                key={id}
+                activeOpacity={0.7}
+                onPress={toggleModal}
+            >
+                <FastImage
+                    style={{ width: 190, height: 200 }}
+                    source={{
+                        uri: imgUrl,
+                        priority: FastImage.priority.high,
+                    }}
+
+                    resizeMode={FastImage.resizeMode.contain}
+                />
+            </TouchableOpacity>
+
+        </ImageBackground>
     )
 }
 

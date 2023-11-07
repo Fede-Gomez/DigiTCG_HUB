@@ -114,7 +114,8 @@ export const cardsReducer = createSlice({
       state.fullListCards = payload;
     },
     clearCardsView:(state)=>{
-      state.view = initialState.view
+      state.view = initialState.view,
+      state.filtred = initialState.filtred
     },
     clearCardsPicked:(state)=>{
       state.picked = initialState.picked
@@ -151,6 +152,10 @@ export const cardsReducer = createSlice({
     },
     setCardsPicked:(state, {payload})=>{
       state.picked = payload;
+    },
+    setCardBuySellLogin:(state, {payload})=>{
+      state.wished = payload.cardsBuy,
+      state.selling = payload.cardsSell
     }
 }})
 
@@ -170,6 +175,7 @@ export const {
   addCardToSell,
   removeCardToSell,
   setCardsPicked,
+  setCardBuySellLogin,
 } = cardsReducer.actions
 
 export default cardsReducer.reducer

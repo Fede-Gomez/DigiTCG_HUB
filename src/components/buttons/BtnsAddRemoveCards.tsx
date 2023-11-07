@@ -4,17 +4,31 @@ import { useCards } from '../../hooks';
 import { TypeNavigation } from '../../constants/typesNavigation';
 import { useAppSelector } from '../../hooks/useReducerHook';
 import { btnsAddRemove } from '../../styles';
-
+import Toast from 'react-native-toast-message'
 const style = btnsAddRemove
 
 const BtnAddRemoveCards = ({ item }) => {
   const { addCards, addCardSelling, addCardWished, removeCardSelling, removeCards, removeCardWished } = useCards()
   const builderWishedSelling = useAppSelector(state => state.app.builderWishedSelling)
 
+const addNotification = ()=>{
+  Toast.show({
+    type: 'success',
+    text1: `Agregado a ${builderWishedSelling}`
+  });
+}
+
+const removeNotification = ()=>{
+  Toast.show({
+    type: 'error',
+    text1: `Quitado de ${builderWishedSelling}`
+  });
+}
+
   const deckBuilder = <>
     <TouchableOpacity
       style={style.buttonAdd}
-      onPress={() => addCards(item)}
+      onPress={() => (addCards(item), addNotification())}
     >
       <Text style={style.textButtonAdd}>Add</Text>
     </TouchableOpacity>
@@ -25,7 +39,7 @@ const BtnAddRemoveCards = ({ item }) => {
     }
     <TouchableOpacity
       style={style.buttonRemove}
-      onPress={() => removeCards(item)}
+      onPress={() => (removeCards(item), removeNotification())}
     >
       <Text style={style.textButtonRemove}>Remove</Text>
     </TouchableOpacity>
@@ -34,7 +48,7 @@ const BtnAddRemoveCards = ({ item }) => {
   const cardsWished = <>
     <TouchableOpacity
       style={style.buttonAdd}
-      onPress={() => addCardWished(item)}
+      onPress={() => (addCardWished(item), addNotification())}
     >
       <Text style={style.textButtonAdd}>Add</Text>
     </TouchableOpacity>
@@ -45,7 +59,7 @@ const BtnAddRemoveCards = ({ item }) => {
     }
     <TouchableOpacity
       style={style.buttonRemove}
-      onPress={() => removeCardWished(item)}
+      onPress={() => (removeCardWished(item), removeNotification())}
     >
       <Text style={style.textButtonRemove}>Remove</Text>
     </TouchableOpacity>
@@ -54,7 +68,7 @@ const BtnAddRemoveCards = ({ item }) => {
   const cardsSelling = <>
     <TouchableOpacity
       style={style.buttonAdd}
-      onPress={() => addCardSelling(item)}
+      onPress={() => (addCardSelling(item), addNotification())}
     >
       <Text style={style.textButtonAdd}>Add</Text>
     </TouchableOpacity>
@@ -65,7 +79,7 @@ const BtnAddRemoveCards = ({ item }) => {
     }
     <TouchableOpacity
       style={style.buttonRemove}
-      onPress={() => removeCardSelling(item)}
+      onPress={() => (removeCardSelling(item), removeNotification())}
     >
       <Text style={style.textButtonRemove}>Remove</Text>
     </TouchableOpacity>

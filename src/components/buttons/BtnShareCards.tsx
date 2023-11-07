@@ -2,6 +2,7 @@ import React from 'react';
 import Share from 'react-native-share';
 import { TouchableOpacity, Text } from 'react-native';
 import RNFetchBlob from 'rn-fetch-blob';
+import { useDeck } from '../../hooks';
 
 
 const shareImages = async (message, imageUrls) => {
@@ -25,15 +26,18 @@ const shareImages = async (message, imageUrls) => {
   }
 };
 
-export const BtnShareCards = ({ message='', cards, titlePrompt, guardarLista }) => {
+export const BtnShareCards = ({ tipoOperacion, message='', cards, titlePrompt='' }) => {
+  const { saveCardsBuy, saveCardsSell } = useDeck()
   const imageUrls = cards.map((e) => e.imgUrl);
   cards.forEach( e =>{
     message += e.count + ' ' + e.name + ' del ' + e.source + '\n\n'
   })
   const shareMessage = () => {
     shareImages(message, imageUrls, titlePrompt);
+    tipoOperacion == 'compra'
+    ? saveCardsBuy(cards)
+    : saveCardsSell(cards)
   };
-  guardarLista
   return (
     <TouchableOpacity
         onPress={()=>shareMessage()}

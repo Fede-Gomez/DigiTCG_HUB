@@ -1,5 +1,12 @@
 pedir efectos de sonido para los botones (particularmente add y remove)
 
-preguntar de guardar el mazo al salir de deckbuilder
-btn en el medio del header, armarlo como desplegable
+-agregarle a todos los <FastImage/> un backgroundImage para que funcione como placeholder (esto estaria bueno verlo con las img que de daira)
 
+check
+-modificar para que cuando inicie sesion la lista de cartas del usuario se guarde en la lista de cartas del reducer Cards
+-modificar btns headers para que las funciones save deck no se llamen tantas veces
+-Ver filtros de manera gral y por bt
+-Un prompt cuando agregas una carta
+-actualizar icono loading de loginScreen para que se desactive si hubo un msj
+-desactivar btns de compra venta o guardar deck sino hay cartas
+-Btn ver mazo en el medio más grande

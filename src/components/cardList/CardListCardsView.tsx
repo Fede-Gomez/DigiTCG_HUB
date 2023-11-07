@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
-import { View, FlatList, Button, TextInput } from 'react-native';
+import { View, FlatList, Button, TextInput, Text } from 'react-native';
 import { useAppSelector } from '../../hooks/useReducerHook'
 import { BtnAddRemoveCards, BtnsHeadersCard, CardDigimon, ModalFilter } from '..'
-import { useCards } from '../../hooks'
 import { listCardsView } from '../../styles'
 
 
@@ -13,20 +12,17 @@ const CardListCardsView = () => {
   const listCards = useAppSelector(state => state.cards.fullListCards)
   const [nameCard, setNameCard] = useState('');
 
-  const { clearListCardsView } = useCards()
-
   const style = listCardsView;
 
   const renderHeader = () => {
     return <BtnsHeadersCard />
   }
-
+  
   const renderListEmpty = () => {
     return <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-around' }}>
-      <Button
-        title={'No hay nada aca'}
-        onPress={() => clearListCardsView()}
-      />
+      <Text style={style.listEmpty}>
+        No se encontraron cartas
+      </Text>
     </View>
   }
 
@@ -44,7 +40,7 @@ const CardListCardsView = () => {
 
   const renderData = () => {
     // sino me escribe nada en el buscador y pone filtros
-    if (nameCard == '' && cardFiltered.length !== 0) {
+    if (nameCard == '' && cardFiltered.length !== 0) {      
       return cardFiltered
     }
     // si me escribe algo en el buscador y me pone filtros

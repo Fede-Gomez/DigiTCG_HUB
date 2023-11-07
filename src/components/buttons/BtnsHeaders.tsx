@@ -49,7 +49,7 @@ export const BtnsHeadersCard = () => {
 
   const deckBuilder = () => {
     return (
-      <View style={style.container}>
+      <View style={style.containerWithButtons}>
         {buttonBack(clearListCardsView)}
         <View>
           <TouchableOpacity onPress={handleButtonPress}>
@@ -94,7 +94,7 @@ export const BtnsHeadersCard = () => {
   }
   const cardBuy = () => {
     return (
-      <View style={style.container}>
+      <View style={style.containerWithButtons}>
         {buttonBack(clearListCardsView)}
         <View>
           <TouchableOpacity onPress={handleButtonPress}>
@@ -141,7 +141,7 @@ export const BtnsHeadersCard = () => {
   }
   const cardSell = () => {
     return (
-      <View style={style.container}>
+      <View style={style.containerWithButtons}>
         {buttonBack(clearListCardsView)}
         <View>
           <TouchableOpacity onPress={handleButtonPress}>
@@ -208,8 +208,8 @@ export const BtnsHeadersCardSelecteds = () => {
 
   const deckBuilder = () => {
     return (
-      <View style={style.container}>
-        {buttonClearList(clearListCardsPicked)}
+      <View style={listPicked.length == 0 ? style.containerAlone : style.containerWithButtons}>
+        {listPicked.length != 0 && buttonClearList(clearListCardsPicked)}
         <View>
           <TouchableOpacity onPress={handleButtonPress}>
             <Text style={{ ...style.textButtonDesplegable1, backgroundColor: colorBackgroundDeckBuilder, color: colorTextDesplegable }}>
@@ -240,7 +240,7 @@ export const BtnsHeadersCardSelecteds = () => {
           </Animatable.View>
         </View>
         <View>
-          <ButtonSaveDeck cards={listPicked} />
+          {listPicked.length != 0 && <ButtonSaveDeck cards={listPicked} />}
         </View>
       </View>
     )
@@ -248,8 +248,8 @@ export const BtnsHeadersCardSelecteds = () => {
 
   const cardBuy = () => {
     return (
-      <View style={style.container}>
-        {buttonClearList(clearListCardsWished)}
+      <View style={listWished.length == 0 ? style.containerAlone : style.containerWithButtons}>
+        {listWished.length != 0 && buttonClearList(clearListCardsWished)}
         <View>
           <TouchableOpacity onPress={handleButtonPress}>
             <Text style={{ ...style.textButtonDesplegable1, backgroundColor: colorBackgroundCardBuy, color: colorTextDesplegable }}>
@@ -279,15 +279,15 @@ export const BtnsHeadersCardSelecteds = () => {
             </TouchableOpacity>
           </Animatable.View>
         </View>
-        <BtnShareCards message={`Busco:\n`} cards={listWished} titlePrompt={'Publicar compra'} guardarLista={saveCardsBuy(listWished)} />
+        {listWished.length != 0 && <BtnShareCards message={`Busco:\n`} cards={listWished} tipoOperacion='compra' titlePrompt={'Guardar y publicar'} />}
       </View>
     )
   }
 
   const cardSell = () => {
     return (
-      <View style={style.container}>
-        {buttonClearList(clearListCardsSelling)}
+      <View style={listSelling.length == 0 ? style.containerAlone : style.containerWithButtons}>
+        {listSelling.length != 0 &&buttonClearList(clearListCardsSelling)}
         <View>
           <TouchableOpacity onPress={handleButtonPress}>
             <Text style={{ ...style.textButtonDesplegable1, backgroundColor: colorBackgroundCardSell, color: colorTextDesplegable }}>
@@ -317,7 +317,7 @@ export const BtnsHeadersCardSelecteds = () => {
             </TouchableOpacity>
           </Animatable.View>
         </View>
-        <BtnShareCards message={`Vendo:\n`} cards={listSelling} titlePrompt={'Publicar venta'} guardarLista={saveCardsSell(listSelling)} />
+        {listSelling.length != 0 && <BtnShareCards message={`Vendo:\n`} cards={listSelling} tipoOperacion='venta' titlePrompt={'Guardar y publicar'} />}
       </View>
     )
   }

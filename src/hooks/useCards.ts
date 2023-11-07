@@ -14,6 +14,7 @@ import {
   clearCardsPicked,
   clearCardsWished,
   clearCardsSelling,
+  setCardBuySellLogin,
 } from '../reducers/cardsReducer'
 import { getFilters, getCardsBt, getFilteredCards, getAllCards, getCardsEx, getCardsRb, getCardsSt, getCardsPromo } from '../services/database'
 
@@ -79,7 +80,7 @@ export const useCards = () => {
     
     dispatch(setCardListFiltered(getFilteredCard))
   }
-  
+
   const addCards = (card)=>{
     dispatch(cardPickedAdd(card))
   }
@@ -87,6 +88,7 @@ export const useCards = () => {
   const addCardWished = (card)=>{
     dispatch(addCardToWish(card))
   }
+
   const removeCardWished = (card)=>{
     dispatch(removeCardToWish(card))
   }
@@ -103,9 +105,14 @@ export const useCards = () => {
     dispatch(removeCardToSell(card))
   }
 
-
   const removeFiltersNoChoiced = (cardFilters)=>{
-    // remove filters empty because its not choiced
+    // remueve todos los filtros que tengan un array vacio
+    for(let clave in cardFilters){
+      if (Array.isArray(cardFilters[clave]) && cardFilters[clave].length === 0) {
+          delete cardFilters[clave];
+      }
+    }
+    // remueve todos los filtros que tengan null como valor
     let newFilters = {}
     Object.entries(cardFilters).forEach(([key, value]) => {
       if(value != null){
@@ -116,6 +123,10 @@ export const useCards = () => {
       }  
     });
     return newFilters;
+  }
+
+  const setCardsBuySellAfterLogin = (user)=>{
+    dispatch(setCardBuySellLogin(user))
   }
 
   return{
@@ -137,5 +148,6 @@ export const useCards = () => {
     clearListCardsView,
     clearListCardsWished,
     clearListCardsSelling,
+    setCardsBuySellAfterLogin,
   }
 }

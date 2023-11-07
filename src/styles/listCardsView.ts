@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 import { colorBackgroundCardBuy, colorBackgroundCardSell, colorBackgroundDeckBuilder} from '../constants/colors'
 
 let titleSectionBase = {
@@ -48,4 +48,13 @@ export const listCardsView = StyleSheet.create({
         textAlign:'center',
         marginBottom:10
     },
+    listEmpty:{
+        backgroundColor:'red',
+        borderRadius:8,
+        padding:20,
+        color:'white',
+        textAlign: 'center',
+        fontSize:30,
+        marginTop:Dimensions.get('screen').height/4
+     },
 })

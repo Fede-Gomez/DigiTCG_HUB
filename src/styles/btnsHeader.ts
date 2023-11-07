@@ -23,12 +23,28 @@ let btnBase = {
     textAlign:'center',
 }
 
+let containerBase = {
+    flex: 1, 
+    flexDirection: 'row', 
+    marginVertical:8,
+}
+
+let containerAlone ={
+    ...containerBase,
+    alignSelf: 'center'
+}
+
+let containerWithButtons ={
+    ...containerBase,
+    justifyContent: 'space-around', 
+}
+
 export const btnsHeader = StyleSheet.create({
-    container:{ 
-        flex: 1, 
-        flexDirection: 'row', 
-        justifyContent: 'space-around', 
-        marginVertical:8,
+    containerAlone:{ 
+        ...containerAlone
+    },
+    containerWithButtons:{ 
+        ...containerWithButtons
     },
 
  

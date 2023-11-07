@@ -57,6 +57,10 @@ const getCardsRb = async (rb: string) => {
 const getFilteredCards = async (filter: object) => {
   try {
     const resp = await axios.post(`${urlBase}/listFiltered`, { filter });
+    
+    // esta condicion esta por si el resultado de los filtros puestos devuelve un [] (lo que significa que no hay coincidencia con los filtros que puso en el modal)
+    if(resp.data.length == 0) return 0
+    
     return resp.data
   } catch (error) {
     throw error;

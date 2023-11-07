@@ -17,8 +17,6 @@ export const useDeck = () => {
               [nombre]:cards
             }
         }
-        console.log('hola');
-        
         await userDeckUpdateDatabase(user.idUser,updateDeckUser)
             .then(()=>SuccesMessage('Se guardo el deck'))
             .catch(()=>ErrorMessage('Error al guardar deck'))

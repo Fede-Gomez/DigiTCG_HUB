@@ -47,6 +47,10 @@ const ModalFilter = () => {
     const [openTraits, setOpenTraits] = useState(false);
     const [valueTraits, setValueTraits] = useState(null);
 
+    const [source, setSource] = useState(filtros.source);
+    const [openSource, setOpenSource] = useState(false);
+    const [valueSource, setValueSource] = useState(null);
+
     const groupSelection = () => {
         const filtChoiced = {
             valueAttribute,
@@ -56,7 +60,8 @@ const ModalFilter = () => {
             valueLevel,
             valuePlayCost,
             valueRarity,
-            valueType
+            valueType,
+            valueSource,
         };
         cardListFiltered(filtChoiced);
         closeModal();
@@ -64,23 +69,23 @@ const ModalFilter = () => {
 
     const clearGroupSelection = () => {
         setValueAttribute(null),
-            setValueColor(null),
-            setValueKeyword(null),
-            setValueLevel(null),
-            setValuePlayCost(null),
-            setValueRarity(null),
-            setValueTraits(null),
-            setValueType(null)
+        setValueColor(null),
+        setValueKeyword(null),
+        setValueLevel(null),
+        setValuePlayCost(null),
+        setValueRarity(null),
+        setValueTraits(null),
+        setValueType(null),
+        setValueSource(null)
     }
     
     const closeModal = () => {
         setModalFilter(false)
     }
 
-    return <Modal
-        isVisible={isModalVisible}
-    >
-        <View style={style.containerBtnClearOk}>
+    const header = ()=>{
+        return(
+            <View style={style.containerBtnClearOk}>
             <Button
                 title='Confirm'
                 onPress={() => { groupSelection() }}
@@ -94,6 +99,13 @@ const ModalFilter = () => {
                 onPress={() => { closeModal() }}
             />
         </View>
+        )
+    }
+
+    return <Modal
+        isVisible={isModalVisible}
+    >
+        {header()}   
         <ScrollView>
             <DropDownPicker
                 open={openPlayCost}
@@ -222,6 +234,22 @@ const ModalFilter = () => {
                 }}
                 multiple
                 multipleText={valueTraits?.toString().replaceAll(',', ' ')}
+            />
+            <DropDownPicker
+                open={openSource}
+                value={valueSource}
+                items={source}
+                setOpen={setOpenSource}
+                setValue={setValueSource}
+                setItems={setSource}
+                placeholder={'Bt/St/Ex/Rb/P'}
+                listMode='SCROLLVIEW'
+                dropDownContainerStyle={{
+                    position: 'relative',
+                    top: 0
+                }}
+                multiple
+                multipleText={valueSource?.toString().replaceAll(',', ' ')}
             />
         </ScrollView>
     </Modal>
