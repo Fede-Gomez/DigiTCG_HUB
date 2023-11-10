@@ -3,6 +3,7 @@ import { ImageBackground, TouchableOpacity } from 'react-native';
 import { cardStyle } from '../../styles';
 import { useApp } from '../../hooks';
 import FastImage from 'react-native-fast-image';
+import {placeholderCard} from '../../assets/backgrounds/index';
 
 const CardDigimon = ({ card }) => {
     const { id, imgUrl } = card
@@ -16,7 +17,7 @@ const CardDigimon = ({ card }) => {
     
     return (
         <ImageBackground
-            source={require('../../assets/backgrounds/compra.jpg')}
+            source={placeholderCard}
             style={{ width: 190, height: 200 }}
             resizeMode='center'
         >

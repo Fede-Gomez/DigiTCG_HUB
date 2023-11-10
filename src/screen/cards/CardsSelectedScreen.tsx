@@ -3,16 +3,17 @@ import { ImageBackground } from 'react-native';
 import { CardListCardsSelected } from '../../components'
 import { useAppSelector } from '../../hooks/useReducerHook';
 import { TypeNavigation } from '../../constants/typesNavigation';
+import { backgroundCompra, backgroundDeck, backgroundVenta } from '../../assets/backgrounds';
 
 const CardsSelectedScreen = () => {
   const builderWishedSelling = useAppSelector(state => state.app.builderWishedSelling)
   let fondo;
   switch (builderWishedSelling) {
-    case TypeNavigation.game.deckBuilder: fondo = require('../../assets/backgrounds/deck.jpg')        
+    case TypeNavigation.game.deckBuilder: fondo = backgroundDeck      
       break;
-    case TypeNavigation.game.cardsBuy : fondo = require('../../assets/backgrounds/compra.jpg')
+    case TypeNavigation.game.cardsBuy : fondo = backgroundCompra
       break;
-    case TypeNavigation.game.cardsSell : fondo = require('../../assets/backgrounds/venta.jpg')
+    case TypeNavigation.game.cardsSell : fondo = backgroundVenta
       break;
   }
   return (

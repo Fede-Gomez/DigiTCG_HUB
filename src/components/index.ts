@@ -3,7 +3,7 @@ import Folder from './folders/Folder';
 import { CardListCardsSelected, CardListCardsView, CardListMyDeck } from './cardList'
 import { ModalApoyoComentarios, ModalCard, ModalFilter} from './modals'
 import { BtnAddRemoveCards, BtnShareCards, BtnsHeadersCard, BtnsHeadersCardSelecteds} from './buttons'
-import { ErrorMessage, SuccesMessage} from './alerts'
+import { ErrorMessage, SuccesMessage, ErrorSound} from './alerts'
 
 export {
     CardDigimon,
@@ -19,5 +19,6 @@ export {
     BtnsHeadersCard,
     BtnsHeadersCardSelecteds,
     ErrorMessage,
-    SuccesMessage
+    ErrorSound,
+    SuccesMessage,
 }

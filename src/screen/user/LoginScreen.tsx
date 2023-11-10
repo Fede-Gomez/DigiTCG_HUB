@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native'
 import { TypeNavigation } from '../../constants/typesNavigation'
 import { login } from '../../styles'
 import { useCards, useFolders } from '../../hooks'
+import { backgroundLoginScreen } from '../../assets/backgrounds';
 
 
 export const LoginScreen = () => {
@@ -32,7 +33,7 @@ export const LoginScreen = () => {
 
   return (
     <ImageBackground
-      source={require('../../assets/backgrounds/loginScreen.jpg')}
+      source={backgroundLoginScreen}
       resizeMode='cover'
       style={{
         flex:1,        

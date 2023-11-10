@@ -5,10 +5,13 @@ const voidCard = {
   color: '',
   digivolveColor:'',
   digivolveColor2:'',
+  digivolveColor3:'',
   digivolveCost: 0,
   digivolveCost2: 0,
+  digivolveCost3: 0,
   digivolveFrom: 0,
   digivolveFrom2: 0,
+  digivolveFrom3: 0,
   effect: '',
   effect2: '',
   effect3: '',
@@ -46,11 +49,14 @@ interface Card {
   color: string;
   digivolveColor:string;
   digivolveColor2:string;
+  digivolveColor3:string;
   digivolveFrom: number;
   digivolveFrom2: number;
+  digivolveFrom3: number;
   playCost: number;
   digivolveCost: number;
   digivolveCost2: number;
+  digivolveCost3: number;
   level: number;
   power: number;
   traits: string[];

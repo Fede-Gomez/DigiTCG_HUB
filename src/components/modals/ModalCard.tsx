@@ -6,6 +6,8 @@ import Modal from "react-native-modal";
 import { cardStyle } from '../../styles';
 import { Animated } from 'react-native';
 import * as Animatable from 'react-native-animatable';
+import { placeholderCard } from '../../assets/backgrounds';
+
 
 const ModalCard = ({card}) => {
     const isModalVisible = useAppSelector(state => state.app.modalCardVisible)
@@ -26,10 +28,13 @@ const ModalCard = ({card}) => {
         cardType, 
         digivolveColor,
         digivolveColor2, 
+        digivolveColor3, 
         digivolveCost, 
         digivolveCost2, 
+        digivolveCost3, 
         digivolveFrom, 
         digivolveFrom2, 
+        digivolveFrom3, 
         traits,        
         level, 
         power, 
@@ -103,7 +108,7 @@ const ModalCard = ({card}) => {
             transform: [{ rotateY: imageRotate }]}}
       >
         <Image
-          source={{ uri: isFliped ? 'https://wikimon.net/images/4/4b/Hyper_colosseum_card_backstage_design.jpg' : imgUrl }}
+          source={{ uri: isFliped ? placeholderCard : imgUrl }}
           style={isFliped ? style.imgFlipped : style.imgNotFlipped }
         />
         {isFliped &&
@@ -141,6 +146,7 @@ const ModalCard = ({card}) => {
                         <View style={style.containerMultiStats}>
                             {digivolveColor && <Text style={style.multiTextCard} > {digivolveColor}</Text>}
                             {digivolveColor2 && <Text style={style.multiTextCard} >{digivolveColor2}</Text>}
+                            {digivolveColor3 && <Text style={style.multiTextCard} >{digivolveColor3}</Text>}
                         </View>
                         </>
                     )}
@@ -150,6 +156,7 @@ const ModalCard = ({card}) => {
                             <View style={style.containerMultiStats}>
                                 {digivolveFrom && <Text style={style.multiTextCard}>{digivolveFrom}</Text>}
                                 {digivolveFrom2 && <Text style={style.multiTextCard}>{digivolveFrom2}</Text>}
+                                {digivolveFrom3 && <Text style={style.multiTextCard}>{digivolveFrom3}</Text>}
                             </View>
                         </>
                     )}
@@ -159,6 +166,7 @@ const ModalCard = ({card}) => {
                             <View style={style.containerMultiStats}>
                                 {(digivolveCost || digivolveCost == 0)  && <Text style={style.multiTextCard}>{digivolveCost}</Text>}
                                 {(digivolveCost2 || digivolveCost2 == 0)  && <Text style={style.multiTextCard}>{digivolveCost2}</Text>}
+                                {(digivolveCost3 || digivolveCost3 == 0)  && <Text style={style.multiTextCard}>{digivolveCost3}</Text>}
                             </View>
                         </>
                     )}
