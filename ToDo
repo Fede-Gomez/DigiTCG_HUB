@@ -1,8 +1,8 @@
 pedir efectos de sonido para los botones (particularmente add y remove)
 
--agregarle a todos los <FastImage/> un backgroundImage para que funcione como placeholder (esto estaria bueno verlo con las img que de daira)
 
 check
+-agregarle a todos los <FastImage/> un backgroundImage para que funcione como placeholder (esto estaria bueno verlo con las img que de daira)
 -modificar para que cuando inicie sesion la lista de cartas del usuario se guarde en la lista de cartas del reducer Cards
 -modificar btns headers para que las funciones save deck no se llamen tantas veces
 -Ver filtros de manera gral y por bt

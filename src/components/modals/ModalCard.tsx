@@ -54,6 +54,7 @@ const ModalCard = ({card}) => {
         dnaDigivolve, 
         digiXcross, 
         treated,
+        ace,
     } = card;
 
     const style = cardStyle;
@@ -108,17 +109,17 @@ const ModalCard = ({card}) => {
             transform: [{ rotateY: imageRotate }]}}
       >
         <Image
-          source={{ uri: isFliped ? placeholderCard : imgUrl }}
+          source={isFliped ? placeholderCard : { uri: imgUrl }}
           style={isFliped ? style.imgFlipped : style.imgNotFlipped }
         />
         {isFliped &&
             <View style={style.modalContainerCard} >
             <View style={style.containerImgStats} >
-                    <Text style={style.firstText} >Name: {name}</Text>
+                    <Text style={style.firstText} >{name}</Text>
                 <View style={style.containerStats}>
                     {power && <Text style={style.textCard} >Power: {power}</Text>}
                     {level && <Text style={style.textCard} >Level: {level}</Text>}
-                    {attribute && <Text style={style.textCard} >Attribute: {attribute}</Text>}
+                    {attribute && <Text style={style.textCard} >Atributo: {attribute}</Text>}
                 </View>
                 <View style={style.containerStats}>
                     <Text style={style.textCard} >Card type: {cardType}</Text>
@@ -130,46 +131,50 @@ const ModalCard = ({card}) => {
                         <Text style={style.textCard}>Playcost: {playCost}</Text>
                     )}
                     <Text style={style.textCard} >Rarity: {rarity}</Text>
-                </View>
-                <View style={style.containerStats}>
                     <Text style={style.textCard} >Color: {color}</Text>
                 </View>
-                    <>
-                    {traits && <Text style={style.textCard} >Traits</Text>}
-                    <View style={style.containerMultiStats}>
-                        {traits?.map(element => {return <Text style={style.textCard} >{element}</Text>})}
-                    </View>
-                    </>
                     {digivolveColor !== null && digivolveColor !== undefined && (
                         <>
-                        <Text style={style.textCard} >Digivolve colors</Text>
                         <View style={style.containerMultiStats}>
-                            {digivolveColor && <Text style={style.multiTextCard} > {digivolveColor}</Text>}
-                            {digivolveColor2 && <Text style={style.multiTextCard} >{digivolveColor2}</Text>}
-                            {digivolveColor3 && <Text style={style.multiTextCard} >{digivolveColor3}</Text>}
+                            <Text style={style.textCard} >Digivolve colors</Text>
+                            <View style={style.containerMultiStats}>
+                                {digivolveColor && <Text style={style.multiTextCard} > {digivolveColor}</Text>}
+                                {digivolveColor2 && <Text style={style.multiTextCard} >{digivolveColor2}</Text>}
+                                {digivolveColor3 && <Text style={style.multiTextCard} >{digivolveColor3}</Text>}
+                            </View>
                         </View>
                         </>
                     )}
                     {digivolveFrom !== null && digivolveFrom !== undefined && (
                         <>
-                            <Text style={style.textCard}>Digivolve froms</Text>
                             <View style={style.containerMultiStats}>
-                                {digivolveFrom && <Text style={style.multiTextCard}>{digivolveFrom}</Text>}
-                                {digivolveFrom2 && <Text style={style.multiTextCard}>{digivolveFrom2}</Text>}
-                                {digivolveFrom3 && <Text style={style.multiTextCard}>{digivolveFrom3}</Text>}
+                                <Text style={style.textCard}>Digivolve froms</Text>
+                                <View style={style.containerMultiStats}>
+                                    {digivolveFrom && <Text style={style.multiTextCard}>{digivolveFrom}</Text>}
+                                    {digivolveFrom2 && <Text style={style.multiTextCard}>{digivolveFrom2}</Text>}
+                                    {digivolveFrom3 && <Text style={style.multiTextCard}>{digivolveFrom3}</Text>}
+                                </View>
                             </View>
                         </>
                     )}
                     {digivolveCost !== null && digivolveCost !== undefined && (
                         <>
-                            <Text style={style.textCard}>Digivolve costs</Text>
                             <View style={style.containerMultiStats}>
-                                {(digivolveCost || digivolveCost == 0)  && <Text style={style.multiTextCard}>{digivolveCost}</Text>}
-                                {(digivolveCost2 || digivolveCost2 == 0)  && <Text style={style.multiTextCard}>{digivolveCost2}</Text>}
-                                {(digivolveCost3 || digivolveCost3 == 0)  && <Text style={style.multiTextCard}>{digivolveCost3}</Text>}
+                                <Text style={style.textCard}>Digivolve costs</Text>
+                                <View style={style.containerMultiStats}>
+                                    {(digivolveCost || digivolveCost == 0)  && <Text style={style.multiTextCard}>{digivolveCost}</Text>}
+                                    {(digivolveCost2 || digivolveCost2 == 0)  && <Text style={style.multiTextCard}>{digivolveCost2}</Text>}
+                                    {(digivolveCost3 || digivolveCost3 == 0)  && <Text style={style.multiTextCard}>{digivolveCost3}</Text>}
+                                </View>
                             </View>
                         </>
                     )}
+                    <>
+                        {traits && <Text style={style.textCard} >Traits</Text>}
+                        <View style={style.containerMultiStats}>
+                            {traits?.map(element => {return <Text style={style.textCard} >{element}</Text>})}
+                        </View>
+                    </>
             </View>
             <View style={ style.containerEffectSource } >
                 {treated && <Text style={style.textCard} >{treated}</Text>}
@@ -186,6 +191,7 @@ const ModalCard = ({card}) => {
                 }
                 {inheritedEffect !== undefined &&
                     <View style={style.containerTextEffect}>
+                        {ace && <Text style={style.textCardEffect} >{ace}</Text>}
                         {inheritedEffect && <Text style={style.textCardEffect} >Inherited Effect: {inheritedEffect}</Text>}
                         {inheritedEffect2 && <Text style={style.textCardEffect} >Inherited Effect: {inheritedEffect2}</Text>}
                         {inheritedEffect3 && <Text style={style.textCardEffect} >Inherited Effect: {inheritedEffect3}</Text>}

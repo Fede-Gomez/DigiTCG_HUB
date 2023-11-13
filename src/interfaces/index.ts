@@ -27,6 +27,7 @@ const voidCard = {
   traits: [],
   inheritedEffect: '',
   securityEffect: '',
+  ace:'',
 }
 const voidFilter = {
   label: '',
@@ -79,6 +80,7 @@ interface Card {
   source: string;
   imgUrl: string;
   securityEffect: string;
+  ace:string;
   keyword:string[];
 }
 interface Deck {

@@ -28,6 +28,7 @@ let lastText ={
     ...textBase,
     width:'100%',
     borderWidth:1,
+    
 }
 
 export const cardStyle = StyleSheet.create({
@@ -73,7 +74,7 @@ export const cardStyle = StyleSheet.create({
         resizeMode:'contain',
         height:'100%',
         width:'100%',
-        opacity:0.2
+        opacity:0.35
     },
     imgNotFlipped:{
         resizeMode:'contain',
@@ -94,7 +95,7 @@ export const cardStyle = StyleSheet.create({
     },
     containerEffectSource:{
         marginBottom:15,
-        width:'100%'
+        width:'100%',
     },
     containerTextEffect:{
         borderColor:'#ffffff',
@@ -116,7 +117,7 @@ export const cardStyle = StyleSheet.create({
         ...firstText
     },
     lastText:{
-        ...lastText
+        ...lastText,
     },
 
     

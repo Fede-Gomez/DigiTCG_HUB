@@ -8,6 +8,7 @@ import { backgroundCompra, backgroundDeck, backgroundVenta } from '../../assets/
 const CardsSelectedScreen = () => {
   const builderWishedSelling = useAppSelector(state => state.app.builderWishedSelling)
   let fondo;
+  
   switch (builderWishedSelling) {
     case TypeNavigation.game.deckBuilder: fondo = backgroundDeck      
       break;

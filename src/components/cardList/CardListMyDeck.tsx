@@ -17,12 +17,14 @@ const CardListMyDeck = () => {
     const {updateDeck, deleteDeck} = useDeck()
     const [isModalVisible, setModalVisible] = useState(false);
     const [deckChoice, setDeckChoice] = useState(null)
-    let message = '["Exported from app DigiTCG Hub"'
+    let messageTts = '["Exported from app DigiTCG Hub"'
+    let messageTxt = ''
     
     decks[deckChoice]?.forEach(element => {
       for (let index = 0; index < element.count; index++) {
-        message += `,"${element.cardNumber}"`        
+        messageTts += `,"${element.cardNumber}"`;
       }
+      messageTxt += `${element.count} ${element.name} ${element.cardNumber} \n`        
     });
 
     const toggleModal = () => {
@@ -68,12 +70,23 @@ const CardListMyDeck = () => {
       ]);
     }
 
-    const shareMessage = async () => {
-      if(!message.includes(']'))
-        message += "]"
+    const shareMessageTts = async () => {
+      if(!messageTts.includes(']')) messageTts += "]"
+      console.log(messageTts)
       const shareOptions = {
         title: 'Compartir el deck',
-        message,
+        messageTts,
+      };
+      try {
+        await Share.open(shareOptions);
+      } catch (error) {
+      }
+    };
+    
+    const shareMessageTxt = async () => {
+      const shareOptions = {
+        title: 'Compartir el deck',
+        messageTxt,
       };
       try {
         await Share.open(shareOptions);
@@ -96,6 +109,12 @@ const CardListMyDeck = () => {
                   color={'orange'}
                   onPress={()=>{updateDeckAndGoCardSelect()}}
                 />
+                  <Button
+                    onPress={toggleModal}
+                    color={'red'}
+                    title='Borrar deck'
+                    onPress={()=>{removeDeck(deckChoice)}}
+                  />
               </>
             }
             </View>
@@ -104,13 +123,12 @@ const CardListMyDeck = () => {
                   <Button 
                     title={'Compartir TTS deck'}
                     color={'green'}
-                    onPress={shareMessage}
+                    onPress={shareMessageTts}
                   />
-                  <Button
-                    onPress={toggleModal}
-                    color={'red'}
-                    title='Borrar deck'
-                    onPress={()=>{removeDeck(deckChoice)}}
+                  <Button 
+                    title={'Compartir Texto deck'}
+                    color={'green'}
+                    onPress={shareMessageTxt}
                   />
                 </>
               }

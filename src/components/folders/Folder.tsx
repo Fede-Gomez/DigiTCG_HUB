@@ -9,21 +9,21 @@ const Folder = () => {
   const { loadAllCardsPromo, loadAllCardsBt, loadAllCardsSt, loadAllCardsEx, loadAllCardsRb } = useCards();
   const styleFolder = folder;
 
-  const renderCards = (name:string)=>{
+  const renderCards = (name:string)=>{    
     switch (true) {
-      case name.includes('promo'):
+      case name.toLocaleLowerCase().includes('promo'):
           loadAllCardsPromo()
           break;
-      case name.includes('st'):
+      case name.toLocaleLowerCase().includes('st'):
           loadAllCardsSt(name)
           break;
-      case name.includes('bt'):
+      case name.toLocaleLowerCase().includes('bt'):
           loadAllCardsBt(name)
           break;
-      case name.includes('ex'):
+      case name.toLocaleLowerCase().includes('ex'):
           loadAllCardsEx(name)
           break;
-      case name.includes('rb'):
+      case name.toLocaleLowerCase().includes('rb'):
           loadAllCardsRb(name)
           break;
       default:
