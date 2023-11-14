@@ -23,7 +23,10 @@ const saveUserDataBase = async (idUser, email, pass, name)=>{
         email,
         idUser,
         pass,
-        decks: {}
+        decks: {},
+        cardsBuy:[],
+        cardsSell:[],
+        cardsPicked:[]
       };
     await setDoc(doc(db, 'users', idUser),userData)
 }

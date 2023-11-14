@@ -242,7 +242,7 @@ const ModalFilter = () => {
                 setOpen={setOpenSource}
                 setValue={setValueSource}
                 setItems={setSource}
-                placeholder={'Bt/St/Ex/Rb/P'}
+                placeholder={'Bt/St/Ex/P/Rb'}
                 listMode='SCROLLVIEW'
                 dropDownContainerStyle={{
                     position: 'relative',

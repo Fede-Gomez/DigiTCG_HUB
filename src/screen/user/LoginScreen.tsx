@@ -28,7 +28,6 @@ export const LoginScreen = () => {
   useEffect(() => {
     loadFolders()
     getListFiltersOfCards()
-    // loadAllCards()
   }, [])
 
   return (

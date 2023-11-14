@@ -72,10 +72,9 @@ const CardListMyDeck = () => {
 
     const shareMessageTts = async () => {
       if(!messageTts.includes(']')) messageTts += "]"
-      console.log(messageTts)
       const shareOptions = {
         title: 'Compartir el deck',
-        messageTts,
+        message: messageTts,
       };
       try {
         await Share.open(shareOptions);
@@ -86,7 +85,7 @@ const CardListMyDeck = () => {
     const shareMessageTxt = async () => {
       const shareOptions = {
         title: 'Compartir el deck',
-        messageTxt,
+        message: messageTxt,
       };
       try {
         await Share.open(shareOptions);

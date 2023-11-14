@@ -106,9 +106,9 @@ export const initialStateCards: ListCards ={
   view: voidListCards,
   fullListCards: voidListCards,
   filtred: [],
-  picked:[],
-  selling:[],
-  wished:[],
+  picked: [],
+  selling: [],
+  wished: [],
   listFilter:{
     level: voidFilter,
     attribute: voidFilter,

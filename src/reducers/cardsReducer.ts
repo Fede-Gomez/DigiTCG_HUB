@@ -4,7 +4,7 @@ import { initialStateCards } from '../interfaces';
 const initialState = initialStateCards;
 
 const incrementCountCard = (state, payload)=>{
-  if (state.picked.find((card) => card.id === payload.id)) {    
+  if (state.picked?.find((card) => card.id === payload.id)) {    
     state.picked = state.picked.map((card) => {
         if (card.id === payload.id) {
           if (card.count === 4) {
@@ -21,7 +21,7 @@ const incrementCountCard = (state, payload)=>{
 }
 
 const decrementCountCard = (state, payload )=>{
-  if (state.picked.find((card) => card.id === payload.id)) {
+  if (state.picked?.find((card) => card.id === payload.id)) {
     state.picked = state.picked.map((card) => {
       if (card.id === payload.id) {
         if (card.count >= 1) {
@@ -37,7 +37,7 @@ const decrementCountCard = (state, payload )=>{
   }
 }
 const addCardToListWish = (state,payload) => {
-  if (state.wished.find((card) => card.id === payload.id)) {
+  if (state.wished?.find((card) => card.id === payload.id)) {
     state.wished = state.wished.map((card) => {
       if (card.id === payload.id) {
         if (card.count === 4) {
@@ -54,7 +54,7 @@ const addCardToListWish = (state,payload) => {
 }
 
 const removeCardToListWish = (state,payload) => {
-  if (state.wished.find((card) => card.id === payload.id)) {
+  if (state.wished?.find((card) => card.id === payload.id)) {
     state.wished = state.wished.map((card) => {
       if (card.id === payload.id) {
         if (card.count >= 1) {
@@ -71,7 +71,7 @@ const removeCardToListWish = (state,payload) => {
 }
 
 const addCardToListSelling = (state,payload) => {
-  if (state.selling.find((card) => card.id === payload.id)) {
+  if (state.selling?.find((card) => card.id === payload.id)) {
     state.selling = state.selling.map((card) => {
       if (card.id === payload.id) {
         if (card.count === 4) {
@@ -87,7 +87,7 @@ const addCardToListSelling = (state,payload) => {
   }
 }
 const removeCardToListSelling = (state,payload) => {
-  if (state.selling.find((card) => card.id === payload.id)) {
+  if (state.selling?.find((card) => card.id === payload.id)) {
     state.selling = state.selling.map((card) => {
       if (card.id === payload.id) {
         if (card.count >= 1) {

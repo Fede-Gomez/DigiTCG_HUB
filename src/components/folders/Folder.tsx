@@ -9,7 +9,7 @@ const Folder = () => {
   const { loadAllCardsPromo, loadAllCardsBt, loadAllCardsSt, loadAllCardsEx, loadAllCardsRb } = useCards();
   const styleFolder = folder;
 
-  const renderCards = (name:string)=>{    
+  const renderCards = (name:string)=>{
     switch (true) {
       case name.toLocaleLowerCase().includes('promo'):
           loadAllCardsPromo()

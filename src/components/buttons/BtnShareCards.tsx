@@ -28,8 +28,8 @@ const shareImages = async (message, imageUrls) => {
 
 export const BtnShareCards = ({ tipoOperacion, message='', cards, titlePrompt='' }) => {
   const { saveCardsBuy, saveCardsSell } = useDeck()
-  const imageUrls = cards.map((e) => e.imgUrl);
-  cards.forEach( e =>{
+  const imageUrls = cards?.map((e) => e.imgUrl);
+  cards?.forEach( e =>{
     message += e.count + ' ' + e.name + ' del ' + e.source + '\n\n'
   })
   const shareMessage = () => {
@@ -38,6 +38,7 @@ export const BtnShareCards = ({ tipoOperacion, message='', cards, titlePrompt=''
     ? saveCardsBuy(cards)
     : saveCardsSell(cards)
   };
+  
   return (
     <TouchableOpacity
         onPress={()=>shareMessage()}
