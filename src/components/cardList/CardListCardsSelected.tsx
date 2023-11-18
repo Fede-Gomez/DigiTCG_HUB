@@ -1,15 +1,28 @@
-import React from 'react'
-import { FlatList, Text, View } from 'react-native';
+import React, {useEffect} from 'react'
+import { FlatList, Text, TouchableOpacity, View } from 'react-native';
 import { BtnsHeadersCardSelecteds, BtnAddRemoveCards, CardDigimon } from '../../components'
 import { listCardsSelected } from '../../styles';
 import { useAppSelector } from '../../hooks/useReducerHook';
 import { TypeNavigation } from '../../constants/typesNavigation';
+import { useNavigation } from '@react-navigation/native';
+import { useApp } from '../../hooks';
+import { msjHelp } from '../../constants/msjHelp';
 
   const CardListCardsSelected = () => {
+    const navigation = useNavigation()
+
     const builderWishedSelling = useAppSelector(state => state.app.builderWishedSelling)
     const listPicked = useAppSelector(state => state.cards.picked)
     const listWished = useAppSelector(state => state.cards.wished)
     const listSelling = useAppSelector(state => state.cards.selling)
+
+    const {setMsjHelp} = useApp()
+    
+    useEffect(() => {
+      setMsjHelp(msjHelp.cartasSeleccionadas)
+    }, [])
+    
+
     const style = listCardsSelected
 
     const renderItem = ({item})=>{
@@ -22,9 +35,13 @@ import { TypeNavigation } from '../../constants/typesNavigation';
     }
     const renderListEmpty = () => {
       return <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-around' }}>
-        <Text style={style.listEmpty}>
-          Agrega cartas
-        </Text>
+        <TouchableOpacity
+          onPress={()=>navigation.navigate(TypeNavigation.game.cardsView)}
+        >
+          <Text style={style.listEmpty}>
+            Agrega cartas
+          </Text>
+        </TouchableOpacity>
       </View>
     }
     const renderHeader = () => {

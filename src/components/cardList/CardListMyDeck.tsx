@@ -1,22 +1,30 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useAppSelector } from '../../hooks/useReducerHook'
-import { CardDigimon } from '../../components'
+import { BtnChangeNameDeck, CardDigimon } from '../../components'
 import { Text, FlatList, Button, View, Alert, TouchableOpacity } from 'react-native';
 import Modal from 'react-native-modal';
-import { useDeck } from '../../hooks';
+import { useApp, useDeck } from '../../hooks';
 import { useNavigation } from '@react-navigation/native';
 import { TypeNavigation } from '../../constants/typesNavigation';
 import { listCardsMyDeck } from '../../styles';
 import Share from 'react-native-share';
+import { msjHelp } from '../../constants/msjHelp';
 
 const style = listCardsMyDeck;
 const CardListMyDeck = () => {
     const decks = useAppSelector(state => state.user.profile.decks)
     const listPicked = useAppSelector(state => state.cards.picked)
     const navigation = useNavigation()
-    const {updateDeck, deleteDeck} = useDeck()
+    const {updateDeck, deleteDeck, changeNameDeck} = useDeck()
+    const {setMsjHelp} = useApp()
     const [isModalVisible, setModalVisible] = useState(false);
     const [deckChoice, setDeckChoice] = useState(null)
+
+    useEffect(() => {
+      setMsjHelp(msjHelp.deck)
+    }, [])
+    
+
     let messageTts = '["Exported from app DigiTCG Hub"'
     let messageTxt = ''
     
@@ -38,10 +46,9 @@ const CardListMyDeck = () => {
     
     const updateDeckAndGoCardSelect = ()=>{
       if(listPicked.length !== 0){
-        Alert.alert('Tenes cartas seleccionadas','Se sobreescribiran si sigues', [
+        Alert.alert('Tenes cartas seleccionadas','Se eliminaran si sigues', [
           {
             text: 'Cancel',
-            onPress: () => console.log('Cancel Pressed'),
             style: 'cancel',
           },
           {text: 'Yes', onPress: () => {
@@ -60,7 +67,6 @@ const CardListMyDeck = () => {
       Alert.alert('Estas seguro?','', [
         {
           text: 'Cancel',
-          onPress: () => console.log('Cancel Pressed'),
           style: 'cancel',
         },
         {text: 'Yes', onPress: () => {
@@ -133,7 +139,10 @@ const CardListMyDeck = () => {
               }
             </View>
           {deckChoice &&
+          <View style={{flexDirection:'row', justifyContent:'space-around', alignItems:'center'}}>
             <Text style={style.nameDeck}>{deckChoice}</Text> 
+            <BtnChangeNameDeck nameDeck={deckChoice} cards={decks[deckChoice]} setDeckChoice={setDeckChoice} />
+          </View>
           }
         <Modal
             isVisible={isModalVisible}
@@ -176,14 +185,18 @@ const CardListMyDeck = () => {
       </TouchableOpacity>
     )
     }
+    
   return (
     <>
       <FlatList
-        data={deckChoice ? decks[deckChoice] : []}
+        data={deckChoice  ? decks[deckChoice] : []}
         ListEmptyComponent={renderNoDeckChoice}
         ListHeaderComponent={renderHeader}
         renderItem={renderDeck}
-        numColumns={3}
+        numColumns={2}
+        stickyHeaderIndices={[0]}
+        showsVerticalScrollIndicator={false}
+        removeClippedSubviews={true}
       />
     </>
   )

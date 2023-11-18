@@ -1,14 +1,17 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { TouchableOpacity, FlatList, View, Image } from 'react-native';
 import { useAppSelector } from '../../hooks/useReducerHook';
-import { useCards } from '../../hooks';
+import { useApp, useCards } from '../../hooks';
 import { folder } from '../../styles';
+import { msjHelp } from '../../constants/msjHelp';
 
 const Folder = () => {
   const folders = useAppSelector(state => state.folder.folders)
   const { loadAllCardsPromo, loadAllCardsBt, loadAllCardsSt, loadAllCardsEx, loadAllCardsRb } = useCards();
+  const {setMsjHelp} = useApp()
   const styleFolder = folder;
-
+  setMsjHelp(msjHelp.folders)
+  
   const renderCards = (name:string)=>{
     switch (true) {
       case name.toLocaleLowerCase().includes('promo'):

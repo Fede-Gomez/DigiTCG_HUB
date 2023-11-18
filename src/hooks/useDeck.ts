@@ -9,7 +9,7 @@ export const useDeck = () => {
     const user = useAppSelector(state => state.user.profile)
     const dispatch = useAppDispatch()
 
-    const saveDeck = async (nombre: string,cards)=>{
+    const saveDeck = async (msjSucces= '', msjError= '',nombre: string,cards)=>{
         let updateDeckUser ={
             ...user,
             decks: {
@@ -18,8 +18,8 @@ export const useDeck = () => {
             }
         }
         await userDeckUpdateDatabase(user.idUser,updateDeckUser)
-            .then(()=>SuccesMessage('Se guardo el deck'))
-            .catch(()=>ErrorMessage('Error al guardar deck'))
+            .then(()=>SuccesMessage(msjSucces != '' ? msjSucces : 'Se guardo el deck'))
+            .catch(()=>ErrorMessage(msjError != '' ? msjError : 'Error al guardar deck'))
         dispatch(setUser(updateDeckUser))
     }
     const saveCardsPicked = async (cards)=>{
@@ -56,6 +56,15 @@ export const useDeck = () => {
         dispatch(deleteDeckUser(user))
         userDeckRemoveDatabase(user)
     }
+
+    const changeNameDeck = (newName, oldName, content)=>{
+        console.log(content);
+        console.log(oldName);
+        console.log(newName);
+        delete user.decks[oldName]
+        saveDeck('Se cambio el nombre', 'Error intente nuevamente', newName, content)
+    }
+
     return {
         saveDeck,
         updateDeck,
@@ -63,5 +72,6 @@ export const useDeck = () => {
         saveCardsPicked,
         saveCardsBuy,
         saveCardsSell,
+        changeNameDeck,
     }
 }

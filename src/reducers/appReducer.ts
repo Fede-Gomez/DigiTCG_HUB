@@ -7,7 +7,8 @@ const initialState: appState = {
   modalCardVisible: false,
   flipedCard: true,
   modalCardView:{},
-  builderWishedSelling: TypeNavigation.game.deckBuilder
+  builderWishedSelling: TypeNavigation.game.deckBuilder,
+  msjHelp: [],
 };
 
 export const appReducer = createSlice({
@@ -28,10 +29,13 @@ export const appReducer = createSlice({
     },
     setBuilderWishedSelling: (state, action)=>{
       state.builderWishedSelling = action.payload
+    },
+    setMessageHelp: (state, action)=>{
+      state.msjHelp = action.payload 
     }
   },
 })
 
-export const { setModalFilterVisible, setModalCardVisible, setModalCardView, setFlipedCard, setBuilderWishedSelling } = appReducer.actions
+export const { setModalFilterVisible, setModalCardVisible, setModalCardView, setFlipedCard, setBuilderWishedSelling, setMessageHelp } = appReducer.actions
 
 export default appReducer.reducer

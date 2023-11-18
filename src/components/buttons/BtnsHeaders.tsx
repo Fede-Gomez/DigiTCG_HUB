@@ -19,7 +19,7 @@ const buttonBack = (clearListCardsView) => {
       style={style.buttonBackClear}
       onPress={() => clearListCardsView()}
     >
-      <Text style={style.textButtonBackClear}>Back</Text>
+      <Text style={style.textButtonBackClear}>Volver</Text>
     </TouchableOpacity>
   )
 }

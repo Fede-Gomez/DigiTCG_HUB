@@ -12,7 +12,6 @@ const Stack = createNativeStackNavigator()
 export const StackLogSignNavigation = ()=>{
   const profile = useAppSelector(state => state.user.profile)
   const {getUserStorageDevice} = useAccount()
-// console.log(profile);
 
   useEffect(() => {
     getUserStorageDevice()

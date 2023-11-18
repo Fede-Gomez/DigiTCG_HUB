@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, FlatList, Button, TextInput, Text } from 'react-native';
 import { useAppSelector } from '../../hooks/useReducerHook'
 import { BtnAddRemoveCards, BtnsHeadersCard, CardDigimon, ModalFilter } from '..'
 import { listCardsView } from '../../styles'
+import { useApp } from '../../hooks';
+import { msjHelp } from '../../constants/msjHelp';
 
 
 
@@ -11,6 +13,13 @@ const CardListCardsView = () => {
   const cardFiltered = useAppSelector(state => state.cards.filtred)
   const listCards = useAppSelector(state => state.cards.fullListCards)
   const [nameCard, setNameCard] = useState('');
+
+  const {setMsjHelp} = useApp()
+  
+  useEffect(() => {
+    setMsjHelp(msjHelp.cartas)
+  }, [])
+  
 
   const style = listCardsView;
 
@@ -66,7 +75,7 @@ const CardListCardsView = () => {
       showsVerticalScrollIndicator={false}
     />
     <TextInput
-      placeholder="Search card by name"
+      placeholder="Buscador por nombre"
       onChangeText={setNameCard}
       value={nameCard}
       style={style.searchCard}

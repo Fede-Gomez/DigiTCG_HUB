@@ -1,5 +1,4 @@
 import { StyleSheet, Dimensions } from 'react-native';
-const backgroundModal = "#1D201F";
 let textBase = {
     color: '#ffffff',
     fontSize: 15,

@@ -15,6 +15,8 @@ import {
   cardViewOff, 
   cardViewOn, 
 } from '../assets/icons'; 
+import { msjHelp } from '../constants/msjHelp';
+import { useApp } from '../hooks';
 const Tab = createBottomTabNavigator();
 
 const iconCardView = ({ color, size, focused }) => (
@@ -47,8 +49,18 @@ const iconCardSelect = ({ color, size, focused }) => (
     width:30
  }} source={cardsSelectOff} />
 )
-
 export const BottomCardTabNavigation = () => {
+  const {setMsjHelp} = useApp()
+
+  const msjAyudaCartas = ()=>{
+    setMsjHelp(msjHelp.cartas)      
+  }
+  const msjAyudaCartasSeleccionadas = ()=>{
+    setMsjHelp(msjHelp.cartasSeleccionadas)      
+  }
+  const msjAyudaDeck = ()=>{
+    setMsjHelp(msjHelp.deck)      
+  }
   return (
     <Tab.Navigator
         screenOptions={{headerShown:false}}
@@ -64,6 +76,7 @@ export const BottomCardTabNavigation = () => {
             tabBarInactiveBackgroundColor:'#C09F79',
             title:'Cartas'
           }} 
+          listeners={{focus:msjAyudaCartas}}
         />
         <Tab.Screen 
           name={TypeNavigation.game.cardSelected} 
@@ -75,7 +88,8 @@ export const BottomCardTabNavigation = () => {
             tabBarActiveBackgroundColor:'#3D0605',  
             tabBarInactiveBackgroundColor:'#C09F79',
             title:'Cartas seleccionadas'
-          }} 
+          }}
+          listeners={{focus:msjAyudaCartasSeleccionadas}}
         />
         <Tab.Screen 
           name={TypeNavigation.game.deckSelected} 
@@ -87,7 +101,8 @@ export const BottomCardTabNavigation = () => {
             tabBarActiveBackgroundColor:'#3D0605',  
             tabBarInactiveBackgroundColor:'#C09F79',
             title:'Deck',
-          }} 
+          }}
+          listeners={{focus:msjAyudaDeck}}
         />
     </Tab.Navigator>
   )

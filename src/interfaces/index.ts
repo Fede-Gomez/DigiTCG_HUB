@@ -144,6 +144,7 @@ export interface appState {
   flipedCard: boolean;
   modalCardView: object;
   builderWishedSelling: string;
+  msjHelp: Array<String>;
 }
 
 export interface UserState {

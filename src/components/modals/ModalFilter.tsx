@@ -87,15 +87,15 @@ const ModalFilter = () => {
         return(
             <View style={style.containerBtnClearOk}>
             <Button
-                title='Confirm'
+                title='Confirmar'
                 onPress={() => { groupSelection() }}
             />
             <Button
-                title='Clear'
+                title='Limpiar'
                 onPress={() => { clearGroupSelection() }}
             />
             <Button
-                title='Back'
+                title='Volver'
                 onPress={() => { closeModal() }}
             />
         </View>
@@ -114,7 +114,7 @@ const ModalFilter = () => {
                 setOpen={setOpenPlayCost}
                 setValue={setValuePlayCost}
                 setItems={setPlayCost}
-                placeholder={'Choose playcosts'}
+                placeholder={'Elegir Playcosts'}
                 listMode='SCROLLVIEW'
                 dropDownContainerStyle={{
                     position: 'relative',
@@ -130,7 +130,7 @@ const ModalFilter = () => {
                 setOpen={setOpenAttribute}
                 setValue={setValueAttribute}
                 setItems={setAttribute}
-                placeholder={'Choose attribtes'}
+                placeholder={'Elegir Attributes'}
                 listMode='SCROLLVIEW'
                 dropDownContainerStyle={{
                     position: 'relative',
@@ -146,7 +146,7 @@ const ModalFilter = () => {
                 setOpen={setOpenLevel}
                 setValue={setValueLevel}
                 setItems={setLevel}
-                placeholder={'Choose level'}
+                placeholder={'Elegir Level'}
                 listMode='SCROLLVIEW'
                 dropDownContainerStyle={{
                     position: 'relative',
@@ -162,7 +162,7 @@ const ModalFilter = () => {
                 setOpen={setOpenType}
                 setValue={setValueType}
                 setItems={setType}
-                placeholder={'Choose types'}
+                placeholder={'Elegir Types'}
                 listMode='SCROLLVIEW'
                 dropDownContainerStyle={{
                     position: 'relative',
@@ -178,7 +178,7 @@ const ModalFilter = () => {
                 setOpen={setOpenRarity}
                 setValue={setValueRarity}
                 setItems={setRarity}
-                placeholder={'Choose raritys'}
+                placeholder={'Elegir Raritys'}
                 listMode='SCROLLVIEW'
                 dropDownContainerStyle={{
                     position: 'relative',
@@ -194,7 +194,7 @@ const ModalFilter = () => {
                 setOpen={setOpenColor}
                 setValue={setValueColor}
                 setItems={setColor}
-                placeholder={'Choose colors'}
+                placeholder={'Elegir Colors'}
                 listMode='SCROLLVIEW'
                 dropDownContainerStyle={{
                     position: 'relative',
@@ -210,7 +210,7 @@ const ModalFilter = () => {
                 setOpen={setOpenKeyword}
                 setValue={setValueKeyword}
                 setItems={setKeyword}
-                placeholder={'Choose keywords'}
+                placeholder={'Elegir Keywords'}
                 listMode='SCROLLVIEW'
                 dropDownContainerStyle={{
                     position: 'relative',
@@ -226,7 +226,7 @@ const ModalFilter = () => {
                 setOpen={setOpenTraits}
                 setValue={setValueTraits}
                 setItems={setTraits}
-                placeholder={'Choose traits'}
+                placeholder={'Elegir Traits'}
                 listMode='SCROLLVIEW'
                 dropDownContainerStyle={{
                     position: 'relative',

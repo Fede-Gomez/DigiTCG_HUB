@@ -1,5 +1,5 @@
 import { useAppDispatch } from './useReducerHook'
-import { setModalCardVisible, setModalFilterVisible, setModalCardView, setFlipedCard, setBuilderWishedSelling } from '../reducers/appReducer'
+import { setModalCardVisible, setModalFilterVisible, setModalCardView, setFlipedCard, setBuilderWishedSelling, setMessageHelp } from '../reducers/appReducer'
 
 export const useApp = () => {
     const dispatch = useAppDispatch()
@@ -24,11 +24,16 @@ export const useApp = () => {
         dispatch(setBuilderWishedSelling(actionCard));
     }
 
+    const setMsjHelp = (msj:Array<string>)=>{
+        dispatch(setMessageHelp(msj));
+    }
+
     return {
         setModalFilter,
         setModalCard,
         setModalCardInfo,
         setFlipCard,
         setBuildWishSell,
+        setMsjHelp,
     }
 }
