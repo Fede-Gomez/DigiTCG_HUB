@@ -18,8 +18,8 @@ export const useDeck = () => {
             }
         }
         await userDeckUpdateDatabase(user.idUser,updateDeckUser)
-            .then(()=>SuccesMessage(msjSucces != '' ? msjSucces : 'Se guardo el deck'))
-            .catch(()=>ErrorMessage(msjError != '' ? msjError : 'Error al guardar deck'))
+            .then(()=>SuccesMessage(msjSucces))
+            .catch(()=>ErrorMessage(msjError))
         dispatch(setUser(updateDeckUser))
     }
     const saveCardsPicked = async (cards)=>{
@@ -58,9 +58,6 @@ export const useDeck = () => {
     }
 
     const changeNameDeck = (newName, oldName, content)=>{
-        console.log(content);
-        console.log(oldName);
-        console.log(newName);
         delete user.decks[oldName]
         saveDeck('Se cambio el nombre', 'Error intente nuevamente', newName, content)
     }

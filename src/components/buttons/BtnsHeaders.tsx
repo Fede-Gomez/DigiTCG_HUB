@@ -247,8 +247,6 @@ export const BtnsHeadersCardSelecteds = () => {
   }
 
   const cardBuy = () => {
-    console.log(listWished);
-    
     return (
       <View style={listWished?.length == 0 ? style.containerAlone : style.containerWithButtons}>
         {listWished?.length != 0 && buttonClearList(clearListCardsWished)}

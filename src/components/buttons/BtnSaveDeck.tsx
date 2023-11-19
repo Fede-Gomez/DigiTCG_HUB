@@ -10,7 +10,7 @@ export const ButtonSaveDeck = ({cards}) => {
     const { saveDeck }= useDeck()
     
     const createDeckOfSavePicked = (nameText:string)=>{    
-      saveDeck(nameText,cards)
+      saveDeck('Se guardo el deck', 'Error al guardar deck', nameText,cards)
       navigation.navigate(TypeNavigation.game.home);
     }
   

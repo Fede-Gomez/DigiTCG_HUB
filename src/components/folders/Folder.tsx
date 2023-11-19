@@ -10,8 +10,12 @@ const Folder = () => {
   const { loadAllCardsPromo, loadAllCardsBt, loadAllCardsSt, loadAllCardsEx, loadAllCardsRb } = useCards();
   const {setMsjHelp} = useApp()
   const styleFolder = folder;
-  setMsjHelp(msjHelp.folders)
   
+  useEffect(() => {
+    setMsjHelp(msjHelp.folders)
+}, [])
+
+
   const renderCards = (name:string)=>{
     switch (true) {
       case name.toLocaleLowerCase().includes('promo'):

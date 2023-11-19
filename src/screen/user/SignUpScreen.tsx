@@ -39,6 +39,7 @@ const SignUpScreen = () => {
             style={style.inputText}
             keyboardType='email-address'
             value={name}
+            accessibilityHint='nombre'
           />
           <Text style={style.text} >Email</Text>
           <TextInput 
@@ -46,6 +47,7 @@ const SignUpScreen = () => {
             style={style.inputText}
             keyboardType='email-address'
             value={email}
+            accessibilityHint='email'
           />
           <Text style={style.text} >Contraseña</Text>
           <TextInput 
@@ -53,7 +55,7 @@ const SignUpScreen = () => {
             secureTextEntry={true}
             value={password}
             style={style.inputText}
-            
+            accessibilityHint='contraseña'
           />
           <View style={style.logCreteAccountResetContainer}>
             <Button

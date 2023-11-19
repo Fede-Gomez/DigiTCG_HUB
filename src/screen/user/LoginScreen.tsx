@@ -28,6 +28,7 @@ export const LoginScreen = () => {
   useEffect(() => {
     loadFolders()
     getListFiltersOfCards()
+    loadAllCards() //Carga todas las cartas para lo que es el filtrado
   }, [])
 
   return (
@@ -46,12 +47,14 @@ export const LoginScreen = () => {
             onChangeText={(text)=>setEmail(text)} 
             style={style.inputText}
             keyboardType='email-address'
+            accessibilityHint='email'
           />
-          <Text style={style.text} >Password</Text>
+          <Text style={style.text}>Contraseña</Text>
           <TextInput 
             onChangeText={(text)=>setPassword(text)} 
             secureTextEntry={true}
             style={style.inputText}
+            accessibilityHint='contraseña'
           />
           <View style={style.logCreteAccountContainer}>
             <Button

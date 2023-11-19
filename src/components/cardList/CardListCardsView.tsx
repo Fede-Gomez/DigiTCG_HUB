@@ -54,7 +54,7 @@ const CardListCardsView = () => {
     }
     // si me escribe algo en el buscador y me pone filtros
     if (nameCard !== '' && cardFiltered.length !== 0) {
-      return cardFiltered.filter((card) => card.name?.toLowerCase().includes(nameCard.toLowerCase()))
+      return cardFiltered?.filter((card) => card.name?.toLowerCase().includes(nameCard.toLowerCase()))
     }
     // si escribe algo en el nombre
     if (nameCard !== '' && cardFiltered.length == 0){      
