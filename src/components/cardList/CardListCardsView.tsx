@@ -73,6 +73,11 @@ const CardListCardsView = () => {
       numColumns={2}
       stickyHeaderIndices={[0]}
       showsVerticalScrollIndicator={false}
+      removeClippedSubviews={true}
+      keyExtractor={item => item.id}
+      initialNumToRender={10}
+      maxToRenderPerBatch={10}
+      windowSize={3}
     />
     <TextInput
       placeholder="Buscador por nombre"

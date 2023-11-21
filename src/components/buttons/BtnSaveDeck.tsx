@@ -4,13 +4,18 @@ import { useDeck } from '../../hooks';
 import { TypeNavigation } from '../../constants/typesNavigation';
 import prompt from 'react-native-prompt-android';
 import { Text, TouchableOpacity } from 'react-native';
+import { useAppSelector } from '../../hooks/useReducerHook';
 
 export const ButtonSaveDeck = ({cards}) => {
     const navigation = useNavigation()
     const { saveDeck }= useDeck()
-    
-    const createDeckOfSavePicked = (nameText:string)=>{    
-      saveDeck('Se guardo el deck', 'Error al guardar deck', nameText,cards)
+    const decks = useAppSelector(state => state.user.profile.decks)    
+    const createDeckOfSavePicked = (nameText:string)=>{
+      if(Object.keys(decks).includes(nameText)){
+        saveDeck('Se actualizo el deck', 'Error al actualizar deck', nameText,cards)        
+      }else{
+        saveDeck('Se guardo el deck', 'Error al guardar deck', nameText,cards)
+      }
       navigation.navigate(TypeNavigation.game.home);
     }
   
