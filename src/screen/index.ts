@@ -1,11 +1,9 @@
 import { LoginScreen, SignUpScreen } from "./user";
-
 import { TcgPlayerScreen } from "./tcgPlayer/TcgPlayerScreen";
-
+import CountMemoryScreen from './countMemory/CountMemoryScreen';
 import {
 CardsSelectedScreen,
 DecksSelectedScreen,
-SearchCardScreen,
 ViewCardsScreen,
 } from './cards'
 
@@ -15,6 +13,6 @@ export {
     TcgPlayerScreen,
     CardsSelectedScreen,
     DecksSelectedScreen,
-    SearchCardScreen,
     ViewCardsScreen,
+    CountMemoryScreen,
 }
