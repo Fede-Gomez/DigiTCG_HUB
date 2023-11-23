@@ -1,10 +1,11 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 export const filter = StyleSheet.create({
 
     containerBtnClearOk:{
         flexDirection:'row',
-        justifyContent:'space-evenly'
+        justifyContent:'space-evenly',
+        marginBottom:20,
     },
     
 })

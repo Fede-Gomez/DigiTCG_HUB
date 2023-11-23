@@ -1,21 +1,17 @@
 export const TypeNavigation = {
     account:{
-        loginDrawer:'Login/Sign up',
         login:'Login',
         signIn:'Sign up',
-        logOut: 'Log out',
-        logOutDrawer: 'Log out',
     },
     game:{
-        homeGameTopBar:'HomeGameTopBar',
-        cardsView: 'Cards view',
-        cardSelected: 'Card selected',
-        searchCard: 'Search card',
-        cardsWished: 'Cards wished',
-        filterSelect:'Filter select',
-        deckSelected: 'My decks',
-        deckBuilder:'Deck Builder',
+        home:'Home',
+        cardsView: 'Cards',
+        cardSelected: 'Cartas seleccionadas',
+        searchCard: 'Buscar carta',
+        deckSelected: 'Mis decks',
         tcgPlayer:'Tcg Player',
-        cardsSelling: 'Cards Selling',
+        deckBuilder:'Deck',
+        cardsBuy: 'Comprar',
+        cardsSell: 'Vender',
     }
 }

@@ -1,19 +1,9 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { 
-  DeckBuilderCardsSelectedScreen,
-  DeckBuilderDecksSelectedScreen,
-  DeckBuilderFilterScreen,
-  DeckBuilderSearchCardScreen,
-  DeckBuilderViewCardsScreen,
-  CardWishedSearchScreen,
-  CardsWishedFilterScreen,
-  CardsWishedSelectedScreen,
-  CardsWishedViewCardsScreen,
-  CardSellingSearchScreen,
-  CardsSellingFilterScreen,
-  CardsSellingSelectedScreen,
-  CardsSellingViewCardsScreen,
+  CardsSelectedScreen,
+  DecksSelectedScreen,
+  ViewCardsScreen,
 } from '../screen/index'
 import { TypeNavigation } from '../constants/typesNavigation';
 import { Image } from 'react-native';
@@ -24,11 +14,9 @@ import {
   cardsSelectOn, 
   cardViewOff, 
   cardViewOn, 
-  filterOff, 
-  filterOn, 
-  searchOff, 
-  searchOn 
 } from '../assets/icons'; 
+import { msjHelp } from '../constants/msjHelp';
+import { useApp } from '../hooks';
 const Tab = createBottomTabNavigator();
 
 const iconCardView = ({ color, size, focused }) => (
@@ -61,63 +49,61 @@ const iconCardSelect = ({ color, size, focused }) => (
     width:30
  }} source={cardsSelectOff} />
 )
-const iconFilter = ({ color, size, focused }) => (
-  focused ? <Image style={{
-     height:30,
-     width:30
-  }} source={filterOn} /> 
-  : <Image style={{
-    height:30,
-    width:30
- }} source={filterOff} />
-)
-const iconSearch = ({ color, size, focused }) => (
-  focused ? <Image style={{
-     height:30,
-     width:30
-  }} source={searchOn} /> 
-  : <Image style={{
-    height:30,
-    width:30
- }} source={searchOff} />
-)
+export const BottomCardTabNavigation = () => {
+  const {setMsjHelp} = useApp()
 
-export const BottomDeckBuilderTabNavigation = () => {
+  const msjAyudaCartas = ()=>{
+    setMsjHelp(msjHelp.cartas)      
+  }
+  const msjAyudaCartasSeleccionadas = ()=>{
+    setMsjHelp(msjHelp.cartasSeleccionadas)      
+  }
+  const msjAyudaDeck = ()=>{
+    setMsjHelp(msjHelp.deck)      
+  }
   return (
     <Tab.Navigator
         screenOptions={{headerShown:false}}
     >
-        <Tab.Screen name={TypeNavigation.game.cardsView} component={DeckBuilderViewCardsScreen} options={{tabBarIcon: iconCardView}} />
-        <Tab.Screen name={TypeNavigation.game.cardSelected} component={DeckBuilderCardsSelectedScreen} options={{tabBarIcon: iconCardSelect}} />
-        <Tab.Screen name={TypeNavigation.game.deckSelected} component={DeckBuilderDecksSelectedScreen} options={{tabBarIcon: iconDeck}} />
-        <Tab.Screen name={TypeNavigation.game.filterSelect} component={DeckBuilderFilterScreen} options={{tabBarIcon: iconFilter}} />
-        <Tab.Screen name={TypeNavigation.game.searchCard} component={DeckBuilderSearchCardScreen} options={{tabBarIcon: iconSearch}} />
-    </Tab.Navigator>
-  )
-}
-
-export const BottomCardsWishedTabNavigation = () => {
-  return (
-    <Tab.Navigator
-        screenOptions={{headerShown:false}}
-    >
-        <Tab.Screen name={TypeNavigation.game.cardsView} component={CardsWishedViewCardsScreen} options={{tabBarIcon: iconCardView}}/>
-        <Tab.Screen name={TypeNavigation.game.cardSelected} component={CardsWishedSelectedScreen} options={{tabBarIcon: iconCardSelect}}/>
-        <Tab.Screen name={TypeNavigation.game.filterSelect} component={CardsWishedFilterScreen} options={{tabBarIcon: iconFilter}}/>
-        <Tab.Screen name={TypeNavigation.game.searchCard} component={CardWishedSearchScreen} options={{tabBarIcon: iconSearch}}/>
-    </Tab.Navigator>
-  )
-}
-
-export const BottomCardsSellingTabNavigation = () => {
-  return (
-    <Tab.Navigator
-        screenOptions={{headerShown:false}}
-    >
-        <Tab.Screen name={TypeNavigation.game.cardsView} component={CardsSellingViewCardsScreen} options={{tabBarIcon: iconCardView}}/>
-        <Tab.Screen name={TypeNavigation.game.cardSelected} component={CardsSellingSelectedScreen} options={{tabBarIcon: iconCardSelect}}/>
-        <Tab.Screen name={TypeNavigation.game.filterSelect} component={CardsSellingFilterScreen} options={{tabBarIcon: iconFilter}}/>
-        <Tab.Screen name={TypeNavigation.game.searchCard} component={CardSellingSearchScreen} options={{tabBarIcon: iconSearch}}/>
+        <Tab.Screen 
+          name={TypeNavigation.game.cardsView} 
+          component={ViewCardsScreen} 
+          options={{
+            tabBarIcon: iconCardView, 
+            tabBarActiveTintColor:'#C09F79',
+            tabBarInactiveTintColor:'#3D0605',
+            tabBarActiveBackgroundColor:'#3D0605', 
+            tabBarInactiveBackgroundColor:'#C09F79',
+            title:'Cartas'
+          }} 
+          listeners={{focus:msjAyudaCartas}}
+        />
+        <Tab.Screen 
+          name={TypeNavigation.game.cardSelected} 
+          component={CardsSelectedScreen} 
+          options={{
+            tabBarIcon: iconCardSelect, 
+            tabBarActiveTintColor:'#C09F79',
+            tabBarInactiveTintColor:'#3D0605',
+            tabBarActiveBackgroundColor:'#3D0605',  
+            tabBarInactiveBackgroundColor:'#C09F79',
+            title:'Cartas seleccionadas'
+          }}
+          listeners={{focus:msjAyudaCartasSeleccionadas}}
+        />
+        <Tab.Screen 
+          name={TypeNavigation.game.deckSelected} 
+          component={DecksSelectedScreen} 
+          options={{
+            tabBarIcon: iconDeck, 
+            tabBarActiveTintColor:'#C09F79',
+            tabBarInactiveTintColor:'#3D0605',
+            tabBarActiveBackgroundColor:'#3D0605',  
+            tabBarInactiveBackgroundColor:'#C09F79',
+            title:'Deck',
+          }}
+          listeners={{focus:msjAyudaDeck}}
+        />
     </Tab.Navigator>
   )
 }

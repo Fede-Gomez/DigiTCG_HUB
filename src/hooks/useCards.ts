@@ -4,15 +4,19 @@ import {
   setAllCards,
   setListFilter, 
   setCardListFiltered, 
-  clearCardsView,
   cardPickedAdd, 
   cardPickedRemove, 
   addCardToWish,
   removeCardToWish, 
   addCardToSell,
   removeCardToSell,
+  clearCardsView,
+  clearCardsPicked,
+  clearCardsWished,
+  clearCardsSelling,
+  setCardBuySellLogin,
 } from '../reducers/cardsReducer'
-import { getFilters, getCardsBt, getFilteredCards, getAllCards } from '../services/database'
+import { getFilters, getCardsBt, getFilteredCards, getAllCards, getCardsEx, getCardsRb, getCardsSt, getCardsPromo } from '../services/database'
 
 
 export const useCards = () => {
@@ -24,8 +28,28 @@ export const useCards = () => {
     dispatch(setAllCards(cards))
   }
   
-  const loadAllCardsBt = async (name)=>{
+  const loadAllCardsPromo = async ()=>{
+    const cards = await getCardsPromo();
+    dispatch(setCards(cards))
+  }
+
+  const loadAllCardsBt = async (name: string)=>{
     const cards = await getCardsBt(name);
+    dispatch(setCards(cards))
+  }
+
+  const loadAllCardsEx = async (name: string)=>{
+    const cards = await getCardsEx(name);
+    dispatch(setCards(cards))
+  }
+
+  const loadAllCardsRb = async (name: string)=>{
+    const cards = await getCardsRb(name);
+    dispatch(setCards(cards))
+  }
+
+  const loadAllCardsSt = async (name: string)=>{
+    const cards = await getCardsSt(name);
     dispatch(setCards(cards))
   }
 
@@ -37,15 +61,26 @@ export const useCards = () => {
   const clearListCardsView = ()=>{
     dispatch(clearCardsView())
   }
+
+  const clearListCardsPicked = ()=>{
+    dispatch(clearCardsPicked())
+  }
   
-  const cardListFiltered = async (filtChoiced)=>{
+  const clearListCardsWished = ()=>{
+    dispatch(clearCardsWished())
+  }
+  
+  const clearListCardsSelling = ()=>{
+    dispatch(clearCardsSelling())
+  }
+  
+  const cardListFiltered = async (filtChoiced: object)=>{
     const listFiltered = removeFiltersNoChoiced(filtChoiced)
     const getFilteredCard = await getFilteredCards(listFiltered)
-    console.log(getFilteredCard);
     
     dispatch(setCardListFiltered(getFilteredCard))
   }
-  
+
   const addCards = (card)=>{
     dispatch(cardPickedAdd(card))
   }
@@ -53,6 +88,7 @@ export const useCards = () => {
   const addCardWished = (card)=>{
     dispatch(addCardToWish(card))
   }
+
   const removeCardWished = (card)=>{
     dispatch(removeCardToWish(card))
   }
@@ -69,9 +105,14 @@ export const useCards = () => {
     dispatch(removeCardToSell(card))
   }
 
-
   const removeFiltersNoChoiced = (cardFilters)=>{
-    // remove filters empty because its not choiced
+    // remueve todos los filtros que tengan un array vacio
+    for(let clave in cardFilters){
+      if (Array.isArray(cardFilters[clave]) && cardFilters[clave].length === 0) {
+          delete cardFilters[clave];
+      }
+    }
+    // remueve todos los filtros que tengan null como valor
     let newFilters = {}
     Object.entries(cardFilters).forEach(([key, value]) => {
       if(value != null){
@@ -84,17 +125,29 @@ export const useCards = () => {
     return newFilters;
   }
 
+  const setCardsBuySellAfterLogin = (user)=>{
+    dispatch(setCardBuySellLogin(user))
+  }
+
   return{
-      clearListCardsView,
-      loadAllCards,
-      getListFiltersOfCards,
-      loadAllCardsBt,
-      addCards,
-      removeCards,
-      addCardWished,
-      removeCardWished,
-      cardListFiltered,
-      addCardSelling,
-      removeCardSelling
+    loadAllCards,
+    getListFiltersOfCards,
+    loadAllCardsPromo,
+    loadAllCardsBt,
+    loadAllCardsEx,
+    loadAllCardsSt,
+    loadAllCardsRb,
+    addCards,
+    removeCards,
+    addCardWished,
+    removeCardWished,
+    cardListFiltered,
+    addCardSelling,
+    removeCardSelling,
+    clearListCardsPicked,
+    clearListCardsView,
+    clearListCardsWished,
+    clearListCardsSelling,
+    setCardsBuySellAfterLogin,
   }
 }

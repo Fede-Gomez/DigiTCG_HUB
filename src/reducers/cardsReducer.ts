@@ -4,7 +4,7 @@ import { initialStateCards } from '../interfaces';
 const initialState = initialStateCards;
 
 const incrementCountCard = (state, payload)=>{
-  if (state.picked.find((card) => card.id === payload.id)) {    
+  if (state.picked?.find((card) => card.id === payload.id)) {    
     state.picked = state.picked.map((card) => {
         if (card.id === payload.id) {
           if (card.count === 4) {
@@ -21,7 +21,7 @@ const incrementCountCard = (state, payload)=>{
 }
 
 const decrementCountCard = (state, payload )=>{
-  if (state.picked.find((card) => card.id === payload.id)) {
+  if (state.picked?.find((card) => card.id === payload.id)) {
     state.picked = state.picked.map((card) => {
       if (card.id === payload.id) {
         if (card.count >= 1) {
@@ -37,7 +37,7 @@ const decrementCountCard = (state, payload )=>{
   }
 }
 const addCardToListWish = (state,payload) => {
-  if (state.wished.find((card) => card.id === payload.id)) {
+  if (state.wished?.find((card) => card.id === payload.id)) {
     state.wished = state.wished.map((card) => {
       if (card.id === payload.id) {
         if (card.count === 4) {
@@ -54,7 +54,7 @@ const addCardToListWish = (state,payload) => {
 }
 
 const removeCardToListWish = (state,payload) => {
-  if (state.wished.find((card) => card.id === payload.id)) {
+  if (state.wished?.find((card) => card.id === payload.id)) {
     state.wished = state.wished.map((card) => {
       if (card.id === payload.id) {
         if (card.count >= 1) {
@@ -71,7 +71,7 @@ const removeCardToListWish = (state,payload) => {
 }
 
 const addCardToListSelling = (state,payload) => {
-  if (state.selling.find((card) => card.id === payload.id)) {
+  if (state.selling?.find((card) => card.id === payload.id)) {
     state.selling = state.selling.map((card) => {
       if (card.id === payload.id) {
         if (card.count === 4) {
@@ -87,7 +87,7 @@ const addCardToListSelling = (state,payload) => {
   }
 }
 const removeCardToListSelling = (state,payload) => {
-  if (state.selling.find((card) => card.id === payload.id)) {
+  if (state.selling?.find((card) => card.id === payload.id)) {
     state.selling = state.selling.map((card) => {
       if (card.id === payload.id) {
         if (card.count >= 1) {
@@ -111,16 +111,26 @@ export const cardsReducer = createSlice({
       state.view = payload;
     },
     setAllCards: (state, {payload}) =>{
-      state.searched = payload;
+      state.fullListCards = payload;
     },
     clearCardsView:(state)=>{
-      state.view = initialState.view
+      state.view = initialState.view,
+      state.filtred = initialState.filtred
+    },
+    clearCardsPicked:(state)=>{
+      state.picked = initialState.picked
+    },
+    clearCardsWished:(state)=>{
+      state.wished = initialState.wished
+    },
+    clearCardsSelling:(state)=>{
+      state.selling = initialState.selling
     },
     setListFilter:(state, {payload})=>{
       state.listFilter = payload;
     },
     setCardListFiltered:(state, {payload})=>{
-      state.view = payload      
+      state.filtred = payload      
     },
     cardPickedAdd: (state, {payload})=>{
       incrementCountCard(state, payload);
@@ -140,12 +150,22 @@ export const cardsReducer = createSlice({
     removeCardToSell:(state, {payload})=>{
       removeCardToListSelling(state,payload);
     },
+    setCardsPicked:(state, {payload})=>{
+      state.picked = payload;
+    },
+    setCardBuySellLogin:(state, {payload})=>{
+      state.wished = payload.cardsBuy,
+      state.selling = payload.cardsSell
+    }
 }})
 
 export const { 
   setCards, 
   setAllCards,
   clearCardsView,
+  clearCardsPicked,
+  clearCardsWished,
+  clearCardsSelling,
   setListFilter, 
   setCardListFiltered,  
   cardPickedAdd, 
@@ -154,6 +174,8 @@ export const {
   removeCardToWish,
   addCardToSell,
   removeCardToSell,
+  setCardsPicked,
+  setCardBuySellLogin,
 } = cardsReducer.actions
 
 export default cardsReducer.reducer

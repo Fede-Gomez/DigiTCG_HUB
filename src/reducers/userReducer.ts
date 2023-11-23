@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { UserState } from '../interfaces';
 
 const initialState: UserState = {
-  user:[]
+  profile:[]
 };
 
 export const userReducer = createSlice({
@@ -10,14 +10,14 @@ export const userReducer = createSlice({
   initialState,
   reducers: {
     setUser: (state, action) =>{
-      state.user = action.payload
+      state.profile = action.payload
     },
     saveDeckUser: (state, action) =>{
-      state.user.decks = action.payload 
+      state.profile.decks = action.payload 
     },
     deleteDeckUser: (state, action)=>{
-      state.user = action.payload
-   }
+      state.profile = action.payload
+    }
   },
 })
 

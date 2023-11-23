@@ -1,4 +1,11 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
+
+let textBase = {
+    borderRadius:30,
+    marginVertical:8,
+    fontSize:20,
+    alignSelf:'center',
+}
 
 
 export const listCardsMyDeck = StyleSheet.create({
@@ -8,8 +15,10 @@ export const listCardsMyDeck = StyleSheet.create({
         margin:8
     },
     nameDeck:{
-        alignSelf:'center',
-        marginVertical:8,
+        ...textBase,
+        backgroundColor:'grey',
+        color:'white',
+        padding:10,
     },
     buttonsViewUpdateDelete:{
         flexDirection:'row',
@@ -17,7 +26,22 @@ export const listCardsMyDeck = StyleSheet.create({
         marginVertical:8
     },
     count:{
-        alignSelf:'center',
-        color: 'white'
-    }
+        ...textBase,
+        color:'white',
+        backgroundColor:'purple',
+        paddingHorizontal: 10
+    },
+    selectDecksContainer:{
+        marginTop:Dimensions.get('screen').height/4
+    },
+    selectDecks:{
+        backgroundColor:'red',
+        borderRadius:8,
+        paddingVertical:20,
+        marginHorizontal:90,
+        color:'white',
+        textAlign: 'center',
+        fontSize:30,
+        fontFamily:'digimon'
+    },
 })

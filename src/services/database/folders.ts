@@ -1,7 +1,9 @@
 import axios from "axios";
+import { urlBase } from "../../constants/url";
+
 const getFolders = async () =>{
   try {
-      const resp = await axios.get('http://10.0.2.2:3000/folders');
+      const resp = await axios.get(`${urlBase}/folders`);
       return resp.data
   } catch (error) {
     

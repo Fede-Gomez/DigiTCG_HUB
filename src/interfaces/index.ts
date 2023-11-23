@@ -5,10 +5,13 @@ const voidCard = {
   color: '',
   digivolveColor:'',
   digivolveColor2:'',
+  digivolveColor3:'',
   digivolveCost: 0,
   digivolveCost2: 0,
+  digivolveCost3: 0,
   digivolveFrom: 0,
   digivolveFrom2: 0,
+  digivolveFrom3: 0,
   effect: '',
   effect2: '',
   effect3: '',
@@ -24,7 +27,7 @@ const voidCard = {
   traits: [],
   inheritedEffect: '',
   securityEffect: '',
-  type: '',
+  ace:'',
 }
 const voidFilter = {
   label: '',
@@ -42,32 +45,43 @@ interface listCards{
   count?: number;
 }
 interface Card {
-  attribute: string;
-  cardNumber: string;
+  name: string;
   cardType: string;
   color: string;
   digivolveColor:string;
   digivolveColor2:string;
-  digivolveCost: number;
-  digivolveCost2: number;
+  digivolveColor3:string;
   digivolveFrom: number;
   digivolveFrom2: number;
+  digivolveFrom3: number;
+  playCost: number;
+  digivolveCost: number;
+  digivolveCost2: number;
+  digivolveCost3: number;
+  level: number;
+  power: number;
+  traits: string[];
+  attribute: string;
+  stageLevel: string;
+  rarity: string;
+  cardNumber: string;
+  treated: string;
+  specialEvolve: string;
+  dnaDigivolve: string;
   effect: string;
   effect2: string;
   effect3: string;
-  imgUrl: string;
-  keyword:string[];
-  level: number;
-  name: string;
-  playCost: number;
-  power: number;
-  rarity: string;
-  source: string;
-  stageLevel: string;
-  traits: string[];
+  effect4: string;
+  effect5: string;
+  digiXcross: string,
   inheritedEffect: string;
+  inheritedEffect2: string;
+  inheritedEffect3: string;
+  source: string;
+  imgUrl: string;
   securityEffect: string;
-  type: string;
+  ace:string;
+  keyword:string[];
 }
 interface Deck {
   name: string;
@@ -90,10 +104,11 @@ interface Filter{
 
 export const initialStateCards: ListCards ={
   view: voidListCards,
-  searched: voidListCards,
-  picked:[],
-  selling:[],
-  wished:[],
+  fullListCards: voidListCards,
+  filtred: [],
+  picked: [],
+  selling: [],
+  wished: [],
   listFilter:{
     level: voidFilter,
     attribute: voidFilter,
@@ -109,80 +124,38 @@ export const initialStateCards: ListCards ={
 
 export interface ListCards {
   view: listCards;            //list cards of BottomTabNavigation 
-  searched: listCards;        //list of filtred cards of BottomTabNavigation 
+  filtred: listCards;        //list of filtred cards of BottomTabNavigation 
   picked: listCards[];          //list of cards selected
   selling: listCards[];         //list of cards for sell
   wished: listCards[];          //list of cards for add
   listFilter: Filters;        //list of filter for search in api
+  fullListCards: listCards;
 };
 export interface folderState {
-  folder:{
+  folders:{
     name: string;
     img: string;
   }[];
 }
+
+export interface appState {
+  modalFilterVisible: boolean;
+  modalCardVisible: boolean;
+  flipedCard: boolean;
+  modalCardView: object;
+  builderWishedSelling: string;
+  msjHelp: Array<String>;
+}
+
 export interface UserState {
-  user:{
+  profile:{
     idUser: string;
     name: string;
     email: string;
     password: string;
     decks: Deck[];
+    cardsPicked: listCards[];
+    cardsBuy: listCards[];
+    cardsSell: listCards[];
   }[]
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// export interface CardsState {
-//   listCards: { 
-//     id: string; 
-//     data: Card;
-//   }[];
-//   listCardsPicked: { 
-//     id: string; 
-//     data: Card;
-//     count: number
-//   }[];
-//   listCardsSelling: { 
-//     id: string; 
-//     data: Card;
-//     count: number
-//   }[];
-//   listCardsWished: { 
-//     id: string; 
-//     data: Card;
-//     count: number
-//   }[];
-//   listCardsFiltered:{
-//     id: string; 
-//     data: Card;
-//   }[];
-//   listFilter:{
-//     attribute: string[];
-//     color: string[];
-//     keyword: string[];
-//     level: string[];
-//     playCost: string[];
-//     rarity: string[];
-//     traits: string[];
-//     type: string[];
-//   }[];
-// }
-
-

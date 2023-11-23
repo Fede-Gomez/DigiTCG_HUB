@@ -1,24 +1,54 @@
 import React, {useEffect} from 'react'
-import { TouchableOpacity, FlatList, View, Image, Dimensions } from 'react-native';
+import { TouchableOpacity, FlatList, View, Image } from 'react-native';
 import { useAppSelector } from '../../hooks/useReducerHook';
-import { useCards } from '../../hooks';
+import { useApp, useCards } from '../../hooks';
 import { folder } from '../../styles';
+import { msjHelp } from '../../constants/msjHelp';
 
 const Folder = () => {
-  const folders = useAppSelector(state => state.folder.folder)
-  const { loadAllCardsBt } = useCards();
+  const folders = useAppSelector(state => state.folder.folders)
+  const { loadAllCardsPromo, loadAllCardsBt, loadAllCardsSt, loadAllCardsEx, loadAllCardsRb } = useCards();
+  const {setMsjHelp} = useApp()
   const styleFolder = folder;
+  
+  useEffect(() => {
+    setMsjHelp(msjHelp.folders)
+}, [])
+
+
+  const renderCards = (name:string)=>{
+    switch (true) {
+      case name.toLocaleLowerCase().includes('promo'):
+          loadAllCardsPromo()
+          break;
+      case name.toLocaleLowerCase().includes('st'):
+          loadAllCardsSt(name)
+          break;
+      case name.toLocaleLowerCase().includes('bt'):
+          loadAllCardsBt(name)
+          break;
+      case name.toLocaleLowerCase().includes('ex'):
+          loadAllCardsEx(name)
+          break;
+      case name.toLocaleLowerCase().includes('rb'):
+          loadAllCardsRb(name)
+          break;
+      default:
+          break;
+    }
+  }
 
   const renderItem = ({item})=>{    
     return (
       <TouchableOpacity 
-        onPress={()=> loadAllCardsBt(item.name)}
+        onPress={()=> renderCards(item.name)}
       >
         <View style={styleFolder.containerImg}>
           <Image
             source={{uri:item.img}}
             style={{
-              height: 210,
+              height: 300,
+              width:170
             }}
           />
         </View>
@@ -30,11 +60,13 @@ const Folder = () => {
     <FlatList
       data={folders}
       renderItem={renderItem}
-      numColumns={3}
+      contentContainerStyle={{alignSelf:'center'}}
+      numColumns={2}
+      refreshing={true}
       removeClippedSubviews={true}
       maxToRenderPerBatch={10}
     />
   )
 }
 
-export default Folder
+export default React.memo(Folder) 

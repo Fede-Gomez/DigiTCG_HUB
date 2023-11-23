@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useEffect} from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { Provider } from 'react-redux'
 import { store } from './src/reducers/store';
 import { StackLogSignNavigation } from './src/navigation/StackNavigation';
+import { app } from './src/firebase';
 
-function App() {  
+app
+
+function App() {
+
   return (
     <Provider store={store}>
       <NavigationContainer>

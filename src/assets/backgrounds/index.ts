@@ -1,0 +1,6 @@
+export const placeholderCard = require('./placeholderCard.png')
+export const backgroundCompra = require('./compra.jpg')
+export const backgroundVenta = require('./venta.jpg')
+export const backgroundMyDeck = require('./myDecks.jpg')
+export const backgroundDeck = require('./deck.jpg')
+export const backgroundLoginScreen = require('./loginScreen.jpg')

@@ -1,53 +1,83 @@
 import React, { useEffect, useState } from 'react'
-import {Text, View, TextInput, Button} from 'react-native'
+import { Text, View, TextInput, Button, ImageBackground, ActivityIndicator } from 'react-native';
 import { useAccount } from '../../hooks/useAccount'
 import { useNavigation } from '@react-navigation/native'
 import { TypeNavigation } from '../../constants/typesNavigation'
 import { login } from '../../styles'
 import { useCards, useFolders } from '../../hooks'
+import { backgroundLoginScreen } from '../../assets/backgrounds';
 
 
 export const LoginScreen = () => {
-  const [email, setEmail] = useState('Q@q.com')
-  const [password, setPassword] = useState('123456')
+  const [email, setEmail] = useState()
+  const [password, setPassword] = useState()
   const navigation = useNavigation();
   const style = login;
   const {signIn} = useAccount();
   const {loadFolders} = useFolders()
   const {getListFiltersOfCards, loadAllCards} = useCards()
 
+  const [renderStack, setRenderStack] = useState(false);
+  const [loading, setLoading] = useState(false)
 
+  useEffect(() => {
+    setTimeout(() => {
+      setRenderStack(true);
+    }, 5000);
+  }, [])
   useEffect(() => {
     loadFolders()
     getListFiltersOfCards()
-    loadAllCards()
+    loadAllCards() //Carga todas las cartas para lo que es el filtrado
   }, [])
 
   return (
-    <View style={style.container}>
-        <Text style={style.text}>Email</Text>
-        <TextInput 
-          onChangeText={(text)=>setEmail(text)} 
-          style={style.inputText}
-          keyboardType='email-address'
-        />
-        <Text style={style.text} >Password</Text>
-        <TextInput 
-          onChangeText={(text)=>setPassword(text)} 
-          secureTextEntry={true}
-          style={style.inputText}
-        />
-        <View style={style.logCreteAccountContainer}>
-          <Button
-            // onPress={()=>            navigation.navigate(TypeNavigation.game.homeGameTopBar)}
-            onPress={()=>signIn(email, password)}
-            title='Login'
+    <ImageBackground
+      source={backgroundLoginScreen}
+      resizeMode='cover'
+      style={{
+        flex:1,        
+      }}
+    >
+      {
+        renderStack && (
+          <View style={style.container}>
+          <Text style={style.text}>Email</Text>
+          <TextInput 
+            onChangeText={(text)=>setEmail(text)} 
+            style={style.inputText}
+            keyboardType='email-address'
+            accessibilityHint='email'
           />
-          <Button
-            onPress={()=>navigation.navigate(TypeNavigation.account.signIn)}
-            title='Create account'
+          <Text style={style.text}>Contraseña</Text>
+          <TextInput 
+            onChangeText={(text)=>setPassword(text)} 
+            secureTextEntry={true}
+            style={style.inputText}
+            accessibilityHint='contraseña'
           />
+          <View style={style.logCreteAccountContainer}>
+            <Button
+              color={'black'}
+              onPress={()=>(
+                  signIn(email, password),
+                  setTimeout(() => {
+                    setLoading(false)
+                  }, 3500),
+                  setLoading(true)
+                )}
+              title='Login'
+            />
+            <Button
+              color={'black'}
+              onPress={()=>navigation.navigate(TypeNavigation.account.signIn)}
+              title='Create account'
+            />
+          </View>
         </View>
-    </View>
+        )
+      }
+        {loading && <ActivityIndicator size="large" color="#0000ff" style={{ position:'absolute', top: '75%', left:'50%', right:'50%', justifyContent: 'center', alignItems: 'center' }} />}
+    </ImageBackground>
   )
 }
