@@ -147,6 +147,12 @@ export interface appState {
   msjHelp: Array<String>;
 }
 
+export interface faqState {
+  qa: Array<object>;
+  errata: Array<object>;
+  flow: Array<object>;
+}
+
 export interface UserState {
   profile:{
     idUser: string;

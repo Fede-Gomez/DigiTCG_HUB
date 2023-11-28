@@ -7,6 +7,7 @@ import { BackHandler, Button, View, TouchableOpacity, Text } from 'react-native'
 import { ModalApoyoComentarios, ModalAyuda } from '../components';
 import { useCards } from '../hooks';
 import { useAppSelector } from '../hooks/useReducerHook';
+import BottomFaqNavigation from './BottomFaqNavigation';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -41,8 +42,6 @@ export const TopTapNavigation = () => {
     setCardsBuySellAfterLogin(profile)
   }, [])
   
-
-
   return (
     <>
       <View style={{flexDirection:'row', alignItems:'center', justifyContent:'space-around', backgroundColor:'#2196F3', height:45}}>
@@ -62,6 +61,7 @@ export const TopTapNavigation = () => {
         initialRouteName={TypeNavigation.game.deckBuilder}
       >
         <Tab.Screen name={TypeNavigation.game.deckBuilder} component={BottomCardTabNavigation} options={{title:'Cartas'}} />
+        <Tab.Screen name={TypeNavigation.game.faq} component={BottomFaqNavigation} />
         <Tab.Screen name={TypeNavigation.game.tcgPlayer} component={TcgPlayerScreen} />
       </Tab.Navigator>
       <ModalApoyoComentarios isModalVisible={isModalVisibleApoyoComentario} toggleModal={toggleModalApoyoComentario}/>

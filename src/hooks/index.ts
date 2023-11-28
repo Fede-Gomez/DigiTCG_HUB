@@ -3,6 +3,7 @@ import { useCards } from "./useCards";
 import { useDeck } from "./useDeck";
 import { useFolders } from './useFolders';
 import { useApp } from './useApp';
+import { useFaq } from './useFaq';
 
 export{
     useAccount,
@@ -10,4 +11,5 @@ export{
     useDeck,
     useFolders,
     useApp,
+    useFaq,
 }
