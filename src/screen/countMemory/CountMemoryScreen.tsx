@@ -1,65 +1,84 @@
-import React, {useRef, useState} from 'react'
-import { Dimensions, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import React, {useRef, useState, useEffect} from 'react'
+import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
+import { ModalContadorMemoria } from '../../components'
+import { contadorMemoria } from '../../styles'
 
 const CountMemoryScreen = () => {
     const contador = useRef(0)
+    const msj = useRef('')
     const [activo, setActivo] = useState(contador.current)
-    let msj = '';
+    const [isModalVisible, setIsModalVisible] = useState(false)
     let historial = useRef([]);
+    const style = contadorMemoria
+    const toggleModal = () => {
+        setIsModalVisible(!isModalVisible);
+      };
 
-    const changeContador = (memoria:number)=>{
+    const changeContador = (jugador: number, accion:string, memoria:number)=>{
         const numPrevio = contador.current;
         memoria == 1 ? contador.current++ : contador.current--
         setActivo(contador.current)
-        msj = ''
-        Math.sign(numPrevio) == 1
-            ? msj += `Jugador 1 Activo     [${numPrevio}] --> [${contador.current}]`
-            : msj += `Jugador 2 Activo     [${numPrevio*-1}] --> [${contador.current*-1}]`
-        historial.current.push(msj)
+        msj.current = ''
+        if(jugador == 1)
+            msj.current = 'Jugador 1 '
+        if(jugador == 2)
+            msj.current = 'Jugador 2 '
+        if(accion == 'resta')
+            msj.current += 'resto memoria'
+        if(accion == 'suma')
+            msj.current += 'sumo memoria'
+// Analiza si es turno del jugador 1 o del jugador 2, tambien analiza que si el contador esta en 0 de quien seria el turno (si del jugador 1 o del jugador 2)            
+        if(Math.sign(contador.current) == 1 || (Math.sign(contador.current) == 0 && numPrevio == 1))
+            msj.current += `\nTurno del Jugador 1     [${numPrevio}] --> [${contador.current}]`
+        if(Math.sign(contador.current) == -1 || (Math.sign(contador.current) == 0 && numPrevio == -1))
+            msj.current += `\nTurno del Jugador 2     [${numPrevio*-1}] --> [${contador.current*-1}]`
+        historial.current.push(msj.current)
     }
     const resetGame = ()=>{
         historial.current = [];
         contador.current = 0
         setActivo(contador.current)
     }
-    const verHistorial = ()=>{
-        console.log(historial.current)
-    }
 
   return (
-    <View style={{
-        flex:1,
-        alignItems:'center',
-        justifyContent:'center',
-    }}>
-        <View  style={{flexDirection:'row'}}>
+    <View style={style.container}>
+        <View style={{flexDirection:'row'}}>
             <TouchableOpacity
                 onPress={()=>resetGame()}
+                style={style.btnHistorialReset}
             >
-                <Text>Reiniciar</Text>
+                <Text style={style.txtHistorialReset}>Reiniciar</Text>
             </TouchableOpacity>
             <TouchableOpacity
-                onPress={()=>verHistorial(historial)}
+                onPress={toggleModal}
+                style={style.btnHistorialReset}
             >
-                <Text>Historial</Text>
+                <Text style={style.txtHistorialReset}>Historial</Text>
             </TouchableOpacity>
         </View>
-        <View style={{flexDirection:'row', transform:[{rotate:'180deg'}]}}>
+        <View style={{flexDirection:'row', transform:[{rotate:'180deg'}], marginTop:15}}>
             <TouchableOpacity
                 style={{
-                    backgroundColor:'white',
-                    padding:10,
-                    marginRight:150,
-                    opacity: contador.current ==10 && 0.2
-
+                    ...style.btnMemoriaBase,
+                    opacity: contador.current == 10 && 0.2
                 }}
-                onPress={()=>contador.current != 10 && changeContador(1)}
+                onPress={()=>contador.current != 10 && changeContador(1, 'suma', 1)}
                 disabled={contador.current == 10 && true }
             >
                 <Text style={{color:'black'}}>Memoria +1</Text>
             </TouchableOpacity>
-            <Text style={{alignSelf:'center', color:'blue'}}>Jugador 1:   {contador.current}</Text>
+            <Text style={{...style.txtMemoriaJugador, color:'blue'}}>Jugador 1:   {contador.current}</Text>
+            <TouchableOpacity
+                style={{
+                    ...style.btnMemoriaBase,
+                    opacity: contador.current == -10 && 0.2,
+                }}
+                onPress={()=>contador.current != 10 && changeContador(1, 'resta',0)}
+                disabled={contador.current == -10 && true }
+            >
+                <Text style={{color:'black'}}>Memoria -1</Text>
+            </TouchableOpacity>
         </View>
         <View style={style.containerNumber}>
             <Text style={activo == 10 ? style.jugadorActivo1 : style.jugador1}>10</Text>
@@ -126,93 +145,29 @@ const CountMemoryScreen = () => {
         >
             <TouchableOpacity
                 style={{
-                    backgroundColor:'white',
-                    padding:10,
-                    marginRight:150,
+                    ...style.btnMemoriaBase,
                     opacity: contador.current ==-10 && 0.2
                 }}
-                onPress={()=>contador.current != -10 && changeContador(0)}
+                onPress={()=>contador.current != -10 && changeContador(2, 'suma', 0)}
                 disabled={contador.current == -10 && true }
             >
                 <Text style={{color:'black'}}>Memoria +1</Text>
             </TouchableOpacity>
-            <Text style={{alignSelf:'center', color:'red'}}>Jugador 2:   {contador.current*-1}</Text>
+            <Text style={{...style.txtMemoriaJugador, color:'red'}}>Jugador 2:   {contador.current*-1}</Text>
+            <TouchableOpacity
+                style={{
+                    ...style.btnMemoriaBase,
+                    opacity: contador.current == 10 && 0.2,
+                }}
+                onPress={()=>contador.current != 10 && changeContador(2, 'resta', 1)}
+                disabled={contador.current == 10 && true }
+            >
+                <Text style={{color:'black'}}>Memoria -1</Text>
+            </TouchableOpacity>
         </View>
+        <ModalContadorMemoria isModalVisible={isModalVisible} toggleModal={toggleModal} historial={historial.current}/>
     </View>
   )
 }
-
-
-const estiloNumBase = {
-    borderRadius:80,
-    width:50,
-    height:50,
-    textAlign:'center',
-    fontSize:35,
-}
-const lineaBase = {
-    backgroundColor:'black',
-    height:5,
-    paddingHorizontal:20,
-}
-
-
-const style = StyleSheet.create({
-    // contenedores
-    containerNumber: {
-        flexDirection:'row', 
-        marginVertical:15, 
-        alignItems:'center'
-    },
-    containerNumeroAmbosJugadores:{
-        ...estiloNumBase,
-        transform:[{rotate:'45deg'}]
-    },
-
-
-    // circulos de memoria
-    jugador1:{
-        ...estiloNumBase,
-        backgroundColor:'black',
-        color:'white',
-        transform:[{rotate:'180deg'}]
-    },
-    jugador2:{
-        ...estiloNumBase,
-        backgroundColor:'white',
-        color:'black',
-    },
-    ambosJugadores:{
-        ...estiloNumBase,
-    },
-    jugadorActivo:{
-        ...estiloNumBase,
-    },
-    jugadorActivo1:{
-        ...estiloNumBase,
-        color:'blue',
-        transform:[{rotate:'180deg'}]
-    },
-    jugadorActivo2:{
-        ...estiloNumBase,
-        color:'red',
-    },
-
-
-    // lineas que unen los circulos
-    lineaHorizontal:{
-        ...lineaBase
-    },
-    lineaVerticalDer:{
-        ...lineaBase,
-        transform:[{rotate:'90deg'}],
-        marginLeft: Dimensions.get('window').width / 2.3
-    },
-    lineaVerticalIzq:{
-        ...lineaBase,
-        transform:[{rotate:'90deg'}],
-        marginRight: Dimensions.get('window').width / 2.3
-    },
-})
 
 export default CountMemoryScreen

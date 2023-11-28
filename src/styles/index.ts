@@ -10,6 +10,8 @@ import { filter } from './filter';
 import { modalFilter } from './modals/styleModalFilter';
 import { btnsHeader } from './btnsHeader';
 import { btnsAddRemove } from './btnsAddRemove'
+import { modalContadorMemoria } from './modals/modalContadorMemoria';
+import { contadorMemoria } from './contadorMemoria';
 
 export{
     folder,
@@ -24,4 +26,6 @@ export{
     modalFilter,
     btnsHeader,
     btnsAddRemove,
+    modalContadorMemoria,
+    contadorMemoria,
 }
