@@ -83,10 +83,12 @@ export const BtnShareCards = ({ tipoOperacion,message='', cards, titlePrompt='' 
   return (
     <View>
       {/* importante que este este view con display none para que no se renderice en la app y muy importante tener el canvas aca adentro para que pueda dibujar las cartas que se compartiran */}
-        <View style={{display:'none'}}>
-          <Canvas ref={handleCanvas} />
-        </View>
-
+    <View 
+    // estos estilos son obligatorios para ocultar el canvas... sin esto arrojara error al actualizar el componente cuando en el flatlist se quiere subir o bajar mas una vez llegado al limite de la lista o al tope de la lista
+      style={{opacity:0, height:0, width:0}}
+    >
+      <Canvas ref={handleCanvas} />
+    </View>
     <TouchableOpacity
         onPress={()=>shareMessage()}
         style={{backgroundColor:'green', padding:10}}
