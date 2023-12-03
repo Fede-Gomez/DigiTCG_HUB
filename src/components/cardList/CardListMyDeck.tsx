@@ -185,11 +185,16 @@ const CardListMyDeck = () => {
       </TouchableOpacity>
     )
     }
-    
+
+    const renderData = ()=>{
+      if(deckChoice)
+        return decks[deckChoice]
+      return []
+    }
   return (
     <>
       <FlatList
-        data={deckChoice  ? decks[deckChoice] : []}
+        data={renderData()}
         ListEmptyComponent={renderNoDeckChoice}
         ListHeaderComponent={renderHeader}
         renderItem={renderDeck}
