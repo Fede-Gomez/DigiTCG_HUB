@@ -15,7 +15,7 @@ const CardListMyDeck = () => {
     const decks = useAppSelector(state => state.user.profile.decks)
     const listPicked = useAppSelector(state => state.cards.picked)
     const navigation = useNavigation()
-    const {updateDeck, deleteDeck, changeNameDeck} = useDeck()
+    const { updateDeck, deleteDeck } = useDeck()
     const {setMsjHelp} = useApp()
     const [isModalVisible, setModalVisible] = useState(false);
     const [deckChoice, setDeckChoice] = useState(null)

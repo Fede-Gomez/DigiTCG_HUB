@@ -279,7 +279,7 @@ export const BtnsHeadersCardSelecteds = () => {
             </TouchableOpacity>
           </Animatable.View>
         </View>
-        {listWished?.length != 0 && <BtnShareCards message={`Busco:\n`} cards={listWished} tipoOperacion='compra' titlePrompt={'Guardar y publicar'} />}
+        {listWished?.length != 0 && <BtnShareCards message={`Compro`} cards={listWished} tipoOperacion='compra' titlePrompt={'Guardar y publicar'} />}
       </View>
     )
   }
@@ -317,7 +317,7 @@ export const BtnsHeadersCardSelecteds = () => {
             </TouchableOpacity>
           </Animatable.View>
         </View>
-        {listSelling?.length != 0 && <BtnShareCards message={`Vendo:\n`} cards={listSelling} tipoOperacion='venta' titlePrompt={'Guardar y publicar'} />}
+        {listSelling?.length != 0 && <BtnShareCards message={`Vendo`} cards={listSelling} tipoOperacion='venta' titlePrompt={'Guardar y publicar'} />}
       </View>
     )
   }
