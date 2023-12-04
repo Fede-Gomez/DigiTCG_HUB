@@ -1,22 +1,31 @@
 import React, {useState} from 'react'
-import { View, Text, Button, TextInput } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import Modal from 'react-native-modal';
 import { useAppSelector } from '../../hooks/useReducerHook';
+import { useCards } from '../../hooks';
 
 const BtnImportDeck = () => {
 const builderWishedSelling = useAppSelector(state => state.app.builderWishedSelling)
+const {cardsImported} = useCards();
+
 const [isModalVisible, setModalVisible] = useState(false);
 const [value, onChangeText] = useState('');
 const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
-  
+
   return (
     <View>
-        <Button
+        <TouchableOpacity
             onPress={toggleModal}
-            title= {'Importa Cartas'} 
-        />
+        >
+            <Text style={{backgroundColor:'red',
+            borderRadius:8,
+            padding:20,
+            color:'white',
+            fontSize:30,}}
+        >Importar Cartas</Text>
+        </TouchableOpacity>
         <Modal
             isVisible={isModalVisible}
         >
@@ -32,13 +41,24 @@ const toggleModal = () => {
                 onChangeText={text => onChangeText(text)}
                 value={value}
                 placeholder='Pegue aqui el texto'
-                style={{backgroundColor:'white', marginBottom:10}}
+                style={{backgroundColor:'white',color:'black', marginBottom:10}}
             />
-
-        <Button
-            onPress={toggleModal}
-            title= {'Salir'} 
-        />
+            <View
+                style={{flexDirection:'row', justifyContent:'space-evenly'}}
+            >
+                <TouchableOpacity
+                    onPress={()=>cardsImported(value, builderWishedSelling)}
+                    style={{backgroundColor:'green', padding:20}}
+                >
+                    <Text style={{color:'white', fontSize:20, textAlign:'center'}}>Importar</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={toggleModal}
+                    style={{backgroundColor:'red', padding:20}}
+                >
+                    <Text style={{color:'white',fontSize:20, textAlign:'center'}}>Salir</Text>
+                </TouchableOpacity>
+            </View>
         </Modal>
     </View>
   )

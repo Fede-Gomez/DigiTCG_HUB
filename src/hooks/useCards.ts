@@ -1,4 +1,4 @@
-import { useAppDispatch } from './useReducerHook'
+import { useAppDispatch, useAppSelector } from './useReducerHook'
 import { 
   setCards, 
   setAllCards,
@@ -17,11 +17,27 @@ import {
   setCardBuySellLogin,
 } from '../reducers/cardsReducer'
 import { getFilters, getCardsBt, getFilteredCards, getAllCards, getCardsEx, getCardsRb, getCardsSt, getCardsPromo } from '../services/database'
+import { ErrorMessage } from '../components';
+import Toast from 'react-native-toast-message';
+import { TypeNavigation } from '../constants/typesNavigation';
 
+const patternParaImportar =/^(\d+)\s+.*?(\w+-\d+)$/;
+let cartaEncontrada;
 
 export const useCards = () => {
-
+  const allCards = useAppSelector(state => state.cards.fullListCards)
   const dispatch = useAppDispatch()
+
+  const buscarCarta = (codigo:string)=>{
+/*
+Lo que hace codigoCorregido es agregarle un 0 si y solo si hay 1 solo digito entre st/bt/ex/rb
+ej-> si me llega ST3-02 lo pasa a ST03-02
+*/
+  const codigoCorregido = codigo.replace(/(\D)(\d-\d+)/, (match, group1, group2) => {
+    return group1 + "0" + group2;
+  });
+    return allCards.find(element => element.cardNumber == codigoCorregido);
+  }
 
   const loadAllCards= async ()=>{
     const cards = await getAllCards();
@@ -125,6 +141,50 @@ export const useCards = () => {
     return newFilters;
   }
 
+  const cardsImported = (cartas:string, deckCompraVenta:string)=>{
+    cartas.split('\n').forEach((line) => {
+        const match = line.trim().match(patternParaImportar);
+        if (match) {
+          const numero = match[1];
+          const codigo = match[2];
+          
+          cartaEncontrada = buscarCarta(codigo)
+          if(cartaEncontrada == undefined){
+            Toast.show({
+              type: 'error',
+              text1: `No se encontro ${line.trim()}`
+            });
+          }else{
+            console.log(deckCompraVenta);
+            
+            switch (deckCompraVenta) {
+              case TypeNavigation.game.deckBuilder:
+                for(let cont = 0; cont < parseInt(numero); cont++) addCards(cartaEncontrada)
+                break;
+              case TypeNavigation.game.cardsBuy:
+                for(let cont = 0; cont < parseInt(numero); cont++) addCardWished(cartaEncontrada)
+                break;
+              case TypeNavigation.game.cardsSell:
+                for(let cont = 0; cont < parseInt(numero); cont++) addCardSelling(cartaEncontrada)
+                break;
+            }
+          }
+        } else {
+          if(line.trim().length != 0)
+            ErrorMessage(`Formato invalido de ${line.trim()}`)
+        } 
+    });
+
+  }
+  
+  const cardsImportedForBuy = (cartas:string)=>{
+
+  }
+  
+  const cardsImportedForSell = (cartas:string)=>{
+
+  }
+
   const setCardsBuySellAfterLogin = (user)=>{
     dispatch(setCardBuySellLogin(user))
   }
@@ -149,5 +209,8 @@ export const useCards = () => {
     clearListCardsWished,
     clearListCardsSelling,
     setCardsBuySellAfterLogin,
+    cardsImported,
+    cardsImportedForBuy,
+    cardsImportedForSell,
   }
 }
