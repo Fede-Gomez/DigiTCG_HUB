@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState,useEffect} from 'react'
 import { View, Button, TouchableOpacity, Text } from 'react-native';
 import Share from 'react-native-share';
 import { useAppSelector } from '../../hooks/useReducerHook';
@@ -14,6 +14,11 @@ const BtnsExportDeck = ({deckChoice}) => {
     const [isModalVisible, setModalVisible] = useState(false);
 
     const decks = useAppSelector(state => state.user.profile.decks)
+    
+    useEffect(() => {
+      messageTts = '["Exported from app DigiTCG Hub"'
+      messageTxt = ''
+    }, [deckChoice])
     
     decks[deckChoice]?.forEach(element => {
         for (let index = 0; index < element.count; index++) {
