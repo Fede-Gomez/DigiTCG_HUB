@@ -15,9 +15,14 @@ export const BtnShareCards = ({ tipoOperacion,message='', cards, titlePrompt='' 
 
   const shareMessage = () => {
     shareImages(message);
-    tipoOperacion == 'compra'
-    ? saveCardsBuy(cards)
-    : saveCardsSell(cards)
+    switch (tipoOperacion) {
+      case 'compra': saveCardsBuy(cards)
+        break;
+      case 'Venta': saveCardsSell(cards)
+        break;
+      default:
+        break;
+    }
   };
 
   const handleCanvas = async (canvas) => {

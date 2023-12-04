@@ -155,8 +155,6 @@ ej-> si me llega ST3-02 lo pasa a ST03-02
               text1: `No se encontro ${line.trim()}`
             });
           }else{
-            console.log(deckCompraVenta);
-            
             switch (deckCompraVenta) {
               case TypeNavigation.game.deckBuilder:
                 for(let cont = 0; cont < parseInt(numero); cont++) addCards(cartaEncontrada)

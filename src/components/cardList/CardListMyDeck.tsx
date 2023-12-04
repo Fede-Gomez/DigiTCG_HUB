@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useAppSelector } from '../../hooks/useReducerHook'
-import { BtnChangeNameDeck, BtnImportDeck, BtnsExportDeck, CardDigimon } from '../../components'
+import { BtnChangeNameDeck, BtnsExportDeck, CardDigimon } from '../../components'
 import { Text, FlatList, Button, View, Alert, TouchableOpacity } from 'react-native';
 import Modal from 'react-native-modal';
 import { useApp, useDeck } from '../../hooks';
@@ -69,33 +69,35 @@ const CardListMyDeck = () => {
     const renderHeader = () => {
       return(
         <View>
-          <View style={style.buttonsViewUpdateDelete}>
-            {deckChoice && <>
-                <Button
+            {deckChoice && <View>
+              <View style={style.buttonsViewUpdateDelete}>
+                <TouchableOpacity
+                  style={{backgroundColor:'green', padding:0, alignSelf:'center'}}
                   onPress={toggleModal}
-                  title= {'Ver otros decks'} 
-                />
+                >
+                  <Text style={{padding:10, color:'white', fontWeight:'bold'}}>Otros decks</Text>
+                </TouchableOpacity>
+                <BtnsExportDeck deckChoice={deckChoice} />
+              </View>
+              <View style={style.buttonsViewUpdateDelete}>
                 <Button
                   onPress={toggleModal}
                   title='Actualizar'
                   color={'orange'}
                   onPress={()=>{updateDeckAndGoCardSelect()}}
                 />
-                  <Button
-                    onPress={toggleModal}
-                    color={'red'}
-                    title='Borrar deck'
-                    onPress={()=>{removeDeck(deckChoice)}}
-                  />
-              </>
-            }
+                <Button
+                  onPress={toggleModal}
+                  color={'red'}
+                  title='Borrar deck'
+                  onPress={()=>{removeDeck(deckChoice)}}
+                />
+              </View>
+              <View style={{flexDirection:'row', justifyContent:'space-around', alignItems:'center'}}>
+                <Text style={style.nameDeck}>{deckChoice}</Text> 
+                <BtnChangeNameDeck nameDeck={deckChoice} cards={decks[deckChoice]} setDeckChoice={setDeckChoice} />
+              </View>
             </View>
-            {deckChoice && <BtnsExportDeck deckChoice={deckChoice} />}
-          {deckChoice &&
-          <View style={{flexDirection:'row', justifyContent:'space-around', alignItems:'center'}}>
-            <Text style={style.nameDeck}>{deckChoice}</Text> 
-            <BtnChangeNameDeck nameDeck={deckChoice} cards={decks[deckChoice]} setDeckChoice={setDeckChoice} />
-          </View>
           }
         <Modal
             isVisible={isModalVisible}

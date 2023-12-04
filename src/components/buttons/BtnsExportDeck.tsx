@@ -1,9 +1,10 @@
 import React, {useState} from 'react'
-import { View, Button } from 'react-native';
+import { View, Button, TouchableOpacity, Text } from 'react-native';
 import Share from 'react-native-share';
 import { useAppSelector } from '../../hooks/useReducerHook';
 import { listCardsMyDeck } from '../../styles';
 import Modal from 'react-native-modal';
+import { BtnShareCards } from './BtnShareCards';
 
 let messageTts = '["Exported from app DigiTCG Hub"'
 let messageTxt = ''
@@ -60,21 +61,32 @@ const BtnsExportDeck = ({deckChoice}) => {
     <View style={style.buttonsViewUpdateDelete}>
         <Button
             onPress={toggleModal}
-            title= {'Importar Deck'} 
+            title= {'Exportar Deck'} 
         />
         <Modal
             isVisible={isModalVisible}
         >
-            <Button 
-                title={'Compartir TTS deck'}
-                color={'green'}
-                onPress={shareMessageTts}
-            />
-            <Button 
-                title={'Compartir Texto deck'}
-                color={'green'}
-                onPress={shareMessageTxt}
-            />
+          <View style={{alignItems:'center'}}>
+            <TouchableOpacity
+              onPress={shareMessageTts}
+              style={{backgroundColor:'green',margin:10}}
+            >
+              <Text style={{padding:10, fontSize:20, color:'white', fontWeight:'bold'}}>Compartir TTS deck</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={shareMessageTxt}
+              style={{backgroundColor:'green',margin:10}}
+            >
+              <Text style={{padding:10, fontSize:20, color:'white', fontWeight:'bold'}}>Compartir Texto deck</Text>
+            </TouchableOpacity>
+            <View style={{padding:10, paddingBottom:20}}>
+              <BtnShareCards message={``} cards={decks[deckChoice]} tipoOperacion='' titlePrompt={'Compartir Imagen deck'} />
+            </View>
+          </View>
+          <Button
+            title='Salir'
+            onPress={toggleModal}
+          />
         </Modal>
     </View>
   )
