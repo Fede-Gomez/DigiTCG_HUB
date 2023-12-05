@@ -1,7 +1,6 @@
 import React from 'react'
-import { View, Text, Button, FlatList } from 'react-native';
+import { Text, Button, FlatList } from 'react-native';
 import Modal from 'react-native-modal';
-import { useRoute } from '@react-navigation/native';
 import { useAppSelector } from '../../hooks/useReducerHook';
 
 const ModalAyuda = ({isModalVisible, toggleModal}) => {

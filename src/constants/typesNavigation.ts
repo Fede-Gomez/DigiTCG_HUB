@@ -16,6 +16,7 @@ export const TypeNavigation = {
         faq:'Ruling',
         questionAnswer:'Question Answer',
         errataCards: 'Errata Cards',
-        flowChart: 'Attack Flowchart'
+        flowChart: 'Attack Flowchart',
+        countMemory: "Medidor Memoria"
     }
 }

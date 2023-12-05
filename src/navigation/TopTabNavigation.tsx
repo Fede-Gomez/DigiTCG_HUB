@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { TypeNavigation } from '../constants/typesNavigation';
 import { BottomCardTabNavigation } from './BottomTabNavigation';
-import { TcgPlayerScreen } from '../screen';
-import { BackHandler, Button, View, TouchableOpacity, Text } from 'react-native';
+import { CountMemoryScreen, TcgPlayerScreen } from '../screen';
+import { BackHandler, View, TouchableOpacity, Text } from 'react-native';
 import { ModalApoyoComentarios, ModalAyuda } from '../components';
 import { useCards } from '../hooks';
 import { useAppSelector } from '../hooks/useReducerHook';
@@ -63,6 +63,7 @@ export const TopTapNavigation = () => {
         <Tab.Screen name={TypeNavigation.game.deckBuilder} component={BottomCardTabNavigation} options={{title:'Cartas'}} />
         <Tab.Screen name={TypeNavigation.game.faq} component={BottomFaqNavigation} />
         <Tab.Screen name={TypeNavigation.game.tcgPlayer} component={TcgPlayerScreen} />
+        <Tab.Screen name={TypeNavigation.game.countMemory} component={CountMemoryScreen} />
       </Tab.Navigator>
       <ModalApoyoComentarios isModalVisible={isModalVisibleApoyoComentario} toggleModal={toggleModalApoyoComentario}/>
       <ModalAyuda isModalVisible={isModalVisibleAyuda} toggleModal={toggleModalAyuda}/>
