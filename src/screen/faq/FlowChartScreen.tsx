@@ -1,9 +1,9 @@
 import React from 'react'
-import { Text } from 'react-native';
+import { FlowChart } from '../../components';
 
-const FlowChartScreen = () => {
+const FlowChartScreen = () => {  
   return (
-    <Text>FlowChartScreen</Text>
+    <FlowChart/>
   )
 }
 

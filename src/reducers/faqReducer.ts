@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { faqState } from '../interfaces';
-import { TypeNavigation } from '../constants/typesNavigation';
 
 const initialState: faqState = {
   errata:[],
@@ -8,7 +7,7 @@ const initialState: faqState = {
   qa:[],
 };
 
-export const appReducer = createSlice({
+export const faqReducer = createSlice({
   name: 'faq',
   initialState,
   reducers: {
@@ -24,6 +23,6 @@ export const appReducer = createSlice({
   },
 })
 
-export const { setQA, setErrataCards, setFlowChart } = appReducer.actions
+export const { setQA, setErrataCards, setFlowChart } = faqReducer.actions
 
-export default appReducer.reducer
+export default faqReducer.reducer

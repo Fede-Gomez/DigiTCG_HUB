@@ -1,9 +1,10 @@
 import React from 'react'
-import { Text } from 'react-native';
+import { QuestionAnswer } from '../../components/faqs';
 
 const QuestionAnswerScreen = () => {
   return (
-    <Text>QuestionAnswerScreen</Text>
+    //agregar el background
+    <QuestionAnswer/>
   )
 }
 
