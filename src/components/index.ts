@@ -1,10 +1,9 @@
 import CardDigimon from "./cards/CardDigimon";
 import Folder from './folders/Folder';
 import { CardListCardsSelected, CardListCardsView, CardListMyDeck } from './cardList'
-import { ModalApoyoComentarios, ModalCard, ModalFilter, ModalAyuda } from './modals'
-import { BtnAddRemoveCards, BtnShareCards, BtnsHeadersCard, BtnsHeadersCardSelecteds, BtnChangeNameDeck } from './buttons'
-import { ErrorMessage, SuccesMessage, ErrorSound } from './alerts'
-import { QuestionAnswer, FlowChart } from './faqs';
+import { ModalApoyoComentarios, ModalCard, ModalFilter, ModalAyuda} from './modals'
+import { BtnAddRemoveCards, BtnShareCards, BtnsHeadersCard, BtnsHeadersCardSelecteds, BtnChangeNameDeck} from './buttons'
+import { ErrorMessage, SuccesMessage, ErrorSound} from './alerts'
 
 export {
     CardDigimon,
@@ -21,6 +20,8 @@ export {
     BtnsHeadersCard,
     BtnsHeadersCardSelecteds,
     BtnChangeNameDeck,
+    BtnsExportDeck,
+    BtnImportDeck,
     ErrorMessage,
     ErrorSound,
     SuccesMessage,
