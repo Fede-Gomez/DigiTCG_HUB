@@ -42,6 +42,6 @@ export const listCardsMyDeck = StyleSheet.create({
         color:'white',
         textAlign: 'center',
         fontSize:30,
-        fontFamily:'digimon'
+        marginTop:Dimensions.get('screen').height/4,
     },
 })

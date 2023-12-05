@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
-import { FlatList, Text, TouchableOpacity, View } from 'react-native';
-import { BtnsHeadersCardSelecteds, BtnAddRemoveCards, CardDigimon } from '../../components'
+import { Dimensions, FlatList, Text, TouchableOpacity, View } from 'react-native';
+import { BtnsHeadersCardSelecteds, BtnAddRemoveCards, CardDigimon, BtnImportDeck } from '../../components'
 import { listCardsSelected } from '../../styles';
 import { useAppSelector } from '../../hooks/useReducerHook';
 import { TypeNavigation } from '../../constants/typesNavigation';
@@ -34,35 +34,48 @@ import { msjHelp } from '../../constants/msjHelp';
         </View>
     }
     const renderListEmpty = () => {
-      return <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-around' }}>
+      return <View style={{ flex: 1, alignItems:'center'}}>
         <TouchableOpacity
           onPress={()=>navigation.navigate(TypeNavigation.game.cardsView)}
+          style={{
+            marginTop:Dimensions.get('screen').height/5,
+            marginBottom:50
+          }}
         >
           <Text style={style.listEmpty}>
             Agrega cartas
           </Text>
         </TouchableOpacity>
+        <BtnImportDeck />
       </View>
     }
+    
     const renderHeader = () => {
       return (<BtnsHeadersCardSelecteds />);
     };
+
+    const renderData = ()=>{
+      if(builderWishedSelling == TypeNavigation.game.cardsSell)
+        return listSelling
+      if(builderWishedSelling == TypeNavigation.game.cardsBuy)
+        return listWished 
+      return listPicked
+    }
+
     return (
-    <FlatList
-      ListEmptyComponent={renderListEmpty}
-      data={
-        builderWishedSelling == TypeNavigation.game.cardsSell 
-          ? listSelling : 
-        builderWishedSelling == TypeNavigation.game.cardsBuy 
-          ? listWished : listPicked
-      }
-      renderItem={renderItem}
-      numColumns={2}
-      stickyHeaderIndices={[0]}
-      ListHeaderComponent={renderHeader}
-      showsVerticalScrollIndicator={false}
-      removeClippedSubviews={true}
-    />
+      <View>
+        <FlatList
+          ListEmptyComponent={renderListEmpty}
+          data={renderData()}
+          renderItem={renderItem}
+          numColumns={2}
+          stickyHeaderIndices={[0]}
+          ListHeaderComponent={renderHeader}
+          showsVerticalScrollIndicator={false}
+          removeClippedSubviews={true}
+          keyExtractor={item => item.id}
+        />
+      </View>
   )
 }
 

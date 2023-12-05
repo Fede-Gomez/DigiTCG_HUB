@@ -14,13 +14,15 @@ export const BtnChangeNameDeck = ({cards, nameDeck, setDeckChoice}) => {
           setDeckChoice(nameDeck)
          }, style: 'cancel'},
          {text: 'OK', onPress: newName => {
-            changeNameDeck(newName, nameDeck, cards),
-            setDeckChoice(newName)
+          if(newName == '') 
+              newName = 'Deck'+Math.random()
+           setDeckChoice(newName),
+            changeNameDeck(newName, nameDeck, cards)
           }},
         ],
         {
             cancelable: false,
-            placeholder: 'name deck'
+            placeholder: 'name deck',
         }
       );
     }
