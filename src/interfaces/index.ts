@@ -51,13 +51,16 @@ interface Card {
   digivolveColor:string;
   digivolveColor2:string;
   digivolveColor3:string;
+  digivolveColor4:string;
   digivolveFrom: number;
   digivolveFrom2: number;
   digivolveFrom3: number;
+  digivolveFrom4: number;
   playCost: number;
   digivolveCost: number;
   digivolveCost2: number;
   digivolveCost3: number;
+  digivolveCost4: number;
   level: number;
   power: number;
   traits: string[];

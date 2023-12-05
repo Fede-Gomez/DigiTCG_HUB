@@ -13,5 +13,6 @@ export const TypeNavigation = {
         deckBuilder:'Deck',
         cardsBuy: 'Comprar',
         cardsSell: 'Vender',
+        countMemory: "Medidor Memoria"
     }
 }

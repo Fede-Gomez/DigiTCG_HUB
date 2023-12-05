@@ -29,12 +29,15 @@ const ModalCard = ({card}) => {
         digivolveColor,
         digivolveColor2, 
         digivolveColor3, 
+        digivolveColor4, 
         digivolveCost, 
         digivolveCost2, 
         digivolveCost3, 
+        digivolveCost4, 
         digivolveFrom, 
         digivolveFrom2, 
         digivolveFrom3, 
+        digivolveFrom4, 
         traits,        
         level, 
         power, 
@@ -141,6 +144,7 @@ const ModalCard = ({card}) => {
                                 {digivolveColor && <Text style={style.multiTextCard} > {digivolveColor}</Text>}
                                 {digivolveColor2 && <Text style={style.multiTextCard} >{digivolveColor2}</Text>}
                                 {digivolveColor3 && <Text style={style.multiTextCard} >{digivolveColor3}</Text>}
+                                {digivolveColor4 && <Text style={style.multiTextCard} >{digivolveColor4}</Text>}
                             </View>
                         </View>
                         </>
@@ -153,6 +157,7 @@ const ModalCard = ({card}) => {
                                     {digivolveFrom && <Text style={style.multiTextCard}>{digivolveFrom}</Text>}
                                     {digivolveFrom2 && <Text style={style.multiTextCard}>{digivolveFrom2}</Text>}
                                     {digivolveFrom3 && <Text style={style.multiTextCard}>{digivolveFrom3}</Text>}
+                                    {digivolveFrom4 && <Text style={style.multiTextCard}>{digivolveFrom4}</Text>}
                                 </View>
                             </View>
                         </>
@@ -165,6 +170,7 @@ const ModalCard = ({card}) => {
                                     {(digivolveCost || digivolveCost == 0)  && <Text style={style.multiTextCard}>{digivolveCost}</Text>}
                                     {(digivolveCost2 || digivolveCost2 == 0)  && <Text style={style.multiTextCard}>{digivolveCost2}</Text>}
                                     {(digivolveCost3 || digivolveCost3 == 0)  && <Text style={style.multiTextCard}>{digivolveCost3}</Text>}
+                                    {(digivolveCost4 || digivolveCost3 == 0)  && <Text style={style.multiTextCard}>{digivolveCost4}</Text>}
                                 </View>
                             </View>
                         </>
@@ -178,7 +184,7 @@ const ModalCard = ({card}) => {
             </View>
             <View style={ style.containerEffectSource } >
                 {treated && <Text style={style.textCard} >{treated}</Text>}
-                {specialEvolve && <Text style={style.textCard} >Digivolve: {specialEvolve}</Text>}
+                {specialEvolve && <Text style={style.textCard} >{specialEvolve}</Text>}
                 {dnaDigivolve && <Text style={style.textCard} >{dnaDigivolve}</Text>}
                 {effect !== undefined &&
                     <View style={style.containerTextEffect}>

@@ -4,6 +4,7 @@ import { CardListCardsSelected, CardListCardsView, CardListMyDeck } from './card
 import { ModalApoyoComentarios, ModalCard, ModalFilter, ModalAyuda} from './modals'
 import { BtnAddRemoveCards, BtnShareCards, BtnsHeadersCard, BtnsHeadersCardSelecteds, BtnChangeNameDeck, BtnsExportDeck, BtnImportDeck} from './buttons'
 import { ErrorMessage, SuccesMessage, ErrorSound} from './alerts'
+import ModalContadorMemoria from './modals/ModalContadorMemoria';
 
 export {
     CardDigimon,
@@ -14,6 +15,7 @@ export {
     ModalCard,
     ModalApoyoComentarios,
     ModalAyuda,
+    ModalContadorMemoria,
     BtnAddRemoveCards,
     CardListMyDeck,
     BtnShareCards,
