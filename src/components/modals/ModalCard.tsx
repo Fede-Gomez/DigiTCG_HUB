@@ -103,6 +103,7 @@ const ModalCard = ({card}) => {
         isVisible={isModalVisible}
         onSwipeComplete={()=>{setModalCard(false), setFlipCard(false)}}
         swipeDirection={!btnHabilitado ? ['up','down'] : []}
+        key={name}
     >
         <Animatable.Text animation="fadeOutUp" iterationCount={'infinite'} direction="alternate" duration={2500} style={{color:'white', fontSize:20, fontWeight:'bold', top:50}}>Desliza arriba o abajo para salir</Animatable.Text>
       <Animated.View
