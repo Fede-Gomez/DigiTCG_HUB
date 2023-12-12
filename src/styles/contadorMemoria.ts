@@ -59,23 +59,36 @@ export const contadorMemoria = StyleSheet.create({
     },
     ambosJugadores:{
         ...estiloNumBase,
-    },
-    jugadorActivo:{
-        ...estiloNumBase,
+        transform:[{rotate:'-45deg'}], color:'gold'
     },
     jugadorActivo1:{
         ...estiloNumBase,
+        backgroundColor:'black',
         color:'blue',
         transform:[{rotate:'180deg'}]
     },
     jugadorActivo2:{
+        ...estiloNumBase,
+        backgroundColor:'white',
+        color:'red',
+    },
+    jugadorActivo1En0:{
+        ...estiloNumBase,
+        color:'blue',
+        transform:[{rotate:'180deg'}]
+    },
+    jugadorActivo2En0:{
         ...estiloNumBase,
         color:'red',
     },
 
 
     // btn para sumar o restar memoria
-    btnMemoriaBase: {
+    btnMemoriaBasePlayer1: {
+        ...btnMemoriaBase,
+        backgroundColor:'black'
+    },
+    btnMemoriaBasePlayer2: {
         ...btnMemoriaBase
     },
 
@@ -86,10 +99,20 @@ export const contadorMemoria = StyleSheet.create({
     },
 
     // lineas que unen los circulos
-    lineaHorizontal:{
+    lineaHorizontalPlayer1:{
+        ...lineaBase,
+        backgroundColor:'white'
+    },
+    lineaVerticalDerPlayer1:{
+        ...lineaBase,
+        backgroundColor:'white',
+        transform:[{rotate:'90deg'}],
+        marginLeft: Dimensions.get('window').width / 2.3
+    },
+    lineaHorizontalPlayer2:{
         ...lineaBase
     },
-    lineaVerticalDer:{
+    lineaVerticalDerPlayer2:{
         ...lineaBase,
         transform:[{rotate:'90deg'}],
         marginLeft: Dimensions.get('window').width / 2.3

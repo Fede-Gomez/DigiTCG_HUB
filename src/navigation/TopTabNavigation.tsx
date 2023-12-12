@@ -62,8 +62,8 @@ export const TopTapNavigation = () => {
       >
         <Tab.Screen name={TypeNavigation.game.deckBuilder} component={BottomCardTabNavigation} options={{title:'Cartas'}} />
         <Tab.Screen name={TypeNavigation.game.faq} component={BottomFaqNavigation} />
-        <Tab.Screen name={TypeNavigation.game.tcgPlayer} component={TcgPlayerScreen} />
         <Tab.Screen name={TypeNavigation.game.countMemory} component={CountMemoryScreen} />
+        <Tab.Screen name={TypeNavigation.game.tcgPlayer} component={TcgPlayerScreen} />
       </Tab.Navigator>
       <ModalApoyoComentarios isModalVisible={isModalVisibleApoyoComentario} toggleModal={toggleModalApoyoComentario}/>
       <ModalAyuda isModalVisible={isModalVisibleAyuda} toggleModal={toggleModalAyuda}/>

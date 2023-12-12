@@ -5,7 +5,8 @@ import { ModalApoyoComentarios, ModalCard, ModalFilter, ModalAyuda} from './moda
 import { BtnAddRemoveCards, BtnShareCards, BtnsHeadersCard, BtnsHeadersCardSelecteds, BtnChangeNameDeck, BtnImportDeck, BtnsExportDeck} from './buttons'
 import { ErrorMessage, SuccesMessage, ErrorSound} from './alerts'
 import ModalContadorMemoria from './modals/ModalContadorMemoria';
-import { FlowChart, QuestionAnswer } from './faqs'
+import { FlowChart, QuestionAnswer, ErrataCards } from './faqs'
+import MemoryGauge from './memoryGauge/CountMemory';
 
 export {
     CardDigimon,
@@ -29,5 +30,7 @@ export {
     ErrorSound,
     SuccesMessage,
     QuestionAnswer,
-    FlowChart
+    FlowChart,
+    MemoryGauge,
+    ErrataCards
 }

@@ -1,10 +1,16 @@
 import React from 'react'
 import { QuestionAnswer } from '../../components/faqs';
+import { ImageBackground } from 'react-native';
+import { backgroundRulingGeneral } from '../../assets/backgrounds';
 
 const QuestionAnswerScreen = () => {
   return (
-    //agregar el background
-    <QuestionAnswer/>
+    <ImageBackground
+      source={backgroundRulingGeneral}
+      resizeMode='cover'
+    >
+          <QuestionAnswer/>
+    </ImageBackground>
   )
 }
 

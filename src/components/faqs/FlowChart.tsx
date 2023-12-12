@@ -43,6 +43,7 @@ const FlowChart = () => {
             paddingHorizontal:40,
             textAlignVertical:'center',
             textAlign:'center',
+            fontSize:15,
             width: Dimensions.get('window').width * 0.5,
             height: Dimensions.get('window').width * 0.5,
             borderRadius:Math.round(Dimensions.get('window').width + Dimensions.get('window').height) / 2,
