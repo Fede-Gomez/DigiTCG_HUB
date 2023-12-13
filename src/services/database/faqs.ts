@@ -10,6 +10,15 @@ const getAllQuestionAnswer = async ()=>{
       }
 }
 
+const getAllDateFaqsUpdate = async ()=>{
+    try {
+        const resp = await axios.get(`${urlBase}/dateFaqCartasUpdate`);
+        return resp.data
+      } catch (error) {
+        throw error;
+      }
+}
+
 const getAllErrataCards = async ()=>{
     try {
         const resp = await axios.get(`${urlBase}/faqErrataCards`);
@@ -30,6 +39,7 @@ const getFlowChart = async ()=>{
 
 export{
     getAllQuestionAnswer,
+    getAllDateFaqsUpdate,
     getAllErrataCards,
     getFlowChart,
 }

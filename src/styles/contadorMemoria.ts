@@ -64,7 +64,7 @@ export const contadorMemoria = StyleSheet.create({
     jugadorActivo1:{
         ...estiloNumBase,
         backgroundColor:'black',
-        color:'blue',
+        color:'skyblue',
         transform:[{rotate:'180deg'}]
     },
     jugadorActivo2:{
@@ -74,7 +74,7 @@ export const contadorMemoria = StyleSheet.create({
     },
     jugadorActivo1En0:{
         ...estiloNumBase,
-        color:'blue',
+        color:'skyblue',
         transform:[{rotate:'180deg'}]
     },
     jugadorActivo2En0:{

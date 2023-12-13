@@ -74,7 +74,7 @@ const ModalCard = ({card}) => {
           // Continuar con la segunda mitad de la animación
           Animated.timing(rotateValue, {
             toValue: 0,
-            duration: 750,
+            duration: 500,
             easing: Easing.linear,
             useNativeDriver: true,
           }).start();
@@ -212,7 +212,7 @@ const ModalCard = ({card}) => {
         }
       </Animated.View>
       <Button
-        title="Flip Card"
+        title="Voltear carta"
         onPress={() => flipCard()}
         disabled={btnHabilitado}
       />

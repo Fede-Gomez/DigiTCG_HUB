@@ -12,6 +12,8 @@ import {
   flowChartAtkOff
 } from '../assets/icons'; 
 import { iconOn, iconOff } from '../constants/colors';
+import { useApp } from '../hooks';
+import { msjHelp } from '../constants/msjHelp';
 
 const iconErrataCard = ({ color, size, focused }) => (
   focused ? <Image style={{
@@ -46,6 +48,19 @@ const iconFlowChartAtk = ({ color, size, focused }) => (
 
 const Tab = createBottomTabNavigator();
 const BottomFaqNavigation = () => {
+
+  const {setMsjHelp} = useApp()
+
+  const msjAyudaQa = ()=>{
+    setMsjHelp(msjHelp.QA)      
+  }
+  const msjAyudaErrataCards = ()=>{
+    setMsjHelp(msjHelp.errataCards)      
+  }
+  const msjAyudaFlowChart = ()=>{
+    setMsjHelp(msjHelp.flowChart)      
+  }
+
   return (
     <Tab.Navigator
         screenOptions={{headerShown:false}}
@@ -60,6 +75,7 @@ const BottomFaqNavigation = () => {
             tabBarActiveBackgroundColor:iconOff,
             tabBarInactiveBackgroundColor:iconOn,
           }}
+          listeners={{focus:msjAyudaQa}}
         />
         <Tab.Screen 
           name={TypeNavigation.game.errataCards} 
@@ -71,6 +87,7 @@ const BottomFaqNavigation = () => {
             tabBarActiveBackgroundColor:iconOff,
             tabBarInactiveBackgroundColor:iconOn,
           }}
+          listeners={{focus:msjAyudaErrataCards}}
         />
         <Tab.Screen 
           name={TypeNavigation.game.flowChart} 
@@ -82,6 +99,7 @@ const BottomFaqNavigation = () => {
             tabBarActiveBackgroundColor:iconOff,
             tabBarInactiveBackgroundColor:iconOn,
           }}
+          listeners={{focus:msjAyudaFlowChart}}
         />
     </Tab.Navigator>
   )

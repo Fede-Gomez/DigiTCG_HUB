@@ -27,7 +27,9 @@ const ErrataCards = () => {
         })}
         <View style={style.containerInfoErrata}>
           <Text style={{...style.textInfoErrata, color:'blue',}}>Card Errata</Text>
+          <Text style={{...style.textInfoErrata, color:'white', backgroundColor:'red', width:75, textAlign:'center'}}>Before</Text>
           <Text style={{...style.textInfoErrata, color:'red',}}>{before}</Text>
+          <Text style={{...style.textInfoErrata, color:'white', backgroundColor:'green', width:75, textAlign:'center'}}>After</Text>
           <Text style={{...style.textInfoErrata, color:'green',}}>{after}</Text>
           <Text style={{...style.textInfoErrata, color:'purple',}}>{errataNote}</Text>
         </View>

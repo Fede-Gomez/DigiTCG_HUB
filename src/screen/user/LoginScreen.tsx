@@ -16,7 +16,7 @@ export const LoginScreen = () => {
   const {signIn} = useAccount();
   const {loadFolders} = useFolders()
   const {getListFiltersOfCards, loadAllCards} = useCards()
-  const { setQuestionAnswers, setAttackFlowChart, setAllErrataCards } = useFaq()
+  const { setQuestionAnswers, setAttackFlowChart, setAllErrataCards, setAllDateFaqsUpdate } = useFaq()
   const [renderStack, setRenderStack] = useState(false);
   const [loading, setLoading] = useState(false)
 
@@ -31,6 +31,7 @@ export const LoginScreen = () => {
     getListFiltersOfCards()
     loadAllCards() //Carga todas las cartas para lo que es el filtrado
     setQuestionAnswers()
+    setAllDateFaqsUpdate()
     setAttackFlowChart()
     setAllErrataCards()
   }, [])

@@ -154,6 +154,7 @@ export interface faqState {
   qa: Array<object>;
   errata: Array<object>;
   flow: Array<object>;
+  dateQaUpdate:Array<object>;
 }
 
 export interface UserState {

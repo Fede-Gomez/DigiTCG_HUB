@@ -1,10 +1,11 @@
 import React, {useState, useRef} from 'react'
-import { Text, FlatList, View, TextInput, Dimensions } from 'react-native';
+import { Text, FlatList, View, TextInput, Dimensions, Button } from 'react-native';
 import { useAppSelector } from '../../hooks/useReducerHook';
 import FastImage from 'react-native-fast-image';
 
 const QuestionAnswer = () => {
     const qa = useRef(useAppSelector(state => state.faq.qa))
+    const qaDateUpdate = useRef(useAppSelector(state => state.faq.dateQaUpdate))
 
     const [nameCard, setNameCard] = useState('');
 
@@ -54,19 +55,29 @@ const QuestionAnswer = () => {
 
     const renderData = ()=>{
         if (nameCard !== ''){      
-            return qa.current?.filter((card) => card.name?.toLowerCase().includes(nameCard.toLowerCase()))
+            return qa.current?.filter((card) => 
+                card.name?.toLowerCase().includes(nameCard.toLowerCase()) //revisa que concuerde el nombre de la/s carta/s con el campo de busqueda
+                || card.num?.toLowerCase().includes(nameCard.toLowerCase()) //revisa que concuerde el booster o expansion donde salio con la/s carta/s con el campo de busqueda
+                || card.qa?.find( e => e.question?.includes(nameCard.toLowerCase())) //revisa que concuerde la fecha de actualizacion donde salio con la/s carta/s con el campo de busqueda
+            )
           }
         return[];
     }
 
     const renderEmptyList = ()=>{
-        console.log(qa.current[0].qa[0].question);
-        
         return (
             <View>
-                <Text style={{color:'white'}}>Preguntas y respuestas mas recientes</Text>
+                <Text style={{color:'white', alignSelf:'center', fontSize:23, marginVertical:15}}>Preguntas y respuestas mas recientes</Text>
                 <View>
-                    <Text>a</Text>
+                    {qaDateUpdate.current.map((e,index)=>{
+                        return(
+                            <Button
+                                key={index}
+                                title={ index == 0 ? e.date + '  NEW  '+ e.descripcion : e.date + '    '+ e.descripcion}
+                                onPress={()=> setNameCard(e.date)}
+                            />
+                        ) 
+                    })}
                 </View>
             </View>
         )
@@ -77,7 +88,7 @@ const QuestionAnswer = () => {
         style={{alignItems:'center'}}
     >
         <TextInput
-          placeholder="Buscador por nombre"
+          placeholder="Buscador por nombre, BT/EX/ST/RB/P o fecha"
           onChangeText={setNameCard}
           value={nameCard}
           style={{color:'white'}}
@@ -89,7 +100,7 @@ const QuestionAnswer = () => {
             numColumns={1}
             ListEmptyComponent={renderEmptyList}
             showsVerticalScrollIndicator={false}
-            style={{height:Dimensions.get('screen').height/1.415}}
+            style={{height:Dimensions.get('screen').height/1.44}}
         />
     </View>
   )

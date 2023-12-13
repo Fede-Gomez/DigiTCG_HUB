@@ -18,16 +18,32 @@ const FlowChart = () => {
     const [currentFlow, setCurrentFlow] = useState('1')
     const [prevFlow, setPrevFlow] = useState('0')
 
+    const [move, setMove] = useState(true)
+    const [btnHabilitado, setBtnHabilitado] = useState(false)
+
+    const moveFlowChart = ()=>{
+        setMove(!move)
+        setBtnHabilitado(true)
+        setTimeout(() => {
+            setBtnHabilitado(false)
+        }, 500);
+    }
+
   return (
     <View style={{top:'25%'}}>
+        {currentFlow=='1' && <Text style={{alignSelf:'center', fontSize:20, color:'white', backgroundColor:'black', padding:15}}>Inicio</Text>
+        }
         <View style={{flexDirection:'row', justifyContent:'space-evenly', marginVertical:20}}>
             {current[prevFlow]?.prev.map(e=>{
                 return (
                     <Svg height="50" width="50" scale={50}
                     onPress={()=>{
+                            moveFlowChart(),
                             setCurrentFlow(prevFlow),
                             setPrevFlow(current[prevFlow].prev)
-                        }}>
+                        }}
+                    disabled={btnHabilitado}
+                    >
                             <Polygon
                                 points="25,0 50,25 40,25 40,50 10,50 10,25 0,25"
                                 fill="blue"
@@ -53,9 +69,11 @@ const FlowChart = () => {
             return e != '0' ? (
                     <Svg height="50" width="50" scale={50} 
                     onPress={()=>{
+                        moveFlowChart(),
                         setCurrentFlow(e), 
                         setPrevFlow(currentFlow)
                     }}
+                    disabled={btnHabilitado}
                     style={{transform:[{rotate:'180deg'}]}}
                     >
                         <Polygon

@@ -80,13 +80,13 @@ const MemoryGauge = () => {
             >
                 <Text style={{color:'white'}}>Memoria +1</Text>
             </TouchableOpacity>
-            <Text style={{...style.txtMemoriaJugador, backgroundColor:'black',padding:10, color:'blue'}}>Jugador 1:   {contador.current}</Text>
+            <Text style={{...style.txtMemoriaJugador, backgroundColor:'black',padding:10, color:'skyblue'}}>Jugador 1:   {contador.current}</Text>
             <TouchableOpacity
                 style={{
                     ...style.btnMemoriaBasePlayer1,
                     opacity: contador.current == -10 && 0.2,
                 }}
-                onPress={()=>contador.current != 10 && changeContador(1, 'resta',0)}
+                onPress={()=>contador.current != -10 && changeContador(1, 'resta', 0)}
                 disabled={contador.current == -10 && true }
             >
                 <Text style={{color:'white'}}>Memoria -1</Text>
@@ -124,7 +124,6 @@ const MemoryGauge = () => {
                 style={style.containerNumeroAmbosJugadores}
             >
                 <Text style={{...memoria0(), transform:[{rotate:'-45deg'}]}}>0</Text>
-                {/* <Text style={{...style.ambosJugadores, transform:[{rotate:'-45deg'}], color:'gold'}}>0</Text> */}
             </LinearGradient>
             <View style={style.lineaHorizontalPlayer1}/>
             <Text style={activo == 1 ? style.jugadorActivo1 : style.jugador1}>1</Text>

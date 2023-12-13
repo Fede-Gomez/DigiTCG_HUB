@@ -1,7 +1,7 @@
 import getFolders from './folders';
 import getFilters from './filters';
 import { getCardsBt, getFilteredCards, getAllCards, getCardsEx, getCardsRb, getCardsSt, getCardsPromo } from './cards';
-import { getAllErrataCards, getAllQuestionAnswer, getFlowChart } from './faqs'
+import { getAllErrataCards, getAllQuestionAnswer, getFlowChart, getAllDateFaqsUpdate } from './faqs'
 
 export {
     getFilters,
@@ -15,5 +15,6 @@ export {
     getFilteredCards,
     getAllErrataCards,
     getAllQuestionAnswer,
+    getAllDateFaqsUpdate,
     getFlowChart,
 }

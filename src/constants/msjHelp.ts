@@ -40,6 +40,19 @@ export const msjHelp = {
         'Compartir Texto Deck: Comparte el deck seleccionado en formato Texto a la red social seleccionada',
         'Cambiar nombre: Cambia el nombre del deck seleccionado'
     ],
+    QA:[
+        'Buscador por nombre, BT/EX/ST/RB/P o fecha: Busca la/s carta/s que cumplan con el criterio de busqueda',
+        'Preguntas y respuestas mas recientes: Lista de las ultimas actualizaciones de preguntas y respuestas de las cartas'
+    ],
+    errataCards:[
+        'Muestra Fecha de actualizacion, nombre de la carta, la imagen actualizada como tambien el texto que tenia antes (en rojo) y su modificación (en verde) ademas de una nota (en violeta)'
+    ],
+    flowChart:[
+        'El cartel inicio muestra el comienzo del diagrama de flujo de ataque',
+        'Se avanza por los pasos o estados apretando las flechas situadas abajo del globo',
+        'Se retrocede por los pasos o estados apretando las flechas situadas arriba del globo',
+        'Reiniciar devuelve al comienzo'
+    ],
     tcgPlayer:[
         'Busca las cartas que en la página de TCGPlayer'
     ]
