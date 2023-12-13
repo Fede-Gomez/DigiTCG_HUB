@@ -74,7 +74,7 @@ const ModalCard = ({card}) => {
           // Continuar con la segunda mitad de la animación
           Animated.timing(rotateValue, {
             toValue: 0,
-            duration: 750,
+            duration: 500,
             easing: Easing.linear,
             useNativeDriver: true,
           }).start();
@@ -103,6 +103,7 @@ const ModalCard = ({card}) => {
         isVisible={isModalVisible}
         onSwipeComplete={()=>{setModalCard(false), setFlipCard(false)}}
         swipeDirection={!btnHabilitado ? ['up','down'] : []}
+        key={name}
     >
         <Animatable.Text animation="fadeOutUp" iterationCount={'infinite'} direction="alternate" duration={2500} style={{color:'white', fontSize:20, fontWeight:'bold', top:50}}>Desliza arriba o abajo para salir</Animatable.Text>
       <Animated.View
@@ -211,7 +212,7 @@ const ModalCard = ({card}) => {
         }
       </Animated.View>
       <Button
-        title="Flip Card"
+        title="Voltear carta"
         onPress={() => flipCard()}
         disabled={btnHabilitado}
       />

@@ -4,7 +4,7 @@ import { useAccount } from '../../hooks/useAccount'
 import { useNavigation } from '@react-navigation/native'
 import { TypeNavigation } from '../../constants/typesNavigation'
 import { login } from '../../styles'
-import { useCards, useFolders } from '../../hooks'
+import { useCards, useFaq, useFolders } from '../../hooks'
 import { backgroundLoginScreen } from '../../assets/backgrounds';
 
 
@@ -16,7 +16,7 @@ export const LoginScreen = () => {
   const {signIn} = useAccount();
   const {loadFolders} = useFolders()
   const {getListFiltersOfCards, loadAllCards} = useCards()
-
+  const { setQuestionAnswers, setAttackFlowChart, setAllErrataCards, setAllDateFaqsUpdate } = useFaq()
   const [renderStack, setRenderStack] = useState(false);
   const [loading, setLoading] = useState(false)
 
@@ -25,10 +25,15 @@ export const LoginScreen = () => {
       setRenderStack(true);
     }, 5000);
   }, [])
+  
   useEffect(() => {
     loadFolders()
     getListFiltersOfCards()
     loadAllCards() //Carga todas las cartas para lo que es el filtrado
+    setQuestionAnswers()
+    setAllDateFaqsUpdate()
+    setAttackFlowChart()
+    setAllErrataCards()
   }, [])
 
   return (

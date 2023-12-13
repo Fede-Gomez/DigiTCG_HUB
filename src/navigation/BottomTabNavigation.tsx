@@ -15,8 +15,10 @@ import {
   cardViewOff, 
   cardViewOn, 
 } from '../assets/icons'; 
+import { iconOn, iconOff } from '../constants/colors';
 import { msjHelp } from '../constants/msjHelp';
 import { useApp } from '../hooks';
+
 const Tab = createBottomTabNavigator();
 
 const iconCardView = ({ color, size, focused }) => (
@@ -70,10 +72,10 @@ export const BottomCardTabNavigation = () => {
           component={ViewCardsScreen} 
           options={{
             tabBarIcon: iconCardView, 
-            tabBarActiveTintColor:'#C09F79',
-            tabBarInactiveTintColor:'#3D0605',
-            tabBarActiveBackgroundColor:'#3D0605', 
-            tabBarInactiveBackgroundColor:'#C09F79',
+            tabBarActiveTintColor:iconOn,
+            tabBarInactiveTintColor:iconOff,
+            tabBarActiveBackgroundColor:iconOff,
+            tabBarInactiveBackgroundColor:iconOn,
             title:'Cartas'
           }} 
           listeners={{focus:msjAyudaCartas}}
@@ -83,10 +85,10 @@ export const BottomCardTabNavigation = () => {
           component={CardsSelectedScreen} 
           options={{
             tabBarIcon: iconCardSelect, 
-            tabBarActiveTintColor:'#C09F79',
-            tabBarInactiveTintColor:'#3D0605',
-            tabBarActiveBackgroundColor:'#3D0605',  
-            tabBarInactiveBackgroundColor:'#C09F79',
+            tabBarActiveTintColor:iconOn,
+            tabBarInactiveTintColor:iconOff,
+            tabBarActiveBackgroundColor:iconOff,
+            tabBarInactiveBackgroundColor:iconOn,
             title:'Cartas seleccionadas'
           }}
           listeners={{focus:msjAyudaCartasSeleccionadas}}
@@ -96,10 +98,10 @@ export const BottomCardTabNavigation = () => {
           component={DecksSelectedScreen} 
           options={{
             tabBarIcon: iconDeck, 
-            tabBarActiveTintColor:'#C09F79',
-            tabBarInactiveTintColor:'#3D0605',
-            tabBarActiveBackgroundColor:'#3D0605',  
-            tabBarInactiveBackgroundColor:'#C09F79',
+            tabBarActiveTintColor:iconOn,
+            tabBarInactiveTintColor:iconOff,
+            tabBarActiveBackgroundColor:iconOff,
+            tabBarInactiveBackgroundColor:iconOn,
             title:'Deck',
           }}
           listeners={{focus:msjAyudaDeck}}

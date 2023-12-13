@@ -75,7 +75,7 @@ const CardListMyDeck = () => {
                   style={{backgroundColor:'green', padding:0, alignSelf:'center'}}
                   onPress={toggleModal}
                 >
-                  <Text style={{padding:10, color:'white', fontWeight:'bold'}}>Otros decks</Text>
+                  <Text style={{padding:10, color:'white', fontWeight:'bold'}}>Ver otros decks</Text>
                 </TouchableOpacity>
                 <BtnsExportDeck deckChoice={deckChoice} />
               </View>

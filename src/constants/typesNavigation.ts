@@ -13,6 +13,10 @@ export const TypeNavigation = {
         deckBuilder:'Deck',
         cardsBuy: 'Comprar',
         cardsSell: 'Vender',
+        faq:'Ruling',
+        questionAnswer:'Question Answer',
+        errataCards: 'Errata Cards',
+        flowChart: 'Attack Flowchart',
         countMemory: "Medidor Memoria"
     }
 }
