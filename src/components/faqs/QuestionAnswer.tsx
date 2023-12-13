@@ -36,14 +36,14 @@ const QuestionAnswer = () => {
                                 padding:5
                             }}>
                                 <Text style={{alignSelf:'flex-start', color:'red', fontSize:30}}>Q{index+1}</Text>
-                                <Text style={{alignSelf:'flex-start', fontSize:20}}>{currentValue.question}</Text>
+                                <Text style={{alignSelf:'flex-start', color:'black', fontSize:20}}>{currentValue.question}</Text>
                             </View>
                             <View style={{
                                 backgroundColor:'white',
                                 padding:5
                             }}>
                                 <Text style={{alignSelf:'flex-end', color:'green', fontSize:30}}>A{index+1}</Text>
-                                <Text style={{textAlign:'right', fontSize:20}}>{currentValue.answer}</Text>
+                                <Text style={{textAlign:'right', color:'black', fontSize:20}}>{currentValue.answer}</Text>
                             </View>
                         </View>
                     )
