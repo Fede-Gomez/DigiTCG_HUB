@@ -84,9 +84,17 @@ const QuestionAnswer = () => {
     }
 
   return (
-    <View
-        style={{alignItems:'center'}}
-    >
+    <>
+        <FlatList
+            data={renderData()}
+            renderItem={renderItem}
+            numColumns={1}
+            ListEmptyComponent={renderEmptyList}
+            showsVerticalScrollIndicator={false}
+            removeClippedSubviews={true}
+            keyExtractor={item => item.id}
+            contentContainerStyle={{alignSelf:'center'}}
+        />
         <TextInput
           placeholder="Buscador por nombre, BT/EX/ST/RB/P o fecha"
           onChangeText={setNameCard}
@@ -94,15 +102,7 @@ const QuestionAnswer = () => {
           style={{color:'white'}}
           placeholderTextColor={'white'}
         />
-        <FlatList
-            data={renderData()}
-            renderItem={renderItem}
-            numColumns={1}
-            ListEmptyComponent={renderEmptyList}
-            showsVerticalScrollIndicator={false}
-            style={{height:Dimensions.get('screen').height/1.44}}
-        />
-    </View>
+    </>
   )
 }
 

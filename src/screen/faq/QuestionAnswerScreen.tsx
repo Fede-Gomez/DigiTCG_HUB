@@ -8,6 +8,7 @@ const QuestionAnswerScreen = () => {
     <ImageBackground
       source={backgroundRulingGeneral}
       resizeMode='cover'
+      style={{flex:1}}
     >
           <QuestionAnswer/>
     </ImageBackground>
