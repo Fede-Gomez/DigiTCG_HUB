@@ -1,4 +1,4 @@
-package com.digitcg_hub;
+package com.digitcghub;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

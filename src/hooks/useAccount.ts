@@ -1,4 +1,4 @@
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider,  } from 'firebase/auth'
 import { app } from '../firebase/connect'
 import { useAppDispatch } from './useReducerHook';
 import { useNavigation } from '@react-navigation/native';
@@ -7,7 +7,9 @@ import { setUser } from '../reducers/userReducer';
 import { getUserFromDataBase, saveUserDataBase } from '../firebase/dataBase';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ErrorMessage } from '../components';
+import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 
+const provider = new GoogleAuthProvider();
 export const useAccount = () => {
     const auth = getAuth(app);
     const navigation = useNavigation()
@@ -31,6 +33,33 @@ export const useAccount = () => {
             })
     }
 
+    const signInGoogle = async () => {
+        try {
+           const {user} = await GoogleSignin.signIn();
+           const {email, name, id} = user
+           signInWithEmailAndPassword(auth, email, id)
+           .then((userCredential)=>{
+               loginUser(userCredential.user.uid)
+           }).catch(error =>{
+                createAccount(name, email, id)
+           })
+        } catch (error) {
+            console.log(error);
+            
+          if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+            // user cancelled the login flow
+            console.log(error);
+            
+          } else if (error.code === statusCodes.IN_PROGRESS) {
+            // operation (e.g. sign in) is in progress already
+          } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+            // play services not available or outdated
+          } else {
+            // some other error happened
+          }
+        }
+      };
+
     const signIn = (email, password)=>{
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential)=>{
@@ -46,7 +75,7 @@ export const useAccount = () => {
     }
 
     const loginUser = async (idUser)=>{
-        let user = await getUserFromDataBase(idUser).catch( ()=> ErrorMessage('Error al ingresar, intente nuevamente'))
+        let user = await getUserFromDataBase(idUser).catch( ()=> ErrorMessage('Error al ingresar, intente nuevamente') )
         if (user !== null) {
             dispatch(setUser(user?.data()))
             navigation.navigate(TypeNavigation.game.home);
@@ -60,8 +89,7 @@ export const useAccount = () => {
     const getUserStorageDevice = async () => {
 
         try {
-        const value = await AsyncStorage.getItem('idUser');
-        
+            const value = await AsyncStorage.getItem('idUser');
         if (value !== null) {
             loginUser(value);
         }
@@ -81,6 +109,7 @@ export const useAccount = () => {
         signIn,
         loginUser, 
         saveDataBaseUser,
-        getUserStorageDevice
+        getUserStorageDevice,
+        signInGoogle,
     }
 }

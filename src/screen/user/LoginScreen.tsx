@@ -6,6 +6,7 @@ import { TypeNavigation } from '../../constants/typesNavigation'
 import { login } from '../../styles'
 import { useCards, useFaq, useFolders } from '../../hooks'
 import { backgroundLoginScreen } from '../../assets/backgrounds';
+import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
 
 
 export const LoginScreen = () => {
@@ -13,7 +14,7 @@ export const LoginScreen = () => {
   const [password, setPassword] = useState()
   const navigation = useNavigation();
   const style = login;
-  const {signIn} = useAccount();
+  const {signIn, signInGoogle} = useAccount();
   const {loadFolders} = useFolders()
   const {getListFiltersOfCards, loadAllCards} = useCards()
   const { setQuestionAnswers, setAttackFlowChart, setAllErrataCards, setAllDateFaqsUpdate } = useFaq()
@@ -26,6 +27,12 @@ export const LoginScreen = () => {
     }, 5000);
   }, [])
   
+  useEffect(() => {
+    GoogleSignin.configure({
+      webClientId:'1072600977089-ve400b0mqatkk3rhg67usi7l4p23fcf5.apps.googleusercontent.com',
+    })
+  }, [])
+
   useEffect(() => {
     loadFolders()
     getListFiltersOfCards()
@@ -68,7 +75,7 @@ export const LoginScreen = () => {
                   signIn(email, password),
                   setTimeout(() => {
                     setLoading(false)
-                  }, 3500),
+                  }, 5500),
                   setLoading(true)
                 )}
               title='Login'
@@ -79,7 +86,19 @@ export const LoginScreen = () => {
               title='Create account'
             />
           </View>
-        </View>
+            <Text style={{alignSelf:'center', marginTop:40}}>
+              <GoogleSigninButton
+                size={GoogleSigninButton.Size.Wide}
+                color={GoogleSigninButton.Color.Dark}
+                accessibilityHint='accessGoogle'
+                onPress={()=>{
+                  signInGoogle(),
+                  setLoading(true)
+                }}
+                disabled={loading == true}
+              />;
+            </Text>
+          </View>
         )
       }
         {loading && <ActivityIndicator size="large" color="#0000ff" style={{ position:'absolute', top: '75%', left:'50%', right:'50%', justifyContent: 'center', alignItems: 'center' }} />}
