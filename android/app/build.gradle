@@ -97,8 +97,8 @@ android {
         applicationId "com.digitcghub"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 14
-        versionName "1.1.2"
+        versionCode 15
+        versionName "1.2.0"
     }
 
     splits {
