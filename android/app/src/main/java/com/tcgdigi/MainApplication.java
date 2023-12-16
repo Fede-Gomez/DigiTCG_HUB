@@ -1,4 +1,4 @@
-package com.digitcghub;
+package com.digitcg_hub;
 
 import android.app.Application;
 import com.facebook.react.PackageList;
