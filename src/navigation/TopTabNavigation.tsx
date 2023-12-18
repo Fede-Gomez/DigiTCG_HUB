@@ -5,9 +5,10 @@ import { BottomCardTabNavigation } from './BottomTabNavigation';
 import { CountMemoryScreen, TcgPlayerScreen } from '../screen';
 import { BackHandler, View, TouchableOpacity, Text } from 'react-native';
 import { ModalApoyoComentarios, ModalAyuda } from '../components';
-import { useCards } from '../hooks';
+import { useApp, useCards } from '../hooks';
 import { useAppSelector } from '../hooks/useReducerHook';
 import BottomFaqNavigation from './BottomFaqNavigation';
+import { msjHelp } from '../constants/msjHelp';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -17,8 +18,16 @@ export const TopTapNavigation = () => {
   const [isModalVisibleAyuda, setIsModalVisibleAyuda] = useState(false);
   const { setCardsBuySellAfterLogin } = useCards()
   const profile = useAppSelector(state => state.user.profile)
+  const {setMsjHelp} = useApp()
 
 
+  const msjTCGPlayer = ()=>{
+    setMsjHelp(msjHelp.tcgPlayer)      
+  }
+  const msjCountMemory = ()=>{
+    setMsjHelp(msjHelp.countMemory)      
+  }
+  
   const toggleModalApoyoComentario = () => {
     setIsModalVisibleApoyoComentario(!isModalVisibleApoyoComentario);
   };
@@ -62,8 +71,8 @@ export const TopTapNavigation = () => {
       >
         <Tab.Screen name={TypeNavigation.game.deckBuilder} component={BottomCardTabNavigation} options={{title:'Cartas'}} />
         <Tab.Screen name={TypeNavigation.game.faq} component={BottomFaqNavigation} />
-        <Tab.Screen name={TypeNavigation.game.countMemory} component={CountMemoryScreen} />
-        <Tab.Screen name={TypeNavigation.game.tcgPlayer} component={TcgPlayerScreen} />
+        <Tab.Screen name={TypeNavigation.game.countMemory} component={CountMemoryScreen} listeners={{focus:msjCountMemory}}/>
+        <Tab.Screen name={TypeNavigation.game.tcgPlayer} component={TcgPlayerScreen} listeners={{focus:msjTCGPlayer}}/>
       </Tab.Navigator>
       <ModalApoyoComentarios isModalVisible={isModalVisibleApoyoComentario} toggleModal={toggleModalApoyoComentario}/>
       <ModalAyuda isModalVisible={isModalVisibleAyuda} toggleModal={toggleModalAyuda}/>

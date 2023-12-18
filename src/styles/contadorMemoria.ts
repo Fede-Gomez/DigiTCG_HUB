@@ -1,125 +1,116 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 const estiloNumBase = {
-    borderRadius:80,
-    width:50,
-    height:50,
     textAlign:'center',
-    fontSize:35,
+    fontSize:45,
 }
-const lineaBase = {
-    backgroundColor:'black',
+const containerMemoriaBase = {
+    borderRadius:80,
+    width:65,
+    height:65,
+}
+const lineaBaseHorizontal = {
     height:5,
     paddingHorizontal:20,
 }
-const btnMemoriaBase = {
-    backgroundColor:'white',
-    padding:10,
+const lineaBaseVertical = {
+    paddingVertical:20,
+    marginTop:4,
+    width:5,
+    alignSelf:'center',
 }
 
 export const contadorMemoria = StyleSheet.create({
     // btn y txt de reset e historial
     btnHistorialReset:{
-        marginHorizontal:30,
+        marginHorizontal:25,
         backgroundColor:'white',
     },
     txtHistorialReset:{
         color:'black',
         paddingVertical:5,
-        paddingHorizontal:10
+        paddingHorizontal:10,
+        fontSize:25
     },
+
+
+
     // contenedores
     container:{
         flex:1,
         alignItems:'center',
         justifyContent:'center',
     },
+    containerMemoria0:{
+        ...containerMemoriaBase,
+    },
+    containerMemoriaJ1:{
+        ...containerMemoriaBase,
+        backgroundColor:'black',
+    },
+    containerMemoriaJ2:{
+        ...containerMemoriaBase,
+        backgroundColor:'white',
+    },
     containerNumber: {
         flexDirection:'row', 
         marginVertical:15, 
-        alignItems:'center'
+        alignItems:'center',
     },
-    containerNumeroAmbosJugadores:{
-        ...estiloNumBase,
-        transform:[{rotate:'45deg'}]
-    },
+
 
 
     // circulos de memoria
-    jugador1:{
-        ...estiloNumBase,
-        backgroundColor:'black',
-        color:'white',
-        transform:[{rotate:'180deg'}]
-    },
-    jugador2:{
-        ...estiloNumBase,
-        backgroundColor:'white',
-        color:'black',
-    },
     ambosJugadores:{
         ...estiloNumBase,
-        transform:[{rotate:'-45deg'}], color:'gold'
+        transform:[{rotate:'-45deg'}],
+        color:'gold'
     },
-    jugadorActivo1:{
-        ...estiloNumBase,
-        backgroundColor:'black',
-        color:'skyblue',
-        transform:[{rotate:'180deg'}]
-    },
-    jugadorActivo2:{
-        ...estiloNumBase,
-        backgroundColor:'white',
-        color:'red',
-    },
-    jugadorActivo1En0:{
+    memoriaActivoJ1:{
         ...estiloNumBase,
         color:'skyblue',
         transform:[{rotate:'180deg'}]
     },
-    jugadorActivo2En0:{
+    memoriaInactivoJ1:{
+        ...estiloNumBase,
+        color:'white',
+        zIndex:20,
+        transform:[{rotate:'180deg'}]
+    },
+    memoriaActivoJ2:{
         ...estiloNumBase,
         color:'red',
     },
-
-
-    // btn para sumar o restar memoria
-    btnMemoriaBasePlayer1: {
-        ...btnMemoriaBase,
-        backgroundColor:'black'
-    },
-    btnMemoriaBasePlayer2: {
-        ...btnMemoriaBase
+    memoriaInactivoJ2:{
+        ...estiloNumBase,
+        color:'black'
     },
 
-    // txt memoria del jugador
-    txtMemoriaJugador:{
-        alignSelf:'center', 
-        marginHorizontal:40,
-    },
 
     // lineas que unen los circulos
     lineaHorizontalPlayer1:{
-        ...lineaBase,
+        ...lineaBaseHorizontal,
         backgroundColor:'white'
     },
     lineaVerticalDerPlayer1:{
-        ...lineaBase,
+        ...lineaBaseVertical,
         backgroundColor:'white',
-        transform:[{rotate:'90deg'}],
-        marginLeft: Dimensions.get('window').width / 2.3
     },
+    lineaVerticalIzqPlayer1:{
+        ...lineaBaseVertical,
+        backgroundColor:'white',
+    },
+
     lineaHorizontalPlayer2:{
-        ...lineaBase
+        ...lineaBaseHorizontal,
+        backgroundColor:'black'
     },
     lineaVerticalDerPlayer2:{
-        ...lineaBase,
-        transform:[{rotate:'90deg'}],
-        marginLeft: Dimensions.get('window').width / 2.3
+        ...lineaBaseVertical,
+        backgroundColor:'black',
     },
-    lineaVerticalIzq:{
-        ...lineaBase,
-        transform:[{rotate:'90deg'}],
-        marginRight: Dimensions.get('window').width / 2.3
+    lineaVerticalIzqPlayer2:{
+        ...lineaBaseVertical,
+        backgroundColor:'black',
     },
 })

@@ -53,6 +53,11 @@ export const msjHelp = {
         'Se retrocede por los pasos o estados apretando las flechas situadas arriba del globo',
         'Reiniciar devuelve al comienzo'
     ],
+    countMemory:[
+        'Reiniciar: Reinicia la partida',
+        'Historial: Muestra los cambios de memoria como el turno del jugador',
+        'Click en los numeros para marcar la memoria del jugador siendo los de color negro jugador 1 y los de color blanco como jugador 2'
+    ],
     tcgPlayer:[
         'Busca las cartas que en la página de TCGPlayer'
     ]
