@@ -19,6 +19,7 @@ const flowChartAtkOff = require('./flowChartAtkOff.png')
 const rulingGeneralOff = require('./rulingGeneralOff.png')
 const rulingGeneralOn = require('./rulingGeneralOn.png')
 
+const iconoContadorMemoria = require('./iconMemoryGauge.png')
 export {
     cardsSelectOff,
     cardsSelectOn,
@@ -34,4 +35,5 @@ export {
     flowChartAtkOff,
     rulingGeneralOff,
     rulingGeneralOn,
+    iconoContadorMemoria,
 }
