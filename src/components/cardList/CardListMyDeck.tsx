@@ -15,7 +15,7 @@ const CardListMyDeck = () => {
     const listPicked = useAppSelector(state => state.cards.picked)
     const navigation = useNavigation()
     const { updateDeck, deleteDeck } = useDeck()
-    const {setMsjHelp} = useApp()
+    const {setMsjHelp, setBuildWishSell} = useApp()
     const [isModalVisible, setModalVisible] = useState(false);
     const [deckChoice, setDeckChoice] = useState(null)
 
@@ -132,13 +132,20 @@ const CardListMyDeck = () => {
     }
 
     const renderNoDeckChoice = ()=>{
-    return( 
-      <TouchableOpacity
-        onPress={toggleModal}
-      >
-        <Text style={style.selectDecks} >Selecciona un mazo</Text>
-      </TouchableOpacity>
-    )
+    return decks.length == undefined
+        ? <TouchableOpacity
+            onPress={()=>{
+              setBuildWishSell(TypeNavigation.game.deckBuilder)
+              navigation.navigate(TypeNavigation.game.cardSelected);
+            }}
+          >
+            <Text style={style.selectDecks} >Crea un nuevo mazo</Text>
+          </TouchableOpacity>
+        : <TouchableOpacity
+            onPress={toggleModal}
+          >
+            <Text style={style.selectDecks} >Selecciona un mazo</Text>
+          </TouchableOpacity>
     }
 
     const renderData = ()=>{

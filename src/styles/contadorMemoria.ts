@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions, PixelRatio } from 'react-native';
+import { StyleSheet, PixelRatio } from 'react-native';
 const sizeHeightScreen = PixelRatio.get()*160
 const size440 = {
     width:50,

@@ -17,8 +17,6 @@ const MemoryGauge = () => {
       };
 
     const changeContador = (jugador: number, memoria:number)=>{
-        console.log(jugador);
-        
         msj.current = ''
         msj.current = `Turno del Jugador ${jugador}   `
         setActivo(`j${jugador}_${memoria}`)
