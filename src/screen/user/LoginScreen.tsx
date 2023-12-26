@@ -10,8 +10,8 @@ import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/go
 
 
 export const LoginScreen = () => {
-  const [email, setEmail] = useState()
-  const [password, setPassword] = useState()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const navigation = useNavigation();
   const style = login;
   const {signIn, signInGoogle} = useAccount();
@@ -72,18 +72,18 @@ export const LoginScreen = () => {
             <Button
               color={'black'}
               onPress={()=>(
-                  signIn(email, password),
-                  setTimeout(() => {
-                    setLoading(false)
-                  }, 5500),
-                  setLoading(true)
+                  setLoading(true),
+                  signIn(email, password)
+                    .catch(e=>setLoading(false))
                 )}
               title='Login'
+              disabled={loading == true}
             />
             <Button
               color={'black'}
               onPress={()=>navigation.navigate(TypeNavigation.account.signIn)}
               title='Create account'
+              disabled={loading == true}
             />
           </View>
             <Text style={{alignSelf:'center', marginTop:40}}>
@@ -92,11 +92,9 @@ export const LoginScreen = () => {
                 color={GoogleSigninButton.Color.Dark}
                 accessibilityHint='accessGoogle'
                 onPress={()=>{
-                  signInGoogle(),
-                  setTimeout(() => {
-                    setLoading(false)
-                  }, 5500),
-                  setLoading(true)
+                  setLoading(true),
+                  signInGoogle()
+                    .catch(e=>setLoading(false))
                 }}
                 disabled={loading == true}
               />

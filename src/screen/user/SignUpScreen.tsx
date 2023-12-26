@@ -17,7 +17,7 @@ const SignUpScreen = () => {
     const {createAccount} = useAccount();
     const navigation = useNavigation();
     const style = signUp
-    const [loading] = useState(false)
+    const [loading, setLoading] = useState(false)
     const reset = ()=>{
       setEmail('');
       setPassword('');
@@ -64,21 +64,26 @@ const SignUpScreen = () => {
                 if((name || email || password) == ''){
                   ErrorMessage('Complete Nombre Email y Contraseña')
                 }else{
+                  setLoading(true)
                   createAccount(name, email, password)
+                    .catch(()=>setLoading(false))
                 }
               }
               }
               title='Create account'
+              disabled={loading == true}
             />
             <Button
               color={'black'}
               onPress={()=>reset()}
               title='Reset'
+              disabled={loading == true}
             />
             <Button
               color={'black'}
               onPress={()=>navigation.navigate(TypeNavigation.account.login)}
               title='Login'
+              disabled={loading == true}
             />
           </View>
       </View>

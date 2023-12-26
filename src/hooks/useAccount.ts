@@ -60,7 +60,7 @@ export const useAccount = () => {
         }
       };
 
-    const signIn = (email, password)=>{
+    const signIn = async (email, password)=>{
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential)=>{
                 loginUser(userCredential.user.uid)
@@ -87,14 +87,12 @@ export const useAccount = () => {
 
 
     const getUserStorageDevice = async () => {
-
         try {
             const value = await AsyncStorage.getItem('idUser');
         if (value !== null) {
             loginUser(value);
         }
-        } catch (error) {
-        }
+        } catch (error) {}
     };
 
     const saveUserStorageDevice = async (idUser:string)=>{
