@@ -92,7 +92,7 @@ const QuestionAnswer = () => {
             ListEmptyComponent={renderEmptyList}
             showsVerticalScrollIndicator={false}
             removeClippedSubviews={true}
-            keyExtractor={item => item.id}
+            keyExtractor={item => item.num}
             contentContainerStyle={{alignSelf:'center'}}
         />
         <TextInput
