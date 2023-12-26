@@ -25,8 +25,8 @@ let titleCardBuy = {
 
 export const listCardsView = StyleSheet.create({
     container:{
-        flexDirection:'column',
-        margin:8,
+        marginLeft:-8,
+        marginBottom:8
     },
     buttonsAddRemove:{
         flexDirection:'row',

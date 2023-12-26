@@ -39,6 +39,15 @@ function heightWidthImg() {
     return altoAnchoImg
 }
 
+function imgPlaceholder() {
+    if(alturaDevice < 35){
+        return 193
+    }
+    else{
+        return 220
+    }
+}
+
 function fontSize() {
     return letra
 }
@@ -73,4 +82,5 @@ export {
     paddingHorizontalReiniciarHistorial,
     fontSizeReiniciarHistorial,
     heightWidthImg,
+    imgPlaceholder
 }

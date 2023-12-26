@@ -82,7 +82,7 @@ export const BtnsHeadersCard = () => {
         </View>
         <TouchableOpacity
           onPress={()=>toggleModal()}
-          style={{backgroundColor:'#3D0605', padding:10}}
+          style={{backgroundColor:'#152C77', padding:10}}
         >
           <FastImage
             source={filterOn}

@@ -28,8 +28,8 @@ let titleCardBuy = {
 
 export const listCardsSelected = StyleSheet.create({
     container:{
-        flexDirection:'column',
-        margin:8
+        marginLeft:-8,
+        marginBottom:8
     },
     titleDeckBuilder:{
         ...titleDeckBuilder

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { View, FlatList, Button, TextInput, Text } from 'react-native';
+import { View, FlatList, TextInput, Text } from 'react-native';
 import { useAppSelector } from '../../hooks/useReducerHook'
 import { BtnAddRemoveCards, BtnsHeadersCard, CardDigimon, ModalFilter } from '..'
 import { listCardsView } from '../../styles'
@@ -77,7 +77,6 @@ const CardListCardsView = () => {
       keyExtractor={item => item.id}
       initialNumToRender={10}
       maxToRenderPerBatch={10}
-      windowSize={3}
     />
     <TextInput
       placeholder="Buscador por nombre"

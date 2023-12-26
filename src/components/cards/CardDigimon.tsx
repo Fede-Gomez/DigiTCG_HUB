@@ -4,6 +4,7 @@ import { cardStyle } from '../../styles';
 import { useApp } from '../../hooks';
 import FastImage from 'react-native-fast-image';
 import {placeholderCard} from '../../assets/backgrounds/index';
+import { imgPlaceholder } from '../../constants/sizesDevice';
 
 const CardDigimon = ({ card }) => {
     const { id, imgUrl } = card
@@ -18,7 +19,7 @@ const CardDigimon = ({ card }) => {
     return (
         <ImageBackground
             source={placeholderCard}
-            style={{ width: 190, height: 200 }}
+            style={{ width: imgPlaceholder(), height: imgPlaceholder() }}
             resizeMode='center'
         >
             <TouchableOpacity
@@ -28,12 +29,15 @@ const CardDigimon = ({ card }) => {
                 onPress={toggleModal}
             >
                 <FastImage
-                    style={{ width: 190, height: 200 }}
+                    style={{ 
+                        width: imgPlaceholder(), 
+                        height: imgPlaceholder(), 
+                        alignSelf:'center'
+                    }}
                     source={{
                         uri: imgUrl,
                         priority: FastImage.priority.high,
                     }}
-
                     resizeMode={FastImage.resizeMode.contain}
                 />
             </TouchableOpacity>

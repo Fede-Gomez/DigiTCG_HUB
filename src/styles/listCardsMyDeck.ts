@@ -11,8 +11,8 @@ let textBase = {
 export const listCardsMyDeck = StyleSheet.create({
 
     container:{
-        flexDirection:'column',
-        margin:8
+        marginLeft:-8,
+        marginBottom:8,
     },
     nameDeck:{
         ...textBase,
