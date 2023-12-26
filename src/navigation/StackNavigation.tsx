@@ -20,7 +20,7 @@ export const StackLogSignNavigation = ()=>{
     return(
       <>
         <Stack.Navigator
-          initialRouteName={profile.length !== 0 ? TypeNavigation.game.home : TypeNavigation.account.login } 
+          initialRouteName={profile?.length !== 0 ? TypeNavigation.game.home : TypeNavigation.account.login } 
             screenOptions={{
               headerShown:false,
             }}

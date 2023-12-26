@@ -132,7 +132,8 @@ const CardListMyDeck = () => {
     }
 
     const renderNoDeckChoice = ()=>{
-    return decks.length == undefined
+      
+    return Object.keys(decks).length === 0
         ? <TouchableOpacity
             onPress={()=>{
               setBuildWishSell(TypeNavigation.game.deckBuilder)

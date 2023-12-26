@@ -35,7 +35,7 @@ const MemoryGauge = () => {
 
   return (
     <View style={style.container}>
-        <View style={{flexDirection:'row', marginVertical:15}}>
+        <View style={{flexDirection:'row'}}>
             <TouchableOpacity
                 onPress={()=>resetGame()}
                 style={{...style.btnHistorialReset, backgroundColor:'red'}}

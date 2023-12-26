@@ -93,10 +93,13 @@ export const LoginScreen = () => {
                 accessibilityHint='accessGoogle'
                 onPress={()=>{
                   signInGoogle(),
+                  setTimeout(() => {
+                    setLoading(false)
+                  }, 5500),
                   setLoading(true)
                 }}
                 disabled={loading == true}
-              />;
+              />
             </Text>
           </View>
         )
