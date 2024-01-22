@@ -32,11 +32,6 @@ const removeNotification = ()=>{
     >
       <Text style={style.textButtonAdd}>Add</Text>
     </TouchableOpacity>
-    {item.count &&
-      <Text style={style.countDeckBuilder}>
-        {item.count}
-      </Text>
-    }
     <TouchableOpacity
       style={style.buttonRemove}
       onPress={() => (removeCards(item), removeNotification())}
@@ -52,11 +47,6 @@ const removeNotification = ()=>{
     >
       <Text style={style.textButtonAdd}>Add</Text>
     </TouchableOpacity>
-    {item.count &&
-      <Text style={style.countCardBuy}>
-        {item.count}
-      </Text>
-    }
     <TouchableOpacity
       style={style.buttonRemove}
       onPress={() => (removeCardWished(item), removeNotification())}
@@ -72,11 +62,6 @@ const removeNotification = ()=>{
     >
       <Text style={style.textButtonAdd}>Add</Text>
     </TouchableOpacity>
-    {item.count &&
-      <Text style={style.countCardSell}>
-        {item.count}
-      </Text>
-    }
     <TouchableOpacity
       style={style.buttonRemove}
       onPress={() => (removeCardSelling(item), removeNotification())}

@@ -1,4 +1,5 @@
-import CardDigimon from "./cards/CardDigimon";
+import CardDigimonDeck from './cards/CardDigimonDeck';
+import CardDigimonView from './cards/CardDigimonView';
 import Folder from './folders/Folder';
 import { CardListCardsSelected, CardListCardsView, CardListMyDeck } from './cardList'
 import { ModalApoyoComentarios, ModalCard, ModalFilter, ModalAyuda} from './modals'
@@ -9,7 +10,8 @@ import { FlowChart, QuestionAnswer, ErrataCards } from './faqs'
 import MemoryGauge from './memoryGauge/CountMemory';
 
 export {
-    CardDigimon,
+    CardDigimonDeck,
+    CardDigimonView,
     Folder,
     CardListCardsView,
     CardListCardsSelected,

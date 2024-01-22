@@ -1,12 +1,13 @@
 import React, {useEffect} from 'react'
-import { Dimensions, FlatList, Text, TouchableOpacity, View } from 'react-native';
-import { BtnsHeadersCardSelecteds, BtnAddRemoveCards, CardDigimon, BtnImportDeck } from '../../components'
+import { Dimensions, Text, TouchableOpacity, View } from 'react-native';
+import { BtnsHeadersCardSelecteds, BtnImportDeck } from '../../components'
 import { listCardsSelected } from '../../styles';
 import { useAppSelector } from '../../hooks/useReducerHook';
 import { TypeNavigation } from '../../constants/typesNavigation';
 import { useNavigation } from '@react-navigation/native';
 import { useApp } from '../../hooks';
 import { msjHelp } from '../../constants/msjHelp';
+import RenderCardList from '../utils/RenderCardList';
 
   const CardListCardsSelected = () => {
     const navigation = useNavigation()
@@ -25,18 +26,10 @@ import { msjHelp } from '../../constants/msjHelp';
 
     const style = listCardsSelected
 
-    const renderItem = ({item})=>{
-        return <View style={style.container} >
-          <CardDigimon card={item}/>
-          <View style={style.buttonsAddRemove}>
-            <BtnAddRemoveCards item={item}/>
-          </View>
-        </View>
-    }
     const renderListEmpty = () => {
       return <View style={{ flex: 1, alignItems:'center'}}>
         <TouchableOpacity
-          onPress={()=>navigation.navigate(TypeNavigation.game.cardsView)}
+          onPress={()=>navigation.navigate(TypeNavigation.game.cardsView, 0)}
           style={{
             marginTop:Dimensions.get('screen').height/5,
             marginBottom:50
@@ -50,32 +43,21 @@ import { msjHelp } from '../../constants/msjHelp';
       </View>
     }
     
-    const renderHeader = () => {
-      return (<BtnsHeadersCardSelecteds />);
-    };
-
-    const renderData = ()=>{
+    const renderData = ()=>{      
       if(builderWishedSelling == TypeNavigation.game.cardsSell)
         return listSelling
       if(builderWishedSelling == TypeNavigation.game.cardsBuy)
-        return listWished 
+        return listWished       
       return listPicked
     }
 
     return (
-      <View>
-        <FlatList
-          ListEmptyComponent={renderListEmpty}
-          data={renderData()}
-          renderItem={renderItem}
-          numColumns={2}
-          stickyHeaderIndices={[0]}
-          ListHeaderComponent={renderHeader}
-          showsVerticalScrollIndicator={false}
-          removeClippedSubviews={true}
-          keyExtractor={item => item.id}
-        />
-      </View>
+    <RenderCardList
+      data={renderData()}
+      header={BtnsHeadersCardSelecteds}
+      empty={renderListEmpty}
+      tabBar={TypeNavigation.game.cardSelected}
+    />
   )
 }
 

@@ -59,8 +59,8 @@ const ModalCard = ({card}) => {
         treated,
         ace,
     } = card;
-
-    const style = cardStyle;
+    
+    const style = cardStyle('');
 
     const startFlipAnimation = () => {
         rotateValue.setValue(0);

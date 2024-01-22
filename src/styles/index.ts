@@ -13,6 +13,7 @@ import { btnsAddRemove } from './btnsAddRemove'
 import { modalContadorMemoria } from './modals/modalContadorMemoria';
 import { contadorMemoria } from './contadorMemoria';
 import { errataCards } from './errataCards';
+import modalDeckBuySell from './modals/modalDeckBuySell';
 
 export{
     folder,
@@ -29,5 +30,6 @@ export{
     btnsAddRemove,
     modalContadorMemoria,
     contadorMemoria,
-    errataCards
+    errataCards,
+    modalDeckBuySell
 }

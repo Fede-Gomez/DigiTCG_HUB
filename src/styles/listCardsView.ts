@@ -25,13 +25,13 @@ let titleCardBuy = {
 
 export const listCardsView = StyleSheet.create({
     container:{
-        marginLeft:-8,
-        marginBottom:8
+        // marginBottom:8,
+        marginHorizontal:2,
     },
     buttonsAddRemove:{
         flexDirection:'row',
-        justifyContent:'space-evenly',
         marginTop:5,
+        marginBottom:10
     },
     titleDeckBuilder:{
         ...titleDeckBuilder

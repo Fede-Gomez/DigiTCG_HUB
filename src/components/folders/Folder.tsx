@@ -47,8 +47,8 @@ const Folder = () => {
           <Image
             source={{uri:item.img}}
             style={{
-              height: 300,
-              width:170
+              height: 220,
+              width:'100%'
             }}
           />
         </View>
@@ -60,11 +60,10 @@ const Folder = () => {
     <FlatList
       data={folders}
       renderItem={renderItem}
-      contentContainerStyle={{alignSelf:'center'}}
-      numColumns={2}
-      refreshing={true}
+      numColumns={3}
       removeClippedSubviews={true}
-      maxToRenderPerBatch={10}
+      style={{alignSelf:'center'}}
+      showsVerticalScrollIndicator={false}
     />
   )
 }

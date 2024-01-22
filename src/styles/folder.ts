@@ -2,6 +2,9 @@ import { StyleSheet } from 'react-native';
 
 export const folder = StyleSheet.create({
     containerImg:{
-        padding:10,
+        marginHorizontal:10, 
+        marginVertical:15, 
+        width:110, 
+        height:200
     }
 })

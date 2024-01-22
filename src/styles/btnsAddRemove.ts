@@ -46,6 +46,7 @@ export const btnsAddRemove = StyleSheet.create({
     buttonAdd:{
         ...btnBase,
         backgroundColor:'green',
+        marginRight:8
     },
     buttonRemove:{
         ...btnBase,

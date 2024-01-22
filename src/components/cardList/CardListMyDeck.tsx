@@ -8,6 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 import { TypeNavigation } from '../../constants/typesNavigation';
 import { listCardsMyDeck } from '../../styles';
 import { msjHelp } from '../../constants/msjHelp';
+import RenderCardList from '../utils/RenderCardList';
 
 const style = listCardsMyDeck;
 const CardListMyDeck = () => {
@@ -120,16 +121,6 @@ const CardListMyDeck = () => {
 
       
   }
-    const renderDeck = ({item})=>{
-      const card = item
-      return(
-        <View style={style.container}>
-          <CardDigimon card={card}/>
-          <Text style={style.count}>{card.count}</Text>
-        </View>
-      )
-
-    }
 
     const renderNoDeckChoice = ()=>{
       
@@ -155,18 +146,12 @@ const CardListMyDeck = () => {
       return []
     }
   return (
-    <>
-      <FlatList
-        data={renderData()}
-        ListEmptyComponent={renderNoDeckChoice}
-        ListHeaderComponent={renderHeader}
-        renderItem={renderDeck}
-        numColumns={2}
-        stickyHeaderIndices={[0]}
-        showsVerticalScrollIndicator={false}
-        removeClippedSubviews={true}
-      />
-    </>
+    <RenderCardList
+      data={renderData()}
+      header={renderHeader}
+      empty={renderNoDeckChoice}
+      tabBar={TypeNavigation.game.deckBuilder}
+    />
   )
 }
 

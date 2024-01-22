@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { View, FlatList, TextInput, Text } from 'react-native';
+import { View, TextInput, Text } from 'react-native';
 import { useAppSelector } from '../../hooks/useReducerHook'
-import { BtnAddRemoveCards, BtnsHeadersCard, CardDigimon, ModalFilter } from '..'
+import { BtnsHeadersCard, ModalFilter } from '..'
 import { listCardsView } from '../../styles'
 import { useApp } from '../../hooks';
 import { msjHelp } from '../../constants/msjHelp';
+import RenderCardList from '../utils/RenderCardList';
 
 
 
@@ -23,9 +24,6 @@ const CardListCardsView = () => {
 
   const style = listCardsView;
 
-  const renderHeader = () => {
-    return <BtnsHeadersCard />
-  }
   
   const renderListEmpty = () => {
     return <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-around' }}>
@@ -33,18 +31,6 @@ const CardListCardsView = () => {
         No se encontraron cartas
       </Text>
     </View>
-  }
-
-  const renderItem = ({ item }) => {
-    return (
-      <View style={style.container}>
-        <CardDigimon card={item} />
-        <View style={style.buttonsAddRemove}>
-          <BtnAddRemoveCards item={item} />
-        </View>
-      </View>
-
-    )
   }
 
   const renderData = () => {
@@ -65,18 +51,11 @@ const CardListCardsView = () => {
   }
 
   return <>
-    <FlatList
-      ListEmptyComponent={renderListEmpty}
-      ListHeaderComponent={renderHeader()}
+    <RenderCardList
       data={renderData()}
-      renderItem={renderItem}
-      numColumns={2}
-      stickyHeaderIndices={[0]}
-      showsVerticalScrollIndicator={false}
-      removeClippedSubviews={true}
-      keyExtractor={item => item.id}
-      initialNumToRender={10}
-      maxToRenderPerBatch={10}
+      header={BtnsHeadersCard}
+      empty={renderListEmpty}
+      tabBar={'Cartas'}
     />
     <TextInput
       placeholder="Buscador por nombre"

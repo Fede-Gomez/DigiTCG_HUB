@@ -1,36 +1,59 @@
 import { StyleSheet, Dimensions } from 'react-native';
-let textBase = {
-    color: '#ffffff',
-    fontSize: 15,
-    borderColor:'#ffffff',
-    textAlign:'center',
-    flex:1
-}
-let singleText = {
-    ...textBase,
-    borderWidth:1,
-}
-let multiText = {
-    ...textBase,
-    borderWidth:1,
+import { colorBackgroundCardBuy, colorBackgroundCardSell, colorBackgroundDeckBuilder} from '../constants/colors'
+import { TypeNavigation } from '../constants/typesNavigation';
 
-}
-let effectsText = {
-    ...textBase,
-}
-let firstText ={
-    ...textBase,
-    width:'100%',
-    borderWidth:1,
-}
-let lastText ={
-    ...textBase,
-    width:'100%',
-    borderWidth:1,
+
+
+export const cardStyle =(builderWishedSelling:string) =>{
+    let textBase = {
+        color: '#ffffff',
+        fontSize: 15,
+        borderColor:'#ffffff',
+        textAlign:'center',
+        flex:1
+    }
+    let singleText = {
+        ...textBase,
+        borderWidth:1,
+    }
+    let multiText = {
+        ...textBase,
+        borderWidth:1,
     
-}
+    }
+    let effectsText = {
+        ...textBase,
+    }
+    let firstText ={
+        ...textBase,
+        width:'100%',
+        borderWidth:1,
+    }
+    let lastText ={
+        ...textBase,
+        width:'100%',
+        borderWidth:1,
+        
+    }
 
-export const cardStyle = StyleSheet.create({
+    let countText = {
+        position:'absolute', 
+        right:5,
+        backgroundColor:switchColorBackground(),
+        paddingHorizontal:10,
+        marginHorizontal: 10,
+        borderRadius:20,
+    }
+    function switchColorBackground() {
+        switch (builderWishedSelling) {
+            case TypeNavigation.game.deckBuilder: return colorBackgroundDeckBuilder
+            case TypeNavigation.game.cardsBuy: return colorBackgroundCardBuy
+            case TypeNavigation.game.cardsSell: return colorBackgroundCardSell
+        }
+    }
+
+    
+    return StyleSheet.create({
 
     //          Buttons
     buttonsModalAddRemove:{
@@ -47,11 +70,14 @@ export const cardStyle = StyleSheet.create({
         flexDirection:'row',
         justifyContent:'space-between'
     },
-    cardContainer:{
-        // marginVertical:7,
+    countText:{
+        ...countText,
+        bottom:50,
     },
-
-
+    countTextDeck:{
+        ...countText,
+        bottom:15,
+    },
 
     //          image
     imageCard:{
@@ -119,5 +145,4 @@ export const cardStyle = StyleSheet.create({
         ...lastText,
     },
 
-    
-})
+})} 
