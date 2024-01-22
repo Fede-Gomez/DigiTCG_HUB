@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Text, View, TextInput, Button, ImageBackground, ActivityIndicator } from 'react-native';
+import { Text, View, TextInput, Button, ImageBackground, ActivityIndicator, Animated, Easing } from 'react-native';
 import { useAccount } from '../../hooks/useAccount'
 import { useNavigation } from '@react-navigation/native'
 import { TypeNavigation } from '../../constants/typesNavigation'
@@ -7,6 +7,7 @@ import { login } from '../../styles'
 import { useCards, useFaq, useFolders } from '../../hooks'
 import { backgroundLoginScreen } from '../../assets/backgrounds';
 import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
+import { iconoContadorMemoria } from '../../assets/icons';
 
 
 export const LoginScreen = () => {
@@ -42,6 +43,25 @@ export const LoginScreen = () => {
     setAttackFlowChart()
     setAllErrataCards()
   }, [])
+
+  const spinValue = new Animated.Value(0);
+
+  Animated.loop(
+    Animated.timing(
+      spinValue,
+      {
+       toValue: 1,
+       duration: 500,
+       easing: Easing.linear,
+       useNativeDriver: true
+      }
+    )
+   ).start();
+  
+  const spin = spinValue.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0deg', '360deg']
+  })
 
   return (
     <ImageBackground
@@ -92,7 +112,7 @@ export const LoginScreen = () => {
                 color={GoogleSigninButton.Color.Dark}
                 accessibilityHint='accessGoogle'
                 onPress={()=>{
-                  setLoading(true),
+                  setLoading(true)
                   signInGoogle()
                     .catch(e=>setLoading(false))
                 }}
@@ -102,7 +122,12 @@ export const LoginScreen = () => {
           </View>
         )
       }
-        {loading && <ActivityIndicator size="large" color="#0000ff" style={{ position:'absolute', top: '75%', left:'50%', right:'50%', justifyContent: 'center', alignItems: 'center' }} />}
+        {loading && 
+          <Animated.Image
+            source={iconoContadorMemoria}
+            style={{height:50, width:50, alignSelf:'center', paddingBottom:100, transform: [{rotate: spin}]}}
+          />
+        }
     </ImageBackground>
   )
 }
