@@ -1,5 +1,5 @@
 import React, {useState,useRef} from 'react'
-import { Dimensions, Text, TouchableOpacity } from 'react-native';
+import { Animated, Dimensions, Text } from 'react-native';
 import { useAppSelector } from '../../hooks/useReducerHook';
 import { View, Button } from 'react-native';
 import Svg, { Polygon } from 'react-native-svg';
@@ -17,11 +17,13 @@ const FlowChart = () => {
     const {current} = useRef(flow.atkFlowChart) 
     const [currentFlow, setCurrentFlow] = useState('1')
     const [prevFlow, setPrevFlow] = useState('0')
+    const opacity = useRef(new Animated.Value(0)).current;
 
     const [move, setMove] = useState(true)
     const [btnHabilitado, setBtnHabilitado] = useState(false)
 
     const moveFlowChart = ()=>{
+        fade()
         setMove(!move)
         setBtnHabilitado(true)
         setTimeout(() => {
@@ -29,11 +31,34 @@ const FlowChart = () => {
         }, 500);
     }
 
+
+    
+
+    const fade = ()=>{
+        Animated.timing(
+            opacity,
+            {
+                toValue: 0,
+                duration:1,
+                useNativeDriver:true
+            }
+        ).start(()=>{
+            Animated.timing(
+                opacity,
+                {
+                    toValue:1,
+                    duration:500,
+                    useNativeDriver:true
+                }
+            ).start()
+        })
+    }
+
   return (
     <View style={{top:'25%'}}>
         {currentFlow=='1' && <Text style={{alignSelf:'center', fontSize:20, color:'white', backgroundColor:'black', padding:15}}>Inicio</Text>
         }
-        <View style={{flexDirection:'row', justifyContent:'space-evenly', marginVertical:20}}>
+        <Animated.View style={{flexDirection:'row', justifyContent:'space-evenly', marginVertical:20}}>
             {current[prevFlow]?.prev.map(e=>{
                 return (
                     <Svg height="50" width="50" scale={50}
@@ -44,15 +69,15 @@ const FlowChart = () => {
                         }}
                     disabled={btnHabilitado}
                     >
-                            <Polygon
-                                points="25,0 50,25 40,25 40,50 10,50 10,25 0,25"
-                                fill="blue"
-                            />
-                        </Svg>
+                        <Polygon
+                            points="25,0 50,25 40,25 40,50 10,50 10,25 0,25"
+                            fill="blue"
+                        />
+                    </Svg>
                 )
             })}
-        </View>
-        <Text style={{
+        </Animated.View>
+        <Animated.Text style={{
             backgroundColor:'black',
             color:'white',
             alignSelf:'center',
@@ -63,7 +88,8 @@ const FlowChart = () => {
             width: Dimensions.get('window').width * 0.5,
             height: Dimensions.get('window').width * 0.5,
             borderRadius:Math.round(Dimensions.get('window').width + Dimensions.get('window').height) / 2,
-        }}>{current[currentFlow].descripcion}</Text>
+            opacity:opacity
+        }}>{current[currentFlow].descripcion}</Animated.Text>
         <View  style={{flexDirection:'row', justifyContent:'space-evenly', marginVertical:20}}>
         {current[currentFlow]?.next.map(e=>{
             return e != '0' ? (
