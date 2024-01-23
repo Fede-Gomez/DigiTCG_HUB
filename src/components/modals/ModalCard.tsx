@@ -82,7 +82,7 @@ const ModalCard = ({card}) => {
       };
   
     useEffect(() => {
-        startFlipAnimation ();
+        startFlipAnimation();
     }, [move]);
   
     const imageRotate  = rotateValue.interpolate({

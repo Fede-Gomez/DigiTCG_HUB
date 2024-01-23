@@ -5,6 +5,7 @@ import { useAppSelector } from '../../hooks/useReducerHook'
 import { TypeNavigation } from '../../constants/typesNavigation'
 import { useApp } from '../../hooks';
 import { modalDeckBuySell } from '../../styles';
+import * as Animatable from 'react-native-animatable';
 
 const ModalDeckBuySell = ({isModalVisible, toogleModalDeckBuySell}) => {
 
@@ -14,6 +15,7 @@ const ModalDeckBuySell = ({isModalVisible, toogleModalDeckBuySell}) => {
     const style = modalDeckBuySell(builderWishedSelling)
     return (
         <Modal isVisible={isModalVisible}>
+            <Animatable.Text key={'AnimatedText'} animation="fadeOutUp" iterationCount={'infinite'} direction="alternate" duration={2500} style={{color:'white', fontSize:20, fontWeight:'bold', position:'absolute', top:100}}>Selecciona una burbuja armar deck, comprar cartas o vender cartas</Animatable.Text>
             <TouchableOpacity style={style.selected} onPress={toogleModalDeckBuySell}>
                 <Text style={style.txtSelected}>{builderWishedSelling}</Text>
             </TouchableOpacity>
