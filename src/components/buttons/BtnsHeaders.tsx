@@ -22,17 +22,6 @@ const buttonBack = (clearListCardsView, style) => {
   )
 }
 
-// const buttonClearList = (clearListCards, style) => {
-//   return (
-//     <TouchableOpacity
-//       style={style.buttonBackClear}
-//       onPress={() => clearListCards()}
-//     >
-//       <Text style={style.textButtonBackClear}>Limpiar</Text>
-//     </TouchableOpacity>
-//   )
-// }
-
 export const BtnsHeadersCard = () => {
   const builderWishedSelling = useAppSelector(state => state.app.builderWishedSelling)
   const style = btnsHeader(builderWishedSelling)

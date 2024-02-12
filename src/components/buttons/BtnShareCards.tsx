@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import Share from 'react-native-share';
 import { TouchableOpacity, Text, View } from 'react-native';
 import { useDeck } from '../../hooks';
@@ -12,6 +12,7 @@ const posXCardCount = 80;
 export const BtnShareCards = ({ tipoOperacion,message='', cards, titlePrompt='' }) => {
   const base64 = useRef('')
   const { saveCardsBuy, saveCardsSell } = useDeck()
+  const [loadingCard, setLoadingCard] = useState(false)
 
   const shareMessage = () => {
     shareImages(message);
@@ -33,7 +34,8 @@ export const BtnShareCards = ({ tipoOperacion,message='', cards, titlePrompt='' 
 
     // el contenedor donde se dibujaran las cartas para compartirse, siempre se tomara en cuenta que las columnas maximas seran 5 e ira escalando la altura si el total de cards es multiplo de 5
     canvas.width = cards.length > 4 ? 500 : cards.length*100;
-    canvas.height = Math.ceil(cards.length/5)*150;
+    // canvas.height = Math.ceil(cards.length/5)*150;
+    canvas.height = Math.ceil(cards.length/5)*250;
     
     const context = canvas.getContext('2d');
 
@@ -68,6 +70,7 @@ export const BtnShareCards = ({ tipoOperacion,message='', cards, titlePrompt='' 
         if(index+1 == cards.length){
           const data = await canvas.toDataURL();
           base64.current = data.replace('"','');
+          setLoadingCard(true)
         }      
       });
     });
@@ -95,7 +98,7 @@ export const BtnShareCards = ({ tipoOperacion,message='', cards, titlePrompt='' 
       <Canvas ref={handleCanvas} />
     </View>
     <TouchableOpacity
-        onPress={()=>shareMessage()}
+        onPress={()=>loadingCard && shareMessage()}
         style={{backgroundColor:'green', padding:10}}
       >
         <Text
