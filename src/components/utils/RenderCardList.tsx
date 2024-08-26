@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 import { FlatList, View } from 'react-native'
 import { listCardsView } from '../../styles';
 import { TypeNavigation } from '../../constants/typesNavigation';
@@ -8,21 +8,21 @@ import CardDigimonDeck from '../cards/CardDigimonDeck';
 
 const RenderCardList = ({data, header, empty, tabBar}) => {
     const style = listCardsView;
-    const renderItem = ({ item }) => {
-        return (
-          <View style={style.container}>
-            {tabBar == 'Cartas' && <CardDigimonView card={item} />}
-            {tabBar == TypeNavigation.game.cardSelected && <CardDigimonSelected card={item} />}
-            {tabBar == TypeNavigation.game.deckBuilder && <CardDigimonDeck card={item} />}
-          </View>
-        )
-      }
+
+    const renderItem = useCallback(({ item })=>{
+     return <View style={style.container}>
+             {tabBar == 'Cartas' && <CardDigimonView card={item} />}
+             {tabBar == TypeNavigation.game.cardSelected && <CardDigimonSelected card={item} />}
+             {tabBar == TypeNavigation.game.deckBuilder && <CardDigimonDeck card={item} />}
+           </View>
+    },[data])
+
+    const renderEmptyList = useCallback( empty(),[empty])
 
   return (
     <FlatList
         data={data}
-        ListHeaderComponent={header()}
-        ListEmptyComponent={empty()}
+        ListEmptyComponent={renderEmptyList}
         renderItem={renderItem}
         numColumns={3}
         showsVerticalScrollIndicator={false}

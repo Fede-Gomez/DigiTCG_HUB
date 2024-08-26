@@ -4,12 +4,13 @@ import { listCardsView } from '../../styles';
 import { useApp } from '../../hooks';
 import { placeholderCard } from '../../assets/backgrounds/index';
 import { BtnAddRemoveCards } from '../buttons';
+import { useNavigation } from '@react-navigation/native';
 
 const CardDigimonView = ({ card }) => {
     const { id, imgUrl } = card
     const styleAddRemove = listCardsView
     const { setModalCard, setModalCardInfo } = useApp()
-    
+    const navigate = useNavigation()
     const toggleModal = () => {
         setModalCard(true);
         setModalCardInfo(card)
@@ -20,7 +21,8 @@ const CardDigimonView = ({ card }) => {
         <TouchableOpacity
             key={id}
             activeOpacity={0.7}
-            onPress={toggleModal}
+            onPress={()=>navigate.navigate('Card Info', card)}
+            // onPress={toggleModal}
         >
             <Image
                 source={loading ? placeholderCard :{uri:imgUrl}}

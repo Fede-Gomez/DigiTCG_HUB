@@ -51,9 +51,9 @@ const CardListCardsView = () => {
   }
 
   return <>
+  <BtnsHeadersCard/>
     <RenderCardList
       data={renderData()}
-      header={BtnsHeadersCard}
       empty={renderListEmpty}
       tabBar={'Cartas'}
     />

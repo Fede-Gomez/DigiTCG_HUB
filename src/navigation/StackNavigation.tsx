@@ -6,6 +6,7 @@ import { LoginScreen, SignUpScreen } from '../screen';
 import { useAppSelector } from '../hooks/useReducerHook';
 import { useAccount } from '../hooks';
 import Toast from 'react-native-toast-message';
+import { CardInfoScreen } from '../screen/cards';
 
 const Stack = createNativeStackNavigator()
 
@@ -28,6 +29,7 @@ export const StackLogSignNavigation = ()=>{
           <Stack.Screen name={TypeNavigation.account.login} component={LoginScreen} />
           <Stack.Screen name={TypeNavigation.account.signIn} component={SignUpScreen} />
           <Stack.Screen name={TypeNavigation.game.home} component={TopTapNavigation}/>
+          <Stack.Screen name={TypeNavigation.game.cardInfo} component={CardInfoScreen}/>
         </Stack.Navigator>
         <Toast
           position='top'

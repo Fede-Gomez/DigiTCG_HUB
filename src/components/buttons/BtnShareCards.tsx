@@ -44,7 +44,7 @@ export const BtnShareCards = ({ tipoOperacion,message='', cards, titlePrompt='' 
     let currentRow = 0;
     let currentColumn = 0;
 
-    cards.forEach((currentValue, index) => {
+    await cards.forEach((currentValue, index) => {
       // por cada nueva imagense hace una nueva instancia para poder tener distintos image.src y no se pisen cuando canvas este dibujando
       const image = new CanvasImage(canvas);
       image.crossOrigin = 'true';

@@ -29,7 +29,6 @@ export const btnsHeader = (builderWishedSelling:string)=>{
     }
     
     let containerBase = {
-        flex: 1, 
         flexDirection: 'row', 
         marginVertical:8,
     }

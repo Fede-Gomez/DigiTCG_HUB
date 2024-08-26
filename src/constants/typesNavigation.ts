@@ -6,6 +6,7 @@ export const TypeNavigation = {
     game:{
         home:'Home',
         cardsView: 'Cards',
+        cardInfo:'Card Info',
         cardSelected: 'Cartas seleccionadas',
         searchCard: 'Buscar carta',
         deckSelected: 'Mis decks',
